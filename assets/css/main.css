@@ -1,0 +1,71 @@
+@font-face {
+    font-family: "XiaolaiMonoSC";
+    src: url("https://cos.tngeek.com/font/XiaolaiMonoSC-Regular.ttf");
+}
+
+html {
+    font-family: "XiaolaiMonoSC", "宋体";
+}
+
+div {
+    font-family: "XiaolaiMonoSC", "宋体";
+}
+
+a {
+    font-family: "XiaolaiMonoSC", "宋体";
+}
+
+select {
+    font-family: "XiaolaiMonoSC", "宋体";
+}
+
+option {
+    font-family: "XiaolaiMonoSC", "宋体";
+}
+
+body {
+    font-size: 15px;
+}
+
+
+/* 设置滚动条的样式 */
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+
+/* 滚动槽 */
+
+ ::-webkit-scrollbar-track {
+    border-radius: 10px;
+}
+
+
+/* 滚动条滑块 */
+
+ ::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.part {
+    width: 100%;
+    height: auto;
+    padding: 20px;
+    overflow: hidden;
+    background: #fff;
+    border: 2px #999 solid;
+    box-shadow: -1px 5px 35px -9px rgb(0 0 0 / 20%);
+}
+
+.main-title {
+    color: #000;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
