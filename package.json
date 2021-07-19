@@ -19,6 +19,7 @@
         "less-loader": "^5.0.0",
         "nuxt": "^2.15.3",
         "sass": "^1.32.11",
+        "vditor": "^3.8.6",
         "vue-confirm-dialog": "^1.0.2",
         "vue-masonry": "^0.13.0"
     },

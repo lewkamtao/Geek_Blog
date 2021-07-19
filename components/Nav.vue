@@ -1,42 +1,20 @@
 <template>
   <div class="nav">
-    <div class="part">
-      <div class="main-title">{{ options.title }}</div>
-      <div>{{ options.description }}</div>
-      <div class="导航"></div>
-      <pre>{{ options }}</pre>
-    </div>
+    <UserInfo class="user-info" :options="options" />
+    <Pages
+      class="pages-wrapper"
+      :article_sort="article_sort"
+      :article="article"
+      :pages="pages"
+    />
+    <ArticleSort
+      class="article-sort"
+      :article_sort="article_sort"
+      :article="article"
+    />
 
-    <div class="part sidebar" style="margin-bottom:30px">
-      <div class="form-group">
-        <div class="main-title">文章分类</div>
-
-        <select
-          id="paperSelects1"
-          v-model="isSelect_article_id"
-          @change="getArticle()"
-        >
-          <option
-            v-for="(article_sort, index) in article_sort"
-            :key="index"
-            :value="article_sort.id"
-            >{{ article_sort.name }}</option
-          >
-        </select>
-      </div>
-      <div class="article-title-list">
-        <ul>
-          <li v-for="(item, index) in nav_article" :key="index">
-            <nuxt-link class="text-secondary" :to="'/Article?id=' + item.id">
-              {{ item.title }}</nuxt-link
-            >
-          </li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer">
-      {{ options.copy }}
-    </div>
+    <Pages :article_sort="article_sort" :article="article" :pages="pages" />
+    <Pages :article_sort="article_sort" :article="article" :pages="pages" />
   </div>
 </template>
 
@@ -56,51 +34,29 @@ export default {
     article: {
       type: Array,
       default: []
+    },
+    pages: {
+      type: Array,
+      default: []
     }
   },
   data() {
-    return {
-      nav_article: [],
-      isSelect_article_id: ""
-    };
+    return {};
   },
   watch: {},
   computed: {},
-  methods: {
-    async getArticle() {
-      this.nav_article = (
-        await this.$axios.get("/article-sort", {
-          params: { id: this.isSelect_article_id, limit: 100000 }
-        })
-      ).data.expand.data;
-    }
-  },
-  created() {
-    this.nav_article = this.article;
-    this.isSelect_article_id = this.article_sort[0].id;
-  },
+  methods: {},
+  created() {},
   mounted() {}
 };
 </script>
 <style lang="scss" scoped>
-.aside {
-  width: 100%;
+.user-info {
+  position: fixed;
+  width: 250px;
+  z-index: 999;
 }
-.sidebar {
-  margin-top: 30px;
-  overflow: scroll;
-  max-height: 50vh;
-}
-#paperSelects1 {
-  width: 100%;
-  cursor: pointer;
-  background: #fff;
-}
-.article-title-list {
-  line-height: 30px;
-  padding-left: 25px;
-}
-a {
-  background-image: none;
+.pages-wrapper {
+  margin-top: 330px;
 }
 </style>

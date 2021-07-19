@@ -1,7 +1,7 @@
 <template>
   <div class="aside-wrapper">
     <div style="margin-bottom:30px" class="part aside">
-      <div class="main-title">文章目录</div>
+      <div class="main-title">目录</div>
       <div class="aside-list">
         <ul>
           <li><a href="#ia">adad</a></li>
@@ -75,6 +75,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .aside {
+  position: relative;
   width: 350px;
 }
 .badge {
@@ -86,5 +87,11 @@ export default {
 .aside-list {
   margin-left: 25px;
   line-height: 25px;
+}
+
+@media screen and (max-width: 1440px) {
+  .aside {
+    width: 250px;
+  }
 }
 </style>

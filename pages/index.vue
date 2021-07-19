@@ -4,6 +4,7 @@
       :options="options"
       :article="article"
       :article_sort="article_sort"
+      :pages="pages"
       class="nav"
     />
     <Nuxt class="main" />
@@ -22,13 +23,14 @@ export default {
   async asyncData({ $axios }) {
     const options = (await $axios.get("/options")).data;
     const article_sort = (await $axios.get("/article-sort")).data.data;
+    const pages = (await $axios.get("/page")).data.data;
     const article = (
       await $axios.get("/article-sort", {
         params: { id: article_sort[0].id, limit: 100000 }
       })
     ).data.expand.data;
 
-    return { options, article_sort, article };
+    return { options, article_sort, article, pages };
   },
   props: {},
   data() {
@@ -44,30 +46,28 @@ export default {
 <style  scoped lang="less">
 .wrapper {
   max-width: 1600px;
-  min-width: 980px;
+  min-width: 1280px;
+  overflow: scroll;
   display: flex;
   justify-content: space-between;
   padding: 30px;
   box-sizing: border-box;
   margin: 0px auto;
   .nav {
-    position: fixed;
-    top: 30px;
     width: 250px;
-    height: calc(100vh - 60px);
+    z-index: 99999;
   }
 
   .main {
     width: calc(100% - 280px);
-    margin-left: 280px;
     height: auto;
-    overflow: hidden;
   }
   .to-top {
     position: fixed;
     bottom: 50px;
     right: 50px;
     display: flex;
+    z-index: 99999999;
 
     .paper-btn {
       font-size: 35px;
@@ -82,5 +82,11 @@ export default {
       border-bottom-left-radius: 185px 190px;
     }
   }
+}
+
+.wrapper::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+  display: none;
 }
 </style>

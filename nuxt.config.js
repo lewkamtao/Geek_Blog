@@ -15,7 +15,8 @@ export default {
 
         link: [
             { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-            { rel: 'stylesheet', type: 'text/css', href: '/css/paper.min.css' },
+            { rel: 'stylesheet', type: 'text/css', href: '/css/pui.css' },
+            { rel: 'stylesheet', type: 'text/css', href: 'https://cdn.jsdelivr.net/npm/vditor/dist/index.css' },
 
         ],
         script: [
@@ -34,7 +35,6 @@ export default {
         '@/plugins/axios',
         '@/plugins/route',
         { src: '~/plugins/vue-masonry', ssr: false },
-
     ],
 
     // Auto import components: https://go.nuxtjs.dev/config-components

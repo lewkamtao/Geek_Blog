@@ -4,27 +4,31 @@
 }
 
 html {
-    font-family: "XiaolaiMonoSC", "宋体";
+    font-family: "XiaolaiMonoSC", "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
 }
 
-div {
-    font-family: "XiaolaiMonoSC", "宋体";
+* {
+    font-family: "XiaolaiMonoSC", "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
 }
 
 a {
-    font-family: "XiaolaiMonoSC", "宋体";
+    font-family: "XiaolaiMonoSC", "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
 }
 
 select {
-    font-family: "XiaolaiMonoSC", "宋体";
+    font-family: "XiaolaiMonoSC", "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
 }
 
 option {
-    font-family: "XiaolaiMonoSC", "宋体";
+    font-family: "XiaolaiMonoSC", "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif
 }
 
 body {
     font-size: 15px;
+}
+
+#vditorPreview * {
+    font-family: "XiaolaiMonoSC", "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
 }
 
 
@@ -55,13 +59,14 @@ body {
 }
 
 .part {
+    position: relative;
+    z-index: 99;
     width: 100%;
     height: auto;
     padding: 20px;
     overflow: hidden;
     background: #fff;
-    border: 2px #999 solid;
-    box-shadow: -1px 5px 35px -9px rgb(0 0 0 / 20%);
+    box-shadow: 0px 0px 30px 0px rgb(0 0 0 / 10%);
 }
 
 .main-title {

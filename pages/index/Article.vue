@@ -8,11 +8,11 @@
 <script>
 export default {
   components: {},
-  async asyncData({ $axios, $route }) {
+  async asyncData({ $axios, route }) {
     const article = (
       await $axios.get("/article", {
         params: {
-          id: 7
+          id: parseInt(route.query.id)
         }
       })
     ).data;
@@ -49,10 +49,18 @@ export default {
   display: flex;
   .main {
     width: calc(100% - 380px);
+    min-width: 500px;
   }
 }
 .aside {
   width: 350px;
   margin-left: 30px;
+}
+@media screen and (max-width: 1440px) {
+  .article-wrapper {
+    .main {
+      width: calc(100% - 280px);
+    }
+  }
 }
 </style>
