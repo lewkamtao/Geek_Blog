@@ -5,6 +5,7 @@
       :article="article"
       :article_sort="article_sort"
       :pages="pages"
+      :links="links"
       class="nav"
     />
     <Nuxt class="main" />
@@ -22,15 +23,20 @@ export default {
   components: {},
   async asyncData({ $axios }) {
     const options = (await $axios.get("/options")).data;
-    const article_sort = (await $axios.get("/article-sort")).data.data;
+    const article_sort = (
+      await $axios.get("/article-sort", {
+        params: { limit: 100000 }
+      })
+    ).data.data;
     const pages = (await $axios.get("/page")).data.data;
+    const links = (await $axios.get("/links")).data.data;
     const article = (
       await $axios.get("/article-sort", {
-        params: { id: article_sort[0].id, limit: 100000 }
+        params: { id: article_sort[1].id, limit: 100000 }
       })
     ).data.expand.data;
 
-    return { options, article_sort, article, pages };
+    return { options, article_sort, article, pages, links };
   },
   props: {},
   data() {

@@ -1,24 +1,16 @@
 <template>
   <div class="part pages" style="margin-bottom:30px">
-    <div class="main-title">一些好玩的</div>
-    <div class="list">
-      <ul>
-        <li v-for="(item, index) in pages" :key="index">
-          <nuxt-link class="text-secondary" :to="'/Article?id=' + item.id">
-            {{ item.title }}</nuxt-link
-          >
-        </li>
-        <li>
-          <nuxt-link class="text-secondary" :to="'/Article?id='">
-            友情链接</nuxt-link
-          >
-        </li>
-        <li>
-          <nuxt-link class="text-secondary" :to="'/Article?id='">
-            友情链接</nuxt-link
-          >
-        </li>
-      </ul>
+    <div class="main-title">导航</div>
+    <div class="nav-list">
+      <nuxt-link to="/" class="paper-btn btn-secondary">首页</nuxt-link>
+      <div
+        v-for="(item, index) in pages"
+        :key="index"
+        @click="openPages(item.id)"
+        class="paper-btn btn-secondary"
+      >
+        {{ item.title }}
+      </div>
     </div>
   </div>
 </template>
@@ -37,7 +29,15 @@ export default {
   },
   watch: {},
   computed: {},
-  methods: {},
+  methods: {
+    async openPages(id) {
+      const data = (
+        await this.$axios.get("/page", {
+          params: { id: id }
+        })
+      ).data;
+    }
+  },
   created() {},
   mounted() {}
 };
@@ -45,6 +45,7 @@ export default {
 <style lang="scss" scoped>
 .pages {
   width: 100%;
+  margin-top: 30px;
 }
 
 .list {
@@ -53,5 +54,22 @@ export default {
 }
 .text-secondary {
   background-image: none !important;
+}
+.nav-list {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+  div {
+    padding: 5px;
+    margin-right: 7px;
+    margin-bottom: 10px;
+    font-size: 16px;
+  }
+  a {
+    padding: 5px;
+    margin-right: 7px;
+    margin-bottom: 10px;
+    font-size: 16px;
+  }
 }
 </style>

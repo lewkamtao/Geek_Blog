@@ -5,12 +5,7 @@
       <div class="title">{{ options.title }}</div>
       <div class="description">{{ options.description }}</div>
     </div>
-    <div class="main-title">导航</div>
-    <div class="nav-list">
-      <nuxt-link to="/" class="paper-btn btn-secondary">首页</nuxt-link>
-      <nuxt-link to="/" class="paper-btn btn-warning">时光机</nuxt-link>
-      <nuxt-link to="/" class="paper-btn btn-danger">友链</nuxt-link>
-    </div>
+ 
   </div>
 </template>
 
@@ -40,7 +35,6 @@ export default {
   justify-content: flex-start;
   align-items: flex-start;
   box-sizing: border-box;
-  height: 300px;
   .logo {
     width: 80px;
   }
@@ -51,13 +45,11 @@ export default {
     background: #0071de;
   }
   .description {
-    font-size: 12px;
+    font-size: 14px;
+    line-height: 22px;
+    color: #000;
+    margin-bottom: 10px;
   }
 }
-.nav-list {
-  a {
-    padding: 5px;
-    font-size: 16px;
-  }
-}
+
 </style>

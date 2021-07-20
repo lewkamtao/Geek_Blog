@@ -3,9 +3,9 @@
     <no-ssr>
       <div
         v-masonry
-        transition-duration="0.5s"
+        transition-duration="none"
         item-selector=".card"
-        class=" masonry"
+        class="masonry"
       >
         <div
           v-masonry-tile
@@ -14,23 +14,86 @@
           :key="index"
           v-for="(item, index) in article.data"
         >
-          <img
-            :src="'http://www.dmoe.cc/random.php?' + index"
-            alt="Card example image"
-          />
-          <div class="card-body">
-            <h4 class="card-title">{{ item.title }}</h4>
-            <h5 class="card-subtitle">{{ item.description }}</h5>
-            <p class="card-text">
-              更新时间：{{ item.update_time }} <br />
-              点击量：{{ item.expand.comments }} 字数：{{
-                item.font_count
-              }}
-              评论：{{ item.expand.comments }} 点击量：{{
-                item.expand.comments
-              }}
-            </p>
-          </div>
+          <nuxt-link :to="'/Article?id=' + item.id">
+            <img
+              :src="'http://www.dmoe.cc/random.php?' + index"
+              alt="Card example image"
+            />
+
+            <div class="card-body">
+              <h4 class="card-title">{{ item.title }}</h4>
+              <h5 class="card-subtitle">{{ item.description }}</h5>
+              <div class="tag">
+                <span
+                  v-for="(tag, index) in item.expand.tag"
+                  :key="index"
+                  class="badge"
+                  :class="getTagColor()"
+                  >{{ tag.name }}</span
+                >
+              </div>
+              <div class="card-text">
+                <div>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16px"
+                    height="16px"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="feather feather-user"
+                  >
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                  </svg>
+                  <polyline points="12 6 12 12 16 14"></polyline>
+
+                  {{ item.expand.author.nickname }}
+                </div>
+                <div>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16px"
+                    height="16px"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="feather feather-message-square"
+                  >
+                    <path
+                      d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+                    ></path>
+                  </svg>
+                  {{ item.expand.comments || "暂无评论" }}
+                </div>
+                <div>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16px"
+                    height="16px"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="feather feather-clock"
+                  >
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                  </svg>
+
+                  {{ getBeautifyTime(item.update_time) }}
+                </div>
+              </div>
+            </div></nuxt-link
+          >
         </div>
       </div>
     </no-ssr>
@@ -39,14 +102,18 @@
 
 <script>
 import NoSSR from "vue-no-ssr";
+import util from "@/util/index";
 
 export default {
   components: {
     "no-ssr": NoSSR
   },
-
   async asyncData({ $axios }) {
-    const article = (await $axios.get("/article")).data;
+    const article = (
+      await $axios.get("/article", {
+        params: { limit: 100000 }
+      })
+    ).data;
     return { article };
   },
   props: {},
@@ -55,15 +122,26 @@ export default {
   },
   watch: {},
   computed: {
+    getBeautifyTime() {
+      return function(time) {
+        return util.getBeautifyTime(time);
+      };
+    },
     getBorderType() {
       return function() {
         return "border-" + Math.floor(Math.random() * 6 + 1);
       };
     }
   },
-  methods: {},
+  methods: {
+    getTagColor() {
+      var options = ["", "secondary", "success", "warning", "danger"];
+      var index = Math.floor(Math.random() * options.length);
+      return options[index];
+    }
+  },
   created() {
-    console.log(this.article);
+    console.log(this.article.data[0].expand);
   },
   mounted() {}
 };
@@ -75,10 +153,20 @@ export default {
 .masonry {
   width: 100%;
   .card {
-    width: calc(100% / 4 - 20px);
-    margin: 10px;
+    width: calc(100% / 3 - 30px);
+    margin: 15px;
     overflow: hidden;
     cursor: pointer;
+    a {
+      background-image: none;
+    }
+    .badge {
+      cursor: pointer;
+      margin-bottom: 7px;
+      font-weight: 400;
+      font-size: 12px;
+      margin-right: 7px;
+    }
   }
   .card-title {
     color: #000;
@@ -93,7 +181,19 @@ export default {
   .card-text {
     font-size: 12px;
     line-height: 24px;
+    margin-top: 10px;
     margin-bottom: 0px;
+    display: flex;
+    white-space: nowrap;
+    flex-wrap: wrap;
+    div {
+      margin-right: 20px;
+      display: flex;
+      align-items: center;
+      .feather {
+        margin-right: 5px;
+      }
+    }
   }
 }
 </style>

@@ -13,15 +13,16 @@
     </div>
     <div style="margin-bottom:30px" class="part aside">
       <div class="main-title">标签云</div>
-      <div>
+      <div v-if="article.expand.tag">
         <span
-          v-for="(item, index) in tags"
+          v-for="(item, index) in article.expand.tag"
           :key="index"
           class="badge"
-          :class="getColor()"
-          >{{ item }}</span
+          :class="getTagColor()"
+          >{{ item.name }}</span
         >
       </div>
+      <div v-if="!article.expand.tag">暂无标签</div>
     </div>
     <div class="part aside"><div class="main-title">评论</div></div>
   </div>
@@ -30,46 +31,27 @@
 <script>
 export default {
   components: {},
-  props: {},
+  props: {
+    article: {
+      type: Object,
+      default: {}
+    }
+  },
   data() {
-    return {
-      tags: [
-        "很酷",
-        "很酷",
-        "评论",
-        "很酷",
-        "很酷",
-        "评论",
-        "很酷",
-        "很酷",
-        "评论",
-        "很酷",
-        "很酷",
-        "评论",
-        "评论",
-        "炒米粉",
-        "评论",
-        "很酷",
-        "很酷",
-        "评论",
-        "很酷",
-        "很酷",
-        "评论",
-        "评论",
-        "炒米粉"
-      ]
-    };
+    return {};
   },
   watch: {},
   computed: {},
   methods: {
-    getColor() {
+    getTagColor() {
       var options = ["", "secondary", "success", "warning", "danger"];
       var index = Math.floor(Math.random() * options.length);
       return options[index];
     }
   },
-  created() {},
+  created() {
+    console.log(this.article);
+  },
   mounted() {}
 };
 </script>
@@ -80,9 +62,10 @@ export default {
 }
 .badge {
   cursor: pointer;
-  margin-bottom: 10px;
+  margin-bottom: 7px;
   font-weight: 400;
-  margin-right: 10px;
+  font-size: 12px;
+  margin-right: 7px;
 }
 .aside-list {
   margin-left: 25px;

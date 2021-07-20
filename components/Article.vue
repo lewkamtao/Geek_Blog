@@ -1,18 +1,31 @@
 <template>
   <div class="article-wrapper">
     <div class="vditor-reset" id="vditorPreview"></div>
-    <pre>{{ article }}</pre>
-    <pre>{{ article }}</pre>
-    <pre>{{ article }}</pre>
-    <pre>{{ article }}</pre>
-    <pre>{{ article }}</pre>
-    <pre>{{ article }}</pre>
   </div>
 </template>
 
 <script>
 import VditorPreview from "vditor/dist/method.min";
 export default {
+  head() {
+    return {
+      title: "文章",
+      link: [
+        {
+          rel: "stylesheet",
+          type: "text/css",
+          href:
+            "https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.3/css/all.css"
+        },
+        {
+          rel: "stylesheet",
+          type: "text/css",
+          href: "https://cdn.jsdelivr.net/npm/vditor/dist/index.css"
+        }
+      ],
+      script: []
+    };
+  },
   components: {},
   props: {
     article: {
@@ -25,22 +38,21 @@ export default {
   },
   watch: {
     article: function() {
-      this.formatArticle();
+      this.renderMarkdown(this.article.content);
     }
   },
   computed: {},
   methods: {
-    formatArticle() {
-      if (process.client) {
-        var dom = document.getElementById("vditorPreview");
-        VditorPreview.preview(dom, this.article.content);
-      }
+    renderMarkdown(md) {
+      VditorPreview.preview(document.getElementById("vditorPreview"), md, {
+        hljs: { style: "github" }
+      });
     }
   },
-  created() {
-    this.formatArticle();
-  },
-  mounted() {}
+  created() {},
+  mounted() {
+    this.renderMarkdown(this.article.content);
+  }
 };
 </script>
 <style lang="scss" scoped>
@@ -49,5 +61,4 @@ export default {
   display: flex;
   flex-direction: column;
 }
-
 </style>

@@ -13,8 +13,7 @@
       :article="article"
     />
 
-    <Pages :article_sort="article_sort" :article="article" :pages="pages" />
-    <Pages :article_sort="article_sort" :article="article" :pages="pages" />
+    <Links :links="links" />
   </div>
 </template>
 
@@ -38,6 +37,10 @@ export default {
     pages: {
       type: Array,
       default: []
+    },
+    links: {
+      type: Array,
+      default: []
     }
   },
   data() {
@@ -51,12 +54,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.user-info {
-  position: fixed;
-  width: 250px;
-  z-index: 999;
-}
-.pages-wrapper {
-  margin-top: 330px;
+.nav {
+  display: block;
 }
 </style>

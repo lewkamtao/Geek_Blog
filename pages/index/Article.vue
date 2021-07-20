@@ -1,7 +1,7 @@
 <template>
   <div class="right-wrapper article-wrapper">
     <Article :article="article" class="part main" />
-    <Aside class="aside" />
+    <Aside :article="article" class="aside" />
   </div>
 </template>
 

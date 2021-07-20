@@ -16,7 +16,8 @@ export default {
         link: [
             { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
             { rel: 'stylesheet', type: 'text/css', href: '/css/pui.css' },
-            { rel: 'stylesheet', type: 'text/css', href: 'https://cdn.jsdelivr.net/npm/vditor/dist/index.css' },
+            { rel: 'stylesheet', type: 'text/css', href: '/css/reset.css' },
+            { rel: 'stylesheet', type: 'text/css', href: '/css/main.css' },
 
         ],
         script: [
@@ -26,8 +27,6 @@ export default {
 
     // Global CSS: https://go.nuxtjs.dev/config-css
     css: [
-        '@/assets/css/reset.css',
-        '@/assets/css/main.css',
 
     ],
     // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
@@ -71,7 +70,7 @@ export default {
     },
     proxy: {
         '/api/': {
-            target: 'https://api.kamtao.com/api',
+            target: 'https://api.zets.cn/api',
             pathRewrite: {
                 '^/api/': '/',
                 changeOrigin: true

@@ -1,5 +1,5 @@
 <template>
-  <div class="part sidebar" style="margin-bottom:30px">
+  <div class="part article-sort" style="margin-bottom:30px">
     <div class="form-group">
       <div class="main-title">文章分了个类</div>
 
@@ -19,9 +19,9 @@
     <div class="article-title-list">
       <ul>
         <li v-for="(item, index) in nav_article" :key="index">
-          <nuxt-link class="text-secondary" :to="'/Article?id=' + item.id">
-            {{ item.title }}</nuxt-link
-          >
+          <nuxt-link class="text-secondary" :to="'/Article?id=' + item.id">{{
+            item.title
+          }}</nuxt-link>
         </li>
       </ul>
     </div>
@@ -66,8 +66,9 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.aside {
+.article-sort {
   width: 100%;
+  margin-top: 30px;
 }
 
 #paperSelects1 {
@@ -81,5 +82,9 @@ export default {
 }
 a {
   background-image: none;
+}
+li {
+  border-bottom: 2px #d4d4d4 solid;
+  margin-bottom: 10px;
 }
 </style>
