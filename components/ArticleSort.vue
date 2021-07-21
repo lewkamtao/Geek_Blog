@@ -84,7 +84,7 @@ a {
   background-image: none;
 }
 li {
-  border-bottom: 2px #d4d4d4 solid;
+  border-bottom: 1px #d4d4d4 solid;
   margin-bottom: 10px;
 }
 </style>

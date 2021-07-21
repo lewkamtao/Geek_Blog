@@ -14,6 +14,9 @@
     />
 
     <Links :links="links" />
+    <div class="copy">
+      {{ options.copy }}
+    </div>
   </div>
 </template>
 
@@ -24,24 +27,24 @@ export default {
   props: {
     options: {
       type: Object,
-      default: {}
+      default: {},
     },
     article_sort: {
       type: Array,
-      default: []
+      default: [],
     },
     article: {
       type: Array,
-      default: []
+      default: [],
     },
     pages: {
       type: Array,
-      default: []
+      default: [],
     },
     links: {
       type: Array,
-      default: []
-    }
+      default: [],
+    },
   },
   data() {
     return {};
@@ -50,11 +53,19 @@ export default {
   computed: {},
   methods: {},
   created() {},
-  mounted() {}
+  mounted() {},
 };
 </script>
 <style lang="scss" scoped>
 .nav {
   display: block;
+  padding: 15px;
+  box-sizing: border-box;
+  .user-info {
+    margin-top: 15px;
+  }
+  .copy {
+    margin: 30px 0px;
+  }
 }
 </style>

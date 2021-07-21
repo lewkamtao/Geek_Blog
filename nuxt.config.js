@@ -15,7 +15,7 @@ export default {
 
         link: [
             { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-            { rel: 'stylesheet', type: 'text/css', href: '/css/pui.css' },
+            { rel: 'stylesheet', type: 'text/css', href: '/css/paper.min.css' },
             { rel: 'stylesheet', type: 'text/css', href: '/css/reset.css' },
             { rel: 'stylesheet', type: 'text/css', href: '/css/main.css' },
 
@@ -34,6 +34,7 @@ export default {
         '@/plugins/axios',
         '@/plugins/route',
         { src: '~/plugins/vue-masonry', ssr: false },
+
     ],
 
     // Auto import components: https://go.nuxtjs.dev/config-components
@@ -70,7 +71,7 @@ export default {
     },
     proxy: {
         '/api/': {
-            target: 'https://api.zets.cn/api',
+            target: 'https://api.inis.cn/api',
             pathRewrite: {
                 '^/api/': '/',
                 changeOrigin: true

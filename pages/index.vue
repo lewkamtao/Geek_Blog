@@ -8,11 +8,13 @@
       :links="links"
       class="nav"
     />
-    <Nuxt class="main" />
+    <div class="main">
+      <Nuxt />
+    </div>
 
     <div class="to-top">
       <a href="#top" class="paper-btn margin">
-        <div style="margin-top:23px">^</div>
+        <div style="margin-top: 23px">^</div>
       </a>
     </div>
   </div>
@@ -25,14 +27,14 @@ export default {
     const options = (await $axios.get("/options")).data;
     const article_sort = (
       await $axios.get("/article-sort", {
-        params: { limit: 100000 }
+        params: { limit: 100000 },
       })
     ).data.data;
     const pages = (await $axios.get("/page")).data.data;
     const links = (await $axios.get("/links")).data.data;
     const article = (
       await $axios.get("/article-sort", {
-        params: { id: article_sort[1].id, limit: 100000 }
+        params: { id: article_sort[1].id, limit: 1000000 },
       })
     ).data.expand.data;
 
@@ -46,35 +48,41 @@ export default {
   computed: {},
   methods: {},
   created() {},
-  mounted() {}
+  mounted() {},
 };
 </script>
 <style  scoped lang="less">
 .wrapper {
   max-width: 1600px;
-  min-width: 1280px;
-  overflow: scroll;
+  min-width: 1180px;
   display: flex;
   justify-content: space-between;
-  padding: 30px;
   box-sizing: border-box;
   margin: 0px auto;
   .nav {
-    width: 250px;
+    position: fixed;
+    width: 310px;
+    height: 100vh;
+    overflow: scroll;
     z-index: 99999;
   }
 
   .main {
-    width: calc(100% - 280px);
+    margin-left: 310px;
+    margin-top: 15px;
+    padding: 15px;
+    margin-bottom: 70px;
+    width: calc(100vw - 310px);
     height: auto;
   }
   .to-top {
     position: fixed;
     bottom: 50px;
-    right: 50px;
+    right: 100px;
     display: flex;
-    z-index: 99999999;
 
+    z-index: 99999999;
+    transition: all 0.25s;
     .paper-btn {
       font-size: 35px;
       width: 45px;
@@ -90,9 +98,15 @@ export default {
   }
 }
 
-.wrapper::-webkit-scrollbar {
+.nav::-webkit-scrollbar {
   width: 0px;
   height: 0px;
   display: none;
+}
+@media screen and (max-width: 1440px) {
+  .wrapper {
+    padding: 0px 15px;
+    box-sizing: border-box;
+  }
 }
 </style>

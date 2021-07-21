@@ -5,7 +5,15 @@
       <div class="title">{{ options.title }}</div>
       <div class="description">{{ options.description }}</div>
     </div>
- 
+    <!-- <fieldset class="form-group mode-setting">
+      <label for="mode" class="paper-switch-label">
+        {{ mode ? "黑夜" : "白天" }}
+      </label>
+      <label class="paper-switch">
+        <input id="paperSwitch4" name="mode" v-model="mode" type="checkbox" />
+        <span class="paper-switch-slider"></span>
+      </label>
+    </fieldset> -->
   </div>
 </template>
 
@@ -15,26 +23,47 @@ export default {
   props: {
     options: {
       type: Object,
-      default: {}
-    }
+      default: {},
+    },
   },
   data() {
-    return {};
+    return {
+      mode: false,
+    };
   },
-  watch: {},
+  watch: {
+    mode: function (val) {
+      if (val) {
+        document.getElementsByTagName("body")[0].className = "dark";
+      } else {
+        document.body.removeAttribute("class");
+      }
+    },
+  },
   computed: {},
   methods: {},
   created() {},
-  mounted() {}
+  mounted() {},
 };
 </script>
 <style lang="scss" scoped>
 .user-info {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
   box-sizing: border-box;
+  .mode-setting {
+    position: absolute;
+    right: 10px;
+    top: 30px;
+    display: flex;
+    align-items: center;
+    .paper-switch-label {
+      margin-top: 1px;
+    }
+  }
   .logo {
     width: 80px;
   }
@@ -51,5 +80,4 @@ export default {
     margin-bottom: 10px;
   }
 }
-
 </style>

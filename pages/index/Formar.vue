@@ -1,18 +1,52 @@
 <template>
-  <div class="right-wrapper article-wrapper">
-    <div ref="articleMain" class="main">
-      <Article :article="article" class="part" />
+  <div class="wrapper">
+    <div class="container">
+      <div class="menu">
+        <ul class="menu-list">
+          <li
+            　
+            v-for="(nav, index) in navList"
+            :key="'nav' + index"
+            　　　　　　　　　　　　　　:class="{on: activeIndex === index}"
+            　　　　　　　　　　　　　　@click="currentClick(index)"
+          >
+            <a href="javascript:;" @click="pageJump(nav.index)">{{
+              nav.title
+            }}</a>
+            <div
+              v-if="nav.children.length > 0 && activeIndex === index"
+              　　　　　　　　　　　　　　　　class="menu-children-list"
+            >
+              <ul class="nav-list">
+                <li
+                  v-for="(item, idx) in nav.children"
+                  :key="idx"
+                  :class="{ on: childrenActiveIndex === idx }"
+                  　@click.stop="childrenCurrentClick(idx)"
+                >
+                  <a href="javascript:;" @click="pageJump(item.index)"
+                    >　　　　　　　　　　　　　　　　　　　　　　　　{{
+                      item.title
+                    }}　　　　　　　　　　　　　　　　　　　　　
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div
+        class="help-center-content"
+        v-html="compiledMarkdown"
+        　　　　　　　ref="helpDocs"
+        @scroll="docsScroll"
+      ></div>
     </div>
-    <Aside
-      :article="article"
-      class="aside"
-      :style="'left:' + articleMainWidth + 'px'"
-    />
   </div>
 </template>
-
 <script>
 import marked from "marked";
+
 let rendererMD = new marked.Renderer();
 marked.setOptions({
   renderer: rendererMD,
@@ -26,18 +60,6 @@ marked.setOptions({
 });
 
 export default {
-  components: {},
-  async asyncData({ $axios, route }) {
-    const article = (
-      await $axios.get("/article", {
-        params: {
-          id: parseInt(route.query.id),
-        },
-      })
-    ).data;
-    return { article };
-  },
-  props: {},
   data() {
     return {
       navList: [],
@@ -45,28 +67,23 @@ export default {
       docsFirstLevels: [],
       docsSecondLevels: [],
       childrenActiveIndex: 0,
-
-      articleMainWidth: 0, // 用于计算侧边栏
     };
   },
-  beforeRouteUpdate(to, from, next) {
-    this.getArticle(parseInt(to.query.id));
-    next();
+  async asyncData({ $axios, route }) {
+    const mdContent = (
+      await $axios.get("/article", {
+        params: {
+          id: 110,
+        },
+      })
+    ).data;
+    return { mdContent };
   },
-  watch: {},
-  computed: {},
+  mounted() {
+    this.navList = this.handleNavTree();
+    this.getDocsFirstLevels(0);
+  },
   methods: {
-    // 获取文章
-    async getArticle(id) {
-      const article = (
-        await this.$axios.get("/article", {
-          params: {
-            id: id,
-          },
-        })
-      ).data;
-      this.article = article;
-    },
     childrenCurrentClick(index) {
       this.childrenActiveIndex = index;
     },
@@ -166,8 +183,7 @@ export default {
     },
     // 将一级二级标题数据处理成树结构
     handleNavTree() {
-      let navs = this.getTitle(this.article.content);
-
+      let navs = this.getTitle(this.content);
       let navLevel = [1, 2];
       let retNavs = [];
       let toAppendNavList;
@@ -227,7 +243,12 @@ export default {
       });
       return ret;
     },
-    compiledMarkdown() {
+  },
+  computed: {
+    content() {
+      return this.mdContent;
+    },
+    compiledMarkdown: function () {
       let index = 0;
       rendererMD.heading = function (text, level) {
         if (level <= 2) {
@@ -241,66 +262,8 @@ export default {
         code = code.replace(/\n/g, "<br>");
         return `<div class="text">${code}</div>`;
       };
-      return marked(this.article.content);
+      return marked(this.content);
     },
-  },
-
-  created() {
-    var that = this;
-    setTimeout(function () {
-      console.log(that.navList);
-      console.log(that.compiledMarkdown());
-    }, 1000);
-  },
-
-  mounted() {
-    this.navList = this.handleNavTree();
-    this.getDocsFirstLevels(0);
-
-    var that = this;
-    this.$nextTick(function () {
-      that.articleMainWidth =
-        that.$refs.articleMain.offsetLeft +
-        that.$refs.articleMain.clientWidth +
-        30;
-    });
-    window.onresize = function () {
-      that.$nextTick(function () {
-        that.articleMainWidth =
-          that.$refs.articleMain.offsetLeft +
-          that.$refs.articleMain.clientWidth +
-          30;
-      });
-    };
-  },
-  beforeDestroy() {
-    window.onresize = null;
   },
 };
 </script>
-<style lang="scss" scoped>
-.article-wrapper {
-  display: flex;
-  .main {
-    width: calc(100% - 380px);
-    min-width: 500px;
-  }
-}
-.aside {
-  position: fixed;
-  top: 0px;
-
-  max-height: 100vh;
-  overflow-y: scroll;
-  width: 350px;
-  margin-bottom: 50px;
-  z-index: 99999;
-}
-@media screen and (max-width: 1440px) {
-  .article-wrapper {
-    .main {
-      width: calc(100% - 280px);
-    }
-  }
-}
-</style>

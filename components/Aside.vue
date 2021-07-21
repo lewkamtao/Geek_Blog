@@ -1,6 +1,6 @@
 <template>
   <div class="aside-wrapper">
-    <div style="margin-bottom:30px" class="part aside">
+    <div style="margin-bottom: 30px" class="part aside">
       <div class="main-title">目录</div>
       <div class="aside-list">
         <ul>
@@ -11,7 +11,7 @@
         </ul>
       </div>
     </div>
-    <div style="margin-bottom:30px" class="part aside">
+    <div style="margin-bottom: 30px" class="part aside">
       <div class="main-title">标签云</div>
       <div v-if="article.expand.tag">
         <span
@@ -24,7 +24,13 @@
       </div>
       <div v-if="!article.expand.tag">暂无标签</div>
     </div>
-    <div class="part aside"><div class="main-title">评论</div></div>
+    <div class="part aside">
+      <div class="main-title">评论 <span class="badge secondary">123</span></div>
+
+      <div class="comon">
+        这是又长又臭的评论<br />这是又长又臭的评论<br />这是又长又臭的评论<br />这是又长又臭的评论<br />这是又长又臭的评论<br />这是又长又臭的评论<br />这是又长又臭的评论<br />这是又长又臭的评论<br />这是又长又臭的评论<br />这是又长又臭的评论<br />这是又长又臭的评论<br />这是又长又臭的评论<br />这是又长又臭的评论<br />这是又长又臭的评论<br />这是又长又臭的评论<br />这是又长又臭的评论<br />这是又长又臭的评论<br />这是又长又臭的评论<br />这是又长又臭的评论<br />这是又长又臭的评论<br />这是又长又臭的评论<br />这是又长又臭的评论<br />这是又长又臭的评论<br />这是又长又臭的评论<br />这是又长又臭的评论<br />这是又长又臭的评论<br />这是又长又臭的评论<br />这是又长又臭的评论<br />这是又长又臭的评论<br />这是又长又臭的评论<br />这是又长又臭的评论<br />这是又长又臭的评论<br />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -34,8 +40,8 @@ export default {
   props: {
     article: {
       type: Object,
-      default: {}
-    }
+      default: {},
+    },
   },
   data() {
     return {};
@@ -47,18 +53,16 @@ export default {
       var options = ["", "secondary", "success", "warning", "danger"];
       var index = Math.floor(Math.random() * options.length);
       return options[index];
-    }
+    },
   },
-  created() {
-    console.log(this.article);
-  },
-  mounted() {}
+  created() {},
+  mounted() {},
 };
 </script>
 <style lang="scss" scoped>
 .aside {
-  position: relative;
   width: 350px;
+  padding-top: 30px;
 }
 .badge {
   cursor: pointer;
@@ -72,6 +76,20 @@ export default {
   line-height: 25px;
 }
 
+.aside-wrapper::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+  display: none;
+}
+.comon {
+  line-height: 300px;
+}
+.main-title {
+  .badge {
+    margin: 0px 0px 0px 10px;
+    font-size: 15px;
+  }
+}
 @media screen and (max-width: 1440px) {
   .aside {
     width: 250px;
