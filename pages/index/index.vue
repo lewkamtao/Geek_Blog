@@ -16,7 +16,8 @@
         >
           <nuxt-link :to="'/Article?id=' + item.id">
             <img
-              :src="'http://www.dmoe.cc/random.php?' + index"
+              v-if="item.img_src"
+              :src="item.img_src"
               alt="Card example image"
             />
 
@@ -52,6 +53,28 @@
                   <polyline points="12 6 12 12 16 14"></polyline>
 
                   {{ item.expand.author.nickname }}
+                </div>
+                <div>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16px"
+                    height="16px"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="feather feather-eye"
+                  >
+                    <path
+                      d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"
+                    ></path>
+                    <circle cx="12" cy="12" r="3"></circle>
+                  </svg>
+                  <polyline points="12 6 12 12 16 14"></polyline>
+
+                  {{ item.views }}
                 </div>
                 <div>
                   <svg
@@ -106,12 +129,12 @@ import util from "@/util/index";
 
 export default {
   components: {
-    "no-ssr": NoSSR
+    "no-ssr": NoSSR,
   },
   async asyncData({ $axios }) {
     const article = (
       await $axios.get("/article", {
-        params: { limit: 100000 }
+        params: { limit: 20 },
       })
     ).data;
     return { article };
@@ -123,27 +146,25 @@ export default {
   watch: {},
   computed: {
     getBeautifyTime() {
-      return function(time) {
+      return function (time) {
         return util.getBeautifyTime(time);
       };
     },
     getBorderType() {
-      return function() {
+      return function () {
         return "border-" + Math.floor(Math.random() * 6 + 1);
       };
-    }
+    },
   },
   methods: {
     getTagColor() {
       var options = ["", "secondary", "success", "warning", "danger"];
       var index = Math.floor(Math.random() * options.length);
       return options[index];
-    }
+    },
   },
-  created() {
-    console.log(this.article.data[0].expand);
-  },
-  mounted() {}
+  created() {},
+  mounted() {},
 };
 </script> 
 <style lang="scss" scoped>
