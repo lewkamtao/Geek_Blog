@@ -155,7 +155,7 @@ export default {
         this.$el.querySelector(`#data-${id}`).offsetTop - 40;
       setTimeout(() => (this.titleClickScroll = false), 100);
     },
-    currentClick(index) {
+    currentClick(index) { 
       this.activeIndex = index;
       this.getDocsSecondLevels(index);
     },

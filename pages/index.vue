@@ -33,10 +33,10 @@ export default {
     const pages = (await $axios.get("/page")).data.data;
     const links = (await $axios.get("/links")).data.data;
     const article = (
-      await $axios.get("/article-sort", {
-        params: { id: article_sort[1].id, limit: 1000000 },
+      await $axios.get("/article", {
+        params: { limit: 1000000 },
       })
-    ).data.expand.data;
+    ).data.data;
 
     return { options, article_sort, article, pages, links };
   },

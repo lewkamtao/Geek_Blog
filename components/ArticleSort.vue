@@ -1,5 +1,5 @@
 <template>
-  <div class="part article-sort" style="margin-bottom:30px">
+  <div class="part article-sort" style="margin-bottom: 30px">
     <div class="form-group">
       <div class="main-title">文章分了个类</div>
 
@@ -8,12 +8,14 @@
         v-model="isSelect_article_id"
         @change="getArticle()"
       >
+        <option value="">全部文章</option>
         <option
           v-for="(article_sort, index) in article_sort"
           :key="index"
           :value="article_sort.id"
-          >{{ article_sort.name }}</option
         >
+          {{ article_sort.name }}
+        </option>
       </select>
     </div>
     <div class="article-title-list">
@@ -34,35 +36,45 @@ export default {
   props: {
     article: {
       type: Array,
-      default: []
+      default: [],
     },
     article_sort: {
       type: Array,
-      default: []
-    }
+      default: [],
+    },
   },
   data() {
     return {
       nav_article: [],
-      isSelect_article_id: ""
+      isSelect_article_id: "",
     };
   },
   watch: {},
   computed: {},
   methods: {
     async getArticle() {
-      this.nav_article = (
-        await this.$axios.get("/article-sort", {
-          params: { id: this.isSelect_article_id, limit: 100000 }
-        })
-      ).data.expand.data;
-    }
+      var params = { limit: 100000 };
+      if (this.isSelect_article_id) {
+        params = { id: this.isSelect_article_id, limit: 100000 };
+        this.nav_article = (
+          await this.$axios.get("/article-sort", {
+            params,
+          })
+        ).data.expand.data;
+      } else {
+        this.nav_article = (
+          await this.$axios.get("/article", {
+            params,
+          })
+        ).data.data;
+      }
+    },
   },
   created() {
     this.nav_article = this.article;
-    this.isSelect_article_id = this.article_sort[0].id;
+    this.isSelect_article_id = "";
   },
-  mounted() {}
+  mounted() {},
 };
 </script>
 <style lang="scss" scoped>

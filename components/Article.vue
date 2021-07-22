@@ -101,6 +101,7 @@
 <script>
 import util from "@/util/index";
 import VditorPreview from "vditor/dist/method.min";
+
 export default {
   head() {
     return {
@@ -149,9 +150,11 @@ export default {
   },
   methods: {
     renderMarkdown(md) {
-      VditorPreview.preview(document.getElementById("vditorPreview"), md, {
-        hljs: { style: "github" },
-      });
+      if (process.browser) {
+        VditorPreview.preview(document.getElementById("vditorPreview"), md, {
+          hljs: { style: "github" },
+        });
+      }
     },
   },
   created() {},
