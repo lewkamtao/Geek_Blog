@@ -24,6 +24,10 @@ html {
     background-color: #eee;
 }
 
+#vditorPreview ul li:before {
+    content: "";
+}
+
 a {
     font-family: "XiaolaiMonoSC", "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
 }

@@ -1,5 +1,5 @@
 <template>
-  <div class="article-wrapper">
+  <div class="article-wrapper" :style="'min-height:' + minHidth + 'px;'">
     <header
       class="border border-primary"
       :style="'background:url(http://www.dmoe.cc/random.php)'"
@@ -85,8 +85,8 @@
               <polyline points="12 6 12 12 16 14"></polyline>
             </svg>
 
-            {{ article.update_time }} /
-            {{ getBeautifyTime(article.update_time) }}
+            {{ article.create_time }} /
+            {{ getBeautifyTime(article.create_time) }}
           </div>
         </div>
       </div>
@@ -105,62 +105,68 @@ import VditorPreview from "vditor/dist/method.min";
 export default {
   head() {
     return {
-      title: "文章",
       link: [
         {
           rel: "stylesheet",
           type: "text/css",
-          href: "https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.3/css/all.css",
+          href:
+            "https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.3/css/all.css"
         },
         {
           rel: "stylesheet",
           type: "text/css",
-          href: "https://cdn.jsdelivr.net/npm/vditor/dist/index.css",
-        },
-      ],
-      script: [],
+          href: "https://cdn.jsdelivr.net/npm/vditor/dist/index.css"
+        }
+      ]
     };
   },
   components: {},
   props: {
+    minHidth: {
+      // 受缩放插件影响需要，同步一下高度
+      type: Number,
+      default: 500
+    },
     article: {
       type: Object,
-      default: {},
-    },
+      default: {}
+    }
   },
   data() {
     return {};
   },
   watch: {
-    article: function () {
+    article: function() {
       this.renderMarkdown(this.article.content);
-    },
+    }
   },
   computed: {
     getBorderType() {
-      return function () {
+      return function() {
         return "border-" + Math.floor(Math.random() * 6 + 1);
       };
     },
     getBeautifyTime() {
-      return function (time) {
+      return function(time) {
         return util.getBeautifyTime(time);
       };
-    },
+    }
   },
   methods: {
     renderMarkdown(md) {
       if (process.browser) {
         VditorPreview.preview(document.getElementById("vditorPreview"), md, {
-          hljs: { style: "github" },
+          hljs: { style: "github" }
         });
       }
-    },
+    }
   },
-  created() {},
+  created() {
+    console.log(this.minHidth);
+  },
   mounted() {
     this.renderMarkdown(this.article.content);
-  },
+  }
 };
 </script>
 <style lang="scss" scoped>
@@ -169,6 +175,7 @@ export default {
   min-height: calc(100vh - 60px);
   display: flex;
   flex-direction: column;
+
   header {
     position: relative;
     overflow: hidden;
@@ -191,7 +198,7 @@ export default {
       color: #fff;
     }
     .title {
-      font-size: 60px;
+      font-size: 40px;
       margin-bottom: 30px;
     }
     .summary {

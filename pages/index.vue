@@ -21,20 +21,34 @@
 </template>
 
 <script>
+import DevicePixelRatio from "@/util/devicePixelRatio.js";
+
 export default {
   components: {},
+  head() {
+    return {
+      title: this.options.title,
+      meta: [
+        {
+          hid: "description",
+          name: "description",
+          content: this.options.keywords
+        }
+      ]
+    };
+  },
   async asyncData({ $axios }) {
     const options = (await $axios.get("/options")).data;
     const article_sort = (
       await $axios.get("/article-sort", {
-        params: { limit: 100000 },
+        params: { limit: 100000 }
       })
     ).data.data;
     const pages = (await $axios.get("/page")).data.data;
     const links = (await $axios.get("/links")).data.data;
     const article = (
       await $axios.get("/article", {
-        params: { limit: 1000000 },
+        params: { limit: 1000000 }
       })
     ).data.data;
 
@@ -47,13 +61,17 @@ export default {
   watch: {},
   computed: {},
   methods: {},
-  created() {},
-  mounted() {},
+  created() {
+    if (process.client) {
+      new DevicePixelRatio().init();
+    }
+  },
+  mounted() {}
 };
 </script>
 <style  scoped lang="less">
 .wrapper {
-  max-width: 1600px;
+  max-width: 1500px;
   min-width: 1180px;
   display: flex;
   justify-content: space-between;
@@ -62,9 +80,12 @@ export default {
   .nav {
     position: fixed;
     width: 310px;
-    height: 100vh;
-    overflow: scroll;
+    height: 100%;
+    overflow-y: scroll;
     z-index: 99999;
+    scrollbar-color: transparent transparent;
+    scrollbar-track-color: transparent;
+    -ms-scrollbar-track-color: transparent;
   }
 
   .main {
@@ -72,7 +93,7 @@ export default {
     margin-top: 15px;
     padding: 15px;
     margin-bottom: 70px;
-    width: calc(100vw - 310px);
+    width: calc(100% - 310px);
     height: auto;
   }
   .to-top {
@@ -102,6 +123,7 @@ export default {
   width: 0px;
   height: 0px;
   display: none;
+  scrollbar-width: none;
 }
 @media screen and (max-width: 1440px) {
   .wrapper {

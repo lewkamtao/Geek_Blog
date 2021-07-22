@@ -1,6 +1,6 @@
 <template>
   <div class="aside-wrapper">
-    <div style="margin-bottom: 30px" class="part">
+    <div style="margin-bottom: 30px" v-if="false" class="part">
       <div class="main-title">目录</div>
       <div class="aside-list">
         <ul>
@@ -34,11 +34,11 @@
           @click="
             setReply({
               id: 2313,
-              nickname: '主任',
+              nickname: '主任'
             })
           "
           for="modal-reply"
-          >评论</label
+          >我要发言</label
         >
 
         <input class="modal-state" id="modal-reply" type="checkbox" />
@@ -77,16 +77,16 @@ export default {
   props: {
     article: {
       type: Object,
-      default: {},
+      default: {}
     },
     comments: {
       type: Object,
-      default: {},
-    },
+      default: {}
+    }
   },
   data() {
     return {
-      reply: {},
+      reply: {}
     };
   },
   watch: {},
@@ -100,19 +100,19 @@ export default {
     setReply({ id, nickname }) {
       this.reply = {
         id: id,
-        nickname: nickname,
+        nickname: nickname
       };
-    },
+    }
   },
   created() {},
-  mounted() {},
+  mounted() {}
 };
 </script>
 <style lang="scss" scoped>
 .aside-wrapper {
-  width: 380px;
-  padding: 30px 15px 15px 15px;
+  width: 100%;
   box-sizing: border-box;
+  margin-bottom: 75px;
 }
 .badge {
   cursor: pointer;
@@ -124,12 +124,6 @@ export default {
 .aside-list {
   margin-left: 25px;
   line-height: 25px;
-}
-
-.aside-wrapper::-webkit-scrollbar {
-  width: 0px;
-  height: 0px;
-  display: none;
 }
 
 .main-title {
@@ -145,7 +139,6 @@ export default {
     font-size: 15px;
   }
   .reply-main-btn {
-    width: 100px;
     color: #0071de;
     background: rgba($color: #0071de, $alpha: 0.1);
     height: 30px;
@@ -154,18 +147,15 @@ export default {
     cursor: pointer;
     transform: scale(1);
     transition: all 0.25s;
+    font-size: 16px;
+    line-height: 30px;
+    padding: 0px 15px;
   }
   .reply-main-btn:hover {
     opacity: 1;
   }
   .reply-main-btn:active {
     transform: scale(0.95);
-  }
-}
-
-@media screen and (max-width: 1440px) {
-  .aside {
-    width: 280px;
   }
 }
 </style>
