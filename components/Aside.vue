@@ -75,26 +75,26 @@
           <div class="reply-form">
             <div class="concact">
               <div class="form-group">
-                <label for="paperInputs2"
+                <label for="paperInputs1"
                   >昵称<span class="badge danger">必填</span></label
                 >
                 <input
                   v-model="comments_form.nickname"
                   class="input-block"
                   type="text"
-                  id="paperInputs2"
+                  id="paperInputs1"
                   placeholder=""
                 />
               </div>
               <div class="form-group">
-                <label for="paperInputs3"
+                <label for="paperInputs2"
                   >邮箱<span class="badge danger">必填</span></label
                 >
                 <input
                   v-model="comments_form.email"
                   class="input-block"
                   type="text"
-                  id="paperInputs3"
+                  id="paperInputs2"
                   placeholder=""
                 />
               </div>
@@ -111,9 +111,7 @@
               />
             </div>
             <div class="form-group">
-              <label for="large-input"
-                >内容<span class="badge danger">必填</span></label
-              >
+              <label>内容<span class="badge danger">必填</span></label>
               <textarea
                 v-model="comments_form.content"
                 style="width: 100%; height: 150px"
