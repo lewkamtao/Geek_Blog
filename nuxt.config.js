@@ -70,7 +70,7 @@ export default {
     },
     proxy: {
         '/api/': {
-            target: 'https://api.kamtao.com/api',
+            target: 'https://api.inis.cn/api',
             pathRewrite: {
                 '^/api/': '/',
                 changeOrigin: true
