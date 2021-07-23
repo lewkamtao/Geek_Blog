@@ -24,16 +24,13 @@ html {
     background-color: #eee;
 }
 
-a {
+a,
+select,
+input,
+option,
+button,
+textarea {
     font-family: "XiaolaiMonoSC", "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
-}
-
-select {
-    font-family: "XiaolaiMonoSC", "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
-}
-
-option {
-    font-family: "XiaolaiMonoSC", "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif
 }
 
 body {
@@ -77,4 +74,8 @@ body {
     margin-bottom: 20px;
     display: flex;
     align-items: center;
+}
+
+.btn-close {
+    transform: scaleX(1.8) rotate(-3deg);
 }

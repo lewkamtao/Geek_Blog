@@ -60,16 +60,16 @@ export default {
   flex-wrap: wrap;
   margin-bottom: 10px;
   div {
-    padding: 5px;
+    padding: 7px;
     margin-right: 7px;
     margin-bottom: 10px;
-    font-size: 16px;
+    font-size: 18px;
   }
   a {
-    padding: 5px;
+    padding: 7px;
     margin-right: 7px;
     margin-bottom: 10px;
-    font-size: 16px;
+    font-size: 18px;
   }
 }
 </style>

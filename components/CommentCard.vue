@@ -9,10 +9,7 @@
       <div class="right">
         <div class="nickname">
           {{ comment.nickname }}
-          <label
-            class="reply-btn"
-            @click="reply({ id: comment.id, nickname: comment.nickname })"
-            for="modal-reply"
+          <label class="reply-btn" @click="reply(comment)" for="modal-reply"
             >回复</label
           >
         </div>
@@ -40,8 +37,8 @@
             <div class="nickname">
               {{ son.nickname }}
               <label
-                class="reply-btn"
-                @click="reply({ id: son.id, nickname: son.nickname })"
+                class="badge reply-btn"
+                @click="reply(son)"
                 for="modal-reply"
                 >回复</label
               >
@@ -107,8 +104,8 @@ export default {
     },
   },
   methods: {
-    reply({ id, nickname }) {
-      this.$emit("setReply", { id, nickname });
+    reply(replyObj) {
+      this.$emit("setReply", replyObj);
     },
   },
   created() {},
@@ -162,7 +159,6 @@ export default {
     }
   }
   .reply-btn {
-    border-radius: 2px;
     background: #7fad88;
     color: #fff;
     padding: 2px 4px;

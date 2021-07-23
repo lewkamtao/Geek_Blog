@@ -29,32 +29,90 @@
         <div class="title">
           评论 <span class="badge secondary">{{ comments.count }}</span>
         </div>
-        <label
-          class="border border-secondary reply-main-btn"
-          @click="
-            setReply({
-              id: 2313,
-              nickname: '主任',
-            })
-          "
-          for="modal-reply"
-          >评论</label
-        >
 
         <input class="modal-state" id="modal-reply" type="checkbox" />
-        <div class="modal">
+        <div class="modal reply-modal">
           <label class="modal-bg" for="modal-reply"></label>
           <div class="modal-body">
             <label class="btn-close" for="modal-reply">X</label>
-            <h4 class="modal-title">{{ reply.id }}</h4>
-            <h5 class="modal-subtitle">{{ reply.nickname }}</h5>
-            <p class="modal-text">
-              This is an example of modal which is implemented with pure CSS! :D
-            </p>
-            <label for="modal-reply">Nice!</label>
+            <div v-if="replyObj.expand" class="reply-obj">
+              <img :src="replyObj.expand.head_img" alt="" srcset="" />
+              <div>
+                <div class="nickname">{{ replyObj.nickname }}</div>
+                <div class="content">
+                  {{ replyObj.content }}
+                </div>
+                <div v-if="replyObj.create_time" class="create_time">
+                  {{ getBeautifyTime(replyObj.create_time) }}
+                </div>
+              </div>
+            </div>
+            <div class="title badge">
+              {{ replyObj.expand ? "回复评论" : "发表评论" }}
+            </div>
+
+            <div class="reply-form">
+              <div class="concact">
+                <div class="form-group">
+                  <label for="paperInputs2"
+                    >昵称<span class="badge danger">必填</span></label
+                  >
+                  <input
+                    class="input-block"
+                    type="text"
+                    id="paperInputs2"
+                    placeholder=""
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="paperInputs3">邮箱</label>
+                  <input
+                    class="input-block"
+                    type="text"
+                    id="paperInputs3"
+                    placeholder=""
+                  />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="paperInputs3">博客地址</label>
+                <input
+                  class="input-block"
+                  type="text"
+                  id="paperInputs3"
+                  placeholder=""
+                />
+              </div>
+              <div class="form-group">
+                <label for="large-input"
+                  >内容<span class="badge danger">必填</span></label
+                >
+                <textarea
+                  style="width: 100%; height: 150px"
+                  class="no-resize"
+                  id="no-resize"
+                  placeholder=""
+                ></textarea>
+              </div>
+              <div class="row flex-right">
+                <button class="btn-secondary reply-btn">发送</button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+      <label
+        class="border border-secondary reply-main-btn"
+        @click="
+          setReply({
+            nickname: article.expand.author.nickname,
+            expand: article.expand.author,
+          })
+        "
+        for="modal-reply"
+        >发表评论
+      </label>
 
       <div v-if="comments.data.length == 0">暂无评论</div>
       <div v-if="comments.data.length != 0" class="comments">
@@ -71,7 +129,9 @@
 </template>
 
 <script>
+import util from "@/util/index";
 import CommentCard from "./CommentCard.vue";
+
 export default {
   components: { CommentCard },
   props: {
@@ -86,22 +146,26 @@ export default {
   },
   data() {
     return {
-      reply: {},
+      replyObj: {},
     };
   },
   watch: {},
-  computed: {},
+  computed: {
+    getBeautifyTime() {
+      return function (time) {
+        return util.getBeautifyTime(time);
+      };
+    },
+  },
   methods: {
     getTagColor() {
       var options = ["", "secondary", "success", "warning", "danger"];
       var index = Math.floor(Math.random() * options.length);
       return options[index];
     },
-    setReply({ id, nickname }) {
-      this.reply = {
-        id: id,
-        nickname: nickname,
-      };
+    setReply(replyObj) {
+      console.log(replyObj);
+      this.replyObj = replyObj;
     },
   },
   created() {},
@@ -144,25 +208,98 @@ export default {
     margin: 0px 0px 0px 10px;
     font-size: 15px;
   }
-  .reply-main-btn {
-    width: 100px;
-    color: #0071de;
-    background: rgba($color: #0071de, $alpha: 0.1);
-    height: 30px;
-    opacity: 0.8;
-    text-align: center;
-    cursor: pointer;
-    transform: scale(1);
-    transition: all 0.25s;
-  }
-  .reply-main-btn:hover {
-    opacity: 1;
-  }
-  .reply-main-btn:active {
-    transform: scale(0.95);
-  }
+}
+.reply-main-btn {
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  color: #0071de;
+  font-size: 26px;
+  background: rgba($color: #0071de, $alpha: 0.1);
+  opacity: 0.8;
+  text-align: center;
+  cursor: pointer;
+  transform: scale(1);
+  transition: all 0.25s;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+.reply-main-btn:hover {
+  opacity: 1;
+}
+.reply-main-btn:active {
+  transform: scale(0.95);
 }
 
+.reply-modal {
+  .title {
+    background: #0071de;
+    font-size: 30px;
+    margin: 20px 0px 0px 0px;
+    display: inline-block;
+  }
+  .reply-obj {
+    display: flex;
+    margin: 20px 0px;
+    img {
+      width: 70px;
+      height: 70px;
+      margin-right: 20px;
+    }
+    .nickname {
+      font-size: 20px;
+      font-weight: 500;
+      margin-bottom: 5px;
+    }
+    .content {
+      font-size: 16px;
+      line-height: 24px;
+      margin-bottom: 10px;
+    }
+    .create_time {
+      font-size: 14px;
+      color: #999;
+    }
+  }
+  .modal-body::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  .modal-body {
+    width: 600px;
+    max-height: 80vh;
+    overflow-y: scroll;
+
+    .reply-form {
+      margin-top: 30px;
+      .concact {
+        display: flex;
+        justify-content: space-between;
+        .form-group {
+          width: calc(50% - 10px);
+        }
+      }
+      input {
+        font-size: 18px;
+        padding: 5px;
+        line-height: 25px;
+      }
+      textarea {
+        font-size: 18px;
+        padding: 15px 10px;
+        line-height: 25px;
+      }
+      .form-group {
+        label {
+          font-size: 18px;
+        }
+      }
+      .reply-btn {
+        padding: 10px 20px;
+      }
+    }
+  }
+}
 @media screen and (max-width: 1440px) {
   .aside {
     width: 280px;
