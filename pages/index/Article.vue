@@ -4,7 +4,11 @@
       <Article :article="article" :minHidth="asideHidth" class="part" />
     </div>
     <div ref="aside" :style="setAsideLeft" class="aside">
-      <Aside :comments="comments" :article="article" />
+      <Aside
+        @reloadComments="getComments"
+        :comments="comments"
+        :article="article"
+      />
     </div>
   </div>
 </template>
@@ -29,6 +33,7 @@ export default {
       await $axios.get("/comments", {
         params: {
           article_id: parseInt(route.query.id),
+          tree: false,
           limit: 10000
         }
       })
@@ -39,23 +44,26 @@ export default {
   data() {
     return {
       setAsideLeft: "", // 用于计算侧边栏
-      asideHidth: 0
+      asideHidth: 0,
+      id: ""
     };
   },
   beforeRouteUpdate(to, from, next) {
-    this.getArticle(parseInt(to.query.id));
-    this.getComments(parseInt(to.query.id));
+    this.id = parseInt(to.query.id);
+    this.getArticle();
+    this.getComments();
     next();
   },
   watch: {},
   computed: {},
   methods: {
     // 获取评论
-    async getComments(id) {
+    async getComments() {
       const comments = (
         await this.$axios.get("/comments", {
           params: {
-            article_id: id,
+            article_id: this.id,
+            tree: false,
             limit: 10000
           }
         })
@@ -63,11 +71,11 @@ export default {
       this.comments = comments;
     },
     // 获取文章
-    async getArticle(id) {
+    async getArticle() {
       const article = (
         await this.$axios.get("/article", {
           params: {
-            id: id
+            id: this.id
           }
         })
       ).data;
@@ -79,6 +87,7 @@ export default {
 
   mounted() {
     var that = this;
+    this.id = parseInt($nuxt.$route.query.id);
     var articleMainWidth =
       that.$refs.articleMain.offsetLeft +
       that.$refs.articleMain.clientWidth +
@@ -122,7 +131,7 @@ export default {
   overflow-y: scroll;
   width: 380px;
   margin-bottom: 50px;
-  z-index: 99999;
+  z-index: 999;
   scrollbar-color: transparent transparent;
   scrollbar-track-color: transparent;
   -ms-scrollbar-track-color: transparent;

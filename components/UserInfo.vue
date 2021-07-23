@@ -1,7 +1,9 @@
 <template>
   <div class="part">
     <div class="user-info">
-      <img class="logo" :src="options.site_img" alt="" srcset="" />
+      <div class="avatar border border-primary" :class="getBorderType()">
+        <img :src="options.site_img" alt="" srcset="" />
+      </div>
       <div class="title">{{ options.title }}</div>
       <div class="description">{{ options.description }}</div>
     </div>
@@ -23,27 +25,33 @@ export default {
   props: {
     options: {
       type: Object,
-      default: {},
-    },
+      default: {}
+    }
   },
   data() {
     return {
-      mode: false,
+      mode: false
     };
   },
   watch: {
-    mode: function (val) {
+    mode: function(val) {
       if (val) {
         document.getElementsByTagName("body")[0].className = "dark";
       } else {
         document.body.removeAttribute("class");
       }
-    },
+    }
   },
-  computed: {},
+  computed: {
+    getBorderType() {
+      return function() {
+        return "border-" + Math.floor(Math.random() * 6 + 1);
+      };
+    }
+  },
   methods: {},
   created() {},
-  mounted() {},
+  mounted() {}
 };
 </script>
 <style lang="scss" scoped>
@@ -64,8 +72,16 @@ export default {
       margin-top: 1px;
     }
   }
-  .logo {
+  .avatar {
     width: 80px;
+    height: 80px;
+    overflow: hidden;
+    img {
+      border-bottom-left-radius: 0px;
+      border-bottom-right-radius: 0px;
+      border-top-left-radius: 0px;
+      border-top-right-radius: 0px;
+    }
   }
   .title {
     margin: 22px 0px 14px 0px;

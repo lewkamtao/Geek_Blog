@@ -13,7 +13,7 @@
     </div>
     <div style="margin-bottom: 30px" class="part">
       <div class="main-title">标签云</div>
-      <div v-if="article.expand.tag">
+      <div v-if="article.expand.tag" class="tags-box">
         <span
           v-for="(item, index) in article.expand.tag"
           :key="index"
@@ -27,103 +27,123 @@
     <div class="part">
       <div class="main-title">
         <div class="title">
-          评论 <span class="badge secondary">{{ comments.count }}</span>
+          评论
+          <span class="badge secondary">{{ article.expand.comments }}</span>
         </div>
-
-        <input class="modal-state" id="modal-reply" type="checkbox" />
-        <div class="modal reply-modal">
-          <label class="modal-bg" for="modal-reply"></label>
-          <div class="modal-body">
-            <label class="btn-close" for="modal-reply">X</label>
-            <div v-if="replyObj.expand" class="reply-obj">
-              <div
-                class="avatar border border-primary"
-                :class="getBorderType()"
-              >
-                <img :src="replyObj.expand.head_img" alt="" srcset="" />
-              </div>
-              <div>
-                <div class="nickname">{{ replyObj.nickname }}</div>
-                <div class="content">
-                  {{ replyObj.content }}
-                </div>
-                <div v-if="replyObj.create_time" class="create_time">
-                  {{ getBeautifyTime(replyObj.create_time) }}
-                </div>
-              </div>
-            </div>
-            <div class="title">
-              {{
-                replyObj.expand.pay
-                  ? "发表对" + replyObj.nickname + "的评论"
-                  : "回复" + replyObj.nickname + "的评论"
-              }}
-            </div>
-
-            <div class="reply-form">
-              <div class="concact">
-                <div class="form-group">
-                  <label for="paperInputs2"
-                    >昵称<span class="badge danger">必填</span></label
-                  >
-                  <input
-                    class="input-block"
-                    type="text"
-                    id="paperInputs2"
-                    placeholder=""
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="paperInputs3">邮箱</label>
-                  <input
-                    class="input-block"
-                    type="text"
-                    id="paperInputs3"
-                    placeholder=""
-                  />
-                </div>
-              </div>
-
-              <div class="form-group">
-                <label for="paperInputs3">博客地址</label>
-                <input
-                  class="input-block"
-                  type="text"
-                  id="paperInputs3"
-                  placeholder=""
-                />
-              </div>
-              <div class="form-group">
-                <label for="large-input"
-                  >内容<span class="badge danger">必填</span></label
-                >
-                <textarea
-                  style="width: 100%; height: 150px"
-                  class="no-resize"
-                  id="no-resize"
-                  placeholder=""
-                ></textarea>
-              </div>
-              <div class="row flex-right">
-                <button class="btn-secondary reply-btn">发送</button>
-              </div>
-            </div>
-          </div>
-        </div>
+      </div>
+      <div style="margin-bottom:10px" v-if="comments.data.length == 0">
+        暂无评论
       </div>
       <label
         class="border border-secondary reply-main-btn"
         @click="
           setReply({
             nickname: article.expand.author.nickname,
-            expand: article.expand.author,
+            expand: article.expand.author
           })
         "
         for="modal-reply"
         >发表评论
       </label>
+      <input class="modal-state" id="modal-reply" type="checkbox" />
+      <div class="modal reply-modal">
+        <label class="modal-bg"></label>
+        <div class="modal-body">
+          <label class="btn-close" for="modal-reply">X</label>
+          <div v-if="replyObj.expand" class="reply-obj">
+            <div class="avatar border border-primary" :class="getBorderType()">
+              <img :src="replyObj.expand.head_img" alt="" srcset="" />
+            </div>
+            <div class="user-info">
+              <div class="nickname">{{ replyObj.nickname }}</div>
+              <div class="content">
+                {{ replyObj.content || replyObj.expand.description }}
+              </div>
+              <div v-if="replyObj.create_time" class="create_time">
+                {{ getBeautifyTime(replyObj.create_time) }}
+              </div>
+            </div>
+          </div>
+          <div v-if="replyObj.expand" class="title">
+            {{
+              replyObj.expand.pay
+                ? "发表对" + replyObj.nickname + "的评论"
+                : "回复" + replyObj.nickname + "的评论"
+            }}
+          </div>
 
-      <div v-if="comments.data.length == 0">暂无评论</div>
+          <div class="reply-form">
+            <div class="concact">
+              <div class="form-group">
+                <label for="paperInputs2"
+                  >昵称<span class="badge danger">必填</span></label
+                >
+                <input
+                  v-model="comments_form.nickname"
+                  class="input-block"
+                  type="text"
+                  id="paperInputs2"
+                  placeholder=""
+                />
+              </div>
+              <div class="form-group">
+                <label for="paperInputs3"
+                  >邮箱<span class="badge danger">必填</span></label
+                >
+                <input
+                  v-model="comments_form.email"
+                  class="input-block"
+                  type="text"
+                  id="paperInputs3"
+                  placeholder=""
+                />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="paperInputs3">博客地址</label>
+              <input
+                v-model="comments_form.url"
+                class="input-block"
+                type="text"
+                id="paperInputs3"
+                placeholder=""
+              />
+            </div>
+            <div class="form-group">
+              <label for="large-input"
+                >内容<span class="badge danger">必填</span></label
+              >
+              <textarea
+                v-model="comments_form.content"
+                style="width: 100%; height: 150px"
+                class="no-resize"
+                id="no-resize"
+                placeholder=""
+              ></textarea>
+            </div>
+            <div
+              v-show="error_tips"
+              class="alert alert-danger  dismissible alert-reply"
+            >
+              {{ error_tips }}
+
+              <label
+                @click="error_tips = ''"
+                style="position:static; color:#cb453c; margin-top:-5px; font-size:25px; transform:translateX(10px) scaleX(1.8) rotate(-3deg);"
+                class="btn-close"
+                >X</label
+              >
+            </div>
+
+            <div class="row flex-right">
+              <button @click="submitComments" class="btn-secondary reply-btn">
+                发送
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
       <div v-if="comments.data.length != 0" class="comments">
         <div
           class="comments-box"
@@ -139,6 +159,8 @@
 
 <script>
 import util from "@/util/index";
+import checkStr from "@/util/checkStr";
+
 import CommentCard from "./CommentCard.vue";
 
 export default {
@@ -146,30 +168,37 @@ export default {
   props: {
     article: {
       type: Object,
-      default: {},
+      default: {}
     },
     comments: {
       type: Object,
-      default: {},
-    },
+      default: {}
+    }
   },
   data() {
     return {
       replyObj: {},
+      comments_form: {
+        email: "",
+        nickname: "",
+        url: "",
+        content: ""
+      },
+      error_tips: ""
     };
   },
   watch: {},
   computed: {
     getBeautifyTime() {
-      return function (time) {
+      return function(time) {
         return util.getBeautifyTime(time);
       };
     },
     getBorderType() {
-      return function () {
+      return function() {
         return "border-" + Math.floor(Math.random() * 6 + 1);
       };
-    },
+    }
   },
   methods: {
     getTagColor() {
@@ -178,12 +207,46 @@ export default {
       return options[index];
     },
     setReply(replyObj) {
-      console.log(replyObj);
+      if (replyObj.id >= 0 && !replyObj.expand.pay) {
+        this.comments_form.pid = replyObj.id;
+      }
       this.replyObj = replyObj;
     },
+    submitComments() {
+      this.comments_form.article_id = this.article.id;
+      var data = JSON.parse(JSON.stringify(this.comments_form));
+      if (data.nickname == "") {
+        this.error_tips = "* 昵称不能为空";
+        return;
+      } else if (data.email == "") {
+        this.error_tips = "* 邮箱不能为空";
+        return;
+      } else if (data.content == "") {
+        this.error_tips = "* 内容不能为空";
+        return;
+      } else if (!checkStr(data.email, "email")) {
+        this.error_tips = "* 邮箱格式错误";
+        return;
+      }
+
+      this.$axios.post("/comments", this.comments_form).then(res => {
+        if (res.code == 200) {
+          document.getElementById("modal-reply").click();
+          this.comments_form = {
+            email: "",
+            nickname: "",
+            url: "",
+            content: ""
+          };
+          this.$emit("reloadComments");
+        } else {
+          this.error_tips = "*必填项不能为空";
+        }
+      });
+    }
   },
   created() {},
-  mounted() {},
+  mounted() {}
 };
 </script>
 <style lang="scss" scoped>
@@ -192,12 +255,14 @@ export default {
   box-sizing: border-box;
   margin-bottom: 75px;
 }
-.badge {
-  cursor: pointer;
-  margin-bottom: 7px;
-  font-weight: 400;
-  font-size: 12px;
-  margin-right: 7px;
+.tags-box {
+  .badge {
+    cursor: pointer;
+    margin-bottom: 7px;
+    font-weight: 400;
+    font-size: 12px;
+    margin-right: 7px;
+  }
 }
 .aside-list {
   margin-left: 25px;
@@ -219,10 +284,10 @@ export default {
 }
 .reply-main-btn {
   width: 100%;
-  height: 50px;
-  line-height: 50px;
+  height: 40px;
+  line-height: 40px;
   color: #0071de;
-  font-size: 26px;
+  font-size: 24px;
   background: rgba($color: #0071de, $alpha: 0.1);
   opacity: 0.8;
   text-align: center;
@@ -263,6 +328,9 @@ export default {
         height: auto;
       }
     }
+    .user-info {
+      width: calc(100% - 80px);
+    }
     .nickname {
       font-size: 20px;
       font-weight: 500;
@@ -272,18 +340,22 @@ export default {
       font-size: 16px;
       line-height: 24px;
       margin-bottom: 10px;
+      color: #666;
     }
     .create_time {
       font-size: 14px;
       color: #999;
     }
   }
+  .modal-bg {
+    cursor: default;
+  }
   .modal-body::-webkit-scrollbar {
     width: 8px;
     height: 8px;
   }
   .modal-body {
-    width: 600px;
+    width: 500px;
     max-height: 80vh;
     overflow-y: scroll;
 
@@ -308,15 +380,24 @@ export default {
       }
       .form-group {
         label {
+          display: flex;
+          align-items: center;
           font-size: 18px;
+        }
+        .badge {
+          font-size: 12px;
+          padding: 2px;
+          margin-left: 5px;
+          font-weight: 400;
         }
       }
       .reply-btn {
-        padding: 10px 20px;
+        padding: 5px 20px;
       }
     }
   }
 }
+
 @media screen and (max-width: 1440px) {
   .aside {
     width: 280px;

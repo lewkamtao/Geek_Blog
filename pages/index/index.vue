@@ -15,11 +15,11 @@
           v-for="(item, index) in article.data"
         >
           <nuxt-link :to="'/Article?id=' + item.id">
+            <img v-if="item.img_src" :src="item.img_src" />
             <img
-              :src="'http://www.dmoe.cc/random.php?' + index"
-              alt="Card example image"
+              v-if="!item.img_src"
+              :src="'http://api.btstu.cn/sjbz/?lx=m_dongman&' + index"
             />
-
             <div class="card-body">
               <h4 class="card-title">{{ item.title }}</h4>
               <h5 class="card-subtitle">{{ item.description }}</h5>
@@ -140,7 +140,7 @@ export default {
   },
   props: {},
   data() {
-    return {}; 
+    return {};
   },
   watch: {},
   computed: {
@@ -162,9 +162,7 @@ export default {
       return options[index];
     }
   },
-  created() {
-    console.log(this.article.data[0].expand);
-  },
+  created() {},
   mounted() {}
 };
 </script> 
@@ -209,7 +207,7 @@ export default {
     white-space: nowrap;
     flex-wrap: wrap;
     div {
-      margin-right: 20px;
+      margin-right: 12px;
       display: flex;
       align-items: center;
       .feather {
@@ -218,11 +216,11 @@ export default {
     }
   }
 }
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1280px) {
   .masonry {
     width: 100%;
     .card {
-      width: calc(100% / 2 - 40px);
+      width: calc(100% / 2 - 35px);
     }
   }
 }

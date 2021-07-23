@@ -24,6 +24,14 @@ html {
     background-color: #eee;
 }
 
+#vditorPreview li::before {
+    content: "";
+}
+
+#vditorPreview li {
+    text-indent: 0em;
+}
+
 a,
 select,
 input,
@@ -76,6 +84,6 @@ html::-webkit-scrollbar-thumb:hover {
     align-items: center;
 }
 
-.btn-close {
+.modal .modal-body>.btn-close {
     transform: scaleX(1.8) rotate(-3deg);
 }

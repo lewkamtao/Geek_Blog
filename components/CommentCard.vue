@@ -14,7 +14,10 @@
       <div class="right">
         <div class="nickname">
           {{ comment.nickname }}
-          <label class="reply-btn" @click="reply(comment)" for="modal-reply"
+          <label
+            class="badge  reply-btn"
+            @click="reply(comment)"
+            for="modal-reply"
             >回复</label
           >
         </div>
@@ -111,7 +114,7 @@ export default {
   methods: {
     reply(replyObj) {
       this.$emit("setReply", replyObj);
-    },
+    }
   },
   created() {},
   mounted() {}
@@ -170,9 +173,11 @@ export default {
   .reply-btn {
     background: #7fad88;
     color: #fff;
-    padding: 2px 4px;
+    padding: 1px 4px;
     cursor: pointer;
     opacity: 0.8;
+    font-weight: 400;
+    font-size: 14px;
     transition: all 0.25s;
     margin-left: 5px;
   }

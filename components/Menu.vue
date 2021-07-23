@@ -1,15 +1,12 @@
 <template>
-  <div v-if="pages.length != 0" v-show="false" class="part pages" style="margin-bottom:30px">
-    <div class="main-title">一些好玩的</div>
+  <div class="part menu" style="margin-bottom:30px">
+    <div class="main-title">导航</div>
     <div class="nav-list">
-      <div
-        v-for="(item, index) in pages"
-        :key="index"
-        @click="openpages(item.id)"
-        class="paper-btn btn-secondary"
-      >
-        {{ item.title }}
-      </div>
+      <nuxt-link to="/" class="paper-btn btn-primary">首页</nuxt-link>
+      <nuxt-link to="/Photo" class="paper-btn btn-secondary">相册</nuxt-link>
+      <nuxt-link to="/Timeline" class="paper-btn btn-success">时光机</nuxt-link>
+      <nuxt-link to="/Links" class="paper-btn btn-warning">友情链接</nuxt-link>
+      <nuxt-link to="/Message" class="paper-btn btn-danger">留言墙</nuxt-link>
     </div>
   </div>
 </template>
@@ -17,32 +14,19 @@
 <script>
 export default {
   components: {},
-  props: {
-    pages: {
-      type: Array,
-      default: []
-    }
-  },
+  props: {},
   data() {
     return {};
   },
   watch: {},
   computed: {},
-  methods: {
-    async openpages(id) {
-      const data = (
-        await this.$axios.get("/page", {
-          params: { id: id }
-        })
-      ).data;
-    }
-  },
+  methods: {},
   created() {},
   mounted() {}
 };
 </script>
 <style lang="scss" scoped>
-.pages {
+.menu {
   width: 100%;
   margin-top: 30px;
 }

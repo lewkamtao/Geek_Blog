@@ -1,12 +1,8 @@
 <template>
   <div class="nav">
     <UserInfo class="user-info" :options="options" />
-    <Pages
-      class="pages-wrapper"
-      :article_sort="article_sort"
-      :article="article"
-      :pages="pages"
-    />
+    <Menu />
+    <Pages :pages="pages" />
     <ArticleSort
       class="article-sort"
       :article_sort="article_sort"
@@ -27,24 +23,24 @@ export default {
   props: {
     options: {
       type: Object,
-      default: {},
+      default: {}
     },
     article_sort: {
       type: Array,
-      default: [],
+      default: []
     },
     article: {
       type: Array,
-      default: [],
+      default: []
     },
     pages: {
       type: Array,
-      default: [],
+      default: []
     },
     links: {
       type: Array,
-      default: [],
-    },
+      default: []
+    }
   },
   data() {
     return {};
@@ -53,7 +49,7 @@ export default {
   computed: {},
   methods: {},
   created() {},
-  mounted() {},
+  mounted() {}
 };
 </script>
 <style lang="scss" scoped>

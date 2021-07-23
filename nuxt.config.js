@@ -14,7 +14,6 @@ export default {
         ],
 
         link: [
-            { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
             { rel: 'stylesheet', type: 'text/css', href: '/css/paper.min.css' },
             { rel: 'stylesheet', type: 'text/css', href: '/css/reset.css' },
             { rel: 'stylesheet', type: 'text/css', href: '/css/main.css' },
@@ -71,7 +70,7 @@ export default {
     },
     proxy: {
         '/api/': {
-            target: 'https://api.inis.cn/api',
+            target: 'https://api.kamtao.com/api',
             pathRewrite: {
                 '^/api/': '/',
                 changeOrigin: true

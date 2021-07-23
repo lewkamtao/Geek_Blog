@@ -26,7 +26,6 @@
               <circle cx="12" cy="7" r="4"></circle>
             </svg>
             <polyline points="12 6 12 12 16 14"></polyline>
-
             {{ article.expand.author.nickname }}
           </div>
           <div>
@@ -161,11 +160,11 @@ export default {
       }
     }
   },
-  created() {
-    console.log(this.minHidth);
-  },
+  created() {},
   mounted() {
-    this.renderMarkdown(this.article.content);
+    this.$nextTick(function() {
+      this.renderMarkdown(this.article.content);
+    });
   }
 };
 </script>
@@ -186,10 +185,10 @@ export default {
 
     .mask {
       position: absolute;
-      top: 0px;
-      left: 0px;
-      width: 100%;
-      height: 100%;
+      top: -5%;
+      left: -5%;
+      width: 110%;
+      height: 110%;
       background: rgba($color: #000000, $alpha: 0.4);
     }
     .content {
