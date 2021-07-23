@@ -40,19 +40,19 @@ body {
 
 /* 滚动槽 */
 
- ::-webkit-scrollbar-track {
+html::-webkit-scrollbar-track {
     border-radius: 10px;
 }
 
 
 /* 滚动条滑块 */
 
- ::-webkit-scrollbar-thumb {
+html::-webkit-scrollbar-thumb {
     border-radius: 10px;
     background: rgba(0, 0, 0, 0.1);
 }
 
-::-webkit-scrollbar-thumb:hover {
+html::-webkit-scrollbar-thumb:hover {
     background: rgba(0, 0, 0, 0.2);
 }
 

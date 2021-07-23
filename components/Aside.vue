@@ -36,7 +36,12 @@
           <div class="modal-body">
             <label class="btn-close" for="modal-reply">X</label>
             <div v-if="replyObj.expand" class="reply-obj">
-              <img :src="replyObj.expand.head_img" alt="" srcset="" />
+              <div
+                class="avatar border border-primary"
+                :class="getBorderType()"
+              >
+                <img :src="replyObj.expand.head_img" alt="" srcset="" />
+              </div>
               <div>
                 <div class="nickname">{{ replyObj.nickname }}</div>
                 <div class="content">
@@ -47,8 +52,12 @@
                 </div>
               </div>
             </div>
-            <div class="title badge">
-              {{ replyObj.expand ? "回复评论" : "发表评论" }}
+            <div class="title">
+              {{
+                replyObj.expand.pay
+                  ? "发表对" + replyObj.nickname + "的评论"
+                  : "回复" + replyObj.nickname + "的评论"
+              }}
             </div>
 
             <div class="reply-form">
@@ -137,12 +146,12 @@ export default {
   props: {
     article: {
       type: Object,
-      default: {}
+      default: {},
     },
     comments: {
       type: Object,
-      default: {}
-    }
+      default: {},
+    },
   },
   data() {
     return {
@@ -154,6 +163,11 @@ export default {
     getBeautifyTime() {
       return function (time) {
         return util.getBeautifyTime(time);
+      };
+    },
+    getBorderType() {
+      return function () {
+        return "border-" + Math.floor(Math.random() * 6 + 1);
       };
     },
   },
@@ -169,7 +183,7 @@ export default {
     },
   },
   created() {},
-  mounted() {}
+  mounted() {},
 };
 </script>
 <style lang="scss" scoped>
@@ -227,18 +241,27 @@ export default {
 
 .reply-modal {
   .title {
-    background: #0071de;
     font-size: 30px;
+    color: #000;
     margin: 20px 0px 0px 0px;
     display: inline-block;
   }
   .reply-obj {
     display: flex;
     margin: 20px 0px;
-    img {
+    .avatar {
       width: 70px;
       height: 70px;
       margin-right: 20px;
+      overflow: hidden;
+      img {
+        border-bottom-left-radius: 0px;
+        border-bottom-right-radius: 0px;
+        border-top-left-radius: 0px;
+        border-top-right-radius: 0px;
+        width: 100%;
+        height: auto;
+      }
     }
     .nickname {
       font-size: 20px;

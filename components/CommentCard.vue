@@ -125,11 +125,11 @@ export default {
   padding: 10px;
   .son-box {
     width: calc(100% - 30px);
-    margin-left: 30px;
+    margin: 10px 0px 0px 30px;
   }
 
   .comment-card {
-    padding: 10px;
+    padding: 5px;
     display: flex;
 
     .left {

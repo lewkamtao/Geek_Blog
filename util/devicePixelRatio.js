@@ -37,7 +37,7 @@ class DevicePixelRatio {
         //校正浏览器缩放比例
     _correct() {
             //页面devicePixelRatio（设备像素比例）变化后，计算页面body标签zoom修改其大小，来抵消devicePixelRatio带来的变化。
-            document.getElementsByTagName('body')[0].style.zoom = 1.1 / window.devicePixelRatio;
+            document.getElementsByTagName('body')[0].style.zoom = 1.3 / window.devicePixelRatio;
         }
         //监听页面缩放
     _watch() {
