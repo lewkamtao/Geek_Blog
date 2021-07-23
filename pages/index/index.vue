@@ -16,8 +16,7 @@
         >
           <nuxt-link :to="'/Article?id=' + item.id">
             <img
-              v-if="item.img_src"
-              :src="item.img_src"
+              :src="'http://www.dmoe.cc/random.php?' + index"
               alt="Card example image"
             />
 
@@ -65,6 +64,25 @@
                     stroke-width="2"
                     stroke-linecap="round"
                     stroke-linejoin="round"
+                    class="feather feather-message-square"
+                  >
+                    <path
+                      d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+                    ></path>
+                  </svg>
+                  {{ item.expand.comments }}
+                </div>
+                <div>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16px"
+                    height="16px"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
                     class="feather feather-eye"
                   >
                     <path
@@ -87,32 +105,13 @@
                     stroke-width="2"
                     stroke-linecap="round"
                     stroke-linejoin="round"
-                    class="feather feather-message-square"
-                  >
-                    <path
-                      d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
-                    ></path>
-                  </svg>
-                  {{ item.expand.comments || "暂无评论" }}
-                </div>
-                <div>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16px"
-                    height="16px"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
                     class="feather feather-clock"
                   >
                     <circle cx="12" cy="12" r="10"></circle>
                     <polyline points="12 6 12 12 16 14"></polyline>
                   </svg>
 
-                  {{ getBeautifyTime(item.update_time) }}
+                  {{ getBeautifyTime(item.create_time) }}
                 </div>
               </div>
             </div></nuxt-link
@@ -129,12 +128,12 @@ import util from "@/util/index";
 
 export default {
   components: {
-    "no-ssr": NoSSR,
+    "no-ssr": NoSSR
   },
   async asyncData({ $axios }) {
     const article = (
       await $axios.get("/article", {
-        params: { limit: 20 },
+        params: { limit: 20 }
       })
     ).data;
     return { article };
@@ -146,25 +145,27 @@ export default {
   watch: {},
   computed: {
     getBeautifyTime() {
-      return function (time) {
+      return function(time) {
         return util.getBeautifyTime(time);
       };
     },
     getBorderType() {
-      return function () {
+      return function() {
         return "border-" + Math.floor(Math.random() * 6 + 1);
       };
-    },
+    }
   },
   methods: {
     getTagColor() {
       var options = ["", "secondary", "success", "warning", "danger"];
       var index = Math.floor(Math.random() * options.length);
       return options[index];
-    },
+    }
   },
-  created() {},
-  mounted() {},
+  created() {
+    console.log(this.article.data[0].expand);
+  },
+  mounted() {}
 };
 </script> 
 <style lang="scss" scoped>
@@ -214,6 +215,14 @@ export default {
       .feather {
         margin-right: 5px;
       }
+    }
+  }
+}
+@media screen and (max-width: 1200px) {
+  .masonry {
+    width: 100%;
+    .card {
+      width: calc(100% / 2 - 40px);
     }
   }
 }

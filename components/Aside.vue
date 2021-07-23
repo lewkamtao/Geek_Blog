@@ -1,6 +1,6 @@
 <template>
   <div class="aside-wrapper">
-    <div style="margin-bottom: 30px" class="part">
+    <div style="margin-bottom: 30px" v-if="false" class="part">
       <div class="main-title">目录</div>
       <div class="aside-list">
         <ul>
@@ -137,12 +137,12 @@ export default {
   props: {
     article: {
       type: Object,
-      default: {},
+      default: {}
     },
     comments: {
       type: Object,
-      default: {},
-    },
+      default: {}
+    }
   },
   data() {
     return {
@@ -169,14 +169,14 @@ export default {
     },
   },
   created() {},
-  mounted() {},
+  mounted() {}
 };
 </script>
 <style lang="scss" scoped>
 .aside-wrapper {
-  width: 380px;
-  padding: 30px 15px 15px 15px;
+  width: 100%;
   box-sizing: border-box;
+  margin-bottom: 75px;
 }
 .badge {
   cursor: pointer;
@@ -188,12 +188,6 @@ export default {
 .aside-list {
   margin-left: 25px;
   line-height: 25px;
-}
-
-.aside-wrapper::-webkit-scrollbar {
-  width: 0px;
-  height: 0px;
-  display: none;
 }
 
 .main-title {

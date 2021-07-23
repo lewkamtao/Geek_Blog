@@ -10,7 +10,7 @@ export default {
         meta: [
             { charset: 'utf-8' },
             { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-            { hid: 'description', name: 'description', content: '网页设计作业,网页制作作业,学生网页作业,网页作业成品,网页作业模板,网页作业定制,静态网页作业,简单网页成品' }
+            { hid: 'description', name: 'description', content: '这是一个很酷的人用一个很酷的框架开发的一个很牛*的博客' }
         ],
 
         link: [

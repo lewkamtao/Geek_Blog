@@ -74,7 +74,7 @@ export default {
     background: #0071de;
   }
   .description {
-    font-size: 14px;
+    font-size: 15px;
     line-height: 22px;
     color: #000;
     margin-bottom: 10px;

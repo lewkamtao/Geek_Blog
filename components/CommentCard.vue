@@ -2,8 +2,13 @@
   <div class="comment-wrapper">
     <div class="comment-card">
       <div class="left">
-        <div class="avatar border border-primary" :class="getBorderType()">
-          <img :src="comment.expand.head_img" alt="" srcset="" />
+        <div class="avatar border border-primary">
+          <img
+            :class="getBorderType()"
+            :src="comment.expand.head_img"
+            alt=""
+            srcset=""
+          />
         </div>
       </div>
       <div class="right">
@@ -82,10 +87,10 @@ export default {
         article_id: 74,
         opt: null,
         create_time: "2021-03-22 17:45:09",
-        update_time: "2021-03-23 18:36:31",
-        son: [],
-      },
-    },
+        create_time: "2021-03-23 18:36:31",
+        son: []
+      }
+    }
   },
   data() {
     return {};
@@ -93,15 +98,15 @@ export default {
   watch: {},
   computed: {
     getBeautifyTime() {
-      return function (time) {
+      return function(time) {
         return util.getBeautifyTime(time);
       };
     },
     getBorderType() {
-      return function () {
+      return function() {
         return "border-" + Math.floor(Math.random() * 6 + 1);
       };
-    },
+    }
   },
   methods: {
     reply(replyObj) {
@@ -109,7 +114,7 @@ export default {
     },
   },
   created() {},
-  mounted() {},
+  mounted() {}
 };
 </script>
 <style lang="scss" scoped>
@@ -139,6 +144,10 @@ export default {
         align-items: center;
 
         img {
+          border-bottom-left-radius: 0px;
+          border-bottom-right-radius: 0px;
+          border-top-left-radius: 0px;
+          border-top-right-radius: 0px;
           width: 100%;
           height: auto;
         }

@@ -1,34 +1,36 @@
 <template>
   <div class="right-wrapper article-wrapper">
     <div ref="articleMain" class="main">
-      <Article :article="article" class="part" />
+      <Article :article="article" :minHidth="asideHidth" class="part" />
     </div>
-    <Aside
-      :comments="comments"
-      :article="article"
-      class="aside"
-      :style="'left:' + articleMainWidth + 'px'"
-    />
+    <div ref="aside" :style="setAsideLeft" class="aside">
+      <Aside :comments="comments" :article="article" />
+    </div>
   </div>
 </template>
 
 <script>
 export default {
   components: {},
+  head() {
+    return {
+      title: this.article.title
+    };
+  },
   async asyncData({ $axios, route }) {
     const article = (
       await $axios.get("/article", {
         params: {
-          id: parseInt(route.query.id),
-        },
+          id: parseInt(route.query.id)
+        }
       })
     ).data;
     const comments = (
       await $axios.get("/comments", {
         params: {
           article_id: parseInt(route.query.id),
-          limit: 10000,
-        },
+          limit: 10000
+        }
       })
     ).data;
     return { article, comments };
@@ -36,7 +38,8 @@ export default {
   props: {},
   data() {
     return {
-      articleMainWidth: 0, // 用于计算侧边栏
+      setAsideLeft: "", // 用于计算侧边栏
+      asideHidth: 0
     };
   },
   beforeRouteUpdate(to, from, next) {
@@ -53,8 +56,8 @@ export default {
         await this.$axios.get("/comments", {
           params: {
             article_id: id,
-            limit: 10000,
-          },
+            limit: 10000
+          }
         })
       ).data;
       this.comments = comments;
@@ -64,36 +67,42 @@ export default {
       const article = (
         await this.$axios.get("/article", {
           params: {
-            id: id,
-          },
+            id: id
+          }
         })
       ).data;
       this.article = article;
-    },
+    }
   },
 
   created() {},
 
   mounted() {
     var that = this;
-    this.$nextTick(function () {
-      that.articleMainWidth =
-        that.$refs.articleMain.offsetLeft +
-        that.$refs.articleMain.clientWidth +
-        15;
+    var articleMainWidth =
+      that.$refs.articleMain.offsetLeft +
+      that.$refs.articleMain.clientWidth +
+      15;
+    that.setAsideLeft = "left:" + articleMainWidth + "px;position: fixed;";
+
+    that.$nextTick(function() {
+      that.asideHidth = that.$refs.aside.offsetHeight - 120;
     });
-    window.onresize = function () {
-      that.$nextTick(function () {
-        that.articleMainWidth =
+    window.onresize = function() {
+      that.$nextTick(function() {
+        articleMainWidth =
           that.$refs.articleMain.offsetLeft +
           that.$refs.articleMain.clientWidth +
           15;
+
+        that.asideHidth = that.$refs.aside.offsetHeight - 120;
+        that.setAsideLeft = "left:" + articleMainWidth + "px;position: fixed;";
       });
     };
   },
   beforeDestroy() {
     window.onresize = null;
-  },
+  }
 };
 </script>
 <style lang="scss" scoped>
@@ -105,20 +114,22 @@ export default {
   }
 }
 .aside {
-  position: fixed;
   top: 0px;
-
-  max-height: 100vh;
+  padding: 30px 15px 15px 15px;
+  box-sizing: border-box;
+  max-height: 100%;
+  height: 100%;
   overflow-y: scroll;
-  width: 350px;
+  width: 380px;
   margin-bottom: 50px;
   z-index: 99999;
+  scrollbar-color: transparent transparent;
+  scrollbar-track-color: transparent;
+  -ms-scrollbar-track-color: transparent;
 }
-@media screen and (max-width: 1440px) {
-  .article-wrapper {
-    .main {
-      width: calc(100% - 280px);
-    }
-  }
+.aside::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+  display: none;
 }
 </style>
