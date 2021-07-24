@@ -1,54 +1,83 @@
 <template>
-  <div class="aside-wrapper">
-    <div style="margin-bottom: 30px" v-if="false" class="part">
-      <div class="main-title">目录</div>
-      <div class="aside-list">
-        <ul>
-          <li>
-            <a href="#ia">adad</a>
-          </li>
-          <li>
-            <a href="#ia">标签标签</a>
-          </li>
-          <li>
-            <a href="#ia">asdad1ec</a>
-          </li>
-          <li>
-            <a href="#ia">adad</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-    <div v-if="type=='article'" style="margin-bottom: 30px" class="part">
-      <div class="main-title">标签云</div>
-      <div v-if="article.expand.tag" class="tags-box">
-        <span
-          v-for="(item, index) in article.expand.tag"
-          :key="index"
-          class="badge"
-          :class="getTagColor()"
-        >{{ item.name }}</span>
-      </div>
-      <div v-if="!article.expand.tag">暂无标签</div>
-    </div>
-    <div class="part">
-      <div class="main-title">
+  <div class="messgae-wrapper part">
+    <div class="messgae">
+      <div class="messgae-title">
         <div class="title">
-          评论
+          留言墙
           <span class="badge secondary">{{ article.expand.comments }}</span>
         </div>
       </div>
       <div style="margin-bottom:10px" v-if="comments.data.length == 0">暂无评论</div>
-      <label
-        class="border border-secondary reply-main-btn"
-        @click="
-          setReply({
-            nickname: article.expand.author.nickname,
-            expand: article.expand.author
-          })
-        "
-        for="modal-reply"
-      >{{type=='article'?"发表评论":"立即申请"}}</label>
+      <div class="messgae-form">
+        <div class="modal-body">
+          <div class="reply-form">
+            <div class="concact">
+              <div class="form-group">
+                <label for="paperInputs1">
+                  昵称
+                  <span class="badge danger">必填</span>
+                </label>
+                <input
+                  v-model="comments_form.nickname"
+                  class="input-block"
+                  type="text"
+                  id="paperInputs1"
+                  placeholder
+                />
+              </div>
+              <div class="form-group">
+                <label for="paperInputs2">
+                  邮箱
+                  <span class="badge danger">必填</span>
+                </label>
+                <input
+                  v-model="comments_form.email"
+                  class="input-block"
+                  type="text"
+                  id="paperInputs2"
+                  placeholder
+                />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="paperInputs3">博客地址</label>
+              <input
+                v-model="comments_form.url"
+                class="input-block"
+                type="text"
+                id="paperInputs3"
+                placeholder
+              />
+            </div>
+            <div class="form-group">
+              <label>
+                留言内容
+                <span class="badge danger">必填</span>
+              </label>
+              <textarea
+                v-model="comments_form.content"
+                style="width: 100%; height: 150px"
+                class="no-resize"
+                id="no-resize"
+                placeholder
+              ></textarea>
+            </div>
+            <div v-show="error_tips" class="alert alert-danger dismissible alert-reply">
+              {{ error_tips }}
+              <label
+                @click="error_tips = ''"
+                style="position:static; color:#cb453c;     align-items: center; margin-top:-5px; font-size:25px; transform:scaleX(1.8) rotate(-3deg);"
+                class="btn-close"
+              >X</label>
+            </div>
+
+            <div class="row flex-right">
+              <button @click="submitComments('mes')" class="btn-secondary reply-btn">发送</button>
+            </div>
+          </div>
+        </div>
+      </div>
       <input class="modal-state" id="modal-reply" type="checkbox" />
       <div class="modal reply-modal">
         <label class="modal-bg"></label>
@@ -67,7 +96,7 @@
               >{{ getBeautifyTime(replyObj.create_time) }}</div>
             </div>
           </div>
-          <div v-if="replyObj.expand&&type=='article'" class="title">
+          <div v-if="replyObj.expand" class="title">
             {{
             replyObj.expand.pay
             ? "发表对" + replyObj.nickname + "的评论"
@@ -128,15 +157,6 @@
                 placeholder
               ></textarea>
             </div>
-            <div v-if="replyObj.expand&&replyObj.expand.pay&&type=='links'">
-              <h5>申请示例：</h5>
-              <ul style="margin:10px 0px 30px 18px">
-                <li>名称：{{replyObj.expand.nickname}}</li>
-                <li>地址：{{replyObj.expand.address_url}}</li>
-                <li>头像：{{replyObj.expand.head_img}}</li>
-                <li>描述：{{replyObj.expand.description}}</li>
-              </ul>
-            </div>
             <div v-show="error_tips" class="alert alert-danger dismissible alert-reply">
               {{ error_tips }}
               <label
@@ -170,10 +190,6 @@ import CommentCard from "./CommentCard.vue";
 export default {
   components: { CommentCard },
   props: {
-    type: {
-      type: String,
-      default: {}
-    },
     article: {
       type: Object,
       default: {}
@@ -220,7 +236,10 @@ export default {
       }
       this.replyObj = replyObj;
     },
-    submitComments() {
+    submitComments(type) {
+      if (type == "mes") {
+        delete this.comments_form.pid;
+      }
       this.comments_form.article_id = this.article.id;
       var data = JSON.parse(JSON.stringify(this.comments_form));
       if (data.nickname == "") {
@@ -239,7 +258,9 @@ export default {
 
       this.$axios.post("/comments", this.comments_form).then(res => {
         if (res.code == 200) {
-          document.getElementById("modal-reply").click();
+          if (type != "mes") {
+            document.getElementById("modal-reply").click();
+          }
           this.comments_form = {
             email: "",
             nickname: "",
@@ -258,10 +279,14 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.aside-wrapper {
+.messgae-wrapper {
   width: 100%;
   box-sizing: border-box;
-  margin-bottom: 75px;
+}
+
+.messgae {
+  width: 500px;
+  margin: 100px auto;
 }
 .tags-box {
   .badge {
@@ -272,22 +297,25 @@ export default {
     margin-right: 7px;
   }
 }
-.aside-list {
+.messgae-list {
   margin-left: 25px;
   line-height: 25px;
 }
 
-.main-title {
+.messgae-title {
+  width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  margin-bottom: 50px;
   .title {
+    font-size: 50px;
     display: flex;
     align-items: center;
   }
   .badge {
     margin: 0px 0px 0px 10px;
-    font-size: 15px;
+    font-size: 30px;
   }
 }
 .reply-main-btn {
@@ -312,6 +340,7 @@ export default {
   transform: scale(0.95);
 }
 
+.messgae-form,
 .reply-modal {
   .title {
     font-size: 30px;
@@ -362,6 +391,7 @@ export default {
     width: 8px;
     height: 8px;
   }
+
   .modal-body {
     width: 500px;
     max-height: 80vh;
@@ -403,12 +433,6 @@ export default {
         padding: 5px 20px;
       }
     }
-  }
-}
-
-@media screen and (max-width: 1440px) {
-  .aside {
-    width: 280px;
   }
 }
 </style>

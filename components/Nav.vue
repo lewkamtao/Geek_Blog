@@ -9,7 +9,7 @@
       :article="article"
     />
 
-    <Links :links="links" />
+    <LinksCard :links="links" />
     <div class="copy">
       {{ options.copy }}
     </div>

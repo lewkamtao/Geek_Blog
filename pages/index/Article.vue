@@ -4,11 +4,7 @@
       <Article :article="article" :minHidth="asideHidth" class="part" />
     </div>
     <div ref="aside" :style="setAsideLeft" class="aside">
-      <Aside
-        @reloadComments="getComments"
-        :comments="comments"
-        :article="article"
-      />
+      <Aside type="article" @reloadComments="getComments" :comments="comments" :article="article" />
     </div>
   </div>
 </template>

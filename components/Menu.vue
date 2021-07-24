@@ -7,6 +7,7 @@
       <nuxt-link to="/Timeline" class="paper-btn btn-success">时光机</nuxt-link>
       <nuxt-link to="/Links" class="paper-btn btn-warning">友情链接</nuxt-link>
       <nuxt-link to="/Message" class="paper-btn btn-danger">留言墙</nuxt-link>
+      <nuxt-link to="/Message" class="paper-btn btn-danger">登录</nuxt-link>
     </div>
   </div>
 </template>

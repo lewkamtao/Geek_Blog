@@ -1,24 +1,260 @@
 <template>
-  <div class="links part">
-    这里是友链
+  <div class="right-wrapper article-wrapper">
+    <div ref="articleMain" class="main part links">
+      <header
+        class="border border-primary"
+        :style="'background:url(http://www.dmoe.cc/random.php)'"
+        :class="getBorderType()"
+      >
+        <div class="mask"></div>
+        <div class="content">
+          <div class="title">友情链接</div>
+          <div class="summary">
+            <div>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="18px"
+                height="18px"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="feather feather-user"
+              >
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                <circle cx="12" cy="7" r="4" />
+              </svg>
+              <polyline points="12 6 12 12 16 14"></polyline>
+              {{ article.expand.author.nickname }}
+            </div>
+            <div>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16px"
+                height="16px"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="feather feather-link"
+              >
+                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+              </svg>
+              {{ links.count }}
+            </div>
+            <div>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16px"
+                height="16px"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="feather feather-eye"
+              >
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                <circle cx="12" cy="12" r="3" />
+              </svg>
+              <polyline points="12 6 12 12 16 14"></polyline>
+              {{ article.views}}
+            </div>
+
+            <div>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="18px"
+                height="18px"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="feather feather-message-square"
+              >
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+              </svg>
+              {{ article.expand.comments }}
+            </div>
+          </div>
+        </div>
+      </header>
+    </div>
+    <div ref="aside" :style="setAsideLeft" class="aside">
+      <Aside type="links" @reloadComments="getComments" :comments="comments" :article="article" />
+    </div>
   </div>
 </template>
 
 <script>
 export default {
   components: {},
+  head() {
+    return {
+      title: this.article.title
+    };
+  },
+  async asyncData({ $axios, route }) {
+    const article = (
+      await $axios.get("/article", {
+        params: {
+          id: 93
+        }
+      })
+    ).data;
+    const links = (await $axios.get("/links")).data;
+    const comments = (
+      await $axios.get("/comments", {
+        params: {
+          article_id: 93,
+          tree: false,
+          limit: 10000
+        }
+      })
+    ).data;
+    return { article, comments, links };
+  },
   props: {},
   data() {
-    return {};
+    return {
+      setAsideLeft: "", // 用于计算侧边栏
+      asideHidth: 0,
+      id: 93
+    };
   },
+
   watch: {},
-  computed: {},
-  methods: {},
+  computed: {
+    getBorderType() {
+      return function() {
+        return "border-" + Math.floor(Math.random() * 6 + 1);
+      };
+    }
+  },
+  methods: {
+    // 获取评论
+    async getComments() {
+      const comments = (
+        await this.$axios.get("/comments", {
+          params: {
+            article_id: 93,
+            tree: false,
+            limit: 10000
+          }
+        })
+      ).data;
+      this.comments = comments;
+    }
+  },
+
   created() {},
-  mounted() {}
+
+  mounted() {
+    var that = this;
+    var articleMainWidth =
+      that.$refs.articleMain.offsetLeft +
+      that.$refs.articleMain.clientWidth +
+      15;
+    that.setAsideLeft = "left:" + articleMainWidth + "px;position: fixed;";
+
+    that.$nextTick(function() {
+      that.asideHidth = that.$refs.aside.offsetHeight - 120;
+    });
+    window.onresize = function() {
+      that.$nextTick(function() {
+        articleMainWidth =
+          that.$refs.articleMain.offsetLeft +
+          that.$refs.articleMain.clientWidth +
+          15;
+
+        that.asideHidth = that.$refs.aside.offsetHeight - 120;
+        that.setAsideLeft = "left:" + articleMainWidth + "px;position: fixed;";
+      });
+    };
+  },
+  beforeDestroy() {
+    window.onresize = null;
+  }
 };
 </script>
 <style lang="scss" scoped>
-.wrapper {
+.article-wrapper {
+  display: flex;
+  .main {
+    width: calc(100% - 380px);
+    min-width: 500px;
+  }
+}
+.links {
+  min-height: calc(100vh - 50px);
+}
+.aside {
+  top: 0px;
+  padding: 30px 15px 15px 15px;
+  box-sizing: border-box;
+  max-height: 100%;
+  height: 100%;
+  overflow-y: scroll;
+  width: 380px;
+  margin-bottom: 50px;
+  z-index: 999;
+  scrollbar-color: transparent transparent;
+  scrollbar-track-color: transparent;
+  -ms-scrollbar-track-color: transparent;
+}
+header {
+  position: relative;
+  overflow: hidden;
+  padding: 50px;
+  color: #000;
+  text-align: center;
+  background-size: cover !important;
+
+  .mask {
+    position: absolute;
+    top: -5%;
+    left: -5%;
+    width: 110%;
+    height: 110%;
+    background: rgba($color: #000000, $alpha: 0.4);
+  }
+  .content {
+    position: relative;
+    z-index: 999;
+    color: #fff;
+  }
+  .title {
+    font-size: 40px;
+    margin-bottom: 30px;
+  }
+  .summary {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    white-space: nowrap;
+    div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 10px 20px;
+      font-size: 18px;
+      .feather {
+        margin-right: 10px;
+      }
+    }
+  }
+}
+.aside::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+  display: none;
 }
 </style>

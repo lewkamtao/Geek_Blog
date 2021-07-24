@@ -18,7 +18,7 @@
             <img v-if="item.img_src" :src="item.img_src" />
             <img
               v-if="!item.img_src"
-              :src="'http://api.btstu.cn/sjbz/?lx=m_dongman&' + index"
+              :src="'http://www.dmoe.cc/random.php?' + index"
             />
             <div class="card-body">
               <h4 class="card-title">{{ item.title }}</h4>

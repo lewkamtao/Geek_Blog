@@ -4,8 +4,8 @@
       :options="options"
       :article="article"
       :article_sort="article_sort"
-      :pages="pages"
       :links="links"
+      :pages="pages"
       class="nav"
     />
     <div class="main">
