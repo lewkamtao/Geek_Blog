@@ -28,7 +28,7 @@ export default {
 .loading-page {
   position: fixed;
   top: 0px;
-  right:  -50px;
+  left:  -50px;
   z-index: 9999999999;
 }
 </style>
