@@ -108,7 +108,7 @@
 
 <script>
 // 这里是友情链接的id 注意要是文章的id 文章标题必须是：友情链接
-var links_article_id = 14;
+var links_article_id = 13;
 
 export default {
   components: {},
