@@ -13,7 +13,7 @@
           <div class="reply-form">
             <div class="concact">
               <div class="form-group">
-                <label for="paperInputs1">
+                <label for="paperInputs4">
                   昵称
                   <span class="badge danger">必填</span>
                 </label>
@@ -21,12 +21,12 @@
                   v-model="comments_form.nickname"
                   class="input-block"
                   type="text"
-                  id="paperInputs1"
+                  id="paperInputs4"
                   placeholder
                 />
               </div>
               <div class="form-group">
-                <label for="paperInputs2">
+                <label for="paperInputs5">
                   邮箱
                   <span class="badge danger">必填</span>
                 </label>
@@ -34,20 +34,20 @@
                   v-model="comments_form.email"
                   class="input-block"
                   type="text"
-                  id="paperInputs2"
+                  id="paperInputs5"
                   placeholder
                 />
               </div>
             </div>
 
             <div class="form-group">
-              <label for="paperInputs3">博客地址</label>
+              <label for="paperInputs6">博客地址</label>
               <input
                 v-model="comments_form.url"
                 class="input-block"
                 type="text"
-                id="paperInputs3"
-                placeholder
+                id="paperInputs6"
+                placeholder 
               />
             </div>
             <div class="form-group">
