@@ -1,6 +1,7 @@
-export default ({ redirect, $axios, }) => {
+export default ({ redirect, $axios, $cookies }) => {
     $axios.onRequest(config => {
-        // 如果是GET 要把 参数字符串化
+        config.headers.authorization = $cookies.get('token') || ""
+            // 如果是GET 要把 参数字符串化
         if (config.method == "get") {
             for (var key in config.params) {
                 try {

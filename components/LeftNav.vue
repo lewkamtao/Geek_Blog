@@ -55,13 +55,13 @@ export default {
 <style lang="scss" scoped>
 .nav {
   display: block;
-  padding: 15px;
+  padding:75px 15px 15px 15px;
   box-sizing: border-box;
   .user-info {
     margin-top: 15px;
   }
   .copy {
-    margin: 30px 0px;
+    margin: 25px 0px;
   }
 }
 </style>

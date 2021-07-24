@@ -4,7 +4,12 @@
       <Article :article="article" :minHidth="asideHidth" class="part" />
     </div>
     <div ref="aside" :style="setAsideLeft" class="aside">
-      <Aside type="article" @reloadComments="getComments" :comments="comments" :article="article" />
+      <Aside
+        type="article"
+        @reloadComments="getComments"
+        :comments="comments"
+        :article="article"
+      />
     </div>
   </div>
 </template>
@@ -120,7 +125,7 @@ export default {
 }
 .aside {
   top: 0px;
-  padding: 30px 15px 15px 15px;
+  padding: 90px 15px 15px 15px;
   box-sizing: border-box;
   max-height: 100%;
   height: 100%;

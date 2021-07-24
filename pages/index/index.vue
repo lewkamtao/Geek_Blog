@@ -1,12 +1,7 @@
 <template>
   <div class="right-wrapper index-wrapper part">
     <no-ssr>
-      <div
-        v-masonry
-        transition-duration="none"
-        item-selector=".card"
-        class="masonry"
-      >
+      <div v-masonry transition-duration="none" item-selector=".card" class="masonry">
         <div
           v-masonry-tile
           class="card border border-primary"
@@ -16,10 +11,7 @@
         >
           <nuxt-link :to="'/Article?id=' + item.id">
             <img v-if="item.img_src" :src="item.img_src" />
-            <img
-              v-if="!item.img_src"
-              :src="'http://www.dmoe.cc/random.php?' + index"
-            />
+            <img v-if="!item.img_src" :src="'http://www.dmoe.cc/random.php?' + index" />
             <div class="card-body">
               <h4 class="card-title">{{ item.title }}</h4>
               <h5 class="card-subtitle">{{ item.description }}</h5>
@@ -29,8 +21,7 @@
                   :key="index"
                   class="badge"
                   :class="getTagColor()"
-                  >{{ tag.name }}</span
-                >
+                >{{ tag.name }}</span>
               </div>
               <div class="card-text">
                 <div>
@@ -46,11 +37,10 @@
                     stroke-linejoin="round"
                     class="feather feather-user"
                   >
-                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                    <circle cx="12" cy="7" r="4"></circle>
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                    <circle cx="12" cy="7" r="4" />
                   </svg>
                   <polyline points="12 6 12 12 16 14"></polyline>
-
                   {{ item.expand.author.nickname }}
                 </div>
                 <div>
@@ -66,9 +56,7 @@
                     stroke-linejoin="round"
                     class="feather feather-message-square"
                   >
-                    <path
-                      d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
-                    ></path>
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
                   </svg>
                   {{ item.expand.comments }}
                 </div>
@@ -85,13 +73,10 @@
                     stroke-linejoin="round"
                     class="feather feather-eye"
                   >
-                    <path
-                      d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"
-                    ></path>
-                    <circle cx="12" cy="12" r="3"></circle>
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                    <circle cx="12" cy="12" r="3" />
                   </svg>
                   <polyline points="12 6 12 12 16 14"></polyline>
-
                   {{ item.views }}
                 </div>
                 <div>
@@ -107,15 +92,14 @@
                     stroke-linejoin="round"
                     class="feather feather-clock"
                   >
-                    <circle cx="12" cy="12" r="10"></circle>
-                    <polyline points="12 6 12 12 16 14"></polyline>
+                    <circle cx="12" cy="12" r="10" />
+                    <polyline points="12 6 12 12 16 14" />
                   </svg>
-
                   {{ getBeautifyTime(item.create_time) }}
                 </div>
               </div>
-            </div></nuxt-link
-          >
+            </div>
+          </nuxt-link>
         </div>
       </div>
     </no-ssr>
@@ -136,6 +120,9 @@ export default {
         params: { limit: 20 }
       })
     ).data;
+    article.data = article.data.filter(
+      item => ["留言墙", "友情链接"].indexOf(item.title) < 0
+    );
     return { article };
   },
   props: {},

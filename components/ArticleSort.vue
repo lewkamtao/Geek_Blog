@@ -3,27 +3,27 @@
     <div class="form-group">
       <div class="main-title">文章分了个类</div>
 
-      <select
-        id="paperSelects1"
-        v-model="isSelect_article_id"
-        @change="getArticle()"
-      >
-        <option value="">全部文章</option>
+      <select id="paperSelects1" v-model="isSelect_article_id" @change="getArticle()">
+        <option value>全部文章</option>
         <option
           v-for="(article_sort, index) in article_sort"
           :key="index"
           :value="article_sort.id"
-        >
-          {{ article_sort.name }}
-        </option>
+        >{{ article_sort.name }}</option>
       </select>
     </div>
     <div class="article-title-list">
       <ul>
-        <li v-for="(item, index) in nav_article" :key="index">
-          <nuxt-link class="text-secondary" :to="'/Article?id=' + item.id">{{
+        <li
+          v-show="['留言墙','友情链接'].indexOf(item.title)<0"
+          v-for="(item, index) in nav_article"
+          :key="index"
+        >
+          <nuxt-link class="text-secondary" :to="'/Article?id=' + item.id">
+            {{
             item.title
-          }}</nuxt-link>
+            }}
+          </nuxt-link>
         </li>
       </ul>
     </div>
@@ -36,17 +36,17 @@ export default {
   props: {
     article: {
       type: Array,
-      default: [],
+      default: []
     },
     article_sort: {
       type: Array,
-      default: [],
-    },
+      default: []
+    }
   },
   data() {
     return {
       nav_article: [],
-      isSelect_article_id: "",
+      isSelect_article_id: ""
     };
   },
   watch: {},
@@ -58,23 +58,23 @@ export default {
         params = { id: this.isSelect_article_id, limit: 100000 };
         this.nav_article = (
           await this.$axios.get("/article-sort", {
-            params,
+            params
           })
         ).data.expand.data;
       } else {
         this.nav_article = (
           await this.$axios.get("/article", {
-            params,
+            params
           })
         ).data.data;
       }
-    },
+    }
   },
   created() {
     this.nav_article = this.article;
     this.isSelect_article_id = "";
   },
-  mounted() {},
+  mounted() {}
 };
 </script>
 <style lang="scss" scoped>

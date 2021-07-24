@@ -1,12 +1,13 @@
 <template>
   <div id="top" class="wrapper">
-    <Nav
+    <TopNav class="top-nav" />
+    <LeftNav
       :options="options"
       :article="article"
       :article_sort="article_sort"
       :links="links"
       :pages="pages"
-      class="nav"
+      class="left-nav"
     />
     <div class="main">
       <Nuxt />
@@ -22,6 +23,7 @@
 
 <script>
 import DevicePixelRatio from "@/util/devicePixelRatio.js";
+import util from "@/util/index";
 
 export default {
   components: {},
@@ -67,6 +69,13 @@ export default {
       new DevicePixelRatio().init();
     }
   },
+  beforeRouteUpdate(to, from, next) {
+    if (process.browser) {
+      // 置顶topNav条 隐藏遮罩 优先级
+      util.showTopNav(true);
+      next();
+    }
+  },
   mounted() {}
 };
 </script>
@@ -78,7 +87,16 @@ export default {
   justify-content: space-between;
   box-sizing: border-box;
   margin: 0px auto;
-  .nav {
+  .top-nav {
+    position: fixed;
+    max-width: calc(1500px - 30px);
+    height: 60px;
+    left: 50%;
+    top: 0px;
+    transform: translateX(-50%);
+    z-index: 99999999;
+  }
+  .left-nav {
     position: fixed;
     width: 310px;
     height: 100%;
@@ -91,7 +109,7 @@ export default {
 
   .main {
     margin-left: 310px;
-    margin-top: 15px;
+    margin-top: 75px;
     padding: 15px;
     margin-bottom: 70px;
     width: calc(100% - 310px);
@@ -120,16 +138,19 @@ export default {
   }
 }
 
-.nav::-webkit-scrollbar {
+.left-nav::-webkit-scrollbar {
   width: 0px;
   height: 0px;
   display: none;
   scrollbar-width: none;
 }
-@media screen and (max-width: 1440px) {
+@media screen and (max-width: 1480px) {
   .wrapper {
     padding: 0px 15px;
     box-sizing: border-box;
+    .top-nav {
+      max-width: calc(1500px - 60px);
+    }
   }
 }
 </style>

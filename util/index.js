@@ -16,6 +16,22 @@
      }
  }
 
+ /**
+  * 处理顶部栏优先级遮罩层
+  */
+ function showTopNav(status) {
+     if (status) {
+         document.getElementById("topNavMask").style.display = "none";
+         document.getElementById("topNavMask").style.opacity = "0";
+     } else {
+         document.getElementById("topNavMask").style.display = "block";
+         setTimeout(function() {
+             document.getElementById("topNavMask").style.opacity = "1";
+         }, 10)
+     }
+ }
+
  export default {
-     getBeautifyTime
+     getBeautifyTime,
+     showTopNav
  }

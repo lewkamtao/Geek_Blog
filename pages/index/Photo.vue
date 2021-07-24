@@ -25,11 +25,9 @@ export default {
   watch: {},
   computed: {},
   methods: {},
-  created() {},
+  created() {}, 
   mounted() {}
 };
 </script>
 <style lang="scss" scoped>
-.wrapper {
-}
 </style>

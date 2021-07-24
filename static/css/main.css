@@ -45,6 +45,10 @@ body {
     font-size: 15px;
 }
 
+.modal {
+    z-index: 9999999;
+}
+
 
 /* 滚动槽 */
 

@@ -53,7 +53,7 @@
       <div class="modal reply-modal">
         <label class="modal-bg"></label>
         <div class="modal-body">
-          <label class="btn-close" for="modal-reply">X</label>
+          <label class="btn-close" @click="closeModal" for="modal-reply">X</label>
           <div v-if="replyObj.expand" class="reply-obj">
             <div class="avatar border border-primary" :class="getBorderType()">
               <img :src="replyObj.expand.head_img" alt srcset />
@@ -132,9 +132,9 @@
               <h5>申请示例：</h5>
               <ul style="margin:10px 0px 30px 18px">
                 <li>名称：{{replyObj.expand.nickname}}</li>
-                <li>地址：{{replyObj.expand.address_url}}</li>
+                <li>地址：{{replyObj.expand.address_url || "https://kamtao.com/"}}</li>
                 <li>头像：{{replyObj.expand.head_img}}</li>
-                <li>描述：{{replyObj.expand.description}}</li>
+                <li>描述：{{replyObj.expand.description || "做一个很酷的人"}}</li>
               </ul>
             </div>
             <div v-show="error_tips" class="alert alert-danger dismissible alert-reply">
@@ -214,10 +214,21 @@ export default {
       var index = Math.floor(Math.random() * options.length);
       return options[index];
     },
+    closeModal() {
+      // 开启topNav条  隐藏遮罩 优先级
+      if (process.browser) {
+        util.showTopNav(true);
+      }
+    },
     setReply(replyObj) {
       if (replyObj.id >= 0 && !replyObj.expand.pay) {
         this.comments_form.pid = replyObj.id;
       }
+      // 关闭topNav条 显示遮罩 优先级
+      if (process.browser) {
+        util.showTopNav(false);
+      }
+
       this.replyObj = replyObj;
     },
     submitComments() {
@@ -235,17 +246,25 @@ export default {
       } else if (!checkStr(data.email, "email")) {
         this.error_tips = "* 邮箱格式错误";
         return;
+      } else if (data.url && !checkStr(data.url, "URL")) {
+        this.error_tips = "* 网址格式错误(需要加http://或https://)";
+        return;
       }
 
       this.$axios.post("/comments", this.comments_form).then(res => {
         if (res.code == 200) {
-          document.getElementById("modal-reply").click();
           this.comments_form = {
             email: "",
             nickname: "",
             url: "",
             content: ""
           };
+
+          if (process.browser) {
+            document.getElementById("modal-reply").click();
+            // 开启topNav条 隐藏遮罩 优先级
+            util.showTopNav(true);
+          }
           this.$emit("reloadComments");
         } else {
           this.error_tips = "*必填项不能为空";
@@ -261,7 +280,7 @@ export default {
 .aside-wrapper {
   width: 100%;
   box-sizing: border-box;
-  margin-bottom: 75px;
+  margin-bottom: 70px;
 }
 .tags-box {
   .badge {

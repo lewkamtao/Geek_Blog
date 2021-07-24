@@ -87,6 +87,18 @@
           </div>
         </div>
       </header>
+      <div class="card" style="width:80%; margin:50px auto;">
+        <div class="card-body">
+          <h4 class="card-title">这里是友情链接模块!</h4>
+          <h5 class="card-subtitle">当前页面正在开发</h5>
+
+          <p class="card-text">
+            一个基于很牛*的系统开发的一个很牛*的主题
+            <br />这是一个目前还不算完整，使用 Vue + Nuxt.js 开发的现代化博客，不算太慢，有点意思。
+          </p>
+        </div>
+        <img src="https://kamtao-1255310647.cos.ap-chengdu.myqcloud.com/img/Gxf32F.jpg" alt srcset />
+      </div>
     </div>
     <div ref="aside" :style="setAsideLeft" class="aside">
       <Aside type="links" @reloadComments="getComments" :comments="comments" :article="article" />
@@ -95,6 +107,9 @@
 </template>
 
 <script>
+// 这里是友情链接的id 注意要是文章的id 文章标题必须是：友情链接
+var links_article_id = 14;
+
 export default {
   components: {},
   head() {
@@ -106,7 +121,7 @@ export default {
     const article = (
       await $axios.get("/article", {
         params: {
-          id: 93
+          id: links_article_id
         }
       })
     ).data;
@@ -114,7 +129,7 @@ export default {
     const comments = (
       await $axios.get("/comments", {
         params: {
-          article_id: 93,
+          article_id: links_article_id,
           tree: false,
           limit: 10000
         }
@@ -127,7 +142,7 @@ export default {
     return {
       setAsideLeft: "", // 用于计算侧边栏
       asideHidth: 0,
-      id: 93
+      id: links_article_id
     };
   },
 
@@ -145,7 +160,7 @@ export default {
       const comments = (
         await this.$axios.get("/comments", {
           params: {
-            article_id: 93,
+            article_id: links_article_id,
             tree: false,
             limit: 10000
           }
@@ -193,12 +208,10 @@ export default {
     min-width: 500px;
   }
 }
-.links {
-  min-height: calc(100vh - 50px);
-}
+
 .aside {
   top: 0px;
-  padding: 30px 15px 15px 15px;
+  padding: 90px 15px 15px 15px;
   box-sizing: border-box;
   max-height: 100%;
   height: 100%;
@@ -257,4 +270,5 @@ header {
   height: 0px;
   display: none;
 }
+
 </style>

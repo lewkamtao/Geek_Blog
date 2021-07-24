@@ -3,42 +3,32 @@
     <div class="comment-card">
       <div class="left">
         <div class="avatar border border-primary">
-          <img
-            :class="getBorderType()"
-            :src="comment.expand.head_img"
-            alt=""
-            srcset=""
-          />
+          <img :class="getBorderType()" :src="comment.expand.head_img" alt srcset />
         </div>
       </div>
       <div class="right">
         <div class="nickname">
           {{ comment.nickname }}
           <label
-            class="badge  reply-btn"
+            class="badge reply-btn"
             @click="reply(comment)"
             for="modal-reply"
-            >回复</label
-          >
+          >回复</label>
         </div>
-        <div class="content">
-          {{ comment.content }}
+        <div class="content">{{ comment.content }}</div>
+        <div v-show="comment.url" class="blog-url">
+          博主站点：
+          <a :href="'http://'+comment.url" target="_blank">{{ comment.url }}</a>
         </div>
-        <div class="create_time">
-          {{ getBeautifyTime(comment.create_time) }}
-        </div>
+        <div class="create_time">{{ getBeautifyTime(comment.create_time) }}</div>
       </div>
     </div>
-    <div class="son-box">
-      <div
-        class="comments-box"
-        v-for="(son, index) in comment.son"
-        :key="index"
-      >
+    <div v-show="comment.son.length!=0" class="son-box">
+      <div class="comments-box" v-for="(son, index) in comment.son" :key="index">
         <div class="comment-card">
           <div class="left">
             <div class="avatar border border-primary" :class="getBorderType()">
-              <img :src="son.expand.head_img" alt="" srcset="" />
+              <img :src="son.expand.head_img" alt srcset />
             </div>
           </div>
           <div class="right">
@@ -48,15 +38,14 @@
                 class="badge reply-btn"
                 @click="reply(son)"
                 for="modal-reply"
-                >回复</label
-              >
+              >回复</label>
             </div>
-            <div class="content">
-              {{ son.content }}
+            <div class="content">{{ son.content }}</div>
+            <div v-show="comment.url" class="blog-url">
+              博主站点：
+              <a :href="'http://'+ son.url" target="_blank">{{ son.url }}</a>
             </div>
-            <div class="create_time">
-              {{ getBeautifyTime(son.create_time) }}
-            </div>
+            <div class="create_time">{{ getBeautifyTime(son.create_time) }}</div>
           </div>
         </div>
       </div>
@@ -134,7 +123,6 @@ export default {
   .comment-card {
     padding: 5px;
     display: flex;
-
     .left {
       width: 40px;
       margin-right: 10px;
@@ -163,6 +151,11 @@ export default {
         margin: 7px 0px 10px 0px;
         font-size: 14px;
         line-height: 20px;
+      }
+      .blog-url {
+        margin-bottom: 10px;
+        color: #0071de;
+        font-style: italic;
       }
       .create_time {
         font-size: 14px;

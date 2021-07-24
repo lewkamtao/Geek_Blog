@@ -171,7 +171,6 @@ export default {
 <style lang="scss" scoped>
 .article-wrapper {
   padding: 30px;
-  min-height: calc(100vh - 60px);
   display: flex;
   flex-direction: column;
 

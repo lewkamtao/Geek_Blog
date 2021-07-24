@@ -7,6 +7,9 @@
 </template>
 
 <script>
+// 这里是留言墙的id 注意要是文章的id 文章标题必须是：留言墙
+var message_article_id = 14;
+
 export default {
   components: {},
   head() {
@@ -18,7 +21,7 @@ export default {
     const article = (
       await $axios.get("/article", {
         params: {
-          id: 66
+          id: message_article_id
         }
       })
     ).data;
@@ -26,7 +29,7 @@ export default {
     const comments = (
       await $axios.get("/comments", {
         params: {
-          article_id: 66,
+          article_id: message_article_id,
           tree: false,
           limit: 10000
         }
@@ -39,7 +42,7 @@ export default {
     return {
       setAsideLeft: "", // 用于计算侧边栏
       asideHidth: 0,
-      id: 66
+      id: message_article_id
     };
   },
 
@@ -51,7 +54,7 @@ export default {
       const comments = (
         await this.$axios.get("/comments", {
           params: {
-            article_id: 66,
+            article_id: message_article_id,
             tree: false,
             limit: 10000
           }
@@ -72,6 +75,6 @@ export default {
 <style lang="scss" scoped>
 .messgae-wrapper {
   position: relative;
-  z-index: 999999;
+  z-index: 9999;
 }
 </style>

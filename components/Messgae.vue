@@ -7,7 +7,7 @@
           <span class="badge secondary">{{ article.expand.comments }}</span>
         </div>
       </div>
-      <div style="margin-bottom:10px" v-if="comments.data.length == 0">暂无评论</div>
+
       <div class="messgae-form">
         <div class="modal-body">
           <div class="reply-form">
@@ -47,7 +47,7 @@
                 class="input-block"
                 type="text"
                 id="paperInputs6"
-                placeholder 
+                placeholder
               />
             </div>
             <div class="form-group">
@@ -78,11 +78,21 @@
           </div>
         </div>
       </div>
+
+      <div style="margin-top:50px" v-if="comments.data.length == 0">暂无留言</div>
+      <div v-if="comments.data.length != 0" class="comments">
+        <div class="comments-box" v-for="(item, index) in comments.data" :key="index">
+          <CommentCard @setReply="setReply" :comment="item" />
+        </div>
+      </div>
+    </div>
+
+    <div class="reply">
       <input class="modal-state" id="modal-reply" type="checkbox" />
       <div class="modal reply-modal">
         <label class="modal-bg"></label>
         <div class="modal-body">
-          <label class="btn-close" for="modal-reply">X</label>
+          <label @click="closeModal" class="btn-close" for="modal-reply">X</label>
           <div v-if="replyObj.expand" class="reply-obj">
             <div class="avatar border border-primary" :class="getBorderType()">
               <img :src="replyObj.expand.head_img" alt srcset />
@@ -172,11 +182,6 @@
           </div>
         </div>
       </div>
-      <div v-if="comments.data.length != 0" class="comments">
-        <div class="comments-box" v-for="(item, index) in comments.data" :key="index">
-          <CommentCard @setReply="setReply" :comment="item" />
-        </div>
-      </div>
     </div>
   </div>
 </template>
@@ -184,7 +189,6 @@
 <script>
 import util from "@/util/index";
 import checkStr from "@/util/checkStr";
-
 import CommentCard from "./CommentCard.vue";
 
 export default {
@@ -234,7 +238,17 @@ export default {
       if (replyObj.id >= 0 && !replyObj.expand.pay) {
         this.comments_form.pid = replyObj.id;
       }
+      // 关闭topNav条 显示遮罩 优先级
+      if (process.browser) {
+        util.showTopNav(false);
+      }
       this.replyObj = replyObj;
+    },
+    closeModal() {
+      // 开启topNav条 显示遮罩 优先级
+      if (process.browser) {
+        util.showTopNav(true);
+      }
     },
     submitComments(type) {
       if (type == "mes") {
@@ -254,12 +268,19 @@ export default {
       } else if (!checkStr(data.email, "email")) {
         this.error_tips = "* 邮箱格式错误";
         return;
+      } else if (data.url && !checkStr(data.url, "URL")) {
+        this.error_tips = "* 网址格式错误(需要加http://或https://)";
+        return;
       }
 
       this.$axios.post("/comments", this.comments_form).then(res => {
         if (res.code == 200) {
           if (type != "mes") {
-            document.getElementById("modal-reply").click();
+            if (process.browser) {
+              document.getElementById("modal-reply").click();
+              // 开启topNav条 隐藏遮罩 优先级
+              util.showTopNav(true);
+            }
           }
           this.comments_form = {
             email: "",

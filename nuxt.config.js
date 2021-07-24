@@ -70,7 +70,7 @@ export default {
     },
     proxy: {
         '/api/': {
-            target: 'https://api.inis.cn/api',
+            target: 'https://api.kamtao.com/api',
             pathRewrite: {
                 '^/api/': '/',
                 changeOrigin: true
@@ -88,6 +88,5 @@ export default {
         extractCSS: { allChunks: true }
 
     },
-
-    loading: false
+    loading: '~/components/Loading.vue'
 }
