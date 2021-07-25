@@ -1,6 +1,6 @@
 <template>
   <div class="aside-wrapper">
-    <div style="margin-bottom: 14px" class="part">
+    <div v-if="type=='article'" style="margin-bottom: 14px" class="part">
       <div class="main-title" style="margin-bottom:12px">目录</div>
       <div class="article-list vditor-outline" id="outline"></div>
     </div>
