@@ -1,25 +1,10 @@
 <template>
   <div class="aside-wrapper">
-    <div style="margin-bottom: 30px" v-if="false" class="part">
-      <div class="main-title">目录</div>
-      <div class="aside-list">
-        <ul>
-          <li>
-            <a href="#ia">adad</a>
-          </li>
-          <li>
-            <a href="#ia">标签标签</a>
-          </li>
-          <li>
-            <a href="#ia">asdad1ec</a>
-          </li>
-          <li>
-            <a href="#ia">adad</a>
-          </li>
-        </ul>
-      </div>
+    <div style="margin-bottom: 14px" class="part">
+      <div class="main-title" style="margin-bottom:12px">目录</div>
+      <div class="article-list vditor-outline" id="outline"></div>
     </div>
-    <div v-if="type=='article'" style="margin-bottom: 30px" class="part">
+    <div v-if="type=='article'" style="margin-bottom: 14px" class="part">
       <div class="main-title">标签云</div>
       <div v-if="article.expand.tag" class="tags-box">
         <span
@@ -45,7 +30,7 @@
           setReply({
             nickname: article.expand.author.nickname,
             expand: article.expand.author
-          })
+          }) 
         "
         for="modal-reply"
       >{{type=='article'?"发表评论":"立即申请"}}</label>
@@ -290,10 +275,6 @@ export default {
     font-size: 12px;
     margin-right: 7px;
   }
-}
-.aside-list {
-  margin-left: 25px;
-  line-height: 25px;
 }
 
 .main-title {

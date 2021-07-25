@@ -2,13 +2,7 @@
   <div class="part menu">
     <div class="main-title">导航</div>
     <div class="nav-list">
-      <nuxt-link
-        v-for="(item, index) in menu"
-        :key="index"
-        :to="item.path"
-        class="paper-btn border"
-        :class="getBtnColor(index)"
-      >{{item.title}}</nuxt-link>
+      <nuxt-link v-for="(item, index) in menu" :key="index" :to="item.path">{{item.title}}</nuxt-link>
     </div>
   </div>
 </template>
@@ -30,14 +24,14 @@ export default {
         },
         {
           path: "/Photo",
-          title: "相册"
+          title: "相册" 
         },
         {
           path: "/Timeline",
           title: "时光机"
         },
         {
-          path: "/Links",
+          path: "/Links", 
           title: "友情链接"
         },
         {
@@ -48,28 +42,7 @@ export default {
     };
   },
   watch: {},
-  computed: {
-    getBtnColor(index) {
-      return function(index) {
-        var tag_options = [
-          "primary",
-          "success",
-          "primary-outline",
-
-          "secondary",
-
-          "danger",
-          "warning",
-          "secondary-outline",
-          "success-outline",
-          "warning-outline",
-          "danger-outline"
-        ];
-        // var index = Math.floor(Math.random() * tag_options.length);
-        return "btn-" + tag_options[index];
-      };
-    }
-  },
+  computed: {},
   methods: {},
   created() {},
   mounted() {}
@@ -91,14 +64,19 @@ export default {
 .nav-list {
   display: flex;
   flex-wrap: wrap;
-  margin-bottom: 7px;
+  margin-bottom: 10px;
 
   a {
     width: 100%;
-    padding: 8px 15px 8px 25px;
-    margin-bottom: 8px;
+    padding: 8px 0px;
     font-size: 18px;
     background-image: none;
+    border-radius: 5px;
+    padding-left: 20px;
+    border-bottom: 1px #eee solid;
+  }
+  a:hover {
+    background: #eee;
   }
 }
 </style>

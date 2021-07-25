@@ -1,15 +1,10 @@
 <template>
   <div class="right-wrapper article-wrapper">
     <div ref="articleMain" class="main">
-      <Article :article="article" :minHidth="asideHidth" class="part" />
+      <ArticleDetail :article="article" :minHidth="asideHidth" class="part" />
     </div>
     <div ref="aside" :style="setAsideLeft" class="aside">
-      <Aside
-        type="article"
-        @reloadComments="getComments"
-        :comments="comments"
-        :article="article"
-      />
+      <Aside type="article" @reloadComments="getComments" :comments="comments" :article="article" />
     </div>
   </div>
 </template>
@@ -19,14 +14,15 @@ export default {
   components: {},
   head() {
     return {
-      title: this.article.title
+      title: this.article.title + " - " + this.options.title
     };
   },
   async asyncData({ $axios, route }) {
     const article = (
       await $axios.get("/article", {
         params: {
-          id: parseInt(route.query.id)
+          id: parseInt(route.query.id),
+          model: "md"
         }
       })
     ).data;
@@ -41,7 +37,12 @@ export default {
     ).data;
     return { article, comments };
   },
-  props: {},
+  props: {
+    options: {
+      type: Object,
+      default: {}
+    }
+  },
   data() {
     return {
       setAsideLeft: "", // 用于计算侧边栏
@@ -76,7 +77,8 @@ export default {
       const article = (
         await this.$axios.get("/article", {
           params: {
-            id: this.id
+            id: this.id,
+            model: "md"
           }
         })
       ).data;
@@ -92,7 +94,7 @@ export default {
     var articleMainWidth =
       that.$refs.articleMain.offsetLeft +
       that.$refs.articleMain.clientWidth +
-      15;
+      7;
     that.setAsideLeft = "left:" + articleMainWidth + "px;position: fixed;";
 
     that.$nextTick(function() {
@@ -103,7 +105,7 @@ export default {
         articleMainWidth =
           that.$refs.articleMain.offsetLeft +
           that.$refs.articleMain.clientWidth +
-          15;
+          7;
 
         that.asideHidth = that.$refs.aside.offsetHeight - 120;
         that.setAsideLeft = "left:" + articleMainWidth + "px;position: fixed;";
@@ -119,18 +121,18 @@ export default {
 .article-wrapper {
   display: flex;
   .main {
-    width: calc(100% - 380px);
+    width: calc(100% - 400px);
     min-width: 500px;
   }
 }
 .aside {
   top: 0px;
-  padding: 90px 15px 15px 15px;
+  padding: 75px 7px 7px 7px;
   box-sizing: border-box;
   max-height: 100%;
   height: 100%;
   overflow-y: scroll;
-  width: 380px;
+  width: 400px;
   margin-bottom: 50px;
   z-index: 999;
   scrollbar-color: transparent transparent;

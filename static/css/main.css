@@ -1,35 +1,58 @@
-@font-face {
+/* @font-face {
     font-family: "XiaolaiMonoSC";
     src: url("https://kamtao-1255310647.cos.ap-chengdu.myqcloud.com/font/XiaolaiMonoSC-Regular.ttf");
-}
+} */
 
+@import "https://30sec.oss-cn-guangzhou.aliyuncs.com/public/SanCFont.css";
 html {
-    font-family: "XiaolaiMonoSC", "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+    font-family: "XiaolaiMonoSC", "Noto Sans SC", "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
 }
 
 * {
-    font-family: "XiaolaiMonoSC", "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+    font-family: "XiaolaiMonoSC", "Noto Sans SC", "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
 }
 
-#vditorPreview * {
-    font-family: "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+.vditor-reset * {
+    font-family: "PingFang SC", "Noto Sans SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
 }
 
-#vditorPreview img {
+.vditor-reset img {
     border-radius: 0px;
 }
 
-#vditorPreview .alert {
+.vditor-reset .alert {
     border-radius: 0px;
     background-color: #eee;
 }
 
-#vditorPreview li::before {
+.vditor-reset li::before {
     content: "";
 }
 
-#vditorPreview li {
+.vditor-reset li {
     text-indent: 0em;
+}
+
+.vditor-reset h1,
+.vditor-reset h2,
+.vditor-reset h3,
+.vditor-reset h4,
+.vditor-reset h5,
+.vditor-reset h6 {
+    padding-top: 20px;
+}
+
+.article-list li span span {
+    border-bottom: rgba(0, 0, 0, 0%) 2px solid;
+}
+
+.article-list .vditor-outline__item--current span span {
+    border-bottom: 2px #0071de solid;
+    box-sizing: border-box;
+}
+
+.vditor-reset--anchor {
+    padding-left: 0px !important;
 }
 
 a,
@@ -38,11 +61,12 @@ input,
 option,
 button,
 textarea {
-    font-family: "XiaolaiMonoSC", "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+    font-family: "XiaolaiMonoSC", "Noto Sans SC", "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
 }
 
 body {
     font-size: 15px;
+    background-color: #eee;
 }
 
 .modal {
@@ -76,8 +100,8 @@ html::-webkit-scrollbar-thumb:hover {
     padding: 20px;
     overflow: hidden;
     background: #fff;
-    box-shadow: 0px 0px 15px 0px rgb(0 0 0 / 10%);
-    border: 1px solid #c1c0bd;
+    border-radius: 16px;
+    box-shadow: 0px 0px 3px 0px rgb(0 0 0 / 3%);
 }
 
 .main-title {
@@ -90,4 +114,17 @@ html::-webkit-scrollbar-thumb:hover {
 
 .modal .modal-body>.btn-close {
     transform: scaleX(1.8) rotate(-3deg);
+}
+
+.article-list>ul {
+    padding-left: 0px !important;
+}
+
+.article-list li {
+    text-indent: 0em;
+    line-height: 24px;
+}
+
+.article-list li:before {
+    content: "" !important;
 }

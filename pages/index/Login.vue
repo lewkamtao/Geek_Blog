@@ -59,11 +59,14 @@ export default {
   computed: {},
   methods: {
     login() {
-        console.log(this.form)
+      console.log(this.form);
       this.$axios
-        .get("/users/login", {
-          params: this.form
-        })
+        .get(
+          "/users/login?account=" +
+            this.form.account +
+            "&password=" +
+            this.form.password
+        )
         .then(res => {
           if (res.code == "200") {
             this.$cookies.set("token", res.data.token);
@@ -134,7 +137,7 @@ export default {
 .cover span {
   font-size: 14px;
   margin-right: 50px;
-  margin-bottom: 30px;
+  margin-bottom: 14px;
   color: #000;
   opacity: 0.1;
   cursor: pointer;

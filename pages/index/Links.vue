@@ -177,7 +177,7 @@ export default {
     var articleMainWidth =
       that.$refs.articleMain.offsetLeft +
       that.$refs.articleMain.clientWidth +
-      15;
+      7;
     that.setAsideLeft = "left:" + articleMainWidth + "px;position: fixed;";
 
     that.$nextTick(function() {
@@ -188,7 +188,7 @@ export default {
         articleMainWidth =
           that.$refs.articleMain.offsetLeft +
           that.$refs.articleMain.clientWidth +
-          15;
+          7;
 
         that.asideHidth = that.$refs.aside.offsetHeight - 120;
         that.setAsideLeft = "left:" + articleMainWidth + "px;position: fixed;";
@@ -204,19 +204,19 @@ export default {
 .article-wrapper {
   display: flex;
   .main {
-    width: calc(100% - 380px);
+    width: calc(100% - 400px);
     min-width: 500px;
   }
 }
 
 .aside {
   top: 0px;
-  padding: 90px 15px 15px 15px;
+  padding: 75px 7px 7px 7px;
   box-sizing: border-box;
   max-height: 100%;
   height: 100%;
   overflow-y: scroll;
-  width: 380px;
+  width: 400px;
   margin-bottom: 50px;
   z-index: 999;
   scrollbar-color: transparent transparent;
@@ -246,7 +246,7 @@ header {
   }
   .title {
     font-size: 40px;
-    margin-bottom: 30px;
+    margin-bottom: 14px;
   }
   .summary {
     display: flex;
@@ -270,5 +270,4 @@ header {
   height: 0px;
   display: none;
 }
-
 </style>

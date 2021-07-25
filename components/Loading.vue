@@ -1,5 +1,4 @@
 <template lang="html">
-    
   <div class="loading-page" v-if="loading">
     <img width="300" src="https://kamtao-1255310647.cos.ap-chengdu.myqcloud.com/img/loading.gif" alt srcset />
   </div>
@@ -27,8 +26,8 @@ export default {
 <style scoped>
 .loading-page {
   position: fixed;
-  top: 0px;
-  left:  -50px;
+  bottom:50px;
+  left: -50px;
   z-index: 9999999999;
 }
 </style>

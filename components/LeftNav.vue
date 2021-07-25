@@ -55,7 +55,7 @@ export default {
 <style lang="scss" scoped>
 .nav {
   display: block;
-  padding:75px 15px 15px 15px;
+  padding:60px 7px 7px 7px;
   box-sizing: border-box;
   .user-info {
     margin-top: 15px;

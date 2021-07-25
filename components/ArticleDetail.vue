@@ -22,8 +22,8 @@
               stroke-linejoin="round"
               class="feather feather-user"
             >
-              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-              <circle cx="12" cy="7" r="4"></circle>
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+              <circle cx="12" cy="7" r="4" />
             </svg>
             <polyline points="12 6 12 12 16 14"></polyline>
             {{ article.expand.author.nickname }}
@@ -41,11 +41,10 @@
               stroke-linejoin="round"
               class="feather feather-eye"
             >
-              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-              <circle cx="12" cy="12" r="3"></circle>
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+              <circle cx="12" cy="12" r="3" />
             </svg>
             <polyline points="12 6 12 12 16 14"></polyline>
-
             {{ article.views }}
           </div>
           <div>
@@ -61,9 +60,7 @@
               stroke-linejoin="round"
               class="feather feather-message-square"
             >
-              <path
-                d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
-              ></path>
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
             </svg>
             {{ article.expand.comments || "暂无评论" }}
           </div>
@@ -80,10 +77,9 @@
               stroke-linejoin="round"
               class="feather feather-clock"
             >
-              <circle cx="12" cy="12" r="10"></circle>
-              <polyline points="12 6 12 12 16 14"></polyline>
+              <circle cx="12" cy="12" r="10" />
+              <polyline points="12 6 12 12 16 14" />
             </svg>
-
             {{ article.create_time }} /
             {{ getBeautifyTime(article.create_time) }}
           </div>
@@ -92,14 +88,15 @@
     </header>
 
     <main class="section">
-      <div class="vditor-reset" id="vditorPreview"></div>
+      <div class="vditor-reset" id="preview"></div>
     </main>
   </div>
 </template>
 
 <script>
 import util from "@/util/index";
-import VditorPreview from "vditor/dist/method.min";
+import Vditor from "vditor";
+import "vditor/src/assets/scss/index.scss";
 
 export default {
   head() {
@@ -132,7 +129,9 @@ export default {
     }
   },
   data() {
-    return {};
+    return {
+      article_title_list: []
+    };
   },
   watch: {
     article: function() {
@@ -153,19 +152,99 @@ export default {
   },
   methods: {
     renderMarkdown(md) {
-      if (process.browser) {
-        VditorPreview.preview(document.getElementById("vditorPreview"), md, {
-          hljs: { style: "github" }
+      var that = this;
+      const initOutline = () => {
+        const headingElements = [];
+        this.article_title_list = [];
+        Array.from(document.getElementById("preview").children).forEach(
+          (item, index) => {
+            if (
+              item.tagName.length === 2 &&
+              item.tagName !== "HR" &&
+              item.tagName.indexOf("H") === 0
+            ) {
+              item.id = item.innerText + "_" + index;
+
+              this.article_title_list.push({
+                dom: item,
+                id: item.id,
+                title: item.innerText,
+                offsetTop: item.offsetTop
+              });
+            }
+          }
+        );
+        Array.from(
+          document.getElementById("outline").getElementsByTagName("li")
+        ).forEach((item, index) => {
+          item.setAttribute(
+            "data-target-id",
+            this.article_title_list[index].id
+          );
         });
-      }
+
+        let toc = this.article_title_list.map(item => {
+          return item.dom;
+        });
+        window.addEventListener("scroll", () => {
+          const scrollTop = window.scrollY;
+          const currentElement = document.querySelector(
+            ".vditor-outline__item--current"
+          );
+          for (let i = 0, iMax = toc.length; i < iMax; i++) {
+            if (scrollTop < toc[i].offsetTop - 250) {
+              if (currentElement) {
+                currentElement.classList.remove(
+                  "vditor-outline__item--current"
+                );
+              }
+              let index = i > 0 ? i - 1 : 0;
+              document
+                .querySelector(
+                  'li[data-target-id="' +
+                    this.article_title_list[index].id +
+                    '"]'
+                )
+                .classList.add("vditor-outline__item--current");
+              break;
+            }
+          }
+        });
+      };
+      Vditor.preview(document.querySelector("#preview"), md, {
+        speech: {
+          enable: true
+        },
+        anchor: 1,
+        after() {
+          const outlineElement = document.querySelector("#outline");
+          Vditor.outlineRender(
+            document.querySelector("#preview"),
+            outlineElement
+          );
+
+          if (outlineElement.innerText.trim() !== "") {
+            outlineElement.style.display = "block";
+            that.$nextTick(function() {
+              initOutline();
+            });
+            console.log(that.article_title_list);
+          } else {
+            outlineElement.style.display = "block";
+            outlineElement.innerHTML = "暂无目录";
+          }
+        }
+      });
     }
   },
-  created() {},
-  mounted() {
-    this.$nextTick(function() {
-      this.renderMarkdown(this.article.content);
-    });
-  }
+  created() {
+    if (process.browser) {
+      this.$nextTick(function() {
+        this.renderMarkdown(this.article.content);
+      });
+    }
+  },
+  mounted() {}
 };
 </script>
 <style lang="scss" scoped>
@@ -197,7 +276,7 @@ export default {
     }
     .title {
       font-size: 40px;
-      margin-bottom: 30px;
+      margin-bottom: 14px;
     }
     .summary {
       display: flex;

@@ -10,7 +10,7 @@
       class="left-nav"
     />
     <div class="main">
-      <Nuxt />
+      <nuxt-child :options="options" />
     </div>
 
     <div class="to-top">
@@ -65,9 +65,9 @@ export default {
   computed: {},
   methods: {},
   created() {
-    if (process.client) {
-      new DevicePixelRatio().init();
-    }
+    // if (process.client) {
+    //   new DevicePixelRatio().init();
+    // }
   },
   beforeRouteUpdate(to, from, next) {
     if (process.browser) {
@@ -81,7 +81,7 @@ export default {
 </script>
 <style  scoped lang="less">
 .wrapper {
-  max-width: 1500px;
+  max-width: 1441px;
   min-width: 1180px;
   display: flex;
   justify-content: space-between;
@@ -89,7 +89,7 @@ export default {
   margin: 0px auto;
   .top-nav {
     position: fixed;
-    max-width: calc(1500px - 30px);
+    max-width: calc(1441px - 14px);
     height: 60px;
     left: 50%;
     top: 0px;
@@ -98,7 +98,7 @@ export default {
   }
   .left-nav {
     position: fixed;
-    width: 310px;
+    width: 280px;
     height: 100%;
     overflow-y: scroll;
     z-index: 999;
@@ -108,11 +108,11 @@ export default {
   }
 
   .main {
-    margin-left: 310px;
-    margin-top: 75px;
-    padding: 15px;
+    width: calc(100% - 280px);
+    margin-left: 280px;
+    margin-top: 68px;
+    padding: 7px;
     margin-bottom: 70px;
-    width: calc(100% - 310px);
     height: auto;
   }
   .to-top {
@@ -149,7 +149,8 @@ export default {
     padding: 0px 15px;
     box-sizing: border-box;
     .top-nav {
-      max-width: calc(1500px - 60px);
+      padding: 0px 15px;
+      box-sizing: border-box;
     }
   }
 }

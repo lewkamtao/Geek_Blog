@@ -1,7 +1,7 @@
 <template>
-  <div class="part article-sort" style="margin-bottom: 30px">
+  <div class="part article-sort" style="margin-bottom: 14px">
     <div class="form-group">
-      <div class="main-title">文章分了个类</div>
+      <div class="main-title">文章分类</div>
 
       <select id="paperSelects1" v-model="isSelect_article_id" @change="getArticle()">
         <option value>全部文章</option>
@@ -80,7 +80,7 @@ export default {
 <style lang="scss" scoped>
 .article-sort {
   width: 100%;
-  margin-top: 30px;
+  margin-top: 14px;
 }
 
 #paperSelects1 {

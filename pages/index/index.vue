@@ -144,9 +144,9 @@ export default {
   },
   methods: {
     getTagColor() {
-      var options = ["", "secondary", "success", "warning", "danger"];
-      var index = Math.floor(Math.random() * options.length);
-      return options[index];
+      var tag_options = ["", "secondary", "success", "warning", "danger"];
+      var index = Math.floor(Math.random() * tag_options.length);
+      return tag_options[index];
     }
   },
   created() {},
