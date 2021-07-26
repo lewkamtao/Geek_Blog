@@ -74,7 +74,7 @@ export default {
           if (res.code == "200") {
             this.$cookies.set("token", res.data["login-token"]);
             this.$cookies.set("user", res.data.user);
-            this.$router.push("/"); //否则跳转至首页
+            location.reload();
           } else {
             this.loginErrorTips = res.msg;
           }
@@ -85,6 +85,10 @@ export default {
     },
   },
   created() {
+    if (this.$cookies.get("token")) {
+      this.$router.push("/"); //否则跳转至首页
+    }
+
     this.getBorderType();
   },
   mounted() {},

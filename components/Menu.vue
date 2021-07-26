@@ -6,9 +6,14 @@
         v-for="(item, index) in menu"
         :key="index"
         :to="item.path"
+        @click="toFn(item.type)"
         class="paper-btn border"
         :class="getBtnColor(index)"
-      >{{item.title}}</nuxt-link>
+        >{{ item.title }}</nuxt-link
+      >
+      <div v-if="isLogin" @click="loginOut" class="paper-btn border btn-danger">
+        退出登录
+      </div>
     </div>
   </div>
 </template>
@@ -22,57 +27,75 @@ export default {
       menu: [
         {
           path: "/",
-          title: "首页"
+          title: "首页",
         },
         {
           path: "/About",
-          title: "关于我"
+          title: "关于我",
         },
         {
           path: "/Photo",
-          title: "相册"
+          title: "相册",
         },
         {
           path: "/Timeline",
-          title: "时光机"
+          title: "时光机",
         },
         {
           path: "/Links",
-          title: "友情链接"
+          title: "友情链接",
         },
         {
           path: "/Message",
-          title: "留言墙"
-        }
-      ]
+          title: "留言墙",
+        },
+      ],
+      isLogin: false,
     };
   },
   watch: {},
   computed: {
     getBtnColor(index) {
-      return function(index) {
+      return function (index) {
         var tag_options = [
           "primary",
           "success",
-          "primary-outline",
-
           "secondary",
+          "primary-outline",
+          "secondary-outline",
+          "warning-outline",
 
           "danger",
           "warning",
-          "secondary-outline",
+
           "success-outline",
-          "warning-outline",
-          "danger-outline"
+          "danger-outline",
         ];
         // var index = Math.floor(Math.random() * tag_options.length);
         return "btn-" + tag_options[index];
       };
+    },
+  },
+  methods: {
+    loginOut() {
+      this.$cookies.remove("token");
+      location.reload();
+    },
+  },
+  created() {
+    if (this.$cookies.get("token")) {
+      this.isLogin = true;
+      this.user = this.$cookies.get("user");
     }
   },
-  methods: {},
-  created() {},
-  mounted() {}
+  beforeRouteUpdate(to, from, next) {
+    if (this.$cookies.set("token", "")) {
+      this.isLogin = true;
+      this.$forceUpdate();
+    }
+    next();
+  },
+  mounted() {},
 };
 </script>
 <style lang="scss" scoped>
@@ -99,6 +122,12 @@ export default {
     margin-bottom: 8px;
     font-size: 18px;
     background-image: none;
+  }
+  div {
+    width: 100%;
+    padding: 8px 15px 8px 25px;
+    margin-bottom: 8px;
+    font-size: 18px;
   }
 }
 </style>

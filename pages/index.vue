@@ -72,6 +72,7 @@ export default {
     // }
   },
   beforeRouteUpdate(to, from, next) {
+    console.log(this.$cookies.get("token"));
     if (process.browser) {
       // 置顶topNav条 隐藏遮罩 优先级
       util.showTopNav(true);
