@@ -6,7 +6,7 @@
         <nuxt-link to="/">
           <div class="logo">
             <img width="35" src="https://cos.tngeek.com/logo.png" alt srcset />
-            是一尘不染的猫
+            
           </div>
         </nuxt-link>
 
@@ -58,6 +58,7 @@ export default {
     if (this.$cookies.get("token")) {
       this.isLogin = true;
       this.user = this.$cookies.get("user");
+      this.$forceUpdate();
     }
     next();
   },
@@ -97,7 +98,7 @@ export default {
         }
       }
       .search {
-        margin-left: 45px;
+        margin-left:214px;
         input {
           width: 250px;
           height: 35px;
