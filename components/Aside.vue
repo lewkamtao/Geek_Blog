@@ -1,10 +1,6 @@
 <template>
   <div class="aside-wrapper">
     <div v-if="type == 'article'" style="margin-bottom: 14px" class="part">
-      <div class="main-title" style="margin-bottom: 12px">目录</div>
-      <div class="article-list vditor-outline" id="outline"></div>
-    </div>
-    <div v-if="type == 'article'" style="margin-bottom: 14px" class="part">
       <div class="main-title">标签云</div>
       <div v-if="article.expand.tag" class="tags-box">
         <span
@@ -17,6 +13,11 @@
       </div>
       <div v-if="!article.expand.tag">暂无标签</div>
     </div>
+    <div v-if="type == 'article'" style="margin-bottom: 14px" class="part">
+      <div class="main-title" style="margin-bottom: 12px">目录</div>
+      <div class="article-list vditor-outline" id="outline"></div>
+    </div>
+
     <div class="part">
       <div class="main-title">
         <div class="title">

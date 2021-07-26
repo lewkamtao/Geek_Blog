@@ -228,7 +228,6 @@ export default {
             that.$nextTick(function() {
               initOutline();
             });
-            console.log(that.article_title_list);
           } else {
             outlineElement.style.display = "block";
             outlineElement.innerHTML = "暂无目录";

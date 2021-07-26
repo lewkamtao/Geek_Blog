@@ -27,7 +27,7 @@
           >
         </div>
         <div class="content">{{ comment.content }}</div>
-        <div v-show="comment.url" class="blog-url">
+        <div v-show="comment.url && comment.users_id != 2" class="blog-url">
           博主站点：
           <a :href="'http://' + comment.url" target="_blank">{{
             comment.url
@@ -66,7 +66,7 @@
               >
             </div>
             <div class="content">{{ son.content }}</div>
-            <div v-show="comment.url && son.users_id != 2" class="blog-url">
+            <div v-show="son.url && son.users_id != 2" class="blog-url">
               博主站点：
               <a :href="'http://' + son.url" target="_blank">{{ son.url }}</a>
             </div>
