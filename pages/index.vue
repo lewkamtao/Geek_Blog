@@ -1,6 +1,6 @@
 <template>
   <div id="top" class="wrapper">
-    <TopNav class="top-nav" />
+    <TopNav :options="options" class="top-nav" />
     <LeftNav
       :options="options"
       :article="article"
