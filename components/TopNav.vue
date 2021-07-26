@@ -6,7 +6,7 @@
         <nuxt-link to="/">
           <div class="logo">
             <img width="35" src="https://cos.tngeek.com/logo.png" alt srcset />
-            
+            {{ options.title }}
           </div>
         </nuxt-link>
 
@@ -33,7 +33,12 @@
 <script>
 export default {
   components: {},
-  props: {},
+  props: {
+    options: {
+      type: Object,
+      default: {},
+    },
+  },
   data() {
     return { mode: false, isLogin: false, user: false };
   },
@@ -98,7 +103,7 @@ export default {
         }
       }
       .search {
-        margin-left:214px;
+        margin-left: 50px;
         input {
           width: 250px;
           height: 35px;
