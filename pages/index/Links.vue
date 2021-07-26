@@ -4,7 +4,7 @@
       <header
         class="border border-primary"
         :style="'background:url(http://www.dmoe.cc/random.php)'"
-        :class="getBorderType()"
+        :class="getBorderType"
       >
         <div class="mask"></div>
         <div class="content">

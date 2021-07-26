@@ -13,12 +13,7 @@ export default {
             { hid: 'description', name: 'description', content: '这是一个很酷的人用一个很酷的框架开发的一个很牛*的博客' }
         ],
 
-        link: [
-            { rel: 'stylesheet', type: 'text/css', href: '/css/paper.min.css' },
-            { rel: 'stylesheet', type: 'text/css', href: '/css/reset.css' },
-            { rel: 'stylesheet', type: 'text/css', href: '/css/main.css' },
-
-        ],
+        link: [],
         script: [
             { src: '//at.alicdn.com/t/font_2516905_21npos0qh6zh.js' },
         ]
@@ -26,7 +21,9 @@ export default {
 
     // Global CSS: https://go.nuxtjs.dev/config-css
     css: [
-
+        '@/assets/css/paper.min.css',
+        '@/assets/css/reset.css',
+        '@/assets/css/main.css'
     ],
     // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
     plugins: [

@@ -1,17 +1,35 @@
 <template>
   <div class="top-nav-wrapper">
     <div id="topNavMask" class="top-nav-mask modal-bg"></div>
-    <div class="top-nav part">
+    <div class="top-nav">
       <div class="left">
-        <nuxt-link to="/">
+        <nuxt-link class="pc-logo" to="/">
           <div class="logo">
             <img width="35" src="https://cos.tngeek.com/logo.png" alt srcset />
-            {{ options.title }}
+            <div class="title">{{ options.title }}</div>
           </div>
         </nuxt-link>
-
+        <div @click="showNav()" class="logo mobile-logo">
+          <img width="35" src="https://cos.tngeek.com/logo.png" alt srcset />
+        </div>
         <div class="search">
-          <input placeholder="擅用搜索，事半功倍" type="text" />
+          <input
+            placeholder="擅用搜索，事半功倍"
+            v-model="searchValue"
+            @focus="isShowResBox=true,searchArticleFn()"
+            @blur="hidResBox()"
+            type="text"
+          />
+          <div class="res-box" :class="{'is-show-res-box':isShowResBox}">
+            <div class="title">{{searchArticle.length>0? "搜索结果推荐文章":"暂无结果"}}</div>
+            <ul>
+              <nuxt-link
+                v-for="(item, index) in searchArticle"
+                :key="index"
+                :to="'/Article?id=' + item.id"
+              >{{item.title}}</nuxt-link>
+            </ul>
+          </div>
         </div>
       </div>
       <div class="right-links">
@@ -36,23 +54,53 @@ export default {
   props: {
     options: {
       type: Object,
-      default: {},
-    },
+      default: {}
+    }
   },
   data() {
-    return { mode: false, isLogin: false, user: false };
+    return {
+      mode: false,
+      isLogin: false,
+      user: false,
+      searchValue: "",
+      timer: "",
+      searchArticle: [],
+      isShowResBox: false
+    };
   },
   watch: {
-    mode: function (val) {
+    mode: function(val) {
       if (val) {
         document.getElementsByTagName("body")[0].className = "dark";
       } else {
         document.body.removeAttribute("class");
       }
     },
+    searchValue: function(val) {
+      var that = this;
+      clearTimeout(this.timer);
+      this.timer = setTimeout(async function() {
+        that.searchArticleFn();
+      }, 250);
+    }
   },
   computed: {},
-  methods: {},
+  methods: {
+    async searchArticleFn() {
+      this.searchArticle = (
+        await this.$axios.get("/search?value=" + this.searchValue + "&limit=20")
+      ).data.data;
+    },
+    hidResBox() {
+      var that = this;
+      setTimeout(function() {
+        that.isShowResBox = false;
+      }, 500);
+    },
+    showNav(){
+      this.$emit("showNav")
+    }
+  },
   created() {
     if (this.$cookies.get("token")) {
       this.isLogin = true;
@@ -67,7 +115,7 @@ export default {
     }
     next();
   },
-  mounted() {},
+  mounted() {}
 };
 </script>
 <style lang="scss" scoped>
@@ -81,10 +129,12 @@ export default {
     height: 60px;
     background: rgba(255, 255, 255, 0.8);
     -webkit-backdrop-filter: saturate(200%) blur(20px);
+    box-shadow: 0px 15px 35px -15px rgb(0 0 0 / 15%);
     backdrop-filter: saturate(200%) blur(20px);
     padding: 0px 20px;
     display: flex;
     justify-content: space-between;
+    border-radius: 15px;
     align-items: center;
     a {
       background-image: none;
@@ -102,23 +152,90 @@ export default {
           margin-right: 10px;
         }
       }
+      .pc-logo {
+        display: block;
+      }
+      .mobile-logo {
+        display: none;
+      }
       .search {
+        position: relative;
         margin-left: 50px;
+
         input {
-          width: 250px;
-          height: 35px;
-          padding-left: 10px;
+          position: relative;
+          z-index: 99;
+          width: 320px;
+          height: 40px;
+          padding-left: 20px;
           font-size: 15px;
-          border-radius: 10px !important;
+          border-radius: 15px;
           border: none;
           background: #eee;
           transition: all 0.25s;
         }
+        .res-box {
+          position: absolute;
+          left: 0px;
+          top: 0px;
+          border-radius: 15px;
+          width: 320px;
+          height: 0px;
+          overflow-y: scroll;
+          padding: 0px 10px 0px 10px;
+          line-height: 30px;
+          color: #000;
+          transition: all 0.25s;
+          .title {
+            width: 100%;
+            color: #999;
+            padding: 5px 5px 5px 10px;
+          }
+          ul {
+            display: flex;
+            flex-direction: column;
+            a {
+              position: relative;
+              width: 100%;
+              padding: 3px 10px;
+              border-radius: 10px;
+            }
+            a::before {
+              position: absolute;
+              top: 0px;
+              left: 0px;
+              width: 100%;
+              height: 1px;
+              background: #eee;
+              content: "";
+            }
+            a:hover {
+              background: rgba($color: #000000, $alpha: 0.07);
+            }
+            a:hover::before {
+              display: none;
+            }
+            a:hover + a::before {
+              display: none;
+            }
+          }
+        }
+        .res-box::-webkit-scrollbar {
+          width: 0px;
+          height: 0px;
+          display: none;
+        }
         input:hover {
-          background: rgba($color: #000000, $alpha: 0.07);
+          background: rgba($color: #000000, $alpha: 0.2);
         }
         input:focus {
-          background: rgba($color: #000000, $alpha: 0.09);
+          background: rgba($color: #ffffff, $alpha: 0.9);
+        }
+        .is-show-res-box {
+          height: 450px;
+          padding: 40px 10px 12px 10px;
+          background: rgba($color: #ffffff, $alpha: 1);
+          box-shadow: 0px 0px 13px 0px rgb(0 0 0 / 15%);
         }
       }
     }
@@ -126,6 +243,7 @@ export default {
       display: flex;
       align-items: center;
       a {
+        white-space: nowrap;
         font-size: 18px;
         margin-right: 20px;
       }
@@ -142,14 +260,67 @@ export default {
   width: 100%;
   height: 100%;
   z-index: 999;
-  border-radius: 16px;
+  border-radius: 15px;
   display: none;
   transition: all 0.3s;
   background: rgba($color: #000000, $alpha: 0.55);
 }
 @media screen and (max-width: 1480px) {
+  .top-nav-mask {
+    width: calc(100% - 30px);
+    left: 15px;
+  }
   .top-nav-wrapper {
     width: calc(100% - 14px);
+  }
+}
+
+// 移动端适配
+@media screen and (max-width: 680px) {
+  .top-nav-wrapper {
+    .top-nav {
+      height: 45px;
+      padding: 0px 10px;
+      .left {
+        width: calc(100% - 50px);
+        .pc-logo {
+          display: none;
+        }
+        .mobile-logo {
+          display: block;
+        }
+        .logo {
+          display: inline-block;
+          .title {
+            display: none;
+          }
+          img {
+            width: auto;
+            height: 18px;
+          }
+        }
+        .search {
+          margin-left: 0px;
+          width: calc(100% - 40px);
+          input {
+            height: 30px;
+            width: 100%;
+            border-radius: 7px;
+            padding-left: 10px;
+          }
+
+          .res-box {
+            border-radius: 10px;
+            width: 100%;
+          }
+        }
+      }
+      .right-links {
+        a {
+          margin-right: 5px;
+        }
+      }
+    }
   }
 }
 </style>

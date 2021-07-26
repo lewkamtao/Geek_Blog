@@ -111,7 +111,7 @@ html::-webkit-scrollbar-thumb:hover {
     overflow: hidden;
     background: #fff;
     border-radius: 16px;
-    box-shadow: 0px 0px 3px 0px rgb(0 0 0 / 3%);
+    box-shadow: 0px 0px 5px 0px rgb(0 0 0 / 5%);
 }
 
 .main-title {

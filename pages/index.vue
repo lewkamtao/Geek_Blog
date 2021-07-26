@@ -1,6 +1,6 @@
 <template>
-  <div id="top" class="wrapper">
-    <TopNav :options="options" class="top-nav" />
+  <div id="top" class="wrapper" :class="{isMobile:isMobile}">
+    <TopNav @showNav="showNav" :options="options" class="top-nav-wrapper-master" />
     <LeftNav
       :options="options"
       :article="article"
@@ -9,7 +9,7 @@
       :pages="pages"
       class="left-nav"
     />
-    <div class="main">
+    <div class="index-main">
       <nuxt-child :options="options" />
     </div>
 
@@ -34,26 +34,24 @@ export default {
         {
           hid: "description",
           name: "description",
-          content: this.options.keywords,
-        },
+          content: this.options.keywords
+        }
       ],
-      link: [
-        { rel: "icon", type: "image/x-icon", href: this.options.site_ico },
-      ],
+      link: [{ rel: "icon", type: "image/x-icon", href: this.options.site_ico }]
     };
   },
   async asyncData({ $axios }) {
     const options = (await $axios.get("/options")).data;
     const article_sort = (
       await $axios.get("/article-sort", {
-        params: { limit: 100000 },
+        params: { limit: 100000 }
       })
     ).data.data;
     const pages = (await $axios.get("/page")).data.data;
     const links = (await $axios.get("/links")).data.data;
     const article = (
       await $axios.get("/article", {
-        params: { limit: 1000000 },
+        params: { limit: 1000000 }
       })
     ).data.data;
 
@@ -61,11 +59,17 @@ export default {
   },
   props: {},
   data() {
-    return {};
+    return {
+      isMobile: false
+    };
   },
   watch: {},
   computed: {},
-  methods: {},
+  methods: {
+    showNav() {
+      this.isMobile = !this.isMobile;
+    }
+  },
   created() {
     // if (process.client) {
     //   new DevicePixelRatio().init();
@@ -78,10 +82,10 @@ export default {
       next();
     }
   },
-  mounted() {},
+  mounted() {}
 };
 </script>
-<style  scoped lang="less">
+<style scoped  lang="scss">
 .wrapper {
   max-width: 1441px;
   min-width: 1180px;
@@ -89,7 +93,7 @@ export default {
   justify-content: space-between;
   box-sizing: border-box;
   margin: 0px auto;
-  .top-nav {
+  .top-nav-wrapper-master {
     position: fixed;
     max-width: calc(1441px - 14px);
     height: 60px;
@@ -109,7 +113,7 @@ export default {
     -ms-scrollbar-track-color: transparent;
   }
 
-  .main {
+  .index-main {
     width: calc(100% - 280px);
     margin-left: 280px;
     margin-top: 68px;
@@ -117,12 +121,12 @@ export default {
     margin-bottom: 70px;
     height: auto;
   }
+
   .to-top {
     position: fixed;
     bottom: 50px;
     right: 100px;
     display: flex;
-
     z-index: 999999;
     transition: all 0.25s;
     .paper-btn {
@@ -150,9 +154,54 @@ export default {
   .wrapper {
     padding: 0px 15px;
     box-sizing: border-box;
-    .top-nav {
+    .top-nav-wrapper-master {
       padding: 0px 15px;
       box-sizing: border-box;
+    }
+  }
+}
+
+// 移动端适配
+@media screen and (max-width: 680px) {
+  .wrapper {
+    max-width: 100vw;
+    min-width: 100vw;
+    width: 100vw;
+    padding: 7px;
+    .top-nav-wrapper-master {
+      margin-top: 15px;
+      height: 45px;
+      width: 100%;
+    }
+    .index-main {
+      width: 100%;
+      margin-left: 0px;
+      margin-top: 60px;
+      transition: all 0.25s;
+    }
+    .left-nav {
+      margin-left: -100vw;
+      margin-top: 3px;
+      opacity: 0;
+      width: 100%;
+      position: static;
+      transition: all 0.25s;
+    }
+    .to-top {
+      bottom: 20px;
+      right: 10px;
+    }
+  }
+  .isMobile {
+    .index-main {
+      margin-left: -100vw;
+      opacity: 0;
+      height: 100vh;
+      overflow: hidden;
+    }
+    .left-nav {
+      margin-left: 0vw;
+      opacity: 1;
     }
   }
 }
