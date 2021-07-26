@@ -3,13 +3,23 @@
     src: url("https://kamtao-1255310647.cos.ap-chengdu.myqcloud.com/font/XiaolaiMonoSC-Regular.ttf");
 }
 
+@font-face {
+    font-family: "naikaifont";
+    src: url("https://kamtao-1255310647.cos.ap-chengdu.myqcloud.com/font/naikaifont-Regular.ttf");
+}
+
+@font-face {
+    font-family: naikaifont;
+    src: url(https://cdn.jsdelivr.net/gh/max32002/naikaifont@1.0/webfont/NaikaiFont-Regular.woff2) format("woff2"), url(https://cdn.jsdelivr.net/gh/max32002/naikaifont@1.0/webfont/NaikaiFont-Regular.woff) format("woff");
+}
+
 @import "https://30sec.oss-cn-guangzhou.aliyuncs.com/public/SanCFont.css";
 html {
-    font-family: "XiaolaiMonoSC", "Noto Sans SC", "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+    font-family: "XiaolaiMonoSC", "naikaifont", "Noto Sans SC", "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
 }
 
 * {
-    font-family: "XiaolaiMonoSC", "Noto Sans SC", "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+    font-family: "XiaolaiMonoSC", "naikaifont", "Noto Sans SC", "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
 }
 
 .vditor-reset * {
@@ -61,7 +71,7 @@ input,
 option,
 button,
 textarea {
-    font-family: "XiaolaiMonoSC", "Noto Sans SC", "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+    font-family: "XiaolaiMonoSC", "naikaifont", "Noto Sans SC", "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
 }
 
 body {

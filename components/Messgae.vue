@@ -11,7 +11,7 @@
       <div class="messgae-form">
         <div class="modal-body">
           <div class="reply-form">
-            <div class="concact">
+            <div v-if="!isLogin" class="concact">
               <div class="form-group">
                 <label for="paperInputs4">
                   昵称
@@ -40,7 +40,7 @@
               </div>
             </div>
 
-            <div class="form-group">
+            <div v-if="!isLogin" class="form-group">
               <label for="paperInputs6">博客地址</label>
               <input
                 v-model="comments_form.url"
@@ -63,25 +63,47 @@
                 placeholder
               ></textarea>
             </div>
-            <div v-show="error_tips" class="alert alert-danger dismissible alert-reply">
+            <div
+              v-show="error_tips"
+              class="alert alert-danger dismissible alert-reply"
+            >
               {{ error_tips }}
               <label
                 @click="error_tips = ''"
-                style="position:static; color:#cb453c;     align-items: center; margin-top:-5px; font-size:25px; transform:scaleX(1.8) rotate(-3deg);"
+                style="
+                  position: static;
+                  color: #cb453c;
+                  align-items: center;
+                  margin-top: -5px;
+                  font-size: 25px;
+                  transform: scaleX(1.8) rotate(-3deg);
+                "
                 class="btn-close"
-              >X</label>
+                >X</label
+              >
             </div>
 
             <div class="row flex-right">
-              <button @click="submitComments('mes')" class="btn-secondary reply-btn">发送</button>
+              <button
+                @click="submitComments('mes')"
+                class="btn-secondary reply-btn"
+              >
+                发送
+              </button>
             </div>
           </div>
         </div>
       </div>
 
-      <div style="margin-top:50px" v-if="comments.data.length == 0">暂无留言</div>
+      <div style="margin-top: 50px" v-if="comments.data.length == 0">
+        暂无留言
+      </div>
       <div v-if="comments.data.length != 0" class="comments">
-        <div class="comments-box" v-for="(item, index) in comments.data" :key="index">
+        <div
+          class="comments-box"
+          v-for="(item, index) in comments.data"
+          :key="index"
+        >
           <CommentCard @setReply="setReply" :comment="item" />
         </div>
       </div>
@@ -92,25 +114,28 @@
       <div class="modal reply-modal">
         <label class="modal-bg"></label>
         <div class="modal-body">
-          <label @click="closeModal" class="btn-close" for="modal-reply">X</label>
+          <label @click="closeModal" class="btn-close" for="modal-reply"
+            >X</label
+          >
           <div v-if="replyObj.expand" class="reply-obj">
             <div class="avatar border border-primary" :class="getBorderType()">
               <img :src="replyObj.expand.head_img" alt srcset />
             </div>
             <div class="user-info">
               <div class="nickname">{{ replyObj.nickname }}</div>
-              <div class="content">{{ replyObj.content || replyObj.expand.description }}</div>
-              <div
-                v-if="replyObj.create_time"
-                class="create_time"
-              >{{ getBeautifyTime(replyObj.create_time) }}</div>
+              <div class="content">
+                {{ replyObj.content || replyObj.expand.description }}
+              </div>
+              <div v-if="replyObj.create_time" class="create_time">
+                {{ getBeautifyTime(replyObj.create_time) }}
+              </div>
             </div>
           </div>
           <div v-if="replyObj.expand" class="title">
             {{
-            replyObj.expand.pay
-            ? "发表对" + replyObj.nickname + "的评论"
-            : "回复" + replyObj.nickname + "的评论"
+              replyObj.expand.pay
+                ? "发表对" + replyObj.nickname + "的评论"
+                : "回复" + replyObj.nickname + "的评论"
             }}
           </div>
 
@@ -167,17 +192,29 @@
                 placeholder
               ></textarea>
             </div>
-            <div v-show="error_tips" class="alert alert-danger dismissible alert-reply">
+            <div
+              v-show="error_tips"
+              class="alert alert-danger dismissible alert-reply"
+            >
               {{ error_tips }}
               <label
                 @click="error_tips = ''"
-                style="position:static; color:#cb453c; margin-top:-5px; font-size:25px; transform:translateX(10px) scaleX(1.8) rotate(-3deg);"
+                style="
+                  position: static;
+                  color: #cb453c;
+                  margin-top: -5px;
+                  font-size: 25px;
+                  transform: translateX(10px) scaleX(1.8) rotate(-3deg);
+                "
                 class="btn-close"
-              >X</label>
+                >X</label
+              >
             </div>
 
             <div class="row flex-right">
-              <button @click="submitComments" class="btn-secondary reply-btn">发送</button>
+              <button @click="submitComments" class="btn-secondary reply-btn">
+                发送
+              </button>
             </div>
           </div>
         </div>
@@ -196,37 +233,38 @@ export default {
   props: {
     article: {
       type: Object,
-      default: {}
+      default: {},
     },
     comments: {
       type: Object,
-      default: {}
-    }
+      default: {},
+    },
   },
   data() {
     return {
       replyObj: {},
+      isLogin: false,
       comments_form: {
         email: "",
         nickname: "",
         url: "",
-        content: ""
+        content: "",
       },
-      error_tips: ""
+      error_tips: "",
     };
   },
   watch: {},
   computed: {
     getBeautifyTime() {
-      return function(time) {
+      return function (time) {
         return util.getBeautifyTime(time);
       };
     },
     getBorderType() {
-      return function() {
+      return function () {
         return "border-" + Math.floor(Math.random() * 6 + 1);
       };
-    }
+    },
   },
   methods: {
     getTagColor() {
@@ -272,8 +310,10 @@ export default {
         this.error_tips = "* 网址格式错误(需要加http://或https://)";
         return;
       }
-
-      this.$axios.post("/comments", this.comments_form).then(res => {
+      if (this.$cookies.get("token")) {
+        this.comments_form["login-token"] = this.$cookies.get("token");
+      }
+      this.$axios.post("/comments", this.comments_form).then((res) => {
         if (res.code == 200) {
           if (type != "mes") {
             if (process.browser) {
@@ -286,17 +326,21 @@ export default {
             email: "",
             nickname: "",
             url: "",
-            content: ""
+            content: "",
           };
           this.$emit("reloadComments");
         } else {
           this.error_tips = "*必填项不能为空";
         }
       });
+    },
+  },
+  created() {
+    if (this.$cookies.get("token")) {
+      this.isLogin = true;
     }
   },
-  created() {},
-  mounted() {}
+  mounted() {},
 };
 </script>
 <style lang="scss" scoped>

@@ -1,6 +1,6 @@
 <template>
   <div class="top-nav-wrapper">
-    <div id="topNavMask" class="top-nav-mask modal-bg">1</div>
+    <div id="topNavMask" class="top-nav-mask modal-bg"></div>
     <div class="top-nav part">
       <div class="left">
         <nuxt-link to="/">
@@ -11,11 +11,13 @@
         </nuxt-link>
 
         <div class="search">
-          <input placeholder="擅用搜索，事半功倍" type="text" /> 
+          <input placeholder="擅用搜索，事半功倍" type="text" />
         </div>
       </div>
       <div class="right-links">
-        <nuxt-link to="/login">登录</nuxt-link>
+        <nuxt-link v-if="isLogin" to="/about">{{ user.nickname }}</nuxt-link>
+        <nuxt-link v-else to="/login">登录</nuxt-link>
+
         <!-- <fieldset class="form-group mode-setting">
           <label for="mode" class="paper-switch-label">{{ mode ? "黑夜" : "白天" }}</label>
           <label class="paper-switch">
@@ -33,21 +35,33 @@ export default {
   components: {},
   props: {},
   data() {
-    return { mode: false };
+    return { mode: false, isLogin: false, user: false };
   },
   watch: {
-    mode: function(val) {
+    mode: function (val) {
       if (val) {
         document.getElementsByTagName("body")[0].className = "dark";
       } else {
         document.body.removeAttribute("class");
       }
-    }
+    },
   },
   computed: {},
   methods: {},
-  created() {},
-  mounted() {}
+  created() {
+    if (this.$cookies.get("token")) {
+      this.isLogin = true;
+      this.user = this.$cookies.get("user");
+    }
+  },
+  beforeRouteUpdate(to, from, next) {
+    if (this.$cookies.get("token")) {
+      this.isLogin = true;
+      this.user = this.$cookies.get("user");
+    }
+    next();
+  },
+  mounted() {},
 };
 </script>
 <style lang="scss" scoped>
@@ -122,9 +136,10 @@ export default {
   width: 100%;
   height: 100%;
   z-index: 999;
+  border-radius: 16px;
   display: none;
   transition: all 0.3s;
-  background: rgba($color: #000000, $alpha: 0.5);
+  background: rgba($color: #000000, $alpha: 0.55);
 }
 @media screen and (max-width: 1480px) {
   .top-nav-wrapper {

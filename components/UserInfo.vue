@@ -7,7 +7,6 @@
       <div class="title">{{ options.title }}</div>
       <div class="description">{{ options.description }}</div>
     </div>
-
   </div>
 </template>
 
@@ -17,27 +16,23 @@ export default {
   props: {
     options: {
       type: Object,
-      default: {}
-    }
+      default: {},
+    },
   },
   data() {
-    return {
- 
-    };
+    return {};
   },
-  watch: {
-   
-  },
+  watch: {},
   computed: {
     getBorderType() {
-      return function() {
+      return function () {
         return "border-" + Math.floor(Math.random() * 6 + 1);
       };
-    }
+    },
   },
   methods: {},
   created() {},
-  mounted() {}
+  mounted() {},
 };
 </script>
 <style lang="scss" scoped>

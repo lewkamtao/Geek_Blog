@@ -9,12 +9,14 @@
             <div class="arm"></div>
             <div class="arm arm-r"></div>
           </div>
-          <div v-show="loginErrorTips" class="loginErrorTips">{{ loginErrorTips }}</div>
+          <div v-show="loginErrorTips" class="loginErrorTips">
+            {{ loginErrorTips }}
+          </div>
         </div>
         <div class="item">
           <label>账号</label>
           <input
-            style="width:100%"
+            style="width: 100%"
             @focus="loginErrorTips = ''"
             v-model="form.account"
             @keyup.enter="login"
@@ -24,7 +26,7 @@
         <div class="item">
           <label>密码</label>
           <input
-            style="width:100%"
+            style="width: 100%"
             @blur="(isActivePassWord = false), (loginErrorTips = '')"
             @focus="isActivePassWord = true"
             type="password"
@@ -32,8 +34,10 @@
             @keyup.enter="login"
           />
         </div>
-        <div class="row flex-right" style="margin-bottom:0px">
-          <button @click="login" class="paper-btn btn-secondary login-button">登录</button>
+        <div class="row flex-right" style="margin-bottom: 0px">
+          <button @click="login" class="paper-btn btn-secondary login-button">
+            登录
+          </button>
         </div>
       </div>
     </div>
@@ -48,18 +52,17 @@ export default {
     return {
       form: {
         account: "",
-        password: ""
+        password: "",
       },
       isActivePassWord: false,
       loginErrorTips: "",
-      borderStyle: ""
+      borderStyle: "",
     };
   },
   watch: {},
   computed: {},
   methods: {
     login() {
-      console.log(this.form);
       this.$axios
         .get(
           "/users/login?account=" +
@@ -67,9 +70,10 @@ export default {
             "&password=" +
             this.form.password
         )
-        .then(res => {
+        .then((res) => {
           if (res.code == "200") {
-            this.$cookies.set("token", res.data.token);
+            this.$cookies.set("token", res.data["login-token"]);
+            this.$cookies.set("user", res.data.user);
             this.$router.push("/"); //否则跳转至首页
           } else {
             this.loginErrorTips = res.msg;
@@ -78,12 +82,12 @@ export default {
     },
     getBorderType() {
       this.borderStyle = "border-" + Math.floor(Math.random() * 6 + 1);
-    }
+    },
   },
   created() {
     this.getBorderType();
   },
-  mounted() {}
+  mounted() {},
 };
 </script>
 <style  scoped lang="less">
@@ -91,14 +95,16 @@ export default {
   position: relative;
   min-width: 980px;
   margin: 0 auto;
-
+  height: calc(100vh - 180px);
   overflow: hidden;
+  display: flex;
+  align-items: center;
 }
 
 .form {
   position: relative;
   padding: 50px;
-  margin: 260px auto;
+  margin: 0px auto;
   box-sizing: border-box;
   z-index: 99;
   width: 350px;

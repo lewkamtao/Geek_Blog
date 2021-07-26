@@ -1,7 +1,7 @@
 <template>
   <div class="right-wrapper index-wrapper part">
     <no-ssr>
-      <div v-masonry transition-duration="none" item-selector=".card" class="masonry">
+      <div v-masonry transition-duration="0.01" stagger="0.03s" item-selector=".card" class="masonry">
         <div
           v-masonry-tile
           class="card border border-primary"

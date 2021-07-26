@@ -34,24 +34,26 @@ export default {
         {
           hid: "description",
           name: "description",
-          content: this.options.keywords
-        }
+          content: this.options.keywords,
+        },
       ],
-      link: [{ rel: "icon", type: "image/x-icon", href: this.options.site_ico }]
+      link: [
+        { rel: "icon", type: "image/x-icon", href: this.options.site_ico },
+      ],
     };
   },
   async asyncData({ $axios }) {
     const options = (await $axios.get("/options")).data;
     const article_sort = (
       await $axios.get("/article-sort", {
-        params: { limit: 100000 }
+        params: { limit: 100000 },
       })
     ).data.data;
     const pages = (await $axios.get("/page")).data.data;
     const links = (await $axios.get("/links")).data.data;
     const article = (
       await $axios.get("/article", {
-        params: { limit: 1000000 }
+        params: { limit: 1000000 },
       })
     ).data.data;
 
@@ -76,7 +78,7 @@ export default {
       next();
     }
   },
-  mounted() {}
+  mounted() {},
 };
 </script>
 <style  scoped lang="less">
