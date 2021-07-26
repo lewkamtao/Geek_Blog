@@ -9,7 +9,7 @@ export default {
         },
         meta: [
             { charset: 'utf-8' },
-            { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+            { name: 'viewport', content: 'width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, viewport-fit=cover, user-scalable=0' },
             { hid: 'description', name: 'description', content: '这是一个很酷的人用一个很酷的框架开发的一个很牛*的博客' }
         ],
 
