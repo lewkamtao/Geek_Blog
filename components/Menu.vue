@@ -29,18 +29,18 @@ export default {
           path: "/",
           title: "首页",
         },
-        {
-          path: "/About",
-          title: "关于我",
-        },
-        {
-          path: "/Photo",
-          title: "相册",
-        },
-        {
-          path: "/Timeline",
-          title: "时光机",
-        },
+        // {
+        //   path: "/About",
+        //   title: "关于我",
+        // },
+        // {
+        //   path: "/Photo",
+        //   title: "相册",
+        // },
+        // {
+        //   path: "/Timeline",
+        //   title: "时光机",
+        // },
         {
           path: "/Links",
           title: "友情链接",

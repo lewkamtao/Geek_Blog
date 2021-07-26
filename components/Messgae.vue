@@ -118,7 +118,7 @@
             >X</label
           >
           <div v-if="replyObj.expand" class="reply-obj">
-            <div class="avatar border border-primary" :class="getBorderType()">
+            <div class="avatar border border-primary" :class="getBorderType">
               <img :src="replyObj.expand.head_img" alt srcset />
             </div>
             <div class="user-info">
@@ -140,7 +140,7 @@
           </div>
 
           <div class="reply-form">
-            <div class="concact">
+            <div v-if="!isLogin" class="concact">
               <div class="form-group">
                 <label for="paperInputs1">
                   昵称
@@ -169,7 +169,7 @@
               </div>
             </div>
 
-            <div class="form-group">
+            <div v-if="!isLogin" class="form-group">
               <label for="paperInputs3">博客地址</label>
               <input
                 v-model="comments_form.url"
@@ -294,22 +294,26 @@ export default {
       }
       this.comments_form.article_id = this.article.id;
       var data = JSON.parse(JSON.stringify(this.comments_form));
-      if (data.nickname == "") {
-        this.error_tips = "* 昵称不能为空";
-        return;
-      } else if (data.email == "") {
-        this.error_tips = "* 邮箱不能为空";
-        return;
+
+      if (!this.isLogin) {
+        if (data.nickname == "") {
+          this.error_tips = "* 昵称不能为空";
+          return;
+        } else if (data.email == "") {
+          this.error_tips = "* 邮箱不能为空";
+          return;
+        } else if (!checkStr(data.email, "email")) {
+          this.error_tips = "* 邮箱格式错误";
+          return;
+        } else if (data.url && !checkStr(data.url, "URL")) {
+          this.error_tips = "* 网址格式错误(需要加http://或https://)";
+          return;
+        }
       } else if (data.content == "") {
         this.error_tips = "* 内容不能为空";
         return;
-      } else if (!checkStr(data.email, "email")) {
-        this.error_tips = "* 邮箱格式错误";
-        return;
-      } else if (data.url && !checkStr(data.url, "URL")) {
-        this.error_tips = "* 网址格式错误(需要加http://或https://)";
-        return;
       }
+
       if (this.$cookies.get("token")) {
         this.comments_form["login-token"] = this.$cookies.get("token");
       }

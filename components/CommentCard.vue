@@ -3,28 +3,47 @@
     <div class="comment-card">
       <div class="left">
         <div class="avatar border border-primary">
-          <img :class="getBorderType()" :src="comment.expand.head_img" alt srcset />
+          <img
+            :class="getBorderType()"
+            :src="comment.expand.head_img"
+            alt
+            srcset
+          />
         </div>
       </div>
       <div class="right">
         <div class="nickname">
           {{ comment.nickname }}
           <label
+            v-if="comment.users_id == 2"
+            class="badge reply-btn master"
+            >博主</label
+          >
+          <label
             class="badge reply-btn"
             @click="reply(comment)"
             for="modal-reply"
-          >回复</label>
+            >回复</label
+          >
         </div>
         <div class="content">{{ comment.content }}</div>
         <div v-show="comment.url" class="blog-url">
           博主站点：
-          <a :href="'http://'+comment.url" target="_blank">{{ comment.url }}</a>
+          <a :href="'http://' + comment.url" target="_blank">{{
+            comment.url
+          }}</a>
         </div>
-        <div class="create_time">{{ getBeautifyTime(comment.create_time) }}</div>
+        <div class="create_time">
+          {{ getBeautifyTime(comment.create_time) }}
+        </div>
       </div>
     </div>
-    <div v-show="comment.son.length!=0" class="son-box">
-      <div class="comments-box" v-for="(son, index) in comment.son" :key="index">
+    <div v-show="comment.son.length != 0" class="son-box">
+      <div
+        class="comments-box"
+        v-for="(son, index) in comment.son"
+        :key="index"
+      >
         <div class="comment-card">
           <div class="left">
             <div class="avatar border border-primary" :class="getBorderType()">
@@ -35,17 +54,25 @@
             <div class="nickname">
               {{ son.nickname }}
               <label
+                v-if="son.users_id == 2"
+                class="badge reply-btn master"
+                >博主</label
+              >
+              <label
                 class="badge reply-btn"
                 @click="reply(son)"
                 for="modal-reply"
-              >回复</label>
+                >回复</label
+              >
             </div>
             <div class="content">{{ son.content }}</div>
-            <div v-show="comment.url" class="blog-url">
+            <div v-show="comment.url && son.users_id != 2" class="blog-url">
               博主站点：
-              <a :href="'http://'+ son.url" target="_blank">{{ son.url }}</a>
+              <a :href="'http://' + son.url" target="_blank">{{ son.url }}</a>
             </div>
-            <div class="create_time">{{ getBeautifyTime(son.create_time) }}</div>
+            <div class="create_time">
+              {{ getBeautifyTime(son.create_time) }}
+            </div>
           </div>
         </div>
       </div>
@@ -80,9 +107,9 @@ export default {
         opt: null,
         create_time: "2021-03-22 17:45:09",
         create_time: "2021-03-23 18:36:31",
-        son: []
-      }
-    }
+        son: [],
+      },
+    },
   },
   data() {
     return {};
@@ -90,23 +117,23 @@ export default {
   watch: {},
   computed: {
     getBeautifyTime() {
-      return function(time) {
+      return function (time) {
         return util.getBeautifyTime(time);
       };
     },
     getBorderType() {
-      return function() {
+      return function () {
         return "border-" + Math.floor(Math.random() * 6 + 1);
       };
-    }
+    },
   },
   methods: {
     reply(replyObj) {
       this.$emit("setReply", replyObj);
-    }
+    },
   },
   created() {},
-  mounted() {}
+  mounted() {},
 };
 </script>
 <style lang="scss" scoped>
@@ -173,6 +200,10 @@ export default {
     font-size: 14px;
     transition: all 0.25s;
     margin-left: 5px;
+  }
+  .master {
+    background: #a7342d;
+    cursor: default;
   }
   .reply-btn:hover {
     opacity: 1;
