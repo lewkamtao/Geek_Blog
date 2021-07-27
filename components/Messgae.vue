@@ -487,7 +487,6 @@ export default {
   overflow: hidden;
 }
 @media screen and (max-width: 680px) {
-
   .messgae {
     width: 100%;
     margin: 20px auto;
@@ -531,6 +530,10 @@ export default {
           textarea {
             font-size: 14px;
           }
+        }
+        .reply-btn {
+          padding: 5px 20px;
+          font-size: 15px;
         }
       }
     }

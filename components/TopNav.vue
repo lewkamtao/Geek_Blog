@@ -171,6 +171,9 @@ export default {
         img {
           transition: all 0.25s;
         }
+        img:active {
+          transform: scale(0.9);
+        }
       }
       .pc-logo {
         display: block;
@@ -193,6 +196,7 @@ export default {
           border: none;
           background: #eee;
           transition: all 0.25s;
+         
         }
         .res-box {
           position: absolute;
@@ -362,13 +366,6 @@ export default {
           font-size: 14px;
           margin-left: 5px;
         }
-      }
-    }
-  }
-  .isShowNav {
-    .mobile-logo {
-      img {
-        transform: rotateY(180deg);
       }
     }
   }

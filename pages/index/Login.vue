@@ -123,6 +123,7 @@ export default {
   color: #000;
   font-size: 16px;
   height: 35px;
+  padding-left: 6px;
 }
 
 .cover {
