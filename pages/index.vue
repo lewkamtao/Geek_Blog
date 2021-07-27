@@ -1,10 +1,14 @@
 <template>
-  <div id="top" class="wrapper" :class="{isMobile:isMobile}">
-    <TopNav @showNav="showNav" :options="options" class="top-nav-wrapper-master" />
+  <div id="top" class="wrapper" :class="{ isMobile: isMobile }">
+    <TopNav
+      @showNav="showNav"
+      :options="options"
+      class="top-nav-wrapper-master"
+    />
     <LeftNav
       :options="options"
-      :article="article"
       :article_sort="article_sort"
+      :article="article"
       :links="links"
       :pages="pages"
       class="left-nav"
@@ -34,33 +38,27 @@ export default {
         {
           hid: "description",
           name: "description",
-          content: this.options.keywords
-        }
+          content: this.options.keywords,
+        },
       ],
-      link: [{ rel: "icon", type: "image/x-icon", href: this.options.site_ico }]
+      link: [
+        { rel: "icon", type: "image/x-icon", href: this.options.site_ico },
+      ],
     };
   },
   async asyncData({ $axios }) {
     const options = (await $axios.get("/options")).data;
-    const article_sort = (
-      await $axios.get("/article-sort", {
-        params: { limit: 100000 }
-      })
-    ).data.data;
+    const article_sort = (await $axios.get("/article-sort?limit=10")).data.data;
     const pages = (await $axios.get("/page")).data.data;
     const links = (await $axios.get("/links")).data.data;
-    const article = (
-      await $axios.get("/article", {
-        params: { limit: 1000000 }
-      })
-    ).data.data;
+    const article = (await $axios.get("/article?limit=10")).data;
 
     return { options, article_sort, article, pages, links };
   },
   props: {},
   data() {
     return {
-      isMobile: false
+      isMobile: false,
     };
   },
   watch: {},
@@ -68,7 +66,7 @@ export default {
   methods: {
     showNav() {
       this.isMobile = !this.isMobile;
-    }
+    },
   },
   created() {
     // if (process.client) {
@@ -82,7 +80,7 @@ export default {
       next();
     }
   },
-  mounted() {}
+  mounted() {},
 };
 </script>
 <style scoped  lang="scss">

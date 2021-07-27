@@ -88,7 +88,7 @@ export default {
   methods: {
     async searchArticleFn() {
       this.searchArticle = (
-        await this.$axios.get("/search?value=" + this.searchValue + "&limit=20")
+        await this.$axios.get("/search?value=" + this.searchValue + "&limit=10")
       ).data.data;
     },
     hidResBox() {
@@ -199,6 +199,7 @@ export default {
               width: 100%;
               padding: 3px 10px;
               border-radius: 10px;
+           
             }
             a::before {
               position: absolute;

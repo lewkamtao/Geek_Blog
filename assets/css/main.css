@@ -56,10 +56,11 @@ html {
     border-bottom: rgba(0, 0, 0, 0%) 2px solid;
 }
 
-.article-list .vditor-outline__item--current span span {
+
+/* .article-list .vditor-outline__item--current span span {
     border-bottom: 2px #0071de solid;
     box-sizing: border-box;
-}
+} */
 
 .vditor-reset--anchor {
     padding-left: 0px !important;

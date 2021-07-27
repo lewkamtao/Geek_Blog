@@ -1,7 +1,12 @@
 <template>
   <div class="right-wrapper index-wrapper part">
     <no-ssr>
-      <div v-masonry transition-duration="0.01" stagger="0.03s" item-selector=".card" class="masonry">
+      <div
+        v-masonry
+        transition-duration="0s"
+        item-selector=".card"
+        class="masonry"
+      >
         <div
           v-masonry-tile
           class="card border border-primary"
@@ -11,7 +16,10 @@
         >
           <nuxt-link :to="'/Article?id=' + item.id">
             <img v-if="item.img_src" :src="item.img_src" />
-            <img v-if="!item.img_src" :src="'http://www.dmoe.cc/random.php?' + index" />
+            <img
+              v-if="!item.img_src"
+              :src="'https://acg.toubiec.cn/random.php?' + index"
+            />
             <div class="card-body">
               <h4 class="card-title">{{ item.title }}</h4>
               <h5 class="card-subtitle">{{ item.description }}</h5>
@@ -21,7 +29,8 @@
                   :key="index"
                   class="badge"
                   :class="getTagColor()"
-                >{{ tag.name }}</span>
+                  >{{ tag.name }}</span
+                >
               </div>
               <div class="card-text">
                 <div>
@@ -56,7 +65,9 @@
                     stroke-linejoin="round"
                     class="feather feather-message-square"
                   >
-                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                    <path
+                      d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+                    />
                   </svg>
                   {{ item.expand.comments }}
                 </div>
@@ -103,6 +114,11 @@
         </div>
       </div>
     </no-ssr>
+    <div @click="getArticle()" class="more-btn">
+      {{
+        article.data.length != article.count - 2 ? "点击加载更多" : "没有更多了"
+      }}
+    </div>
   </div>
 </template>
 
@@ -112,50 +128,104 @@ import util from "@/util/index";
 
 export default {
   components: {
-    "no-ssr": NoSSR
+    "no-ssr": NoSSR,
   },
   async asyncData({ $axios }) {
-    const article = (
-      await $axios.get("/article", {
-        params: { limit: 20 }
-      })
-    ).data;
+    const article = (await $axios.get("/article?limit=10")).data;
     article.data = article.data.filter(
-      item => ["留言墙", "友情链接"].indexOf(item.title) < 0
+      (item) => ["留言墙", "友情链接"].indexOf(item.title) < 0
     );
     return { article };
   },
   props: {},
   data() {
-    return {};
+    return {
+      page: 1,
+      limit: 10,
+    };
   },
   watch: {},
   computed: {
     getBeautifyTime() {
-      return function(time) {
+      return function (time) {
         return util.getBeautifyTime(time);
       };
     },
     getBorderType() {
-      return function() {
+      return function () {
         return "border-" + Math.floor(Math.random() * 6 + 1);
       };
-    }
+    },
   },
   methods: {
     getTagColor() {
       var tag_options = ["", "secondary", "success", "warning", "danger"];
       var index = Math.floor(Math.random() * tag_options.length);
       return tag_options[index];
-    }
+    },
+    async getArticle(type) {
+      // 减 2 是因为有两个文章已经被去除
+      if (this.article.data.length == this.article.count - 2) {
+        return;
+      }
+
+      if (type == "new") {
+        this.page = 1; // 重新选择分类
+        this.article = [];
+      } else {
+        this.page += 1; // 页码增加
+      }
+      var params = {};
+      if (this.isSelect_article_id) {
+        params = {
+          id: this.isSelect_article_id,
+          limit: this.limit,
+          page: this.page,
+        };
+        this.article.data = this.article.concat(
+          (
+            await this.$axios.get("/article-sort", {
+              params,
+            })
+          ).data.expand.data
+        );
+      } else {
+        params = { limit: this.limit, page: this.page };
+        this.article.data = this.article.data.concat(
+          (
+            await this.$axios.get("/article", {
+              params,
+            })
+          ).data.data
+        );
+      }
+    },
   },
   created() {},
-  mounted() {}
+  mounted() {},
 };
 </script> 
 <style lang="scss" scoped>
 .index-wrapper {
   display: flex;
+  flex-direction: column;
+}
+.more-btn {
+  margin-top: 60px;
+  width: 100%;
+  height: 60px;
+  line-height: 60px;
+  background: #eee;
+  font-size: 20px;
+  text-align: center;
+  opacity: 0.4;
+  color: #000;
+  border-radius: 15px;
+  transition: opacity 0.25s;
+  cursor: pointer;
+}
+.more-btn:hover {
+  opacity: 1;
 }
 .masonry {
   width: 100%;
