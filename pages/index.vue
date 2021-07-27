@@ -19,7 +19,7 @@
 
     <div class="to-top">
       <a href="#top" class="paper-btn margin">
-        <div style="margin-top: 23px">^</div>
+        <div>^</div>
       </a>
     </div>
   </div>
@@ -128,7 +128,7 @@ export default {
     z-index: 999999;
     transition: all 0.25s;
     .paper-btn {
-      font-size: 35px;
+      font-size: 30px;
       width: 45px;
       height: 45px;
       display: flex;
@@ -138,6 +138,10 @@ export default {
       border-top-right-radius: 200px 195px;
       border-bottom-right-radius: 160px 195px;
       border-bottom-left-radius: 185px 190px;
+    }
+    div {
+      transform: scaleX(1.3);
+      margin-top: 3px;
     }
   }
 }
