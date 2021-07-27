@@ -173,11 +173,11 @@ export default {
   .reply-btn {
     background: #0071de;
     color: #fff;
-    padding: 1px 4px;
+    padding: 2px 4px;
     cursor: pointer;
     opacity: 0.8;
     font-weight: 400;
-    font-size: 14px;
+    font-size: 13px;
     transition: all 0.25s;
     margin-left: 5px;
   }

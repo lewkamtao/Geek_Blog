@@ -347,8 +347,8 @@ export default {
 
 .reply-modal {
   .title {
-    font-size: 30px;
-    color: #000;
+    font-size: 18px;
+    font-weight: bold;
     margin: 20px 0px 0px 0px;
     display: inline-block;
   }
@@ -452,6 +452,19 @@ export default {
     max-height: 100vh !important;
     z-index: 9999999;
     border: none;
+  }
+
+  .reply-modal {
+    .modal-body {
+      .reply-form {
+        input {
+          font-size: 14px;
+        }
+        textarea {
+          font-size: 14px;
+        }
+      }
+    }
   }
 
   .catalogue {

@@ -154,7 +154,7 @@ export default {
       transition: opacity 0.25s;
     }
     .aside {
-      width:calc(100% - 14px);
+      width: calc(100% - 14px);
       transition: all 0.5s;
     }
   }

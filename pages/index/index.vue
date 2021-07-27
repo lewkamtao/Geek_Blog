@@ -276,9 +276,18 @@ export default {
 
 // 移动端适配
 @media screen and (max-width: 680px) {
+  .index-wrapper {
+    padding: 0px 15px 15px 15px;
+  }
   .masonry .card {
     width: 100%;
     margin: 15px 0px;
+  }
+  .more-btn {
+    height: 40px;
+    line-height: 40px;
+    font-size: 14px;
+    border-radius: 10px;
   }
 }
 </style>

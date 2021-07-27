@@ -76,5 +76,6 @@ export default {
 .messgae-wrapper {
   position: relative;
   z-index: 9999;
-}
+} // 移动端适配
+
 </style>

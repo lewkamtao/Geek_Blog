@@ -287,7 +287,11 @@ header {
       }
       .summary {
         div {
+          margin: 5px 10px;
           font-size: 14px;
+          .feather{
+            margin-right: 5px;
+          }
         }
       }
     }
@@ -295,8 +299,19 @@ header {
       width: 100% !important;
     }
     .aside {
-      left: 7px !important;
+      width: calc(100% - 14px);
       padding: 73px 7px 7px 7px;
+      transition: all 0.25s;
+    }
+  }
+  .isShowAside {
+    .aside {
+      left: 7px !important;
+      padding: 72px 7px 7px 7px;
+    }
+    .main {
+      opacity: 0;
+      height: 0px;
     }
   }
 }

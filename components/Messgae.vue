@@ -355,6 +355,8 @@ export default {
   margin-bottom: 50px;
   .title {
     font-size: 50px;
+    font-weight: bold;
+    color: #000;
     display: flex;
     align-items: center;
   }
@@ -388,7 +390,8 @@ export default {
 .messgae-form,
 .reply-modal {
   .title {
-    font-size: 30px;
+    font-size: 18px;
+    font-weight: bold;
     color: #000;
     margin: 20px 0px 0px 0px;
     display: inline-block;
@@ -397,8 +400,8 @@ export default {
     display: flex;
     margin: 20px 0px;
     .avatar {
-      width: 70px;
-      height: 70px;
+      width: 64px;
+      height: 64px;
       margin-right: 20px;
       overflow: hidden;
       img {
@@ -415,7 +418,7 @@ export default {
     }
     .nickname {
       font-size: 20px;
-      font-weight: 500;
+      font-weight: bold;
       margin-bottom: 5px;
     }
     .content {
@@ -465,7 +468,7 @@ export default {
         label {
           display: flex;
           align-items: center;
-          font-size: 18px;
+          font-size: 16px;
         }
         .badge {
           font-size: 12px;
@@ -477,6 +480,66 @@ export default {
       .reply-btn {
         padding: 5px 20px;
       }
+    }
+  }
+}
+.messgae-form .modal-body {
+  overflow: hidden;
+}
+@media screen and (max-width: 680px) {
+
+  .messgae {
+    width: 100%;
+    margin: 20px auto;
+    .messgae-title {
+      margin-bottom: 0px;
+      .title {
+        font-size: 24px;
+      }
+      .badge {
+        font-size: 18px;
+      }
+    }
+
+    .messgae-form {
+      .modal-body {
+        width: 100%;
+        .reply-form {
+          .reply-btn {
+            padding: 5px 20px;
+            font-size: 15px;
+          }
+        }
+        .reply-form {
+          input {
+            font-size: 14px;
+          }
+          textarea {
+            font-size: 14px;
+          }
+        }
+      }
+    }
+  }
+  .reply {
+    .reply-modal {
+      .modal-body {
+        .reply-form {
+          input {
+            font-size: 14px;
+          }
+          textarea {
+            font-size: 14px;
+          }
+        }
+      }
+    }
+    .modal-body {
+      width: 100vw !important;
+      height: 100vh !important;
+      max-height: 100vh !important;
+      z-index: 9999999;
+      border: none;
     }
   }
 }

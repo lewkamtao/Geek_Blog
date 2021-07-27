@@ -15,7 +15,7 @@
     </div>
 
     <div class="to-top">
-      <div @click="showAside()" class="paper-btn show-aside-btn">
+      <div @click="showAside()" v-show="isShowOpenAsideBtn" class="paper-btn show-aside-btn">
         <div style="margin-top:-9px">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -72,7 +72,8 @@ export default {
   data() {
     return {
       isShowNav: false,
-      isShowAside: false
+      isShowAside: false,
+      isShowOpenAsideBtn: false
     };
   },
   watch: {},
@@ -89,12 +90,23 @@ export default {
     // if (process.client) {
     //   new DevicePixelRatio().init();
     // }
+    if (["/Article", "/Links"].indexOf(this.$route.path) >= 0) {
+      this.isShowOpenAsideBtn = true;
+    } else {
+      this.isShowOpenAsideBtn = false;
+    }
   },
   beforeRouteUpdate(to, from, next) {
     if (process.browser) {
       //  隐藏遮罩 优先级
       util.openModal(false);
       this.isShowNav = false;
+      this.isShowAside = false;
+      if (["/Article", "/Links"].indexOf(to.path) >= 0) {
+        this.isShowOpenAsideBtn = true;
+      } else {
+        this.isShowOpenAsideBtn = false;
+      }
       next();
     }
   },
@@ -162,9 +174,6 @@ export default {
         transform: scaleX(1.3);
         margin-top: 3px;
       }
-    }
-    .show-aside-btn {
-      display: none;
     }
   }
 }

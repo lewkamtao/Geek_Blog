@@ -167,8 +167,9 @@ export default {
         align-items: center;
         font-size: 20px;
         font-weight: bold;
+        margin-right: 10px;
         img {
-          margin-right: 10px;
+          transition: all 0.25s;
         }
       }
       .pc-logo {
@@ -356,8 +357,18 @@ export default {
       }
       .right-links {
         a {
+          font-weight: bold;
           margin-right: 5px;
+          font-size: 14px;
+          margin-left: 5px;
         }
+      }
+    }
+  }
+  .isShowNav {
+    .mobile-logo {
+      img {
+        transform: rotateY(180deg);
       }
     }
   }
