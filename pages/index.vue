@@ -230,7 +230,7 @@ export default {
       opacity: 0;
       height: 0px;
     }
-    .show-aside-btn {
+    .to-top {
       display: none !important;
     }
     .left-nav {

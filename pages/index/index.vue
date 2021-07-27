@@ -120,7 +120,7 @@ export default {
     "no-ssr": NoSSR
   },
   async asyncData({ $axios }) {
-    const article = (await $axios.get("/article?limit=20")).data;
+    const article = (await $axios.get("/article?limit=10")).data;
     article.data = article.data.filter(
       item => ["留言墙", "友情链接"].indexOf(item.title) < 0
     );
@@ -130,7 +130,7 @@ export default {
   data() {
     return {
       page: 1,
-      limit: 20
+      limit: 10
     };
   },
   watch: {},
