@@ -163,6 +163,9 @@ export default {
         margin-top: 3px;
       }
     }
+    .show-aside-btn {
+      display: none;
+    }
   }
 }
 
@@ -192,7 +195,6 @@ export default {
     .to-top {
       display: none;
     }
- 
   }
   .wrapper {
     max-width: 100vw;
@@ -236,9 +238,6 @@ export default {
       opacity: 1;
     }
   }
-
-
-  
 }
 </style>
  

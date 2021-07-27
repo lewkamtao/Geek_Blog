@@ -453,8 +453,8 @@ export default {
     z-index: 9999999;
     border: none;
   }
-  
-  .catalogue { 
+
+  .catalogue {
     display: none;
   }
 }
