@@ -3,45 +3,32 @@
     <div class="comment-card">
       <div class="left">
         <div class="avatar border border-primary">
-          <img
-            :class="getBorderType()"
-            :src="comment.expand.head_img"
-            alt
-            srcset
-          />
+          <img :class="getBorderType()" :src="comment.expand.head_img" alt srcset />
         </div>
       </div>
       <div class="right">
         <div class="nickname">
           {{ comment.nickname }}
-          <label v-if="comment.users_id == 2" class="badge reply-btn master"
-            >博主</label
-          >
           <label
-            class="badge reply-btn"
-            @click="reply(comment)"
-            for="modal-reply"
-            >回复</label
-          >
+            v-if="comment.users_id == 2"
+            class="badge reply-btn master"
+          >博主</label>
+          <label class="badge reply-btn" @click="reply(comment)" for="modal-reply">回复</label>
         </div>
         <div class="content">{{ comment.content }}</div>
         <div v-show="comment.url && comment.users_id != 2" class="blog-url">
           博主站点：
-          <a :href="'http://' + comment.url" target="_blank">{{
+          <a :href="'http://' + comment.url" target="_blank">
+            {{
             comment.url
-          }}</a>
+            }}
+          </a>
         </div>
-        <div class="create_time">
-          {{ getBeautifyTime(comment.create_time) }}
-        </div>
+        <div class="create_time">{{ getBeautifyTime(comment.create_time) }}</div>
       </div>
     </div>
     <div v-show="comment.son.length != 0" class="son-box">
-      <div
-        class="comments-box"
-        v-for="(son, index) in comment.son"
-        :key="index"
-      >
+      <div class="comments-box" v-for="(son, index) in comment.son" :key="index">
         <div class="comment-card">
           <div class="left">
             <div class="avatar border border-primary" :class="getBorderType()">
@@ -51,24 +38,15 @@
           <div class="right">
             <div class="nickname">
               {{ son.nickname }}
-              <label v-if="son.users_id == 2" class="badge reply-btn master"
-                >博主</label
-              >
-              <label
-                class="badge reply-btn"
-                @click="reply(son)"
-                for="modal-reply"
-                >回复</label
-              >
+              <label v-if="son.users_id == 2" class="badge reply-btn master">博主</label>
+              <label class="badge reply-btn" @click="reply(son)" for="modal-reply">回复</label>
             </div>
             <div class="content">{{ son.content }}</div>
             <div v-show="son.url && son.users_id != 2" class="blog-url">
               博主站点：
               <a :href="'http://' + son.url" target="_blank">{{ son.url }}</a>
             </div>
-            <div class="create_time">
-              {{ getBeautifyTime(son.create_time) }}
-            </div>
+            <div class="create_time">{{ getBeautifyTime(son.create_time) }}</div>
           </div>
         </div>
       </div>
@@ -103,9 +81,9 @@ export default {
         opt: null,
         create_time: "2021-03-22 17:45:09",
         create_time: "2021-03-23 18:36:31",
-        son: [],
-      },
-    },
+        son: []
+      }
+    }
   },
   data() {
     return {};
@@ -113,28 +91,28 @@ export default {
   watch: {},
   computed: {
     getBeautifyTime() {
-      return function (time) {
+      return function(time) {
         return util.getBeautifyTime(time);
       };
     },
     getBorderType() {
-      return function () {
+      return function() {
         return "border-" + Math.floor(Math.random() * 6 + 1);
       };
-    },
+    }
   },
   methods: {
     reply(replyObj) {
       this.$emit("setReply", replyObj);
-    },
+    }
   },
   created() {},
-  mounted() {},
+  mounted() {}
 };
 </script>
 <style lang="scss" scoped>
 .comment-wrapper {
-  background: #f4f7f9;
+  background: #f7f7f7;
   border-radius: 10px;
   margin-bottom: 15px;
   padding: 10px;
@@ -172,10 +150,11 @@ export default {
       width: calc(100% - 60px);
       .nickname {
         font-size: 14px;
+        color: #5f6984;
         font-weight: bold;
       }
       .content {
-        color: #333;
+        color: #1e1e1e;
         margin: 7px 0px 10px 0px;
         font-size: 14px;
         line-height: 20px;
@@ -187,12 +166,12 @@ export default {
       }
       .create_time {
         font-size: 12px;
-        color: #999;
+        color: #b2b0b1; font-weight: 300;
       }
     }
   }
   .reply-btn {
-    background: #7fad88;
+    background: #0071de;
     color: #fff;
     padding: 1px 4px;
     cursor: pointer;

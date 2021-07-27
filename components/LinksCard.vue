@@ -1,31 +1,25 @@
 <template>
   <div class="part pages" style="margin-bottom: 30px">
-    <div class="main-title">友情链接</div>
+    <div class="main-title">推荐友链</div>
     <div class="list">
       <ul>
-        <div v-for="(item, index) in links" :key="index">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="16px"
-            height="16px"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="feather feather-link"
-          >
-            <path
-              d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"
-            ></path>
-            <path
-              d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"
-            ></path>
-          </svg>
-          <a :href="item.url" target="_blank">{{ item.name }}</a>
-        </div>
+        <a
+          v-for="(item, index) in links"
+          :key="index"
+          :href="item.url"
+          target="_blank"
+          class="user-item"
+        >
+          <div class="avatar border border-primary">
+            <img :src="item.head_img" />
+          </div>
+          <div class="user-info">
+            <div class="name">{{ item.name }}</div>
+            <p class="description">{{ item.description }}</p>
+          </div>
+        </a>
       </ul>
+      <nuxt-link to="/links" class="more-btn">查看更多</nuxt-link>
     </div>
   </div>
 </template>
@@ -36,8 +30,8 @@ export default {
   props: {
     links: {
       type: Array,
-      default: [],
-    },
+      default: []
+    }
   },
   data() {
     return {};
@@ -46,7 +40,7 @@ export default {
   computed: {},
   methods: {},
   created() {},
-  mounted() {},
+  mounted() {}
 };
 </script>
 <style lang="scss" scoped>
@@ -55,10 +49,87 @@ export default {
 }
 
 .list {
+  width: 100%;
   line-height: 35px;
-  padding-left:10px;
 }
 .text-secondary {
   background-image: none !important;
+}
+
+.more-btn {
+  width: 100%;
+  display: inline-block;
+  background-image: none !important;
+  text-align: center;
+  padding: 10px;
+  cursor: pointer;
+  color: #000;
+  opacity: 0.5;
+  transition: opacity 0.25s;
+}
+.more-btn:hover {
+  opacity: 1;
+}
+
+.user-item {
+  display: flex;
+  background-image: none;
+  padding: 10px;
+  box-sizing: border-box;
+  border-radius: 10px;
+
+  .avatar {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    img {
+      width: 40px;
+      height: auto;
+      border-radius: 0px;
+    }
+  }
+  .user-info {
+    width: calc(100% - 50px);
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+    .name {
+      font-weight: bold;
+      color: #5f6984;
+      font-size: 14px;
+      line-height: 16px;
+    }
+    .description {
+      font-size: 13px;
+      line-height: 16px;
+      margin-top: 5px;
+      color: #1e1e1e;
+    }
+  }
+}
+
+.user-item::before {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 1px;
+  width: 100%;
+  background: rgba($color: #000000, $alpha: 0.05);
+  content: "";
+}
+.user-item:hover::before {
+  display: none;
+}
+.user-item:hover + .user-item::before {
+  display: none;
+}
+.user-item:first-child::before {
+  display: none;
+}
+
+.user-item:hover {
+  background: rgba($color: #000000, $alpha: 0.05);
 }
 </style>

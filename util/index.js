@@ -19,19 +19,15 @@
  /**
   * 处理顶部栏优先级遮罩层
   */
- function showTopNav(status) {
+ function openModal(status) {
      if (status) {
-         document.getElementById("topNavMask").style.display = "none";
-         document.getElementById("topNavMask").style.opacity = "0";
+         document.getElementsByTagName("body")[0].className = "isShowModal";
      } else {
-         document.getElementById("topNavMask").style.display = "block";
-         setTimeout(function() {
-             document.getElementById("topNavMask").style.opacity = "1";
-         }, 10)
+         document.body.removeAttribute("class");
      }
  }
 
  export default {
      getBeautifyTime,
-     showTopNav
+     openModal
  }

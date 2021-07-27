@@ -3,19 +3,13 @@
     <div class="form-group">
       <div class="main-title">文章分类</div>
 
-      <select
-        id="paperSelects1"
-        v-model="isSelect_article_id"
-        @change="getArticle('new')"
-      >
+      <select id="paperSelects1" v-model="isSelect_article_id" @change="getArticle('new')">
         <option value>全部文章</option>
         <option
           v-for="(article_sort, index) in article_sort"
           :key="index"
           :value="article_sort.id"
-        >
-          {{ article_sort.name }}
-        </option>
+        >{{ article_sort.name }}</option>
       </select>
     </div>
     <div class="article-title-list">
@@ -24,17 +18,14 @@
           v-show="['留言墙', '友情链接'].indexOf(item.title) < 0"
           v-for="(item, index) in nav_article.data"
           :key="index"
-          class="text-secondary"
           :to="'/Article?id=' + item.id"
-        >
-          {{ item.title }}
-        </nuxt-link>
+        >{{ item.title }}</nuxt-link>
         <div class="more-btn" v-show="nav_article.count == 0">暂无文章</div>
         <div class="more-btn" v-show="nav_article.count != 0" @click="getArticle()">
           {{
-            nav_article.data.length != nav_article.count
-              ? "点击加载更多"
-              : "没有更多了"
+          nav_article.data.length != nav_article.count
+          ? "点击加载更多"
+          : "没有更多了"
           }}
         </div>
       </ul>
@@ -48,19 +39,19 @@ export default {
   props: {
     article: {
       type: Object,
-      default: [],
+      default: []
     },
     article_sort: {
       type: Array,
-      default: [],
-    },
+      default: []
+    }
   },
   data() {
     return {
       page: 1,
       limit: 10,
       nav_article: {},
-      isSelect_article_id: "",
+      isSelect_article_id: ""
     };
   },
   watch: {},
@@ -86,42 +77,42 @@ export default {
         params = {
           id: this.isSelect_article_id,
           limit: this.limit,
-          page: this.page,
+          page: this.page
         };
         var article = (
           await this.$axios.get("/article-sort", {
-            params,
+            params
           })
         ).data.expand;
         this.nav_article = {
           count: article.count,
-          data: this.nav_article.data.concat(article.data),
+          data: this.nav_article.data.concat(article.data)
         };
         this.$forceUpdate();
       } else {
         params = {
           limit: this.limit,
-          page: this.page,
+          page: this.page
         };
 
         var article = (
           await this.$axios.get("/article", {
-            params,
+            params
           })
         ).data;
         this.nav_article = {
           count: article.count,
-          data: this.nav_article.data.concat(article.data),
+          data: this.nav_article.data.concat(article.data)
         };
         this.$forceUpdate();
       }
-    },
+    }
   },
   created() {
     this.nav_article = this.article;
     this.isSelect_article_id = "";
   },
-  mounted() {},
+  mounted() {}
 };
 </script>
 <style lang="scss" scoped>
@@ -149,8 +140,9 @@ ul {
     border-radius: 10px;
     line-height: 24px;
     min-height: 36px;
-    padding: 8px 20px;
-    overflow: hidden;
+    padding: 8px 15px;
+    display: inline-block;
+    box-sizing: border-box;
     font-size: 14px;
   }
   a::before {
@@ -160,10 +152,13 @@ ul {
     content: "";
     width: 100%;
     height: 1px;
-    background: rgba($color: #000000, $alpha: 0.15);
+    background: rgba($color: #000000, $alpha: 0.05);
+  }
+  a:first-child::before {
+    display: none;
   }
   a:hover {
-   background: rgba($color: #000, $alpha: 0.05);
+    background: rgba($color: #000, $alpha: 0.05);
   }
   a:hover::before {
     display: none;

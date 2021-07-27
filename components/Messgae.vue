@@ -63,10 +63,7 @@
                 placeholder
               ></textarea>
             </div>
-            <div
-              v-show="error_tips"
-              class="alert alert-danger dismissible alert-reply"
-            >
+            <div v-show="error_tips" class="alert alert-danger dismissible alert-reply">
               {{ error_tips }}
               <label
                 @click="error_tips = ''"
@@ -79,31 +76,19 @@
                   transform: scaleX(1.8) rotate(-3deg);
                 "
                 class="btn-close"
-                >X</label
-              >
+              >X</label>
             </div>
 
             <div class="row flex-right">
-              <button
-                @click="submitComments('mes')"
-                class="btn-secondary reply-btn"
-              >
-                发送
-              </button>
+              <button @click="submitComments('mes')" class="btn-secondary reply-btn">发送</button>
             </div>
           </div>
         </div>
       </div>
 
-      <div style="margin-top: 50px" v-if="comments.data.length == 0">
-        暂无留言
-      </div>
+      <div style="margin-top: 50px" v-if="comments.data.length == 0">暂无留言</div>
       <div v-if="comments.data.length != 0" class="comments">
-        <div
-          class="comments-box"
-          v-for="(item, index) in comments.data"
-          :key="index"
-        >
+        <div class="comments-box" v-for="(item, index) in comments.data" :key="index">
           <CommentCard @setReply="setReply" :comment="item" />
         </div>
       </div>
@@ -114,28 +99,25 @@
       <div class="modal reply-modal">
         <label class="modal-bg"></label>
         <div class="modal-body">
-          <label @click="closeModal" class="btn-close" for="modal-reply"
-            >X</label
-          >
+          <label @click="openModal" class="btn-close" for="modal-reply">X</label>
           <div v-if="replyObj.expand" class="reply-obj">
             <div class="avatar border border-primary" :class="getBorderType">
               <img :src="replyObj.expand.head_img" alt srcset />
             </div>
             <div class="user-info">
               <div class="nickname">{{ replyObj.nickname }}</div>
-              <div class="content">
-                {{ replyObj.content || replyObj.expand.description }}
-              </div>
-              <div v-if="replyObj.create_time" class="create_time">
-                {{ getBeautifyTime(replyObj.create_time) }}
-              </div>
+              <div class="content">{{ replyObj.content || replyObj.expand.description }}</div>
+              <div
+                v-if="replyObj.create_time"
+                class="create_time"
+              >{{ getBeautifyTime(replyObj.create_time) }}</div>
             </div>
           </div>
           <div v-if="replyObj.expand" class="title">
             {{
-              replyObj.expand.pay
-                ? "发表对" + replyObj.nickname + "的评论"
-                : "回复" + replyObj.nickname + "的评论"
+            replyObj.expand.pay
+            ? "发表对" + replyObj.nickname + "的评论"
+            : "回复" + replyObj.nickname + "的评论"
             }}
           </div>
 
@@ -192,10 +174,7 @@
                 placeholder
               ></textarea>
             </div>
-            <div
-              v-show="error_tips"
-              class="alert alert-danger dismissible alert-reply"
-            >
+            <div v-show="error_tips" class="alert alert-danger dismissible alert-reply">
               {{ error_tips }}
               <label
                 @click="error_tips = ''"
@@ -207,14 +186,11 @@
                   transform: translateX(10px) scaleX(1.8) rotate(-3deg);
                 "
                 class="btn-close"
-                >X</label
-              >
+              >X</label>
             </div>
 
             <div class="row flex-right">
-              <button @click="submitComments" class="btn-secondary reply-btn">
-                发送
-              </button>
+              <button @click="submitComments" class="btn-secondary reply-btn">发送</button>
             </div>
           </div>
         </div>
@@ -233,12 +209,12 @@ export default {
   props: {
     article: {
       type: Object,
-      default: {},
+      default: {}
     },
     comments: {
       type: Object,
-      default: {},
-    },
+      default: {}
+    }
   },
   data() {
     return {
@@ -248,23 +224,23 @@ export default {
         email: "",
         nickname: "",
         url: "",
-        content: "",
+        content: ""
       },
-      error_tips: "",
+      error_tips: ""
     };
   },
   watch: {},
   computed: {
     getBeautifyTime() {
-      return function (time) {
+      return function(time) {
         return util.getBeautifyTime(time);
       };
     },
     getBorderType() {
-      return function () {
+      return function() {
         return "border-" + Math.floor(Math.random() * 6 + 1);
       };
-    },
+    }
   },
   methods: {
     getTagColor() {
@@ -276,16 +252,16 @@ export default {
       if (replyObj.id >= 0 && !replyObj.expand.pay) {
         this.comments_form.pid = replyObj.id;
       }
-      // 关闭topNav条 显示遮罩 优先级
+      //  显示遮罩 优先级
       if (process.browser) {
-        util.showTopNav(false);
+        util.openModal(true);
       }
       this.replyObj = replyObj;
     },
-    closeModal() {
-      // 开启topNav条 显示遮罩 优先级
+    openModal() {
+      //  显示遮罩 优先级
       if (process.browser) {
-        util.showTopNav(true);
+        util.openModal(false);
       }
     },
     submitComments(type) {
@@ -317,34 +293,34 @@ export default {
       if (this.$cookies.get("token")) {
         this.comments_form["login-token"] = this.$cookies.get("token");
       }
-      this.$axios.post("/comments", this.comments_form).then((res) => {
+      this.$axios.post("/comments", this.comments_form).then(res => {
         if (res.code == 200) {
           if (type != "mes") {
             if (process.browser) {
               document.getElementById("modal-reply").click();
-              // 开启topNav条 隐藏遮罩 优先级
-              util.showTopNav(true);
+              //  隐藏遮罩 优先级
+              util.openModal(false);
             }
           }
           this.comments_form = {
             email: "",
             nickname: "",
             url: "",
-            content: "",
+            content: ""
           };
           this.$emit("reloadComments");
         } else {
           this.error_tips = "*必填项不能为空";
         }
       });
-    },
+    }
   },
   created() {
     if (this.$cookies.get("token")) {
       this.isLogin = true;
     }
   },
-  mounted() {},
+  mounted() {}
 };
 </script>
 <style lang="scss" scoped>

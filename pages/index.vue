@@ -1,10 +1,6 @@
 <template>
-  <div id="top" class="wrapper" :class="{ isMobile: isMobile }">
-    <TopNav
-      @showNav="showNav"
-      :options="options"
-      class="top-nav-wrapper-master"
-    />
+  <div id="top" class="wrapper" :class="{ isShowNav: isShowNav,isShowAside: isShowAside }">
+    <TopNav @showNav="showNav()" :options="options" class="top-nav-wrapper-master" />
     <LeftNav
       :options="options"
       :article_sort="article_sort"
@@ -15,10 +11,29 @@
     />
     <div class="index-main">
       <nuxt-child :options="options" />
+      <Footer />
     </div>
 
     <div class="to-top">
-      <a href="#top" class="paper-btn margin">
+      <div @click="showAside()" class="paper-btn show-aside-btn">
+        <div style="margin-top:-9px">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16px"
+            height="16px"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="feather feather-twitch"
+          >
+            <path d="M21 2H3v16h5v4l4-4h5l4-4V2zm-10 9V7m5 4V7" />
+          </svg>
+        </div>
+      </div>
+      <a href="#top" class="paper-btn">
         <div>^</div>
       </a>
     </div>
@@ -38,12 +53,10 @@ export default {
         {
           hid: "description",
           name: "description",
-          content: this.options.keywords,
-        },
+          content: this.options.keywords
+        }
       ],
-      link: [
-        { rel: "icon", type: "image/x-icon", href: this.options.site_ico },
-      ],
+      link: [{ rel: "icon", type: "image/x-icon", href: this.options.site_ico }]
     };
   },
   async asyncData({ $axios }) {
@@ -58,15 +71,19 @@ export default {
   props: {},
   data() {
     return {
-      isMobile: false,
+      isShowNav: false,
+      isShowAside: false
     };
   },
   watch: {},
   computed: {},
   methods: {
     showNav() {
-      this.isMobile = !this.isMobile;
+      this.isShowNav = !this.isShowNav;
     },
+    showAside() {
+      this.isShowAside = !this.isShowAside;
+    }
   },
   created() {
     // if (process.client) {
@@ -75,12 +92,13 @@ export default {
   },
   beforeRouteUpdate(to, from, next) {
     if (process.browser) {
-      // 置顶topNav条 隐藏遮罩 优先级
-      util.showTopNav(true);
+      //  隐藏遮罩 优先级
+      util.openModal(false);
+      this.isShowNav = false;
       next();
     }
   },
-  mounted() {},
+  mounted() {}
 };
 </script>
 <style scoped  lang="scss">
@@ -91,6 +109,7 @@ export default {
   justify-content: space-between;
   box-sizing: border-box;
   margin: 0px auto;
+  box-sizing: border-box;
   .top-nav-wrapper-master {
     position: fixed;
     max-width: calc(1441px - 14px);
@@ -116,7 +135,6 @@ export default {
     margin-left: 280px;
     margin-top: 68px;
     padding: 7px;
-    margin-bottom: 70px;
     height: auto;
   }
 
@@ -125,6 +143,8 @@ export default {
     bottom: 50px;
     right: 100px;
     display: flex;
+    flex-direction: column;
+    margin: 10px;
     z-index: 999999;
     transition: all 0.25s;
     .paper-btn {
@@ -138,10 +158,10 @@ export default {
       border-top-right-radius: 200px 195px;
       border-bottom-right-radius: 160px 195px;
       border-bottom-left-radius: 185px 190px;
-    }
-    div {
-      transform: scaleX(1.3);
-      margin-top: 3px;
+      div {
+        transform: scaleX(1.3);
+        margin-top: 3px;
+      }
     }
   }
 }
@@ -165,11 +185,20 @@ export default {
 
 // 移动端适配
 @media screen and (max-width: 680px) {
+  .isShowModal {
+    .aside-wrapper {
+      height: 0px;
+    }
+    .to-top {
+      display: none;
+    }
+ 
+  }
   .wrapper {
     max-width: 100vw;
     min-width: 100vw;
     width: 100vw;
-    padding: 7px;
+    padding: 0px 7px;
     .top-nav-wrapper-master {
       margin-top: 15px;
       height: 45px;
@@ -178,33 +207,38 @@ export default {
     .index-main {
       width: 100%;
       margin-left: 0px;
-      margin-top: 60px;
-      transition: all 0.25s;
+      margin-top: 65px;
+      transition: opacity 0.25s;
     }
     .left-nav {
-      margin-left: -100vw;
+      left: -100vw;
       margin-top: 3px;
       opacity: 0;
       width: 100%;
-      position: static;
-      transition: all 0.25s;
+      position: fixed;
+      transition: all 0.5s;
     }
     .to-top {
       bottom: 20px;
       right: 10px;
     }
   }
-  .isMobile {
+  .isShowNav {
     .index-main {
-      margin-left: -100vw;
       opacity: 0;
-      height: 100vh;
-      overflow: hidden;
+      height: 0px;
+    }
+    .show-aside-btn {
+      display: none !important;
     }
     .left-nav {
-      margin-left: 0vw;
+      left: 0vw;
       opacity: 1;
     }
   }
+
+
+  
 }
 </style>
+ 

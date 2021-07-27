@@ -1,5 +1,5 @@
 <template>
-  <div class="right-wrapper article-wrapper">
+  <div class="right-wrapper article-wrapper-master">
     <div ref="articleMain" class="main">
       <ArticleDetail :article="article" :minHidth="asideHidth" class="part" />
     </div>
@@ -118,7 +118,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.article-wrapper {
+.article-wrapper-master {
   display: flex;
   .main {
     width: calc(100% - 400px);
@@ -143,5 +143,30 @@ export default {
   width: 0px;
   height: 0px;
   display: none;
+}
+
+// 移动端适配
+@media screen and (max-width: 680px) {
+  .article-wrapper-master {
+    .main {
+      min-width: 100%;
+      width: 100%;
+      transition: opacity 0.25s;
+    }
+    .aside {
+      transition: all 0.5s;
+    }
+  }
+
+  .isShowAside {
+    .aside {
+      left: 7px !important;
+      padding: 72px 7px 7px 7px;
+    }
+    .main {
+      opacity: 0;
+      height: 0px;
+    }
+  }
 }
 </style>

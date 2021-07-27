@@ -1,6 +1,6 @@
 <template>
   <div class="aside-wrapper">
-    <div v-if="type == 'article'" style="margin-bottom: 14px" class="part">
+    <div v-if="type == 'article'" style="margin-bottom: 14px" class="tagCloud part">
       <div class="main-title">标签云</div>
       <div v-if="article.expand.tag" class="tags-box">
         <span
@@ -8,12 +8,11 @@
           :key="index"
           class="badge"
           :class="tagsClass[index]"
-          >{{ item.name }}</span
-        >
+        >{{ item.name }}</span>
       </div>
       <div v-if="!article.expand.tag">暂无标签</div>
     </div>
-    <div v-if="type == 'article'" style="margin-bottom: 14px" class="part">
+    <div v-if="type == 'article'" style="margin-bottom: 14px" class="catalogue part">
       <div class="main-title" style="margin-bottom: 12px">目录</div>
       <div class="article-list vditor-outline" id="outline"></div>
     </div>
@@ -25,9 +24,7 @@
           <span class="badge secondary">{{ article.expand.comments }}</span>
         </div>
       </div>
-      <div style="margin-bottom: 10px" v-if="comments.data.length == 0">
-        暂无评论
-      </div>
+      <div style="margin-bottom: 10px" v-if="comments.data.length == 0">暂无评论</div>
       <label
         class="border border-secondary reply-main-btn"
         @click="
@@ -37,34 +34,30 @@
           })
         "
         for="modal-reply"
-        >{{ type == "article" || isLogin ? "发表评论" : "立即申请" }}</label
-      >
+      >{{ type == "article" || isLogin ? "发表评论" : "立即申请" }}</label>
       <input class="modal-state" id="modal-reply" type="checkbox" />
       <div class="modal reply-modal">
         <label class="modal-bg"></label>
         <div class="modal-body">
-          <label class="btn-close" @click="closeModal" for="modal-reply"
-            >X</label
-          >
+          <label class="btn-close" @click="openModal" for="modal-reply">X</label>
           <div v-if="replyObj.expand" class="reply-obj">
             <div class="avatar border border-primary" :class="getBorderType">
               <img :src="replyObj.expand.head_img" alt srcset />
             </div>
             <div class="user-info">
               <div class="nickname">{{ replyObj.nickname }}</div>
-              <div class="content">
-                {{ replyObj.content || replyObj.expand.description }}
-              </div>
-              <div v-if="replyObj.create_time" class="create_time">
-                {{ getBeautifyTime(replyObj.create_time) }}
-              </div>
+              <div class="content">{{ replyObj.content || replyObj.expand.description }}</div>
+              <div
+                v-if="replyObj.create_time"
+                class="create_time"
+              >{{ getBeautifyTime(replyObj.create_time) }}</div>
             </div>
           </div>
           <div v-if="replyObj.expand && type == 'article'" class="title">
             {{
-              replyObj.expand.pay
-                ? "发表对" + replyObj.nickname + "的评论"
-                : "回复" + replyObj.nickname + "的评论"
+            replyObj.expand.pay
+            ? "发表对" + replyObj.nickname + "的评论"
+            : "回复" + replyObj.nickname + "的评论"
             }}
           </div>
 
@@ -134,19 +127,14 @@
                 <li>名称：{{ replyObj.expand.nickname }}</li>
                 <li>
                   地址：{{
-                    replyObj.expand.address_url || "https://kamtao.com/"
+                  replyObj.expand.address_url || "https://kamtao.com/"
                   }}
                 </li>
                 <li>头像：{{ replyObj.expand.head_img }}</li>
-                <li>
-                  描述：{{ replyObj.expand.description || "做一个很酷的人" }}
-                </li>
+                <li>描述：{{ replyObj.expand.description || "做一个很酷的人" }}</li>
               </ul>
             </div>
-            <div
-              v-show="error_tips"
-              class="alert alert-danger dismissible alert-reply"
-            >
+            <div v-show="error_tips" class="alert alert-danger dismissible alert-reply">
               {{ error_tips }}
               <label
                 @click="error_tips = ''"
@@ -158,24 +146,17 @@
                   transform: translateX(10px) scaleX(1.8) rotate(-3deg);
                 "
                 class="btn-close"
-                >X</label
-              >
+              >X</label>
             </div>
 
             <div class="row flex-right">
-              <button @click="submitComments" class="btn-secondary reply-btn">
-                发送
-              </button>
+              <button @click="submitComments" class="btn-secondary reply-btn">发送</button>
             </div>
           </div>
         </div>
       </div>
       <div v-if="comments.data.length != 0" class="comments">
-        <div
-          class="comments-box"
-          v-for="(item, index) in comments.data"
-          :key="index"
-        >
+        <div class="comments-box" v-for="(item, index) in comments.data" :key="index">
           <CommentCard @setReply="setReply" :comment="item" />
         </div>
       </div>
@@ -194,16 +175,16 @@ export default {
   props: {
     type: {
       type: String,
-      default: {},
+      default: {}
     },
     article: {
       type: Object,
-      default: {},
+      default: {}
     },
     comments: {
       type: Object,
-      default: {},
-    },
+      default: {}
+    }
   },
   data() {
     return {
@@ -213,22 +194,22 @@ export default {
         email: "",
         nickname: "",
         url: "",
-        content: "",
+        content: ""
       },
       tagsClass: [],
-      error_tips: "",
+      error_tips: ""
     };
   },
   watch: {},
   computed: {
     getBeautifyTime(time) {
-      return function (time) {
+      return function(time) {
         return util.getBeautifyTime(time);
       };
     },
     getBorderType() {
       return "border-" + Math.floor(Math.random() * 6 + 1);
-    },
+    }
   },
   methods: {
     getTagColor() {
@@ -241,19 +222,19 @@ export default {
         this.$forceUpdate();
       }
     },
-    closeModal() {
-      // 开启topNav条  隐藏遮罩 优先级
+    openModal() {
+      //   隐藏遮罩 优先级
       if (process.browser) {
-        util.showTopNav(true);
+        util.openModal(false);
       }
     },
     setReply(replyObj) {
       if (replyObj.id >= 0 && !replyObj.expand.pay) {
         this.comments_form.pid = replyObj.id;
       }
-      // 关闭topNav条 显示遮罩 优先级
+      //  显示遮罩 优先级
       if (process.browser) {
-        util.showTopNav(false);
+        util.openModal(true);
       }
 
       this.replyObj = replyObj;
@@ -282,26 +263,26 @@ export default {
       if (this.$cookies.get("token")) {
         this.comments_form["login-token"] = this.$cookies.get("token");
       }
-      this.$axios.post("/comments", this.comments_form).then((res) => {
+      this.$axios.post("/comments", this.comments_form).then(res => {
         if (res.code == 200) {
           this.comments_form = {
             email: "",
             nickname: "",
             url: "",
-            content: "",
+            content: ""
           };
 
           if (process.browser) {
             document.getElementById("modal-reply").click();
-            // 开启topNav条 隐藏遮罩 优先级
-            util.showTopNav(true);
+            //  隐藏遮罩 优先级
+            util.openModal(false);
           }
           this.$emit("reloadComments");
         } else {
           this.error_tips = "*必填项不能为空";
         }
       });
-    },
+    }
   },
   created() {
     if (this.$cookies.get("token")) {
@@ -310,7 +291,7 @@ export default {
   },
   mounted() {
     this.getTagColor();
-  },
+  }
 };
 </script>
 <style lang="scss" scoped>
@@ -393,7 +374,7 @@ export default {
     }
     .nickname {
       font-size: 20px;
-      font-weight: 500;
+      font-weight: bold;
       margin-bottom: 5px;
     }
     .content {
@@ -461,6 +442,20 @@ export default {
 @media screen and (max-width: 1440px) {
   .aside {
     width: 280px;
+  }
+}
+
+@media screen and (max-width: 680px) {
+  .modal-body {
+    width: 100vw !important;
+    height: 100vh !important;
+    max-height: 100vh !important;
+    z-index: 9999999;
+    border: none;
+  }
+  
+  .catalogue { 
+    display: none;
   }
 }
 </style>

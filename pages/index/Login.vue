@@ -1,6 +1,6 @@
 <template>
   <main>
-    <div class="wrapper part">
+    <div class="login-wrapper part">
       <div id="login" class="form border" :class="borderStyle">
         <div id="owl-login" :class="{ password: isActivePassWord }">
           <div class="hand"></div>
@@ -9,9 +9,7 @@
             <div class="arm"></div>
             <div class="arm arm-r"></div>
           </div>
-          <div v-show="loginErrorTips" class="loginErrorTips">
-            {{ loginErrorTips }}
-          </div>
+          <div v-show="loginErrorTips" class="loginErrorTips">{{ loginErrorTips }}</div>
         </div>
         <div class="item">
           <label>账号</label>
@@ -35,9 +33,7 @@
           />
         </div>
         <div class="row flex-right" style="margin-bottom: 0px">
-          <button @click="login" class="paper-btn btn-secondary login-button">
-            登录
-          </button>
+          <button @click="login" class="paper-btn btn-secondary login-button">登录</button>
         </div>
       </div>
     </div>
@@ -52,11 +48,11 @@ export default {
     return {
       form: {
         account: "",
-        password: "",
+        password: ""
       },
       isActivePassWord: false,
       loginErrorTips: "",
-      borderStyle: "",
+      borderStyle: ""
     };
   },
   watch: {},
@@ -70,7 +66,7 @@ export default {
             "&password=" +
             this.form.password
         )
-        .then((res) => {
+        .then(res => {
           if (res.code == "200") {
             this.$cookies.set("token", res.data["login-token"]);
             this.$cookies.set("user", res.data.user);
@@ -82,7 +78,7 @@ export default {
     },
     getBorderType() {
       this.borderStyle = "border-" + Math.floor(Math.random() * 6 + 1);
-    },
+    }
   },
   created() {
     if (this.$cookies.get("token")) {
@@ -91,15 +87,15 @@ export default {
 
     this.getBorderType();
   },
-  mounted() {},
+  mounted() {}
 };
 </script>
 <style  scoped lang="less">
-.wrapper {
+.login-wrapper {
   position: relative;
   min-width: 980px;
   margin: 0 auto;
-  height: calc(100vh - 180px);
+  height: calc(100vh - 120px);
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -117,20 +113,15 @@ export default {
   .item {
     margin-bottom: 15px;
     label {
-      font-size: 18px;
+      font-size: 16px;
       line-height: 28px;
     }
   }
 }
 
-.title {
-  font-size: 20px;
-  color: #06c;
-  margin-bottom: 20px;
-}
-
 .form input {
   color: #000;
+  font-size: 16px;
   height: 35px;
 }
 
@@ -159,7 +150,8 @@ export default {
 
 .login-button {
   margin-top: 10px;
-  height: 40px;
+  height: 35px;
+  font-size: 16px;
   padding: 5px 15px;
 }
 
@@ -174,6 +166,25 @@ export default {
   padding: 10px 15px;
   font-size: 14px;
   color: #fff;
+}
+
+// 移动端适配
+@media screen and (max-width: 680px) {
+  .login-wrapper {
+    width: 100%;
+    height: calc(100vh - 120px);
+    min-width: 100%;
+    padding: 45px;
+    .form {
+      padding: 30px;
+    }
+    .loginErrorTips {
+      left: 50%;
+      transform: translateX(-50%) translateY(420px);
+      text-align: center;
+      border-radius: 10px;
+    }
+  }
 }
 
 // 猫头鹰动画

@@ -1,12 +1,7 @@
 <template>
   <div class="right-wrapper index-wrapper part">
     <no-ssr>
-      <div
-        v-masonry
-        transition-duration="0s"
-        item-selector=".card"
-        class="masonry"
-      >
+      <div v-masonry transition-duration="0s" item-selector=".card" class="masonry">
         <div
           v-masonry-tile
           class="card border border-primary"
@@ -16,10 +11,7 @@
         >
           <nuxt-link :to="'/Article?id=' + item.id">
             <img v-if="item.img_src" :src="item.img_src" />
-            <img
-              v-if="!item.img_src"
-              :src="'https://acg.toubiec.cn/random.php?' + index"
-            />
+            <img v-if="!item.img_src" :src="'https://acg.toubiec.cn/random.php?' + index" />
             <div class="card-body">
               <h4 class="card-title">{{ item.title }}</h4>
               <h5 class="card-subtitle">{{ item.description }}</h5>
@@ -29,8 +21,7 @@
                   :key="index"
                   class="badge"
                   :class="getTagColor()"
-                  >{{ tag.name }}</span
-                >
+                >{{ tag.name }}</span>
               </div>
               <div class="card-text">
                 <div>
@@ -65,9 +56,7 @@
                     stroke-linejoin="round"
                     class="feather feather-message-square"
                   >
-                    <path
-                      d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
-                    />
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
                   </svg>
                   {{ item.expand.comments }}
                 </div>
@@ -116,7 +105,7 @@
     </no-ssr>
     <div @click="getArticle()" class="more-btn">
       {{
-        article.data.length != article.count - 2 ? "点击加载更多" : "没有更多了"
+      article.data.length != article.count - 2 ? "点击加载更多" : "没有更多了"
       }}
     </div>
   </div>
@@ -128,12 +117,12 @@ import util from "@/util/index";
 
 export default {
   components: {
-    "no-ssr": NoSSR,
+    "no-ssr": NoSSR
   },
   async asyncData({ $axios }) {
     const article = (await $axios.get("/article?limit=20")).data;
     article.data = article.data.filter(
-      (item) => ["留言墙", "友情链接"].indexOf(item.title) < 0
+      item => ["留言墙", "友情链接"].indexOf(item.title) < 0
     );
     return { article };
   },
@@ -141,22 +130,22 @@ export default {
   data() {
     return {
       page: 1,
-      limit: 20,
+      limit: 20
     };
-  },  
+  },
   watch: {},
   computed: {
     getBeautifyTime() {
-      return function (time) {
+      return function(time) {
         return util.getBeautifyTime(time);
       };
     },
     getBorderType() {
-      return function () {
+      return function() {
         return "border-" + Math.floor(Math.random() * 6 + 1);
       };
-    },
-  }, 
+    }
+  },
   methods: {
     getTagColor() {
       var tag_options = ["", "secondary", "success", "warning", "danger"];
@@ -180,12 +169,12 @@ export default {
         params = {
           id: this.isSelect_article_id,
           limit: this.limit,
-          page: this.page,
+          page: this.page
         };
         this.article.data = this.article.concat(
           (
             await this.$axios.get("/article-sort", {
-              params,
+              params
             })
           ).data.expand.data
         );
@@ -194,15 +183,15 @@ export default {
         this.article.data = this.article.data.concat(
           (
             await this.$axios.get("/article", {
-              params,
+              params
             })
           ).data.data
         );
       }
-    },
+    }
   },
   created() {},
-  mounted() {},
+  mounted() {}
 };
 </script> 
 <style lang="scss" scoped>
@@ -282,6 +271,14 @@ export default {
     .card {
       width: calc(100% / 2 - 35px);
     }
+  }
+}
+
+// 移动端适配
+@media screen and (max-width: 680px) {
+  .masonry .card {
+    width: 100%;
+    margin: 15px 0px;
   }
 }
 </style>

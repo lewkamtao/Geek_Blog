@@ -3,14 +3,8 @@
     <UserInfo class="user-info" :options="options" />
     <Menu />
     <Pages :pages="pages" />
-    <ArticleSort
-      class="article-sort"
-      :article_sort="article_sort"
-      :article="article"
-    />
-
+    <ArticleSort class="article-sort" :article_sort="article_sort" :article="article" />
     <LinksCard :links="links" />
-
     <div class="copy">{{ options.copy }}</div>
   </div>
 </template>
@@ -22,24 +16,24 @@ export default {
   props: {
     options: {
       type: Object,
-      default: {},
+      default: {}
     },
     article_sort: {
       type: Array,
-      default: [],
+      default: []
     },
     article: {
       type: Object,
-      default: [],
+      default: []
     },
     pages: {
       type: Array,
-      default: [],
+      default: []
     },
     links: {
       type: Array,
-      default: [],
-    },
+      default: []
+    }
   },
   data() {
     return {};
@@ -48,7 +42,7 @@ export default {
   computed: {},
   methods: {},
   created() {},
-  mounted() {},
+  mounted() {}
 };
 </script>
 <style lang="scss" scoped>
@@ -60,13 +54,17 @@ export default {
     margin-top: 15px;
   }
   .copy {
-    margin: 25px 0px;
+    font-size: 13px;
+    color: #999;
+    letter-spacing: 0.5px;
+    text-align: center;
+    margin: -10px 0px 40px 0px;
   }
 }
 // 移动端适配
 @media screen and (max-width: 680px) {
   .left-nav {
-    padding: 50px 7px 7px 7px;
+    padding: 56px 14px 14px 14px;
   }
 }
 </style>

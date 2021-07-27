@@ -21,24 +21,21 @@
             type="text"
           />
           <div class="res-box" :class="{ 'is-show-res-box': isShowResBox }">
-            <div class="title">
-              {{ searchArticle.length > 0 ? "搜索结果推荐文章" : "暂无结果" }}
-            </div>
+            <div class="title">{{ searchArticle.length > 0 ? "搜索结果推荐文章" : "暂无结果" }}</div>
             <ul>
               <nuxt-link
                 v-for="(item, index) in searchArticle"
                 :key="index"
                 :to="'/Article?id=' + item.id"
-                >{{ item.title }}</nuxt-link
-              >
+              >{{ item.title }}</nuxt-link>
             </ul>
           </div>
         </div>
       </div>
       <div class="right-links">
         <nuxt-link v-if="isLogin" to="/about">{{ user.nickname }}</nuxt-link>
-        <nuxt-link v-else to="/login"
-          ><svg
+        <nuxt-link v-else to="/login">
+          <svg
             style="margin-top: 5px"
             xmlns="http://www.w3.org/2000/svg"
             width="20px"
@@ -53,8 +50,9 @@
           >
             <path
               d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"
-            ></path></svg
-        ></nuxt-link>
+            />
+          </svg>
+        </nuxt-link>
 
         <!-- <fieldset class="form-group mode-setting">
           <label for="mode" class="paper-switch-label">{{ mode ? "黑夜" : "白天" }}</label>
@@ -74,8 +72,8 @@ export default {
   props: {
     options: {
       type: Object,
-      default: {},
-    },
+      default: {}
+    }
   },
   data() {
     return {
@@ -85,24 +83,24 @@ export default {
       searchValue: "",
       timer: "",
       searchArticle: [],
-      isShowResBox: false,
+      isShowResBox: false
     };
   },
   watch: {
-    mode: function (val) {
+    mode: function(val) {
       if (val) {
         document.getElementsByTagName("body")[0].className = "dark";
       } else {
         document.body.removeAttribute("class");
       }
     },
-    searchValue: function (val) {
+    searchValue: function(val) {
       var that = this;
       clearTimeout(this.timer);
-      this.timer = setTimeout(async function () {
+      this.timer = setTimeout(async function() {
         that.searchArticleFn();
       }, 250);
-    },
+    }
   },
   computed: {},
   methods: {
@@ -113,13 +111,13 @@ export default {
     },
     hidResBox() {
       var that = this;
-      setTimeout(function () {
+      setTimeout(function() {
         that.isShowResBox = false;
       }, 500);
     },
     showNav() {
       this.$emit("showNav");
-    },
+    }
   },
   created() {
     if (this.$cookies.get("token")) {
@@ -135,7 +133,7 @@ export default {
     }
     next();
   },
-  mounted() {},
+  mounted() {}
 };
 </script>
 <style lang="scss" scoped>
@@ -288,12 +286,19 @@ export default {
   top: 0px;
   width: 100%;
   height: 100%;
-  z-index: 999;
+  z-index: -9;
   border-radius: 15px;
-  display: none;
-  transition: all 0.3s;
+  transition: opacity 0.25s;
+  opacity: 0;
   background: rgba($color: #000000, $alpha: 0.55);
 }
+.isShowModal {
+  .top-nav-mask {
+    z-index: 9;
+    opacity: 1 !important;
+  }
+}
+
 @media screen and (max-width: 1480px) {
   .top-nav-mask {
     width: calc(100% - 30px);
@@ -306,12 +311,17 @@ export default {
 
 // 移动端适配
 @media screen and (max-width: 680px) {
+  .isShowModal {
+    .top-nav-wrapper {
+      display: none;
+    }
+  }
   .top-nav-wrapper {
     .top-nav {
       height: 45px;
       padding: 0px 10px;
       .left {
-        width: calc(100% - 50px);
+        width: calc(100% - 35px);
         .pc-logo {
           display: none;
         }
