@@ -2,7 +2,7 @@
   * 人性化时间处理 传入时间 YY-MM-dd hh-mm-ss
   */
  function getBeautifyTime(date) {
-     var timestamp = new Date(date).getTime()
+     var timestamp = new Date(date.replace(/-/g, '/')).getTime()
      var mistiming = Math.round(new Date() / 1000) - timestamp / 1000;
      var postfix = mistiming > 0 ? '前' : '后'
      mistiming = Math.abs(mistiming)
