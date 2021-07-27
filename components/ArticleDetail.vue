@@ -280,7 +280,7 @@ export default {
       margin-bottom: 24px;
     }
     .summary {
-      display: flex; create_time
+      display: flex; 
       justify-content: center;
       align-items: center;
       white-space: nowrap;
@@ -306,7 +306,7 @@ export default {
     margin-top: 150px;
   }
 
-  @media screen and (max-width: 1440px) {
+  @media screen and (max-width: 1440px) { 
     header {
       text-align: left;
       .summary {

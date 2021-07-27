@@ -156,7 +156,7 @@ export default {
         return "border-" + Math.floor(Math.random() * 6 + 1);
       };
     },
-  },
+  }, 
   methods: {
     getTagColor() {
       var tag_options = ["", "secondary", "success", "warning", "danger"];
