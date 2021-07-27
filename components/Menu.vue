@@ -9,8 +9,11 @@
         @click="toFn(item.type)"
         class="paper-btn border"
         :class="getBtnColor(index)"
-      >{{ item.title }}</nuxt-link>
-      <div v-if="isLogin" @click="loginOut" class="paper-btn border btn-danger">退出登录</div>
+        >{{ item.title }}</nuxt-link
+      >
+      <div v-if="isLogin" @click="loginOut" class="paper-btn border btn-danger">
+        退出登录
+      </div>
     </div>
   </div>
 </template>
@@ -24,7 +27,7 @@ export default {
       menu: [
         {
           path: "/",
-          title: "首页"
+          title: "首页",
         },
         // {
         //   path: "/About",
@@ -40,20 +43,20 @@ export default {
         // },
         {
           path: "/Links",
-          title: "友情链接"
+          title: "友情链接",
         },
         {
           path: "/Message",
-          title: "留言墙"
-        }
+          title: "留言墙",
+        },
       ],
-      isLogin: false
+      isLogin: false,
     };
   },
   watch: {},
   computed: {
     getBtnColor(index) {
-      return function(index) {
+      return function (index) {
         var tag_options = [
           "primary",
           "success",
@@ -66,18 +69,21 @@ export default {
           "warning",
 
           "success-outline",
-          "danger-outline"
+          "danger-outline",
         ];
         // var index = Math.floor(Math.random() * tag_options.length);
         return "btn-" + tag_options[index];
       };
-    }
+    },
   },
   methods: {
     loginOut() {
       this.$cookies.remove("token");
-      location.reload();
-    }
+      this.$router.push("/");
+      setTimeout(function () {
+        location.reload();
+      }, 200);
+    },
   },
   created() {
     if (this.$cookies.get("token")) {
@@ -92,7 +98,7 @@ export default {
     }
     next();
   },
-  mounted() {}
+  mounted() {},
 };
 </script>
 <style lang="scss" scoped>
@@ -115,17 +121,17 @@ export default {
 
   a {
     width: 100%;
-    padding: 8px 15px 8px 25px;
+    padding: 8px 15px 8px 15px;
     margin-bottom: 8px;
-    font-size: 18px;
+    font-size: 16px;
     background-image: none;
     text-align: left;
   }
   div {
     width: 100%;
-    padding: 8px 15px 8px 25px;
+    padding: 8px 15px 8px 15px;
     margin-bottom: 8px;
-    font-size: 18px;
+    font-size: 16px;
     text-align: left;
   }
 }

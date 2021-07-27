@@ -6,7 +6,7 @@
       <select
         id="paperSelects1"
         v-model="isSelect_article_id"
-        @change="getArticle('type')"
+        @change="getArticle('new')"
       >
         <option value>全部文章</option>
         <option
@@ -29,12 +29,13 @@
         >
           {{ item.title }}
         </nuxt-link>
-        <div
-          class="more-btn"
-          v-show="nav_article.data.length != nav_article.count"
-          @click="getArticle()"
-        >
-          点击加载更多
+        <div class="more-btn" v-show="nav_article.count == 0">暂无文章</div>
+        <div class="more-btn" v-show="nav_article.count != 0" @click="getArticle()">
+          {{
+            nav_article.data.length != nav_article.count
+              ? "点击加载更多"
+              : "没有更多了"
+          }}
         </div>
       </ul>
     </div>
@@ -66,9 +67,17 @@ export default {
   computed: {},
   methods: {
     async getArticle(type) {
+      if (
+        this.nav_article.data.length == this.nav_article.count &&
+        type != "new"
+      ) {
+        return;
+      }
+
       if (type == "new") {
         this.page = 1; // 重新选择分类
-        this.nav_article = [];
+        this.nav_article.data = [];
+        this.$forceUpdate();
       } else {
         this.page += 1; // 页码增加
       }
@@ -79,22 +88,32 @@ export default {
           limit: this.limit,
           page: this.page,
         };
-        this.nav_article.data = this.nav_article.concat(
-          (
-            await this.$axios.get("/article-sort", {
-              params,
-            })
-          ).data.expand.data
-        );
+        var article = (
+          await this.$axios.get("/article-sort", {
+            params,
+          })
+        ).data.expand;
+        this.nav_article = {
+          count: article.count,
+          data: this.nav_article.data.concat(article.data),
+        };
+        this.$forceUpdate();
       } else {
-        params = { limit: this.limit, page: this.page };
-        this.nav_article.data = this.nav_article.data.concat(
-          (
-            await this.$axios.get("/article", {
-              params,
-            })
-          ).data.data
-        );
+        params = {
+          limit: this.limit,
+          page: this.page,
+        };
+
+        var article = (
+          await this.$axios.get("/article", {
+            params,
+          })
+        ).data;
+        this.nav_article = {
+          count: article.count,
+          data: this.nav_article.data.concat(article.data),
+        };
+        this.$forceUpdate();
       }
     },
   },
@@ -144,7 +163,7 @@ ul {
     background: rgba($color: #000000, $alpha: 0.15);
   }
   a:hover {
-    background: rgba($color: #000000, $alpha: 0.1);
+   background: rgba($color: #000, $alpha: 0.05);
   }
   a:hover::before {
     display: none;

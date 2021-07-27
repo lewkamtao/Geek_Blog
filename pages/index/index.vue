@@ -131,7 +131,7 @@ export default {
     "no-ssr": NoSSR,
   },
   async asyncData({ $axios }) {
-    const article = (await $axios.get("/article?limit=10")).data;
+    const article = (await $axios.get("/article?limit=20")).data;
     article.data = article.data.filter(
       (item) => ["留言墙", "友情链接"].indexOf(item.title) < 0
     );
@@ -141,9 +141,9 @@ export default {
   data() {
     return {
       page: 1,
-      limit: 10,
+      limit: 20,
     };
-  },
+  },  
   watch: {},
   computed: {
     getBeautifyTime() {
@@ -211,12 +211,12 @@ export default {
   flex-direction: column;
 }
 .more-btn {
-  margin-top: 60px;
+  margin-top: 20px;
   width: 100%;
   height: 60px;
   line-height: 60px;
   background: #eee;
-  font-size: 20px;
+  font-size: 18px;
   text-align: center;
   opacity: 0.4;
   color: #000;
@@ -247,7 +247,9 @@ export default {
   }
   .card-title {
     color: #000;
-    font-size: 24px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #000;
   }
   .card-body {
     padding: 20px;
@@ -262,6 +264,7 @@ export default {
     margin-bottom: 0px;
     display: flex;
     white-space: nowrap;
+    opacity: 0.6;
     flex-wrap: wrap;
     div {
       margin-right: 12px;

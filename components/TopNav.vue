@@ -5,7 +5,7 @@
       <div class="left">
         <nuxt-link class="pc-logo" to="/">
           <div class="logo">
-            <img width="35" src="https://cos.tngeek.com/logo.png" alt srcset />
+            <img width="30" src="https://cos.tngeek.com/logo.png" alt srcset />
             <div class="title">{{ options.title }}</div>
           </div>
         </nuxt-link>
@@ -16,25 +16,45 @@
           <input
             placeholder="擅用搜索，事半功倍"
             v-model="searchValue"
-            @focus="isShowResBox=true,searchArticleFn()"
+            @focus="(isShowResBox = true), searchArticleFn()"
             @blur="hidResBox()"
             type="text"
           />
-          <div class="res-box" :class="{'is-show-res-box':isShowResBox}">
-            <div class="title">{{searchArticle.length>0? "搜索结果推荐文章":"暂无结果"}}</div>
+          <div class="res-box" :class="{ 'is-show-res-box': isShowResBox }">
+            <div class="title">
+              {{ searchArticle.length > 0 ? "搜索结果推荐文章" : "暂无结果" }}
+            </div>
             <ul>
               <nuxt-link
                 v-for="(item, index) in searchArticle"
                 :key="index"
                 :to="'/Article?id=' + item.id"
-              >{{item.title}}</nuxt-link>
+                >{{ item.title }}</nuxt-link
+              >
             </ul>
           </div>
         </div>
       </div>
       <div class="right-links">
         <nuxt-link v-if="isLogin" to="/about">{{ user.nickname }}</nuxt-link>
-        <nuxt-link v-else to="/login">登录</nuxt-link>
+        <nuxt-link v-else to="/login"
+          ><svg
+            style="margin-top: 5px"
+            xmlns="http://www.w3.org/2000/svg"
+            width="20px"
+            height="20px"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="feather feather-key"
+          >
+            <path
+              d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"
+            ></path></svg
+        ></nuxt-link>
 
         <!-- <fieldset class="form-group mode-setting">
           <label for="mode" class="paper-switch-label">{{ mode ? "黑夜" : "白天" }}</label>
@@ -54,8 +74,8 @@ export default {
   props: {
     options: {
       type: Object,
-      default: {}
-    }
+      default: {},
+    },
   },
   data() {
     return {
@@ -65,24 +85,24 @@ export default {
       searchValue: "",
       timer: "",
       searchArticle: [],
-      isShowResBox: false
+      isShowResBox: false,
     };
   },
   watch: {
-    mode: function(val) {
+    mode: function (val) {
       if (val) {
         document.getElementsByTagName("body")[0].className = "dark";
       } else {
         document.body.removeAttribute("class");
       }
     },
-    searchValue: function(val) {
+    searchValue: function (val) {
       var that = this;
       clearTimeout(this.timer);
-      this.timer = setTimeout(async function() {
+      this.timer = setTimeout(async function () {
         that.searchArticleFn();
       }, 250);
-    }
+    },
   },
   computed: {},
   methods: {
@@ -93,13 +113,13 @@ export default {
     },
     hidResBox() {
       var that = this;
-      setTimeout(function() {
+      setTimeout(function () {
         that.isShowResBox = false;
       }, 500);
     },
-    showNav(){
-      this.$emit("showNav")
-    }
+    showNav() {
+      this.$emit("showNav");
+    },
   },
   created() {
     if (this.$cookies.get("token")) {
@@ -115,7 +135,7 @@ export default {
     }
     next();
   },
-  mounted() {}
+  mounted() {},
 };
 </script>
 <style lang="scss" scoped>
@@ -129,7 +149,7 @@ export default {
     height: 60px;
     background: rgba(255, 255, 255, 0.8);
     -webkit-backdrop-filter: saturate(200%) blur(20px);
-    box-shadow: 0px 15px 35px -15px rgb(0 0 0 / 15%);
+    box-shadow: 0px 0px 15px -15px rgb(0 0 0 / 15%);
     backdrop-filter: saturate(200%) blur(20px);
     padding: 0px 20px;
     display: flex;
@@ -147,7 +167,8 @@ export default {
       .logo {
         display: flex;
         align-items: center;
-        font-size: 24px;
+        font-size: 20px;
+        font-weight: bold;
         img {
           margin-right: 10px;
         }
@@ -169,7 +190,7 @@ export default {
           height: 40px;
           padding-left: 20px;
           font-size: 15px;
-          border-radius: 15px;
+          border-radius: 12px;
           border: none;
           background: #eee;
           transition: all 0.25s;
@@ -199,7 +220,7 @@ export default {
               width: 100%;
               padding: 3px 10px;
               border-radius: 10px;
-           
+              font-size: 13px;
             }
             a::before {
               position: absolute;
@@ -246,7 +267,14 @@ export default {
       a {
         white-space: nowrap;
         font-size: 18px;
-        margin-right: 20px;
+        margin-right: 10px;
+        transition: all 0.25s;
+      }
+      a:hover {
+        transform: scale(1.1);
+      }
+      a:active {
+        transform: scale(0.9);
       }
     }
   }

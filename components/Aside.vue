@@ -339,15 +339,15 @@ export default {
   }
   .badge {
     margin: 0px 0px 0px 10px;
-    font-size: 15px;
+    font-size: 14px;
   }
 }
 .reply-main-btn {
   width: 100%;
   height: 40px;
-  line-height: 40px;
+  line-height: 35px;
   color: #0071de;
-  font-size: 24px;
+  font-size: 18px;
   background: rgba($color: #0071de, $alpha: 0.1);
   opacity: 0.8;
   text-align: center;
@@ -442,7 +442,7 @@ export default {
         label {
           display: flex;
           align-items: center;
-          font-size: 18px;
+          font-size: 16px;
         }
         .badge {
           font-size: 12px;

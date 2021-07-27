@@ -4,7 +4,7 @@
       <div class="avatar border border-primary" :class="getBorderType()">
         <img :src="options.site_img" alt srcset />
       </div>
-      <div class="title">{{ options.title }}</div>
+      <div class="nickname">{{ options.title }}</div>
       <div class="description">{{ options.description }}</div>
     </div>
   </div>
@@ -64,14 +64,15 @@ export default {
       border-top-right-radius: 0px;
     }
   }
-  .title {
+  .nickname {
     margin: 22px 0px 14px 0px;
     color: #fff;
-    font-size: 20px;
+    font-size: 18px;
+    font-weight: bold;
     background: #0071de;
   }
   .description {
-    font-size: 15px;
+    font-size: 14px;
     line-height: 22px;
     color: #000;
     margin-bottom: 10px;

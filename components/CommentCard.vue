@@ -14,9 +14,7 @@
       <div class="right">
         <div class="nickname">
           {{ comment.nickname }}
-          <label
-            v-if="comment.users_id == 2"
-            class="badge reply-btn master"
+          <label v-if="comment.users_id == 2" class="badge reply-btn master"
             >博主</label
           >
           <label
@@ -53,9 +51,7 @@
           <div class="right">
             <div class="nickname">
               {{ son.nickname }}
-              <label
-                v-if="son.users_id == 2"
-                class="badge reply-btn master"
+              <label v-if="son.users_id == 2" class="badge reply-btn master"
                 >博主</label
               >
               <label
@@ -148,7 +144,8 @@ export default {
   }
 
   .comment-card {
-    padding: 5px;
+    padding: 10px 5px;
+    margin-bottom: 10px;
     display: flex;
     .left {
       width: 40px;
@@ -173,8 +170,12 @@ export default {
     }
     .right {
       width: calc(100% - 60px);
+      .nickname {
+        font-size: 14px;
+        font-weight: bold;
+      }
       .content {
-        color: #666;
+        color: #333;
         margin: 7px 0px 10px 0px;
         font-size: 14px;
         line-height: 20px;
@@ -185,7 +186,7 @@ export default {
         font-style: italic;
       }
       .create_time {
-        font-size: 14px;
+        font-size: 12px;
         color: #999;
       }
     }
