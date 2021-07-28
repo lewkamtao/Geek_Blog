@@ -19,7 +19,7 @@
           </div>
         </a>
       </ul>
-      <nuxt-link to="/links" class="more-btn">查看更多</nuxt-link>
+      <nuxt-link to="/Links" class="more-btn">查看更多</nuxt-link>
     </div>
   </div>
 </template>

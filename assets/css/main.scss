@@ -150,3 +150,12 @@ html::-webkit-scrollbar-thumb:hover {
         background: rgba($color: #000, $alpha: 0.05);
     }
 }
+
+// 移动端适配
+@media screen and (max-width: 680px) {
+    .main-title {
+        color: #333;
+        font-size: 16px;
+        font-weight: 600;
+    }
+}
