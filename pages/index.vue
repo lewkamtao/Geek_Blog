@@ -122,7 +122,7 @@ export default {
       window.location.protocol = "https:";
   }
 };
-</script>
+</script> 
 <style scoped  lang="scss">
 .wrapper {
   max-width: 1441px;
