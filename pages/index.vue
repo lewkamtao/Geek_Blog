@@ -15,12 +15,16 @@
     </div>
 
     <div class="to-top">
-      <div @click="showAside()" v-show="isShowOpenAsideBtn" class="show-aside-btn">
-        <div style="margin-top: -9px">
+      <div
+        @click="showAside()"
+        class="show-aside-btn"
+        :class="{isShowOpenAsideBtn:isShowOpenAsideBtn}"
+      >
+        <div style="margin-top: -5px">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="16px"
-            height="16px"
+            width="20px"
+            height="20px"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
@@ -172,6 +176,9 @@ export default {
       border-top-right-radius: 200px 195px;
       border-bottom-right-radius: 160px 195px;
       border-bottom-left-radius: 185px 190px;
+      background: #fff;
+      border: #000 solid 2px;
+      margin-bottom: 20px;
     }
     .paper-btn {
       font-size: 30px;
@@ -246,6 +253,9 @@ export default {
     .to-top {
       bottom: 20px;
       right: 10px;
+      .isShowOpenAsideBtn {
+        display: flex;
+      }
     }
   }
   .isShowNav {
