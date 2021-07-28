@@ -7,7 +7,7 @@
 <script>
 export default {
   data: () => ({
-    loading: false
+    loading: false,
   }),
   methods: {
     start() {
@@ -15,19 +15,24 @@ export default {
     },
     finish() {
       var that = this;
-      setTimeout(function() {
+      setTimeout(function () {
         that.loading = false;
       }, 500);
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style scoped>
 .loading-page {
   position: fixed;
-  bottom:50px;
+  bottom: 50px;
   left: -50px;
   z-index: 9999999999;
+}
+@media screen and (max-width: 680px) {
+  .loading-page {
+    display: none;
+  }
 }
 </style>

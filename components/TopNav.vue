@@ -337,7 +337,7 @@ export default {
           display: none;
         }
         .mobile-logo {
-          display: block;
+          display: block;margin-right: 10px;
         }
         .logo {
           display: inline-block;

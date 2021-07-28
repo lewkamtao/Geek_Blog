@@ -1,17 +1,36 @@
 <template>
-  <div class="right-wrapper index-wrapper part">
+  <div class="index-wrapper-master part">
     <no-ssr>
-      <div v-masonry transition-duration="0s" item-selector=".card" class="masonry">
+      <div v-show="!hidMasonry" class="loading">
+        <img
+          width="300"
+          src="https://kamtao-1255310647.cos.ap-chengdu.myqcloud.com/img/loading.gif"
+          alt
+          srcset
+        />
+      </div>
+
+      <div
+        v-masonry
+        transition-duration="0s"
+        item-selector=".card"
+        class="masonry"
+        v-show="hidMasonry"
+      >
         <div
           v-masonry-tile
           class="card border border-primary"
           :class="getBorderType()"
           :key="index"
+          @click="hidMasonry = false"
           v-for="(item, index) in article.data"
         >
           <nuxt-link :to="'/Article?id=' + item.id">
             <img v-if="item.img_src" :src="item.img_src" />
-            <img v-if="!item.img_src" :src="'https://acg.toubiec.cn/random.php?' + index" />
+            <img
+              v-if="!item.img_src"
+              :src="'https://acg.toubiec.cn/random.php?' + index"
+            />
             <div class="card-body">
               <h4 class="card-title">{{ item.title }}</h4>
               <h5 class="card-subtitle">{{ item.description }}</h5>
@@ -21,7 +40,8 @@
                   :key="index"
                   class="badge"
                   :class="getTagColor()"
-                >{{ tag.name }}</span>
+                  >{{ tag.name }}</span
+                >
               </div>
               <div class="card-text">
                 <div>
@@ -56,7 +76,9 @@
                     stroke-linejoin="round"
                     class="feather feather-message-square"
                   >
-                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                    <path
+                      d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+                    />
                   </svg>
                   {{ item.expand.comments }}
                 </div>
@@ -105,7 +127,7 @@
     </no-ssr>
     <div @click="getArticle()" class="more-btn">
       {{
-      article.data.length != article.count - 2 ? "点击加载更多" : "没有更多了"
+        article.data.length != article.count - 2 ? "点击加载更多" : "没有更多了"
       }}
     </div>
   </div>
@@ -117,12 +139,12 @@ import util from "@/util/index";
 
 export default {
   components: {
-    "no-ssr": NoSSR
+    "no-ssr": NoSSR,
   },
   async asyncData({ $axios }) {
     const article = (await $axios.get("/article?limit=10")).data;
     article.data = article.data.filter(
-      item => ["留言墙", "友情链接"].indexOf(item.title) < 0
+      (item) => ["留言墙", "友情链接"].indexOf(item.title) < 0
     );
     return { article };
   },
@@ -130,21 +152,22 @@ export default {
   data() {
     return {
       page: 1,
-      limit: 10
+      limit: 10,
+      hidMasonry: true,
     };
   },
   watch: {},
   computed: {
     getBeautifyTime() {
-      return function(time) {
+      return function (time) {
         return util.getBeautifyTime(time);
       };
     },
     getBorderType() {
-      return function() {
+      return function () {
         return "border-" + Math.floor(Math.random() * 6 + 1);
       };
-    }
+    },
   },
   methods: {
     getTagColor() {
@@ -169,12 +192,12 @@ export default {
         params = {
           id: this.isSelect_article_id,
           limit: this.limit,
-          page: this.page
+          page: this.page,
         };
         this.article.data = this.article.concat(
           (
             await this.$axios.get("/article-sort", {
-              params
+              params,
             })
           ).data.expand.data
         );
@@ -183,21 +206,20 @@ export default {
         this.article.data = this.article.data.concat(
           (
             await this.$axios.get("/article", {
-              params
+              params,
             })
           ).data.data
         );
       }
-    }
+    },
   },
   created() {},
-  mounted() {}
+  mounted() {},
 };
 </script> 
 <style lang="scss" scoped>
-.index-wrapper {
-  display: flex;
-  flex-direction: column;
+.index-wrapper-master {
+  width: 100%;
 }
 .more-btn {
   margin-top: 20px;
@@ -212,6 +234,16 @@ export default {
   border-radius: 15px;
   transition: opacity 0.25s;
   cursor: pointer;
+}
+.loading {
+  width: 100%;
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  img {
+    width: 400px;
+  }
 }
 .more-btn:hover {
   opacity: 1;
@@ -276,7 +308,7 @@ export default {
 
 // 移动端适配
 @media screen and (max-width: 680px) {
-  .index-wrapper {
+  .index-wrapper-master {
     padding: 0px 15px 15px 15px;
   }
   .masonry .card {
@@ -288,6 +320,16 @@ export default {
     line-height: 40px;
     font-size: 14px;
     border-radius: 10px;
+  }
+  .loading {
+    width: 100%;
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    img {
+      width: 400px;
+    }
   }
 }
 </style>
