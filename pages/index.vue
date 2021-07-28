@@ -116,7 +116,10 @@ export default {
       next();
     }
   },
-  mounted() {}
+  mounted() {
+    if (window.location.protocol == "http:")
+      window.location.protocol = "https:";
+  }
 };
 </script>
 <style scoped  lang="scss">
