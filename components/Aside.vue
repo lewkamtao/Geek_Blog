@@ -151,6 +151,7 @@
 
             <div class="row flex-right">
               <button @click="submitComments" class="btn-secondary reply-btn">发送</button>
+              {{err}}
             </div>
           </div>
         </div>
@@ -196,6 +197,7 @@ export default {
         url: "",
         content: ""
       },
+      err: "",
       tagsClass: [],
       error_tips: ""
     };
@@ -264,6 +266,7 @@ export default {
         this.comments_form["login-token"] = this.$cookies.get("token");
       }
       this.$axios.post("/comments", this.comments_form).then(res => {
+        this.err = res;
         if (res.code == 200) {
           this.comments_form = {
             email: "",
@@ -271,7 +274,6 @@ export default {
             url: "",
             content: ""
           };
-
           if (process.browser) {
             document.getElementById("modal-reply").click();
             //  隐藏遮罩 优先级
