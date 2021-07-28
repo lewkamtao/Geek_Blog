@@ -3,7 +3,7 @@
     <div class="by">
       Powered by
       <a href="https://inis.cc/">inis</a> | 本站自豪使用了全世界最好的Vue框架
-      <br />Copyright (c) 2021-present, Kamtao (Geek) Lew
+      <br />Copyright (c) 2021-present, Kamtao (To) Lew
     </div>
   </div>
 </template>

@@ -6,7 +6,7 @@
         <nuxt-link class="pc-logo" to="/">
           <div class="logo">
             <img width="30" src="https://cos.tngeek.com/logo.png" alt srcset />
-            <div class="title">{{ options.title }}</div>
+            <div class="title">Geek</div>
           </div>
         </nuxt-link>
         <div @click="showNav()" class="logo mobile-logo">
@@ -21,13 +21,16 @@
             type="text"
           />
           <div class="res-box" :class="{ 'is-show-res-box': isShowResBox }">
-            <div class="title">{{ searchArticle.length > 0 ? "搜索结果推荐文章" : "暂无结果" }}</div>
+            <div class="title">
+              {{ searchArticle.length > 0 ? "搜索结果推荐文章" : "暂无结果" }}
+            </div>
             <ul>
               <nuxt-link
                 v-for="(item, index) in searchArticle"
                 :key="index"
                 :to="'/Article?id=' + item.id"
-              >{{ item.title }}</nuxt-link>
+                >{{ item.title }}</nuxt-link
+              >
             </ul>
           </div>
         </div>
@@ -72,8 +75,8 @@ export default {
   props: {
     options: {
       type: Object,
-      default: {}
-    }
+      default: {},
+    },
   },
   data() {
     return {
@@ -83,24 +86,24 @@ export default {
       searchValue: "",
       timer: "",
       searchArticle: [],
-      isShowResBox: false
+      isShowResBox: false,
     };
   },
   watch: {
-    mode: function(val) {
+    mode: function (val) {
       if (val) {
         document.getElementsByTagName("body")[0].className = "dark";
       } else {
         document.body.removeAttribute("class");
       }
     },
-    searchValue: function(val) {
+    searchValue: function (val) {
       var that = this;
       clearTimeout(this.timer);
-      this.timer = setTimeout(async function() {
+      this.timer = setTimeout(async function () {
         that.searchArticleFn();
       }, 250);
-    }
+    },
   },
   computed: {},
   methods: {
@@ -111,13 +114,13 @@ export default {
     },
     hidResBox() {
       var that = this;
-      setTimeout(function() {
+      setTimeout(function () {
         that.isShowResBox = false;
       }, 500);
     },
     showNav() {
       this.$emit("showNav");
-    }
+    },
   },
   created() {
     if (this.$cookies.get("token")) {
@@ -133,7 +136,7 @@ export default {
     }
     next();
   },
-  mounted() {}
+  mounted() {},
 };
 </script>
 <style lang="scss" scoped>
@@ -165,9 +168,13 @@ export default {
       .logo {
         display: flex;
         align-items: center;
-        font-size: 20px;
-        font-weight: bold;
-        margin-right: 10px;
+
+        .title {
+          margin-left: 15px;
+          font-size: 26px;
+          font-weight: 700;
+          margin-right: 10px;
+        }
         img {
           transition: all 0.25s;
         }
@@ -196,7 +203,6 @@ export default {
           border: none;
           background: #eee;
           transition: all 0.25s;
-         
         }
         .res-box {
           position: absolute;
