@@ -117,6 +117,7 @@ export default {
     }
   },
   mounted() {
+    // 修复qq浏览器不能成功post
     if (window.location.protocol == "http:")
       window.location.protocol = "https:";
   }
