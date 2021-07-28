@@ -2,7 +2,7 @@
   <div class="article-wrapper" :style="'min-height:' + minHidth + 'px;'">
     <header
       class="border border-primary"
-      :style="'background:url(http://www.dmoe.cc/random.php)'"
+      :style="'background:url(https://picsum.photos/1280/720?grayscale)'"
       :class="getBorderType"
     >
       <div class="mask"></div>
@@ -87,7 +87,7 @@
       </div>
     </header>
 
-    <main class="section">
+    <main class="section" id="post-content">
       <div class="vditor-reset" id="preview"></div>
     </main>
   </div>

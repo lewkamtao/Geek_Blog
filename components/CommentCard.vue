@@ -16,14 +16,14 @@
           <label class="badge reply-btn" @click="reply(comment)" for="modal-reply">回复</label>
         </div>
         <div class="content">{{ comment.content }}</div>
-        <div v-show="comment.url && comment.users_id != 2" class="blog-url">
+        <!-- <div v-show="comment.url && comment.users_id != 2" class="blog-url">
           博主站点：
           <a :href="'http://' + comment.url" target="_blank">
             {{
             comment.url
             }}
           </a>
-        </div>
+        </div> -->
         <div class="create_time">{{ getBeautifyTime(comment.create_time) }}</div>
       </div>
     </div>
@@ -42,10 +42,10 @@
               <label class="badge reply-btn" @click="reply(son)" for="modal-reply">回复</label>
             </div>
             <div class="content">{{ son.content }}</div>
-            <div v-show="son.url && son.users_id != 2" class="blog-url">
+            <!-- <div v-show="son.url && son.users_id != 2" class="blog-url">
               博主站点：
               <a :href="'http://' + son.url" target="_blank">{{ son.url }}</a>
-            </div>
+            </div> -->
             <div class="create_time">{{ getBeautifyTime(son.create_time) }}</div>
           </div>
         </div>

@@ -14,15 +14,18 @@
 } */
 
 // @import "https://30sec.oss-cn-guangzhou.aliyuncs.com/public/SanCFont.css";
-// html {
-//     font-family: "Noto Sans SC";
-// }
-// * {
-//     font-family: "Noto Sans SC";
-// }
-// .vditor-reset * {
-//     font-family: "Noto Sans SC";
-// }
+html {
+    font-family: "Source Sans Pro", "Hiragino Sans GB", "Microsoft Yahei", SimSun, Helvetica, Arial, Sans-serif, monospace;
+}
+
+* {
+    font-family: "Source Sans Pro", "Hiragino Sans GB", "Microsoft Yahei", SimSun, Helvetica, Arial, Sans-serif, monospace;
+}
+
+.vditor-reset * {
+    font-family: "Source Sans Pro", "Hiragino Sans GB", "Microsoft Yahei", SimSun, Helvetica, Arial, Sans-serif, monospace;
+}
+
 .vditor-reset img {
     border-radius: 0px;
 }

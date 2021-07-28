@@ -49,7 +49,7 @@ export default {
   data() {
     return {
       page: 1,
-      limit: 10,
+      limit: 5,
       nav_article: {},
       isSelect_article_id: ""
     };

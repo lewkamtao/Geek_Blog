@@ -22,6 +22,7 @@
         "sass": "^1.32.11",
         "vditor": "^3.8.6",
         "vue-confirm-dialog": "^1.0.2",
+        "vue-lazyload": "^1.3.3",
         "vue-masonry": "^0.13.0"
     },
     "devDependencies": {

@@ -87,18 +87,23 @@
           </div>
         </div>
       </header>
-      <div class="card" style="width: 80%; margin: 50px auto">
-        <div class="card-body">
-          <h4 class="card-title">这里是友情链接模块!</h4>
-          <h5 class="card-subtitle">当前页面正在开发</h5>
-
-          <p class="card-text">
-            一个基于很牛*的系统开发的一个很牛*的主题
-            <br />这是一个目前还不算完整，使用 Vue + Nuxt.js
-            开发的现代化博客，不算太慢，有点意思。
-          </p>
+      <div class="links">
+        <div
+          v-for="(item, index) in links.data"
+          :key="index"
+          class="links-card border border"
+          :class="getBorderType()"
+        >
+          <a :href="item.url" target="_blank" class="user-item">
+            <div class="avatar">
+              <img :src="item.head_img" />
+            </div>
+            <div class="user-info">
+              <div class="name">{{ item.name }}</div>
+              <p class="description">{{ item.description }}</p>
+            </div>
+          </a>
         </div>
-        <img src="https://kamtao-1255310647.cos.ap-chengdu.myqcloud.com/img/Gxf32F.jpg" alt srcset />
       </div>
     </div>
     <div ref="aside" :style="setAsideLeft" class="aside">
@@ -115,7 +120,7 @@ export default {
   components: {},
   head() {
     return {
-      title: this.article.title
+      title: this.article.title + " - " + this.options.title
     };
   },
   async asyncData({ $axios, route }) {
@@ -138,7 +143,12 @@ export default {
     ).data;
     return { article, comments, links };
   },
-  props: {},
+  props: {
+    options: {
+      type: Object,
+      default: {}
+    }
+  },
   data() {
     return {
       setAsideLeft: "", // 用于计算侧边栏
@@ -225,6 +235,8 @@ export default {
   -ms-scrollbar-track-color: transparent;
 }
 header {
+  width: calc(100% - 30px);
+  margin: 15px 15px 15px 15px;
   position: relative;
   overflow: hidden;
   padding: 50px;
@@ -272,6 +284,65 @@ header {
   height: 0px;
   display: none;
 }
+.links-pre::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+  display: none;
+}
+.links {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  .links-card {
+    width: calc(100% / 2 - 30px);
+    margin: 15px;
+    overflow: hidden;
+    .user-item {
+      display: flex;
+      background-image: none;
+
+      box-sizing: border-box;
+      .avatar {
+        width: 90px;
+        height: 90px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        img {
+          width: 90px;
+          height: auto;
+          border-radius: 0px;
+        }
+      }
+      .user-info {
+        width: calc(100% - 100px);
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+        height: 90px;
+        .name {
+          font-weight: bold;
+          color: #5f6984;
+          font-size: 14px;
+          line-height: 16px;
+        }
+        .description {
+          font-size: 13px;
+          line-height: 16px;
+          height: 40px;
+          margin-top: 10px;
+          color: #999;
+          word-break: break-all;
+          display: -webkit-box; /**对象作为伸缩盒子模型展示**/
+          -webkit-box-orient: vertical; /**设置或检索伸缩盒子对象的子元素的排列方式**/
+          -webkit-line-clamp: 2; /**显示的行数**/
+          overflow: hidden; /**隐藏超出的内容**/
+        }
+      }
+    }
+  }
+}
 
 // 移动端适配
 @media screen and (max-width: 680px) {
@@ -281,6 +352,8 @@ header {
       width: 100%;
     }
     header {
+      margin: 0px;
+      width: 100%;
       padding: 20px;
       .title {
         font-size: 26px;
@@ -289,7 +362,7 @@ header {
         div {
           margin: 5px 10px;
           font-size: 14px;
-          .feather{
+          .feather {
             margin-right: 5px;
           }
         }
@@ -312,6 +385,13 @@ header {
     .main {
       opacity: 0;
       height: 0px;
+    }
+  }
+  .links {
+    .links-card {
+      width: 100%;
+      margin: 10px 0px;
+      padding: 5px;
     }
   }
 }

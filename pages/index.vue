@@ -1,14 +1,6 @@
 <template>
-  <div
-    id="top"
-    class="wrapper"
-    :class="{ isShowNav: isShowNav, isShowAside: isShowAside }"
-  >
-    <TopNav
-      @showNav="showNav()"
-      :options="options"
-      class="top-nav-wrapper-master"
-    />
+  <div id="top" class="wrapper" :class="{ isShowNav: isShowNav, isShowAside: isShowAside }">
+    <TopNav @showNav="showNav()" :options="options" class="top-nav-wrapper-master" />
     <LeftNav
       :options="options"
       :article_sort="article_sort"
@@ -23,11 +15,7 @@
     </div>
 
     <div class="to-top">
-      <div
-        @click="showAside()"
-        v-show="isShowOpenAsideBtn"
-        class="paper-btn show-aside-btn"
-      >
+      <div @click="showAside()" v-show="isShowOpenAsideBtn" class="show-aside-btn">
         <div style="margin-top: -9px">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -65,20 +53,19 @@ export default {
         {
           hid: "description",
           name: "description",
-          content: this.options.keywords,
-        },
+          content: this.options.keywords
+        }
       ],
-      link: [
-        { rel: "icon", type: "image/x-icon", href: this.options.site_ico },
-      ],
+      link: [{ rel: "icon", type: "image/x-icon", href: this.options.site_ico }]
     };
   },
   async asyncData({ $axios }) {
     const options = (await $axios.get("/options")).data;
-    const article_sort = (await $axios.get("/article-sort?limit=10")).data.data;
+    const article_sort = (await $axios.get("/article-sort?limit=1000")).data
+      .data;
     const pages = (await $axios.get("/page")).data.data;
-    const links = (await $axios.get("/links")).data.data;
-    const article = (await $axios.get("/article?limit=10")).data;
+    const links = (await $axios.get("/links?limit=5")).data.data;
+    const article = (await $axios.get("/article?limit=5")).data;
 
     return { options, article_sort, article, pages, links };
   },
@@ -87,7 +74,7 @@ export default {
     return {
       isShowNav: false,
       isShowAside: false,
-      isShowOpenAsideBtn: false,
+      isShowOpenAsideBtn: false
     };
   },
   watch: {},
@@ -98,7 +85,7 @@ export default {
     },
     showAside() {
       this.isShowAside = !this.isShowAside;
-    },
+    }
   },
   created() {
     // if (process.client) {
@@ -118,7 +105,6 @@ export default {
       this.isShowNav = false;
       this.isShowAside = false;
       if (["/Article", "/Links"].indexOf(to.path) >= 0) {
-        
         this.isShowOpenAsideBtn = true;
       } else {
         this.isShowOpenAsideBtn = false;
@@ -126,7 +112,7 @@ export default {
       next();
     }
   },
-  mounted() {},
+  mounted() {}
 };
 </script>
 <style scoped  lang="scss">
@@ -175,6 +161,18 @@ export default {
     margin: 10px;
     z-index: 999999;
     transition: all 0.25s;
+    .show-aside-btn {
+      display: none;
+      font-size: 30px;
+      width: 45px;
+      height: 45px;
+      align-items: center;
+      justify-content: center;
+      border-top-left-radius: 185px 160px;
+      border-top-right-radius: 200px 195px;
+      border-bottom-right-radius: 160px 195px;
+      border-bottom-left-radius: 185px 190px;
+    }
     .paper-btn {
       font-size: 30px;
       width: 45px;

@@ -14,7 +14,7 @@ export default {
   components: {},
   head() {
     return {
-      title: this.article.title
+      title: this.article.title + " - " + this.options.title
     };
   },
   async asyncData({ $axios, route }) {
@@ -37,7 +37,12 @@ export default {
     ).data;
     return { article, comments, links };
   },
-  props: {},
+  props: {
+    options: {
+      type: Object,
+      default: {}
+    }
+  },
   data() {
     return {
       setAsideLeft: "", // 用于计算侧边栏
@@ -77,5 +82,4 @@ export default {
   position: relative;
   z-index: 9999;
 } // 移动端适配
-
 </style>

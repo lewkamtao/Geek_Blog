@@ -6,7 +6,6 @@
           width="300"
           src="https://kamtao-1255310647.cos.ap-chengdu.myqcloud.com/img/loading.gif"
           alt
-          srcset
         />
       </div>
 
@@ -20,17 +19,14 @@
         <div
           v-masonry-tile
           class="card border border-primary"
-          :class="getBorderType()"
+          :class="getBorderType"
           :key="index"
           @click="hidMasonry = false"
           v-for="(item, index) in article.data"
         >
           <nuxt-link :to="'/Article?id=' + item.id">
             <img v-if="item.img_src" :src="item.img_src" />
-            <img
-              v-if="!item.img_src"
-              :src="'https://acg.toubiec.cn/random.php?' + index"
-            />
+            <img-pro v-if="!item.img_src" :src="'https://picsum.photos/720/405?' + index"></img-pro>
             <div class="card-body">
               <h4 class="card-title">{{ item.title }}</h4>
               <h5 class="card-subtitle">{{ item.description }}</h5>
@@ -40,8 +36,7 @@
                   :key="index"
                   class="badge"
                   :class="getTagColor()"
-                  >{{ tag.name }}</span
-                >
+                >{{ tag.name }}</span>
               </div>
               <div class="card-text">
                 <div>
@@ -76,9 +71,7 @@
                     stroke-linejoin="round"
                     class="feather feather-message-square"
                   >
-                    <path
-                      d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
-                    />
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
                   </svg>
                   {{ item.expand.comments }}
                 </div>
@@ -127,7 +120,7 @@
     </no-ssr>
     <div @click="getArticle()" class="more-btn">
       {{
-        article.data.length != article.count - 2 ? "点击加载更多" : "没有更多了"
+      article.data.length != article.count - 2 ? "点击加载更多" : "没有更多了"
       }}
     </div>
   </div>
@@ -136,15 +129,17 @@
 <script>
 import NoSSR from "vue-no-ssr";
 import util from "@/util/index";
+import Image from "@/components/Image";
 
 export default {
   components: {
     "no-ssr": NoSSR,
+    "img-pro": Image
   },
   async asyncData({ $axios }) {
     const article = (await $axios.get("/article?limit=10")).data;
     article.data = article.data.filter(
-      (item) => ["留言墙", "友情链接"].indexOf(item.title) < 0
+      item => ["留言墙", "友情链接"].indexOf(item.title) < 0
     );
     return { article };
   },
@@ -153,21 +148,21 @@ export default {
     return {
       page: 1,
       limit: 10,
-      hidMasonry: true,
+      hidMasonry: true
     };
   },
   watch: {},
   computed: {
     getBeautifyTime() {
-      return function (time) {
+      return function(time) {
         return util.getBeautifyTime(time);
       };
     },
     getBorderType() {
-      return function () {
+      return function() {
         return "border-" + Math.floor(Math.random() * 6 + 1);
       };
-    },
+    }
   },
   methods: {
     getTagColor() {
@@ -192,12 +187,12 @@ export default {
         params = {
           id: this.isSelect_article_id,
           limit: this.limit,
-          page: this.page,
+          page: this.page
         };
         this.article.data = this.article.concat(
           (
             await this.$axios.get("/article-sort", {
-              params,
+              params
             })
           ).data.expand.data
         );
@@ -206,15 +201,15 @@ export default {
         this.article.data = this.article.data.concat(
           (
             await this.$axios.get("/article", {
-              params,
+              params
             })
           ).data.data
         );
       }
-    },
+    }
   },
   created() {},
-  mounted() {},
+  mounted() {}
 };
 </script> 
 <style lang="scss" scoped>
