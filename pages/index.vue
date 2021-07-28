@@ -47,11 +47,7 @@
 <script>
 import DevicePixelRatio from "@/util/devicePixelRatio.js";
 import util from "@/util/index";
-if (process.browser) {
-  if (window.location.protocol == "http:") {
-    window.location.protocol = "https:";
-  }
-}
+
 export default {
   components: {},
   head() {
