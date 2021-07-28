@@ -105,7 +105,7 @@ export default {
       font-size: 13px;
       line-height: 16px;
       margin-top: 5px;
-      color: #1e1e1e;
+      color: #999;
     }
   }
 }

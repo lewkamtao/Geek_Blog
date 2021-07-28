@@ -147,7 +147,7 @@ export default {
     height: 60px;
     background: rgba(255, 255, 255, 0.8);
     -webkit-backdrop-filter: saturate(200%) blur(20px);
-    box-shadow: 0px 0px 15px -15px rgb(0 0 0 / 15%);
+    box-shadow: 0px 0px 15px -5px rgb(0 0 0 / 25%);
     backdrop-filter: saturate(200%) blur(20px);
     padding: 0px 20px;
     display: flex;
