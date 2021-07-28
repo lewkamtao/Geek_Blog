@@ -47,7 +47,9 @@
 <script>
 import DevicePixelRatio from "@/util/devicePixelRatio.js";
 import util from "@/util/index";
-
+if (window.location.protocol == "http:") {
+  window.location.protocol = "https:";
+}
 export default {
   components: {},
   head() {
@@ -118,9 +120,6 @@ export default {
   },
   mounted() {
     // 修复qq浏览器不能成功post
-    if (window.location.protocol == "http:") {
-      window.location.protocol = "https:";
-    }
   }
 };
 </script> 
