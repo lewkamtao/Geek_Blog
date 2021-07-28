@@ -391,7 +391,6 @@ header {
     .links-card {
       width: 100%;
       margin: 10px 0px;
-      padding: 5px;
     }
   }
 }
