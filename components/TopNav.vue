@@ -355,6 +355,7 @@ export default {
           input {
             height: 30px;
             width: 100%;
+            font-size: 14px;
             border-radius: 7px;
             padding-left: 10px;
           }

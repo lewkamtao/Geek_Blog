@@ -42,8 +42,12 @@
                 stroke-linejoin="round"
                 class="feather feather-link"
               >
-                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
-                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+                <path
+                  d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"
+                />
+                <path
+                  d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"
+                />
               </svg>
               {{ links.count }}
             </div>
@@ -80,7 +84,9 @@
                 stroke-linejoin="round"
                 class="feather feather-message-square"
               >
-                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                <path
+                  d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+                />
               </svg>
               {{ article.expand.comments }}
             </div>
@@ -107,7 +113,12 @@
       </div>
     </div>
     <div ref="aside" :style="setAsideLeft" class="aside">
-      <Aside type="links" @reloadComments="getComments" :comments="comments" :article="article" />
+      <Aside
+        type="links"
+        @reloadComments="getComments"
+        :comments="comments"
+        :article="article"
+      />
     </div>
   </div>
 </template>
@@ -120,15 +131,15 @@ export default {
   components: {},
   head() {
     return {
-      title: this.article.title + " - " + this.options.title
+      title: this.article.title + " - " + this.options.title,
     };
   },
   async asyncData({ $axios, route }) {
     const article = (
       await $axios.get("/article", {
         params: {
-          id: links_article_id
-        }
+          id: links_article_id,
+        },
       })
     ).data;
     const links = (await $axios.get("/links")).data;
@@ -137,8 +148,8 @@ export default {
         params: {
           article_id: links_article_id,
           tree: false,
-          limit: 10000
-        }
+          limit: 10000,
+        },
       })
     ).data;
     return { article, comments, links };
@@ -146,24 +157,24 @@ export default {
   props: {
     options: {
       type: Object,
-      default: {}
-    }
+      default: {},
+    },
   },
   data() {
     return {
       setAsideLeft: "", // 用于计算侧边栏
       asideHidth: 0,
-      id: links_article_id
+      id: links_article_id,
     };
   },
 
   watch: {},
   computed: {
     getBorderType() {
-      return function() {
+      return function () {
         return "border-" + Math.floor(Math.random() * 6 + 1);
       };
-    }
+    },
   },
   methods: {
     // 获取评论
@@ -173,12 +184,12 @@ export default {
           params: {
             article_id: links_article_id,
             tree: false,
-            limit: 10000
-          }
+            limit: 10000,
+          },
         })
       ).data;
       this.comments = comments;
-    }
+    },
   },
 
   created() {},
@@ -191,11 +202,11 @@ export default {
       7;
     that.setAsideLeft = "left:" + articleMainWidth + "px;position: fixed;";
 
-    that.$nextTick(function() {
+    that.$nextTick(function () {
       that.asideHidth = that.$refs.aside.offsetHeight - 120;
     });
-    window.onresize = function() {
-      that.$nextTick(function() {
+    window.onresize = function () {
+      that.$nextTick(function () {
         articleMainWidth =
           that.$refs.articleMain.offsetLeft +
           that.$refs.articleMain.clientWidth +
@@ -208,7 +219,7 @@ export default {
   },
   beforeDestroy() {
     window.onresize = null;
-  }
+  },
 };
 </script>
 <style lang="scss" scoped>
@@ -300,7 +311,7 @@ header {
     .user-item {
       display: flex;
       background-image: none;
-
+      align-items: flex-start;
       box-sizing: border-box;
       .avatar {
         width: 90px;
@@ -320,7 +331,8 @@ header {
         display: flex;
         flex-direction: column;
         padding: 10px;
-        height: 90px;
+        height: auto;
+        max-height: 90px;
         .name {
           font-weight: bold;
           color: #5f6984;
@@ -350,11 +362,17 @@ header {
     .main {
       min-width: 100%;
       width: 100%;
+      padding: 0px;
+      transition: opacity 0.5s;
+      overflow: hidden;
     }
     header {
       margin: 0px;
       width: 100%;
       padding: 20px;
+      border-radius: 0px;
+      border: none;
+
       .title {
         font-size: 26px;
       }
@@ -374,7 +392,7 @@ header {
     .aside {
       width: calc(100% - 14px);
       padding: 73px 7px 7px 7px;
-      transition: all 0.25s;
+      transition: all 0.5s;
     }
   }
   .isShowAside {
@@ -388,10 +406,32 @@ header {
     }
   }
   .links {
-    margin-top: 15px;
+    margin-top: 0px;
+    padding: 20px;
+    box-sizing: border-box;
     .links-card {
       width: 100%;
-      margin: 10px 0px;
+      margin: 5px 0px;
+      border-radius: 0px;
+      border: none;
+      border-bottom: 1px #eee solid;
+      .user-item {
+        .avatar {
+          width: 50px;
+          height: 50px;
+          border-radius: 10px;
+          overflow: hidden;
+          img {
+            width: 50px;
+          }
+        }
+        .user-info {
+          padding: 5px 10px;
+          height: auto;
+          max-height: 70px;
+          width: calc(100% - 60px);
+        }
+      }
     }
   }
 }

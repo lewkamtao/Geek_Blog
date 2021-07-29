@@ -1,6 +1,14 @@
 <template>
-  <div id="top" class="wrapper" :class="{ isShowNav: isShowNav, isShowAside: isShowAside }">
-    <TopNav @showNav="showNav()" :options="options" class="top-nav-wrapper-master" />
+  <div
+    id="top"
+    class="wrapper"
+    :class="{ isShowNav: isShowNav, isShowAside: isShowAside }"
+  >
+    <TopNav
+      @showNav="showNav()"
+      :options="options"
+      class="top-nav-wrapper-master"
+    />
     <LeftNav
       :options="options"
       :article_sort="article_sort"
@@ -18,7 +26,7 @@
       <div
         @click="showAside()"
         class="show-aside-btn"
-        :class="{isShowOpenAsideBtn:isShowOpenAsideBtn}"
+        :class="{ isShowOpenAsideBtn: isShowOpenAsideBtn }"
       >
         <div style="margin-top: -5px">
           <svg
@@ -57,10 +65,12 @@ export default {
         {
           hid: "description",
           name: "description",
-          content: this.options.keywords
-        }
+          content: this.options.keywords,
+        },
       ],
-      link: [{ rel: "icon", type: "image/x-icon", href: this.options.site_ico }]
+      link: [
+        { rel: "icon", type: "image/x-icon", href: this.options.site_ico },
+      ],
     };
   },
   async asyncData({ $axios }) {
@@ -78,18 +88,41 @@ export default {
     return {
       isShowNav: false,
       isShowAside: false,
-      isShowOpenAsideBtn: false
+      isShowOpenAsideBtn: false,
+      backUpTopScroll: 0,
     };
   },
   watch: {},
   computed: {},
   methods: {
     showNav() {
+      if (process.browser && !this.isShowAside) {
+        if (!this.isShowNav && this.backUpTopScroll == 0) {
+          this.backUpTopScroll = document.documentElement.scrollTop;
+        } else {
+          var top = JSON.parse(JSON.stringify(this.backUpTopScroll));
+          setTimeout(function () {
+            document.documentElement.scrollTop = top;
+          }, 10);
+          this.backUpTopScroll = 0;
+        }
+      }
       this.isShowNav = !this.isShowNav;
     },
     showAside() {
+      if (process.browser && !this.isShowNav) {
+        if (!this.isShowNav && this.backUpTopScroll == 0) {
+          this.backUpTopScroll = document.documentElement.scrollTop;
+        } else {
+          var top = JSON.parse(JSON.stringify(this.backUpTopScroll));
+          setTimeout(function () {
+            document.documentElement.scrollTop = top;
+          }, 10);
+          this.backUpTopScroll = 0;
+        }
+      }
       this.isShowAside = !this.isShowAside;
-    }
+    },
   },
   created() {
     // if (process.client) {
@@ -118,7 +151,7 @@ export default {
   },
   mounted() {
     // 修复qq浏览器不能成功post
-  }
+  },
 };
 </script> 
 <style scoped  lang="scss">
@@ -263,6 +296,7 @@ export default {
   .isShowNav {
     .index-main {
       opacity: 0;
+      overflow: hidden;
       height: 0px;
     }
     .to-top {
