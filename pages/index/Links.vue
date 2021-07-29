@@ -369,7 +369,7 @@ header {
     header {
       margin: 0px;
       width: 100%;
-      padding: 20px;
+      padding:80px 20px;
       border-radius: 0px;
       border: none;
 
