@@ -30,7 +30,7 @@ export default {
   left: -50px;
   z-index: 9999999999;
 }
-@media screen and (max-width: 680px) {
+@media screen and (max-width: 1025px) {
   .loading-page {
     display: none;
   }

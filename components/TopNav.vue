@@ -321,7 +321,7 @@ export default {
 }
 
 // 移动端适配
-@media screen and (max-width: 680px) {
+@media screen and (max-width: 1025px) {
   .isShowModal {
     .top-nav-wrapper {
       display: none;

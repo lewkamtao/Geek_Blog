@@ -18,7 +18,7 @@
       >
         <div
           v-masonry-tile
-          class="card border border-primary"
+          class="card"
           :class="getBorderType()"
           :key="index"
           @click="hidMasonry = false"
@@ -29,7 +29,7 @@
               <img-pro v-if="item.img_src" :src="item.img_src"></img-pro>
               <img-pro
                 v-if="!item.img_src"
-                :src="'https://picsum.photos/800/450?' + index"
+                :src="'https://picsum.photos/400/400?' + index"
               ></img-pro>
               <h4 class="card-title">{{ item.title }}</h4>
             </div>
@@ -224,6 +224,7 @@ export default {
 <style lang="scss" scoped>
 .index-wrapper-master {
   width: 100%;
+  padding: 0px;
 }
 .more-btn {
   margin-top: 20px;
@@ -253,13 +254,18 @@ export default {
   opacity: 1;
 }
 .masonry {
-  width: 100%;
+  width: calc(100% - 20px);
+  padding: 10px 0px;
+  margin-left: 10px;
+  display: flex;
+  justify-content: center;
   .card {
-    width: calc(100% / 3 - 30px);
-    margin: 15px;
+    width: calc(100% / 3 - 20px) !important;
+    border-radius: 20px;
+    border: none;
+    margin: 10px;
     overflow: hidden;
     cursor: pointer;
-    background: #fff;
     a {
       background-image: none;
     }
@@ -275,12 +281,12 @@ export default {
     position: relative;
     .card-title {
       position: absolute;
-      bottom: 25px;
-      left: 15px;
-      color: #000;
-      font-size: 20px;
-      font-weight: bold;
+      bottom: 24px;
+      left: 20px;
       color: #fff;
+      font-size: 20px;
+      line-height: 28px;
+      font-weight: bold;
     }
   }
 

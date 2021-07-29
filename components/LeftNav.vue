@@ -62,7 +62,7 @@ export default {
   }
 }
 // 移动端适配
-@media screen and (max-width: 680px) {
+@media screen and (max-width: 1025px) {
   .left-nav {
     padding: 56px 14px 14px 14px;
   }

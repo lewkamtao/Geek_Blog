@@ -170,7 +170,7 @@ export default {
 }
 
 // 移动端适配
-@media screen and (max-width: 680px) {
+@media screen and (max-width: 1025px) {
   .login-wrapper {
     width: 100%;
     height: calc(100vh - 120px);

@@ -444,7 +444,7 @@ export default {
   }
 }
 
-@media screen and (max-width: 680px) {
+@media screen and (max-width: 1025px) {
   .modal-body {
     width: 100vw !important;
     height: 100vh !important;

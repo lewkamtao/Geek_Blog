@@ -1,5 +1,5 @@
 <template>
-  <img :src="url" />
+  <img style="width: 100%; height: auto" :src="url" />
 </template>
 
 <script>
@@ -7,12 +7,12 @@ export default {
   props: {
     src: {
       type: String,
-      default: ""
-    }
+      default: "",
+    },
   },
   data() {
     return {
-      url: "https://kamtao-1255310647.cos.ap-chengdu.myqcloud.com/img/loading.gif" // 先加载loading.gif
+      url: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKAAAABaCAYAAAA/xl1SAAAA/klEQVR4nO3SQREAIADDsIEo/EtDRj+JhF7PtjeIXOEpGZCUAUkZkJQBSRmQlAFJGZCUAUkZkJQBSRmQlAFJGZCUAUkZkJQBSRmQlAFJGZCUAUkZkJQBSRmQlAFJGZCUAUkZkJQBSRmQlAFJGZCUAUkZkJQBSRmQlAFJGZCUAUkZkJQBSRmQlAFJGZCUAUkZkJQBSRmQlAFJGZCUAUkZkJQBSRmQlAFJGZCUAUkZkJQBSRmQlAFJGZCUAUkZkJQBSRmQlAFJGZCUAUkZkJQBSRmQlAFJGZCUAUkZkJQBSRmQlAFJGZCUAUkZkJQBSRmQlAFJGZCUAUkZkJQB6Wz7qpMA6icD3IEAAAAASUVORK5CYII=", // 先加载loading.gif
     };
   },
   mounted() {
@@ -26,7 +26,7 @@ export default {
     newImg.onload = () => {
       // 图片加载成功后把地址给原来的img
       this.url = newImg.src;
-    };
-  }
+    }; 
+  },
 };
 </script>

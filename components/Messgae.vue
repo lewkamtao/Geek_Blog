@@ -486,7 +486,7 @@ export default {
 .messgae-form .modal-body {
   overflow: hidden;
 }
-@media screen and (max-width: 680px) {
+@media screen and (max-width: 1025px) {
   .messgae {
     width: 100%;
     margin: 20px auto;
