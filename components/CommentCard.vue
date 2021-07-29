@@ -9,11 +9,7 @@
       <div class="right">
         <div class="nickname">
           {{ comment.nickname }}
-          <label
-            v-if="comment.users_id == 2"
-            class="badge reply-btn master"
-          >博主</label>
-          <label class="badge reply-btn" @click="reply(comment)" for="modal-reply">回复</label>
+          <label v-if="comment.users_id == 2" class="badge master">博主</label>
         </div>
         <div class="content">{{ comment.content }}</div>
         <!-- <div v-show="comment.url && comment.users_id != 2" class="blog-url">
@@ -23,9 +19,24 @@
             comment.url
             }}
           </a>
-        </div> -->
+        </div>-->
         <div class="create_time">{{ getBeautifyTime(comment.create_time) }}</div>
       </div>
+      <label class="reply-btn" @click="reply(comment)" for="modal-reply">
+        <svg
+          class="Zi Zi--Reply"
+          fill="currentColor"
+          viewBox="0 0 24 24"
+          width="16"
+          height="16"
+          style="margin-right: 5px;"
+        >
+          <path
+            d="M22.959 17.22c-1.686-3.552-5.128-8.062-11.636-8.65-.539-.053-1.376-.436-1.376-1.561V4.678c0-.521-.635-.915-1.116-.521L1.469 10.67a1.506 1.506 0 0 0-.1 2.08s6.99 6.818 7.443 7.114c.453.295 1.136.124 1.135-.501V17a1.525 1.525 0 0 1 1.532-1.466c1.186-.139 7.597-.077 10.33 2.396 0 0 .396.257.536.257.892 0 .614-.967.614-.967z"
+            fill-rule="evenodd"
+          />
+        </svg>回复
+      </label>
     </div>
     <div v-show="comment.son.length != 0" class="son-box">
       <div class="comments-box" v-for="(son, index) in comment.son" :key="index">
@@ -38,16 +49,30 @@
           <div class="right">
             <div class="nickname">
               {{ son.nickname }}
-              <label v-if="son.users_id == 2" class="badge reply-btn master">博主</label>
-              <label class="badge reply-btn" @click="reply(son)" for="modal-reply">回复</label>
+              <label v-if="son.users_id == 2" class="badge master">博主</label>
             </div>
             <div class="content">{{ son.content }}</div>
             <!-- <div v-show="son.url && son.users_id != 2" class="blog-url">
               博主站点：
               <a :href="'http://' + son.url" target="_blank">{{ son.url }}</a>
-            </div> -->
+            </div>-->
             <div class="create_time">{{ getBeautifyTime(son.create_time) }}</div>
           </div>
+          <label class="reply-btn" @click="reply(son)" for="modal-reply">
+            <svg
+              class="Zi Zi--Reply"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+              width="16"
+              height="16"
+              style="margin-right: 5px;"
+            >
+              <path
+                d="M22.959 17.22c-1.686-3.552-5.128-8.062-11.636-8.65-.539-.053-1.376-.436-1.376-1.561V4.678c0-.521-.635-.915-1.116-.521L1.469 10.67a1.506 1.506 0 0 0-.1 2.08s6.99 6.818 7.443 7.114c.453.295 1.136.124 1.135-.501V17a1.525 1.525 0 0 1 1.532-1.466c1.186-.139 7.597-.077 10.33 2.396 0 0 .396.257.536.257.892 0 .614-.967.614-.967z"
+                fill-rule="evenodd"
+              />
+            </svg>回复
+          </label>
         </div>
       </div>
     </div>
@@ -112,18 +137,29 @@ export default {
 </script>
 <style lang="scss" scoped>
 .comment-wrapper {
-  background: #f7f7f7;
+  background: rgba($color: #000, $alpha: 0.025);
   border-radius: 10px;
-  margin-bottom: 15px;
-  padding: 10px;
+  margin-bottom: 12px;
+  overflow: hidden;
   .son-box {
     width: calc(100% - 30px);
-    margin: 10px 0px 0px 30px;
+    margin: 0px 0px 0px 30px;
   }
-
+  .comment-card:hover {
+    background: rgba($color: #000, $alpha: 0.05);
+    .reply-btn {
+      opacity: 0.8;
+      transition: all 0.25s;
+    }
+    .reply-btn:hover {
+      opacity: 1;
+      transform: scale(1.05);
+    }
+  }
   .comment-card {
-    padding: 10px 5px;
-    margin-bottom: 10px;
+    position: relative;
+    padding: 10px;
+    border-radius: 10px;
     display: flex;
     .left {
       width: 40px;
@@ -131,7 +167,6 @@ export default {
       .avatar {
         width: 40px;
         height: 40px;
-
         overflow: hidden;
         display: flex;
         align-items: center;
@@ -155,7 +190,7 @@ export default {
       }
       .content {
         color: #1e1e1e;
-        margin: 7px 0px 10px 0px;
+        margin: 3px 0px 6px 0px;
         font-size: 14px;
         line-height: 20px;
       }
@@ -166,27 +201,40 @@ export default {
       }
       .create_time {
         font-size: 12px;
-        color: #b2b0b1; font-weight: 300;
+        color: #999;
+        font-weight: 400;
       }
     }
   }
+
   .reply-btn {
-    background: #0071de;
-    color: #fff;
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    color: #0071de;
+    opacity: 0;
     padding: 2px 4px;
     cursor: pointer;
-    opacity: 0.8;
     font-weight: 400;
     font-size: 13px;
     transition: all 0.25s;
     margin-left: 5px;
+    display: flex;
+    align-items: center;
   }
   .master {
     background: #a7342d;
+    opacity: 0.6;
     cursor: default;
   }
-  .reply-btn:hover {
-    opacity: 1;
+}
+@media screen and (max-width: 1025px) {
+  .comment-wrapper {
+    .comment-card {
+      .reply-btn {
+        opacity: 0.8;
+      }
+    }
   }
 }
 </style>

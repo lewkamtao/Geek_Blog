@@ -1,14 +1,6 @@
 <template>
-  <div
-    id="top"
-    class="wrapper"
-    :class="{ isShowNav: isShowNav, isShowAside: isShowAside }"
-  >
-    <TopNav
-      @showNav="showNav()"
-      :options="options"
-      class="top-nav-wrapper-master"
-    />
+  <div id="top" class="wrapper" :class="{ isShowNav: isShowNav, isShowAside: isShowAside }">
+    <TopNav @showNav="showNav()" :options="options" class="top-nav-wrapper-master" />
     <LeftNav
       :options="options"
       :article_sort="article_sort"
@@ -65,12 +57,10 @@ export default {
         {
           hid: "description",
           name: "description",
-          content: this.options.keywords,
-        },
+          content: this.options.keywords
+        }
       ],
-      link: [
-        { rel: "icon", type: "image/x-icon", href: this.options.site_ico },
-      ],
+      link: [{ rel: "icon", type: "image/x-icon", href: this.options.site_ico }]
     };
   },
   async asyncData({ $axios }) {
@@ -89,7 +79,7 @@ export default {
       isShowNav: false,
       isShowAside: false,
       isShowOpenAsideBtn: false,
-      backUpTopScroll: 0,
+      backUpTopScroll: 0
     };
   },
   watch: {},
@@ -101,7 +91,7 @@ export default {
           this.backUpTopScroll = document.documentElement.scrollTop;
         } else {
           var top = JSON.parse(JSON.stringify(this.backUpTopScroll));
-          setTimeout(function () {
+          setTimeout(function() {
             document.documentElement.scrollTop = top;
           }, 10);
           this.backUpTopScroll = 0;
@@ -115,14 +105,14 @@ export default {
           this.backUpTopScroll = document.documentElement.scrollTop;
         } else {
           var top = JSON.parse(JSON.stringify(this.backUpTopScroll));
-          setTimeout(function () {
+          setTimeout(function() {
             document.documentElement.scrollTop = top;
           }, 10);
           this.backUpTopScroll = 0;
         }
       }
       this.isShowAside = !this.isShowAside;
-    },
+    }
   },
   created() {
     // if (process.client) {
@@ -151,7 +141,7 @@ export default {
   },
   mounted() {
     // 修复qq浏览器不能成功post
-  },
+  }
 };
 </script> 
 <style scoped  lang="scss">
@@ -253,6 +243,12 @@ export default {
 
 // 移动端适配
 @media screen and (max-width: 1025px) {
+  ::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+    display: none !important;
+    scrollbar-width: none;
+  }
   .isShowModal {
     .aside-wrapper {
       height: 0px;
@@ -262,9 +258,9 @@ export default {
     }
   }
   .wrapper {
-    max-width: 100vw;
-    min-width: 100vw;
-    width: 100vw;
+    max-width: 100%;
+    min-width: 100%;
+    width: 100%;
     padding: 0px 7px;
     .top-nav-wrapper-master {
       margin-top: 15px;

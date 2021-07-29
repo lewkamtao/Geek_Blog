@@ -267,7 +267,7 @@ export default {
         if (res.code == 200) {
           this.comments_form = {
             email: "",
-            nickname: "", 
+            nickname: "",
             url: "",
             content: ""
           };
@@ -319,6 +319,7 @@ export default {
   }
   .badge {
     margin: 0px 0px 0px 10px;
+    padding: 1px 3px;
     font-size: 14px;
   }
 }

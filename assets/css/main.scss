@@ -76,9 +76,13 @@ textarea {
     outline: none;
 }
 
+button {
+    margin: 0px;
+}
+
 body {
     font-size: 14px;
-    background-color: #eee;
+    background-color: #eff3f6;
 }
 
 .modal {
@@ -112,16 +116,16 @@ html::-webkit-scrollbar-thumb:hover {
     padding: 20px;
     background: #fff;
     border-radius: 16px;
-    box-shadow: 0px 0px 5px 0px rgb(0 0 0 / 5%);
+    box-shadow: 0px 0px 2px 0px rgb(0 0 0 / 5%);
     transition: all .25s;
     box-sizing: border-box;
 }
 
 .main-title {
+    position: relative;
     color: #333;
     font-size: 18px;
     margin-bottom: 20px;
-    font-weight: 600;
     align-items: center;
 }
 
@@ -159,6 +163,5 @@ html::-webkit-scrollbar-thumb:hover {
     .main-title {
         color: #333;
         font-size: 16px;
-        font-weight: 600;
     }
 }

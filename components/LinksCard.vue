@@ -19,7 +19,7 @@
           </div>
         </a>
       </ul>
-      <nuxt-link to="/Links" class="more-btn">查看更多</nuxt-link>
+      <nuxt-link v-if="isShowMoreBtn" to="/Links" class="more-btn">查看更多</nuxt-link>
     </div>
   </div>
 </template>
@@ -34,9 +34,21 @@ export default {
     }
   },
   data() {
-    return {};
+    return {
+      isShowMoreBtn: true
+    };
   },
-  watch: {},
+  watch: {
+    $route: function(val) {
+      if (process.browser) {
+        if (["/Links"].indexOf(val.path) >= 0) {
+          this.isShowMoreBtn = false;
+        } else {
+          this.isShowMoreBtn = true;
+        }
+      }
+    }
+  },
   computed: {},
   methods: {},
   created() {},

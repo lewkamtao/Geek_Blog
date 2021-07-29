@@ -5,6 +5,9 @@
      var timestamp = new Date(date.replace(/-/g, '/')).getTime()
      var mistiming = Math.round(new Date() / 1000) - timestamp / 1000;
      var postfix = mistiming > 0 ? '前' : '后'
+     if (mistiming <= 0) {
+         return "刚刚"
+     }
      mistiming = Math.abs(mistiming)
      var arrr = ['年', '个月', '星期', '天', '小时', '分钟', '秒'];
      var arrn = [31536000, 2592000, 604800, 86400, 3600, 60, 1];

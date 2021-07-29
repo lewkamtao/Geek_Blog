@@ -1,7 +1,7 @@
 <template>
   <div class="part article-sort" style="margin-bottom: 14px">
     <div class="form-group">
-      <div class="main-title">文章分类</div>
+      <div class="main-title">归档</div>
 
       <select id="paperSelects1" v-model="isSelect_article_id" @change="getArticle('new')">
         <option value>全部文章</option>
