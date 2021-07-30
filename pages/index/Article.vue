@@ -1,14 +1,16 @@
 <template>
-  <div class="right-wrapper article-wrapper-master">
-    <div ref="articleMain" class="main">
-      <ArticleDetail :article="article" :minHidth="asideHidth" class="part" />
-    </div>
-    <div ref="aside" :style="setAsideLeft" class="aside">
-      <Aside type="article" @reloadComments="getComments" :comments="comments" :article="article" />
-    </div>
-  </div>
+  <Detail
+    @reloadComments="getComments"
+    :options="{
+    type: 'article',
+    catalogue: true,
+    comments: comments,
+    tag: article.expand.tag,
+    article: article
+    }"
+  />
 </template>
-
+ 
 <script>
 export default {
   components: {},
@@ -45,8 +47,6 @@ export default {
   },
   data() {
     return {
-      setAsideLeft: "", // 用于计算侧边栏
-      asideHidth: 0,
       id: ""
     };
   },
@@ -56,8 +56,6 @@ export default {
     this.getComments();
     next();
   },
-  watch: {},
-  computed: {},
   methods: {
     // 获取评论
     async getComments() {
@@ -85,92 +83,8 @@ export default {
       this.article = article;
     }
   },
-
-  created() {},
-
   mounted() {
-    var that = this;
     this.id = parseInt($nuxt.$route.query.id);
-    var articleMainWidth =
-      that.$refs.articleMain.offsetLeft +
-      that.$refs.articleMain.clientWidth +
-      7;
-    that.setAsideLeft = "left:" + articleMainWidth + "px;position: fixed;";
-
-    that.$nextTick(function() {
-      that.asideHidth = that.$refs.aside.offsetHeight - 120;
-    });
-    window.onresize = function() {
-      that.$nextTick(function() {
-        articleMainWidth =
-          that.$refs.articleMain.offsetLeft +
-          that.$refs.articleMain.clientWidth +
-          7;
-
-        that.asideHidth = that.$refs.aside.offsetHeight - 120;
-        that.setAsideLeft = "left:" + articleMainWidth + "px;position: fixed;";
-      });
-    };
-  },
-  beforeDestroy() {
-    window.onresize = null;
   }
 };
 </script>
-<style lang="scss" scoped>
-.article-wrapper-master {
-  display: flex;
-  .main {
-    width: calc(100% - 400px);
-    min-width: 500px;
-    transition: opacity 0.25s;
-  }
-}
-.aside {
-  top: 0px;
-  padding: 75px 7px 7px 7px;
-  box-sizing: border-box;
-  max-height: 100%;
-  height: 100%;
-  overflow-y: scroll;
-  width: 400px;
-  margin-bottom: 50px;
-  z-index: 999;
-  scrollbar-color: transparent transparent;
-  scrollbar-track-color: transparent;
-  -ms-scrollbar-track-color: transparent;
-}
-.aside::-webkit-scrollbar {
-  width: 0px;
-  height: 0px;
-  display: none;
-}
-
-// 移动端适配
-@media screen and (max-width: 1025px) {
-  .article-wrapper-master {
-    .main {
-      min-width: 100%;
-      width: 100%;
-      transition: all 0.25s;
-    }
-    .aside {
-      width: calc(100% - 14px);
-      transition: all 0.5s;
-    }
-  }
-
-  .isShowAside {
-    .aside {
-      left: 7px !important;
-      padding: 72px 7px 7px 7px;
-    }
-    .main {
-      opacity: 0;
-      overflow: hidden;
-      height: 0px;
-      padding: 0px;
-    }
-  }
-}
-</style>

@@ -38,7 +38,7 @@
         </svg>回复
       </label>
     </div>
-    <div v-show="comment.son.length != 0" class="son-box">
+    <div v-if="comment.son&&comment.son.length != 0" class="son-box">
       <div class="comments-box" v-for="(son, index) in comment.son" :key="index">
         <div class="comment-card">
           <div class="left">
@@ -233,6 +233,10 @@ export default {
     .comment-card {
       .reply-btn {
         opacity: 0.8;
+      }
+      .master {
+        font-size: 80%;
+        padding: 1px 3px ;
       }
     }
   }

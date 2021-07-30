@@ -8,7 +8,7 @@
         :to="item.path"
         @click="toFn(item.type)"
         class="paper-btn border"
-        :class="getBtnColor(index)"
+        :class="'btn-'+item.color"
       >{{ item.title }}</nuxt-link>
       <div v-if="isLogin" @click="loginOut" class="paper-btn border btn-danger">退出登录</div>
     </div>
@@ -16,63 +16,18 @@
 </template>
 
 <script>
+import geek from "@/geek.config.js";
 export default {
   components: {},
   props: {},
   data() {
     return {
-      menu: [
-        {
-          path: "/",
-          title: "首页"
-        },
-        {
-          path: "/About",
-          title: "关于我"
-        },
-        // {
-        //   path: "/Photo",
-        //   title: "相册",
-        // },
-        {
-          path: "/Timeline",
-          title: "时光机"
-        },
-        {
-          path: "/Links",
-          title: "友情链接"
-        },
-        {
-          path: "/Message",
-          title: "留言墙"
-        }
-      ],
+      menu: geek.menu,
       isLogin: false
     };
   },
   watch: {},
-  computed: {
-    getBtnColor(index) {
-      return function(index) {
-        var tag_options = [
-          "primary",
-          "success",
-          "secondary",
-          "primary-outline",
-          "secondary-outline",
-          "warning-outline",
-
-          "danger",
-          "warning",
-
-          "success-outline",
-          "danger-outline"
-        ];
-        // var index = Math.floor(Math.random() * tag_options.length);
-        return "btn-" + tag_options[index];
-      };
-    }
-  },
+  computed: {},
   methods: {
     loginOut() {
       this.$cookies.remove("token");

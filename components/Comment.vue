@@ -1,164 +1,138 @@
 <template>
-  <div class="aside-wrapper">
-    <div v-if="type == 'article'" style="margin-bottom: 14px" class="tagCloud part">
-      <div class="main-title">标签云</div>
-      <div v-if="article.expand.tag" class="tags-box">
-        <span
-          v-for="(item, index) in article.expand.tag"
-          :key="index"
-          class="badge"
-          :class="tagsClass[index]"
-        >{{ item.name }}</span>
+  <div class="part">
+    <div class="main-title">
+      <div class="title">
+        评论
+        <span class="badge secondary">{{ comments.count }}</span>
       </div>
-      <div v-if="!article.expand.tag">暂无标签</div>
     </div>
-    <div v-if="type == 'article'" style="margin-bottom: 14px" class="catalogue part">
-      <div class="main-title" style="margin-bottom: 12px">目录</div>
-      <div class="article-list vditor-outline" id="outline"></div>
-    </div>
-
-    <div class="part">
-      <div class="main-title">
-        <div class="title">
-          评论
-          <span class="badge secondary">{{ article.expand.comments }}</span>
-        </div>
-      </div>
-      <div style="margin-bottom: 10px" v-if="comments.data.length == 0">暂无评论</div>
-      <label
-        class="border border-secondary reply-main-btn"
-        @click="
+    <div style="margin-bottom:20px" v-if="comments.data.length == 0">暂无评论</div>
+    <label
+      class="border border-secondary reply-main-btn"
+      @click="
           setReply({
-            nickname: article.expand.author.nickname,
-            expand: article.expand.author,
+            nickname: '',
+            expand: {},
           })
         "
-        for="modal-reply"
-      >{{ type == "article" || isLogin ? "发表评论" : "立即申请" }}</label>
-      <input class="modal-state" id="modal-reply" type="checkbox" />
-      <div class="modal reply-modal">
-        <label class="modal-bg"></label>
-        <div class="modal-body">
-          <label class="btn-close" @click="openModal" for="modal-reply">X</label>
-          <div v-if="replyObj.expand" class="reply-obj">
-            <div class="avatar border border-primary" :class="getBorderType">
-              <img :src="replyObj.expand.head_img" alt srcset />
-            </div>
-            <div class="user-info">
-              <div class="nickname">{{ replyObj.nickname }}</div>
-              <div class="content">{{ replyObj.content || replyObj.expand.description }}</div>
-              <div
-                v-if="replyObj.create_time"
-                class="create_time"
-              >{{ getBeautifyTime(replyObj.create_time) }}</div>
-            </div>
+      for="modal-reply"
+    >发表评论</label>
+    <input class="modal-state" id="modal-reply" type="checkbox" />
+    <div class="modal reply-modal">
+      <label class="modal-bg"></label>
+      <div class="modal-body">
+        <label class="btn-close" @click="openModal" for="modal-reply">X</label>
+        <div v-if="replyObj&&replyObj.expand.head_img" class="reply-obj">
+          <div class="avatar border border-primary" :class="getBorderType">
+            <img :src="replyObj.expand.head_img" alt srcset />
           </div>
-          <div v-if="replyObj.expand && type == 'article'" class="title">
-            {{
-            replyObj.expand.pay
-            ? "发表对" + replyObj.nickname + "的评论"
-            : "回复" + replyObj.nickname + "的评论"
-            }}
+          <div class="user-info">
+            <div class="nickname">{{ replyObj.nickname }}</div>
+            <div class="content">{{ replyObj.content || replyObj.expand.description }}</div>
+            <div
+              v-if="replyObj.create_time"
+              class="create_time"
+            >{{ getBeautifyTime(replyObj.create_time) }}</div>
           </div>
+        </div>
 
-          <div class="reply-form">
-            <div v-if="!isLogin" class="concact">
-              <div class="form-group">
-                <label for="paperInputs1">
-                  昵称
-                  <span class="badge danger">必填</span>
-                </label>
-                <input
-                  v-model="comments_form.nickname"
-                  class="input-block"
-                  type="text"
-                  id="paperInputs1"
-                  placeholder
-                />
-              </div>
-              <div class="form-group">
-                <label for="paperInputs2">
-                  邮箱
-                  <span class="badge danger">必填</span>
-                </label>
-                <input
-                  v-model="comments_form.email"
-                  class="input-block"
-                  type="text"
-                  id="paperInputs2"
-                  placeholder
-                />
-              </div>
-            </div>
-
-            <div v-if="!isLogin" class="form-group">
-              <label for="paperInputs3">博客地址</label>
+        <div class="reply-form">
+          <div v-if="!isLogin" class="concact">
+            <div class="form-group">
+              <label for="paperInputs1">
+                昵称
+                <span class="badge danger">必填</span>
+              </label>
               <input
-                v-model="comments_form.url"
+                v-model="comments_form.nickname"
                 class="input-block"
                 type="text"
-                id="paperInputs3"
+                id="paperInputs1"
                 placeholder
               />
             </div>
             <div class="form-group">
-              <label>
-                内容
+              <label for="paperInputs2">
+                邮箱
                 <span class="badge danger">必填</span>
               </label>
-              <textarea
-                v-model="comments_form.content"
-                style="width: 100%; height: 150px"
-                class="no-resize"
-                id="no-resize"
+              <input
+                v-model="comments_form.email"
+                class="input-block"
+                type="text"
+                id="paperInputs2"
                 placeholder
-              ></textarea>
+              />
             </div>
-            <div
-              v-if="
+          </div>
+
+          <div v-if="!isLogin" class="form-group">
+            <label for="paperInputs3">博客地址</label>
+            <input
+              v-model="comments_form.url"
+              class="input-block"
+              type="text"
+              id="paperInputs3"
+              placeholder
+            />
+          </div>
+          <div class="form-group">
+            <label>
+              内容
+              <span class="badge danger">必填</span>
+            </label>
+            <textarea
+              v-model="comments_form.content"
+              style="width: 100%; height: 150px"
+              class="no-resize"
+              id="no-resize"
+              placeholder
+            ></textarea>
+          </div>
+          <div
+            v-if="
                 replyObj.expand &&
                 replyObj.expand.pay &&
                 !isLogin &&
                 type == 'links'
               "
-            >
-              <h5>申请示例：</h5>
-              <ul style="margin: 10px 0px 30px 18px">
-                <li>名称：{{ replyObj.expand.nickname }}</li>
-                <li>
-                  地址：{{
-                  replyObj.expand.address_url || "https://kamtao.com/"
-                  }}
-                </li>
-                <li>头像：{{ replyObj.expand.head_img }}</li>
-                <li>描述：{{ replyObj.expand.description || "做一个很酷的人" }}</li>
-              </ul>
-            </div>
-            <div v-show="error_tips" class="alert alert-danger dismissible alert-reply">
-              {{ error_tips }}
-              <label
-                @click="error_tips = ''"
-                style="
+          >
+            <h5>申请示例：</h5>
+            <ul style="margin: 10px 0px 30px 18px">
+              <li>名称：{{ replyObj.expand.nickname }}</li>
+              <li>
+                地址：{{
+                replyObj.expand.address_url || "https://kamtao.com/"
+                }}
+              </li>
+              <li>头像：{{ replyObj.expand.head_img }}</li>
+              <li>描述：{{ replyObj.expand.description || "做一个很酷的人" }}</li>
+            </ul>
+          </div>
+          <div v-show="error_tips" class="alert alert-danger dismissible alert-reply">
+            {{ error_tips }}
+            <label
+              @click="error_tips = ''"
+              style="
                   position: static;
                   color: #cb453c;
                   margin-top: -5px;
                   font-size: 25px;
                   transform: translateX(10px) scaleX(1.8) rotate(-3deg);
                 "
-                class="btn-close"
-              >X</label>
-            </div>
+              class="btn-close"
+            >X</label>
+          </div>
 
-            <div class="row flex-right">
-              <button @click="submitComments" class="btn-secondary reply-btn">发送</button>
-            </div>
+          <div class="row flex-right">
+            <button @click="submitComments" class="btn-secondary reply-btn">发送</button>
           </div>
         </div>
       </div>
-      <div v-if="comments.data.length != 0" class="comments">
-        <div class="comments-box" v-for="(item, index) in comments.data" :key="index">
-          <CommentCard @setReply="setReply" :comment="item" />
-        </div>
+    </div>
+    <div v-if="comments.data.length != 0" class="comments">
+      <div class="comments-box" v-for="(item, index) in comments.data" :key="index">
+        <CommentCard @setReply="setReply" :comment="item" />
       </div>
     </div>
   </div>
@@ -166,9 +140,8 @@
 
 <script>
 import util from "@/util/index";
-import checkStr from "@/util/checkStr";
-
 import CommentCard from "./CommentCard.vue";
+import checkStr from "@/util/checkStr";
 
 export default {
   components: { CommentCard },
@@ -177,19 +150,20 @@ export default {
       type: String,
       default: {}
     },
-    article: {
-      type: Object,
-      default: {}
-    },
     comments: {
       type: Object,
       default: {}
+    },
+    articleId: {
+      type: Number,
+      default: ""
     }
   },
   data() {
     return {
-      replyObj: {},
+      replyObj: false,
       isLogin: false,
+
       comments_form: {
         email: "",
         nickname: "",
@@ -212,16 +186,6 @@ export default {
     }
   },
   methods: {
-    getTagColor() {
-      if (this.article.expand.tag) {
-        this.article.expand.tag.forEach((tag, index) => {
-          var options = ["", "secondary", "success", "warning", "danger"];
-          var i = Math.floor(Math.random() * options.length);
-          this.tagsClass[index] = options[i];
-        });
-        this.$forceUpdate();
-      }
-    },
     openModal() {
       //   隐藏遮罩 优先级
       if (process.browser) {
@@ -240,8 +204,27 @@ export default {
       this.replyObj = replyObj;
     },
     submitComments() {
-      this.comments_form.article_id = this.article.id;
       var data = JSON.parse(JSON.stringify(this.comments_form));
+      switch (this.type) {
+        case "article":
+          data.article_id = this.articleId;
+          break;
+        case "links":
+          data.type = this.type;
+          break;
+        case "message":
+          data.type = this.type;
+          break;
+        case "timeline":
+          data.type = this.type;
+          break;
+        case "about":
+          data.type = this.type;
+          break;
+        default:
+          break;
+      }
+
       if (!this.isLogin) {
         if (data.nickname == "") {
           this.error_tips = "* 昵称不能为空";
@@ -261,9 +244,9 @@ export default {
         return;
       }
       if (this.$cookies.get("token")) {
-        this.comments_form["login-token"] = this.$cookies.get("token");
+        data["login-token"] = this.$cookies.get("token");
       }
-      this.$axios.post("/comments", this.comments_form).then(res => {
+      this.$axios.post("/comments", data).then(res => {
         if (res.code == 200) {
           this.comments_form = {
             email: "",
@@ -288,27 +271,10 @@ export default {
       this.isLogin = true;
     }
   },
-  mounted() {
-    this.getTagColor();
-  }
+  mounted() {}
 };
 </script>
 <style lang="scss" scoped>
-.aside-wrapper {
-  width: 100%;
-  box-sizing: border-box;
-  margin-bottom: 70px;
-}
-.tags-box {
-  .badge {
-    cursor: pointer;
-    margin-bottom: 7px;
-    font-weight: 400;
-    font-size: 12px;
-    margin-right: 7px;
-  }
-}
-
 .main-title {
   display: flex;
   align-items: center;
