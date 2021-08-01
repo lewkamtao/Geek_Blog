@@ -4,7 +4,7 @@
       <div class="messgae-title">
         <div class="title">
           留言墙
-          <span class="badge secondary">{{ article.expand.comments }}</span>
+          <span class="badge secondary">{{ comments.count }}</span>
         </div>
       </div>
 
@@ -202,15 +202,11 @@
 <script>
 import util from "@/util/index";
 import checkStr from "@/util/checkStr";
-import CommentCard from "./CommentCard.vue";
+import CommentCard from "@/components/detail/parts/CommentCard.vue";
 
 export default {
   components: { CommentCard },
   props: {
-    article: {
-      type: Object,
-      default: {}
-    },
     comments: {
       type: Object,
       default: {}
@@ -268,9 +264,7 @@ export default {
       if (type == "mes") {
         delete this.comments_form.pid;
       }
-      this.comments_form.article_id = this.article.id;
       var data = JSON.parse(JSON.stringify(this.comments_form));
-
       if (!this.isLogin) {
         if (data.nickname == "") {
           this.error_tips = "* 昵称不能为空";
@@ -289,11 +283,11 @@ export default {
         this.error_tips = "* 内容不能为空";
         return;
       }
-
       if (this.$cookies.get("token")) {
-        this.comments_form["login-token"] = this.$cookies.get("token");
+        data["login-token"] = this.$cookies.get("token");
       }
-      this.$axios.post("/comments", this.comments_form).then(res => {
+      data.type = "msg_wall";
+      this.$axios.post("/comments", data).then(res => {
         if (res.code == 200) {
           if (type != "mes") {
             if (process.browser) {

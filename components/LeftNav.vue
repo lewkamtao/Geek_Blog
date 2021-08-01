@@ -19,8 +19,8 @@ export default {
       default: {}
     },
     article_sort: {
-      type: Array,
-      default: []
+      type: Object,
+      default: {}
     },
     article: {
       type: Object,

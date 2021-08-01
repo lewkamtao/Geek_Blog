@@ -8,10 +8,20 @@
         class="part"
       ></article-detail>
       <links-detail v-if="options.links&&options.type=='links'" :links="options.links" class="part"></links-detail>
+      <index-detail
+        v-if="options.articleList&&options.type=='index'"
+        :articleList="options.articleList"
+        class="part"
+      ></index-detail>
     </div>
     <div ref="aside" :style="setAsideLeft" class="aside">
+      <!-- 标签云 -->
       <tag-cloud v-if="options.tag" :tag="options.tag"></tag-cloud>
+
+      <!-- 目录 -->
       <catalogue v-if="options.catalogue"></catalogue>
+
+      <!-- 评论板块 -->
       <comment
         @reloadComments="reloadComments"
         v-if="options.comments"
@@ -19,20 +29,49 @@
         :articleId="options.article?options.article.id:99"
         :type="options.type"
       ></comment>
+
+      <!-- 内容更新 -->
+      <developments v-if="options.type=='index'"></developments>
+
+      <!-- 最新评论 -->
+      <lately v-if="options.type=='index'"></lately>
+
+      <!-- 联系方式 -->
+      <info v-if="options.type=='index'"></info>
+
+      <!-- 博客信息 -->
+      <concact v-if="options.type=='index'"></concact>
     </div>
   </div>
-</template>
+</template> 
  
 <script>
-import ArticleDetail from "@/components/ArticleDetail";
-import LinksDetail from "@/components/LinksDetail";
+import ArticleDetail from "@/components/detail/ArticleDetail";
+import LinksDetail from "@/components/detail/LinksDetail";
+import IndexDetail from "@/components/detail/IndexDetail";
 
-import Catalogue from "@/components/Catalogue";
-import Comment from "@/components/Comment";
-import TagCloud from "@/components/TagCloud";
+import Catalogue from "@/components/detail/parts/Catalogue";
+import Comment from "@/components/detail/parts/Comment";
+import TagCloud from "@/components/detail/parts/TagCloud";
+import Info from "@/components/detail/parts/Info";
+import Developments from "@/components/detail/parts/Developments";
+import Lately from "@/components/detail/parts/Lately";
+import Concact from "@/components/detail/parts/Concact";
 
 export default {
-  components: { ArticleDetail, Catalogue, Comment, TagCloud },
+  components: {
+    ArticleDetail,
+    IndexDetail,
+    LinksDetail,
+
+    Catalogue,
+    Comment,
+    TagCloud,
+    Developments,
+    Lately,
+    Info,
+    Concact
+  },
   props: {
     options: {
       type: Object,
@@ -42,7 +81,8 @@ export default {
         catalogue: false,
         comments: false,
         tag: false,
-        article: false
+        article: false,
+        articleList: false
       }
     }
   },
@@ -100,7 +140,7 @@ export default {
 .article-wrapper-master {
   display: flex;
   .main {
-    width: calc(100% - 400px);
+    width: calc(100% - 350px);
     min-width: 500px;
     transition: opacity 0.25s;
   }
@@ -112,12 +152,15 @@ export default {
   max-height: 100%;
   height: 100%;
   overflow-y: scroll;
-  width: 400px;
+  width: 350px;
   margin-bottom: 50px;
   z-index: 999;
   scrollbar-color: transparent transparent;
   scrollbar-track-color: transparent;
   -ms-scrollbar-track-color: transparent;
+}
+.aside > div {
+  margin-bottom: 14px;
 }
 .aside::-webkit-scrollbar {
   width: 0px;

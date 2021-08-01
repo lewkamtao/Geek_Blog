@@ -12,58 +12,72 @@
         <div @click="showNav()" class="logo mobile-logo">
           <img width="35" src="https://cos.tngeek.com/logo.png" alt srcset />
         </div>
-        <div class="search">
-          <input
-            placeholder="擅用搜索，事半功倍"
-            v-model="searchValue"
-            @focus="(isShowResBox = true), searchArticleFn()"
-            @blur="hidResBox()"
-            type="text"
-          />
-          <div class="res-box" :class="{ 'is-show-res-box': isShowResBox }">
-            <div class="title">
-              {{ searchArticle.length > 0 ? "搜索结果推荐文章" : "暂无结果" }}
-            </div>
-            <ul>
-              <nuxt-link
-                v-for="(item, index) in searchArticle"
-                :key="index"
-                :to="'/Article?id=' + item.id"
-                >{{ item.title }}</nuxt-link
-              >
-            </ul>
-          </div>
-        </div>
       </div>
-      <div class="right-links">
-        <nuxt-link v-if="isLogin" to="/about">{{ user.nickname }}</nuxt-link>
-        <nuxt-link v-else to="/login">
+      <div class="right">
+        <div class="search">
           <svg
-            style="margin-top: 5px"
             xmlns="http://www.w3.org/2000/svg"
-            width="20px"
-            height="20px"
+            width="16px"
+            height="16px"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
             stroke-width="2"
             stroke-linecap="round"
             stroke-linejoin="round"
-            class="feather feather-key"
+            class="feather feather-search"
           >
-            <path
-              d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"
-            />
+            <circle cx="11" cy="11" r="8" />
+            <line x1="21" y1="21" x2="16.65" y2="16.65" />
           </svg>
-        </nuxt-link>
+          <input
+            placeholder="本全站点还处于开发中"
+            v-model="searchValue"
+            @focus="(isShowResBox = true), searchArticleFn()"
+            @blur="hidResBox()"
+            type="text"
+          />
+          <div class="res-box" :class="{ 'is-show-res-box': isShowResBox }">
+            <div class="title">{{ searchArticle.length > 0 ? "搜索结果推荐文章" : "暂无结果" }}</div>
+            <ul>
+              <nuxt-link
+                v-for="(item, index) in searchArticle"
+                :key="index"
+                :to="'/Article?id=' + item.id"
+              >{{ item.title }}</nuxt-link>
+            </ul>
+          </div>
+        </div>
+        <div class="right-links">
+          <nuxt-link v-if="isLogin" to="/about">{{ user.nickname }}</nuxt-link>
+          <nuxt-link v-else to="/login">
+            <svg
+              style="margin-top: 5px"
+              xmlns="http://www.w3.org/2000/svg"
+              width="20px"
+              height="20px"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="feather feather-key"
+            >
+              <path
+                d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"
+              />
+            </svg>
+          </nuxt-link>
 
-        <!-- <fieldset class="form-group mode-setting">
+          <!-- <fieldset class="form-group mode-setting">
           <label for="mode" class="paper-switch-label">{{ mode ? "黑夜" : "白天" }}</label>
           <label class="paper-switch">
             <input id="paperSwitch4" name="mode" v-model="mode" type="checkbox" />
             <span class="paper-switch-slider"></span>
           </label>
-        </fieldset>-->
+          </fieldset>-->
+        </div>
       </div>
     </div>
   </div>
@@ -75,8 +89,8 @@ export default {
   props: {
     options: {
       type: Object,
-      default: {},
-    },
+      default: {}
+    }
   },
   data() {
     return {
@@ -86,24 +100,24 @@ export default {
       searchValue: "",
       timer: "",
       searchArticle: [],
-      isShowResBox: false,
+      isShowResBox: false
     };
   },
   watch: {
-    mode: function (val) {
+    mode: function(val) {
       if (val) {
         document.getElementsByTagName("body")[0].className = "dark";
       } else {
         document.body.removeAttribute("class");
       }
     },
-    searchValue: function (val) {
+    searchValue: function(val) {
       var that = this;
       clearTimeout(this.timer);
-      this.timer = setTimeout(async function () {
+      this.timer = setTimeout(async function() {
         that.searchArticleFn();
       }, 250);
-    },
+    }
   },
   computed: {},
   methods: {
@@ -114,13 +128,13 @@ export default {
     },
     hidResBox() {
       var that = this;
-      setTimeout(function () {
+      setTimeout(function() {
         that.isShowResBox = false;
       }, 500);
     },
     showNav() {
       this.$emit("showNav");
-    },
+    }
   },
   created() {
     if (this.$cookies.get("token")) {
@@ -136,7 +150,7 @@ export default {
     }
     next();
   },
-  mounted() {},
+  mounted() {}
 };
 </script>
 <style lang="scss" scoped>
@@ -188,87 +202,9 @@ export default {
       .mobile-logo {
         display: none;
       }
-      .search {
-        position: relative;
-        margin-left: 50px;
-
-        input {
-          position: relative;
-          z-index: 99;
-          width: 320px;
-          height: 40px;
-          padding-left: 20px;
-          font-size: 15px;
-          border-radius: 12px;
-          border: none;
-          background: #eee;
-          transition: all 0.25s;
-        }
-        .res-box {
-          position: absolute;
-          left: 0px;
-          top: 0px;
-          border-radius: 15px;
-          width: 320px;
-          height: 0px;
-          overflow-y: scroll;
-          padding: 0px 10px 0px 10px;
-          line-height: 30px;
-          color: #000;
-          transition: all 0.25s;
-          .title {
-            width: 100%;
-            color: #999;
-            padding: 5px 5px 5px 10px;
-          }
-          ul {
-            display: flex;
-            flex-direction: column;
-            a {
-              position: relative;
-              width: 100%;
-              padding: 3px 10px;
-              border-radius: 10px;
-              font-size: 13px;
-            }
-            a::before {
-              position: absolute;
-              top: 0px;
-              left: 0px;
-              width: 100%;
-              height: 1px;
-              background: #eee;
-              content: "";
-            }
-            a:hover {
-              background: rgba($color: #000000, $alpha: 0.07);
-            }
-            a:hover::before {
-              display: none;
-            }
-            a:hover + a::before {
-              display: none;
-            }
-          }
-        }
-        .res-box::-webkit-scrollbar {
-          width: 0px;
-          height: 0px;
-          display: none;
-        }
-        input:hover {
-          background: rgba($color: #000000, $alpha: 0.2);
-        }
-        input:focus {
-          background: rgba($color: #ffffff, $alpha: 0.9);
-        }
-        .is-show-res-box {
-          height: 450px;
-          padding: 40px 10px 12px 10px;
-          background: rgba($color: #ffffff, $alpha: 1);
-          box-shadow: 0px 0px 13px 0px rgb(0 0 0 / 15%);
-        }
-      }
+    }
+    .right {
+      display: flex;
     }
     .right-links {
       display: flex;
@@ -284,6 +220,94 @@ export default {
       }
       a:active {
         transform: scale(0.9);
+      }
+    }
+    .search {
+      position: relative;
+      margin-right: 30px;
+      .feather-search {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 15px;
+        color: #999 !important;
+        z-index: 99999;
+      }
+      input {
+        position: relative;
+        z-index: 99;
+        width: 320px;
+        height: 40px;
+        padding-left: 20px;
+        font-size: 15px;
+        border-radius: 12px;
+        border: none;
+        background: #eee;
+        transition: all 0.25s;
+      }
+      .res-box {
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        border-radius: 15px;
+        width: 320px;
+        height: 0px;
+        overflow-y: scroll;
+        padding: 0px 10px 0px 10px;
+        line-height: 30px;
+        color: #000;
+        transition: all 0.25s;
+        .title {
+          width: 100%;
+          color: #999;
+          padding: 5px 5px 5px 10px;
+        }
+        ul {
+          display: flex;
+          flex-direction: column;
+          a {
+            position: relative;
+            width: 100%;
+            padding: 3px 10px;
+            border-radius: 10px;
+            font-size: 13px;
+          }
+          a::before {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            height: 1px;
+            background: #eee;
+            content: "";
+          }
+          a:hover {
+            background: rgba($color: #000000, $alpha: 0.07);
+          }
+          a:hover::before {
+            display: none;
+          }
+          a:hover + a::before {
+            display: none;
+          }
+        }
+      }
+      .res-box::-webkit-scrollbar {
+        width: 0px;
+        height: 0px;
+        display: none;
+      }
+      input:hover {
+        background: rgba($color: #000000, $alpha: 0.2);
+      }
+      input:focus {
+        background: rgba($color: #ffffff, $alpha: 0.9);
+      }
+      .is-show-res-box {
+        height: 450px;
+        padding: 40px 10px 12px 10px;
+        background: rgba($color: #ffffff, $alpha: 1);
+        box-shadow: 0px 0px 13px 0px rgb(0 0 0 / 15%);
       }
     }
   }
@@ -332,12 +356,12 @@ export default {
       height: 45px;
       padding: 0px 10px;
       .left {
-        width: calc(100% - 35px);
         .pc-logo {
           display: none;
         }
         .mobile-logo {
-          display: block;margin-right: 10px;
+          display: block;
+          margin-right: 10px;
         }
         .logo {
           display: inline-block;
@@ -349,21 +373,24 @@ export default {
             height: 18px;
           }
         }
-        .search {
-          margin-left: 0px;
-          width: calc(100% - 40px);
-          input {
-            height: 30px;
-            width: 100%;
-            font-size: 14px;
-            border-radius: 7px;
-            padding-left: 10px;
-          }
+      }
+      .right {
+        width: calc(100% - 40px);
+      }
+      .search {
+        margin-right: 10px;
+        width: calc(100% - 80px);
+        input {
+          height: 30px;
+          width: 100%;
+          font-size: 14px;
+          border-radius: 7px;
+          padding-left: 10px;
+        }
 
-          .res-box {
-            border-radius: 10px;
-            width: 100%;
-          }
+        .res-box {
+          border-radius: 10px;
+          width: 100%;
         }
       }
       .right-links {

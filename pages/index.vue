@@ -65,9 +65,8 @@ export default {
   },
   async asyncData({ $axios }) {
     const options = (await $axios.get("/options")).data;
-
     const article_sort = (await $axios.get("/article-sort?limit=1000")).data
-      .data;
+      ;
     const pages = (await $axios.get("/page")).data.data;
     const links = (await $axios.get("/links?limit=5")).data.data;
     const article = (await $axios.get("/article?limit=5")).data;

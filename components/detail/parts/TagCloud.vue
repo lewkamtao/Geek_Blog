@@ -1,5 +1,5 @@
 <template>
-  <div style="margin-bottom: 14px" class="tagCloud part">
+  <div class="tagCloud part">
     <div class="main-title">标签云</div>
     <div class="tags-box">
       <span

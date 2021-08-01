@@ -213,7 +213,7 @@ export default {
           data.type = this.type;
           break;
         case "message":
-          data.type = this.type;
+          data.type = "msg_wall";
           break;
         case "timeline":
           data.type = this.type;

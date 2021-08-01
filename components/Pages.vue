@@ -1,5 +1,5 @@
 <template>
-  <div v-if="pages.length != 0" v-show="false" class="part pages" style="margin-bottom:30px">
+  <div v-if="false" v-show="false" class="part pages" style="margin-bottom:30px">
     <div class="main-title">一些好玩的</div>
     <div class="nav-list">
       <div
@@ -7,9 +7,7 @@
         :key="index"
         @click="openpages(item.id)"
         class="paper-btn btn-secondary"
-      >
-        {{ item.title }}
-      </div>
+      >{{ item.title }}</div>
     </div>
   </div>
 </template>

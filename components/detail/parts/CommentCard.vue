@@ -4,6 +4,7 @@
       <div class="left">
         <div class="avatar border border-primary">
           <img :class="getBorderType()" :src="comment.expand.head_img" alt srcset />
+          <span class="ua">{{getUA(comment.expand.agent)}}</span>
         </div>
       </div>
       <div class="right">
@@ -20,7 +21,9 @@
             }}
           </a>
         </div>-->
-        <div class="create_time">{{ getBeautifyTime(comment.create_time) }}</div>
+        <div class="footer">
+          <span class="create_time">{{ getBeautifyTime(comment.create_time)}}</span>
+        </div>
       </div>
       <label class="reply-btn" @click="reply(comment)" for="modal-reply">
         <svg
@@ -44,6 +47,7 @@
           <div class="left">
             <div class="avatar border border-primary" :class="getBorderType()">
               <img :src="son.expand.head_img" alt srcset />
+              <span class="ua">{{getUA(son.expand.agent)}}</span>
             </div>
           </div>
           <div class="right">
@@ -56,7 +60,9 @@
               博主站点：
               <a :href="'http://' + son.url" target="_blank">{{ son.url }}</a>
             </div>-->
-            <div class="create_time">{{ getBeautifyTime(son.create_time) }}</div>
+            <div class="footer">
+              <span class="create_time">{{ getBeautifyTime(son.create_time)}}</span>
+            </div>
           </div>
           <label class="reply-btn" @click="reply(son)" for="modal-reply">
             <svg
@@ -120,6 +126,14 @@ export default {
         return util.getBeautifyTime(time);
       };
     },
+    getUA() {
+      return function(agent) {
+        return (
+          "来自 " +
+          (agent.os.os + " " + agent.os.os_ver + " " + agent.browser.browser)
+        );
+      };
+    },
     getBorderType() {
       return function() {
         return "border-" + Math.floor(Math.random() * 6 + 1);
@@ -140,7 +154,6 @@ export default {
   background: rgba($color: #000, $alpha: 0.025);
   border-radius: 10px;
   margin-bottom: 12px;
-  overflow: hidden;
   .son-box {
     width: calc(100% - 30px);
     margin: 0px 0px 0px 30px;
@@ -165,11 +178,27 @@ export default {
       width: 40px;
       margin-right: 10px;
       .avatar {
+        position: relative;
         width: 40px;
         height: 40px;
-        overflow: hidden;
         display: flex;
         align-items: center;
+        cursor: pointer;
+        .ua {
+          position: absolute;
+          top: -25px;
+          left: 0px;
+          z-index: 9999;
+          white-space: nowrap;
+          border-radius: 2px;
+          padding: 2px 5px;
+          font-weight: lighter;
+          transition: opacity 0.25s;
+          background: rgba($color: #000, $alpha: 0.5);
+          font-size: 12px;
+          color: #fff;
+          opacity: 0;
+        }
 
         img {
           border-bottom-left-radius: 0px;
@@ -178,6 +207,11 @@ export default {
           border-top-right-radius: 0px;
           width: 100%;
           height: auto;
+        }
+      }
+      .avatar:hover {
+        .ua {
+          opacity: 1;
         }
       }
     }
@@ -190,7 +224,7 @@ export default {
       }
       .content {
         color: #1e1e1e;
-        margin: 3px 0px 6px 0px;
+        margin: 8px 0px 6px 0px;
         font-size: 14px;
         line-height: 20px;
       }
@@ -199,7 +233,7 @@ export default {
         color: #0071de;
         font-style: italic;
       }
-      .create_time {
+      .footer {
         font-size: 12px;
         color: #999;
         font-weight: 400;
@@ -224,7 +258,9 @@ export default {
   }
   .master {
     background: #a7342d;
+    padding: 1px 2px;
     opacity: 0.6;
+    font-weight: normal;
     cursor: default;
   }
 }
@@ -236,7 +272,7 @@ export default {
       }
       .master {
         font-size: 80%;
-        padding: 1px 3px ;
+        padding: 1px 3px;
       }
     }
   }

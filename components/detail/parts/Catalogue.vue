@@ -1,5 +1,5 @@
 <template>
-  <div style="margin-bottom: 14px" class="catalogue part">
+  <div class="catalogue part">
     <div class="main-title" style="margin-bottom: 12px">目录</div>
     <div class="article-list vditor-outline" id="outline"></div>
   </div>
