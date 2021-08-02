@@ -11,16 +11,12 @@
       @pause="onPause"
       @play="onPlay"
     >
-      <source  type="audio/mpeg" />
+      <source type="audio/mpeg" />
     </audio>
 
     <div class="info">
       <div class="cover">
-        <img
-          src="https://q2.qlogo.cn/g?b=qq&nk=1057072668&s=100"
-          alt=""
-          srcset=""
-        />
+        <img src="https://q2.qlogo.cn/g?b=qq&nk=1057072668&s=100" alt srcset />
       </div>
       <div class="title">{{ "歌歌名歌名歌名歌名歌名歌名名" }}</div>
       <svg
@@ -35,19 +31,17 @@
         stroke-linejoin="round"
         class="css-i6dzq1 music-list-btn"
       >
-        <line x1="8" y1="6" x2="21" y2="6"></line>
-        <line x1="8" y1="12" x2="21" y2="12"></line>
-        <line x1="8" y1="18" x2="21" y2="18"></line>
-        <line x1="3" y1="6" x2="3.01" y2="6"></line>
-        <line x1="3" y1="12" x2="3.01" y2="12"></line>
-        <line x1="3" y1="18" x2="3.01" y2="18"></line>
+        <line x1="8" y1="6" x2="21" y2="6" />
+        <line x1="8" y1="12" x2="21" y2="12" />
+        <line x1="8" y1="18" x2="21" y2="18" />
+        <line x1="3" y1="6" x2="3.01" y2="6" />
+        <line x1="3" y1="12" x2="3.01" y2="12" />
+        <line x1="3" y1="18" x2="3.01" y2="18" />
       </svg>
     </div>
 
     <div class="songs-list" :class="{ isShowSongsList: isShowSongsList }">
-      <div v-for="item in songs" :key="item.id" class="item">
-        {{ item.name }}
-      </div>
+      <div v-for="item in songs" :key="item.id" class="item">{{ item.name }}</div>
     </div>
 
     <div class="contorl">
@@ -55,32 +49,26 @@
         <div class="time-line">
           <div class="start-time">2:46</div>
           <div class="end-time">-1:52</div>
-          <div class="line"><span class="line-btn"></span></div>
+          <div class="line">
+            <span class="line-btn"></span>
+          </div>
         </div>
       </div>
       <div class="btn-box">
         <svg class="icon icon-prev" aria-hidden="true">
-          <use xlink:href="#icon-prev"></use>
+          <use xlink:href="#icon-prev" />
         </svg>
 
-        <svg
-          v-show="music.status == 'pause'"
-          class="icon icon-play"
-          aria-hidden="true"
-        >
-          <use xlink:href="#icon-play"></use>
+        <svg v-show="music.status == 'pause'" class="icon icon-play" aria-hidden="true">
+          <use xlink:href="#icon-play" />
         </svg>
 
-        <svg
-          v-show="music.status != 'pause'"
-          class="icon icon-pause"
-          aria-hidden="true"
-        >
-          <use xlink:href="#icon-pause"></use>
+        <svg v-show="music.status != 'pause'" class="icon icon-pause" aria-hidden="true">
+          <use xlink:href="#icon-pause" />
         </svg>
 
         <svg class="icon icon-next" aria-hidden="true">
-          <use xlink:href="#icon-next"></use>
+          <use xlink:href="#icon-next" />
         </svg>
       </div>
       <div class="line-box">
@@ -95,7 +83,7 @@
           stroke-linejoin="round"
           class="css-i6dzq1"
         >
-          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
         </svg>
         <div class="volume-line">
           <div class="line">
@@ -113,10 +101,8 @@
           stroke-linejoin="round"
           class="css-i6dzq1"
         >
-          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-          <path
-            d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"
-          ></path>
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+          <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07" />
         </svg>
       </div>
     </div>
@@ -130,10 +116,10 @@ export default {
   data() {
     return {
       music: {
-        status: "pause",
+        status: "pause"
       },
       isShowSongsList: false,
-      songs: [],
+      songs: []
     };
   },
   watch: {},
@@ -153,7 +139,7 @@ export default {
     //播放完毕执行
     overAudio() {
       console.log("播放声音完毕");
-      this.audioArr.forEach((item) => {
+      this.audioArr.forEach(item => {
         item.isStart = true;
       });
     },
@@ -161,12 +147,12 @@ export default {
     async getMusicList() {
       const data = (await this.$axios.get("/music?id=1&mode=list")).data;
       this.songs = data.songs;
-    },
+    }
   },
   created() {
     this.getMusicList();
   },
-  mounted() {},
+  mounted() {}
 };
 </script>
 <style lang="scss" scoped>
@@ -239,6 +225,9 @@ export default {
     .item:hover {
       background: rgba($color: #000000, $alpha: 0.05);
     }
+    .item:hover::before {
+      display: none;
+    }
     .item:hover + .item::before {
       display: none;
     }
@@ -279,6 +268,10 @@ export default {
       .icon:hover {
         color: #000;
         transform: scale(1.1);
+      }
+      .icon:active {
+        color: #000;
+        transform: scale(0.9);
       }
       .icon-prev,
       .icon-next {
