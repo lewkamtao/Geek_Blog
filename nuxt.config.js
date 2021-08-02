@@ -15,7 +15,7 @@ export default {
 
         link: [],
         script: [
-            { src: '//at.alicdn.com/t/font_2516905_21npos0qh6zh.js' },
+            { src: '//at.alicdn.com/t/font_2717088_5rb8jf858v4.js' },
         ]
     },
 

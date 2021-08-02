@@ -1,10 +1,15 @@
 <template>
   <div class="left-nav">
     <UserInfo class="user-info" :options="options" />
-    <Menu />
+    <MusicBox />
+    <Menu :options="options" />
+
     <Pages :pages="pages" />
-    <ArticleSort class="article-sort" :article_sort="article_sort" :article="article" />
-    <LinksCard :links="links" />
+    <ArticleSort
+      class="article-sort"
+      :article_sort="article_sort"
+      :article="article"
+    />
     <div class="copy">{{ options.copy }}</div>
   </div>
 </template>
@@ -16,24 +21,20 @@ export default {
   props: {
     options: {
       type: Object,
-      default: {}
+      default: {},
     },
     article_sort: {
       type: Object,
-      default: {}
+      default: {},
     },
     article: {
       type: Object,
-      default: []
+      default: [],
     },
     pages: {
       type: Array,
-      default: []
+      default: [],
     },
-    links: {
-      type: Array,
-      default: []
-    }
   },
   data() {
     return {};
@@ -42,7 +43,7 @@ export default {
   computed: {},
   methods: {},
   created() {},
-  mounted() {}
+  mounted() {},
 };
 </script>
 <style lang="scss" scoped>

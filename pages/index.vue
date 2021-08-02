@@ -1,11 +1,18 @@
 <template>
-  <div id="top" class="wrapper" :class="{ isShowNav: isShowNav, isShowAside: isShowAside }">
-    <TopNav @showNav="showNav()" :options="options" class="top-nav-wrapper-master" />
+  <div
+    id="top"
+    class="wrapper"
+    :class="{ isShowNav: isShowNav, isShowAside: isShowAside }"
+  >
+    <TopNav
+      @showNav="showNav()"
+      :options="options"
+      class="top-nav-wrapper-master"
+    />
     <LeftNav
       :options="options"
       :article_sort="article_sort"
       :article="article"
-      :links="links"
       :pages="pages"
       class="left-nav"
     />
@@ -57,21 +64,21 @@ export default {
         {
           hid: "description",
           name: "description",
-          content: this.options.keywords
-        }
+          content: this.options.keywords,
+        },
       ],
-      link: [{ rel: "icon", type: "image/x-icon", href: this.options.site_ico }]
+      link: [
+        { rel: "icon", type: "image/x-icon", href: this.options.site_ico },
+      ],
     };
   },
   async asyncData({ $axios }) {
     const options = (await $axios.get("/options")).data;
-    const article_sort = (await $axios.get("/article-sort?limit=1000")).data
-      ;
+    const article_sort = (await $axios.get("/article-sort?limit=1000")).data;
     const pages = (await $axios.get("/page")).data.data;
-    const links = (await $axios.get("/links?limit=5")).data.data;
     const article = (await $axios.get("/article?limit=5")).data;
 
-    return { options, article_sort, article, pages, links };
+    return { options, article_sort, article, pages };
   },
   props: {},
   data() {
@@ -79,7 +86,7 @@ export default {
       isShowNav: false,
       isShowAside: false,
       isShowOpenAsideBtn: false,
-      backUpTopScroll: 0
+      backUpTopScroll: 0,
     };
   },
   watch: {},
@@ -91,7 +98,7 @@ export default {
           this.backUpTopScroll = document.documentElement.scrollTop;
         } else {
           var top = JSON.parse(JSON.stringify(this.backUpTopScroll));
-          setTimeout(function() {
+          setTimeout(function () {
             document.documentElement.scrollTop = top;
           }, 10);
           this.backUpTopScroll = 0;
@@ -105,25 +112,17 @@ export default {
           this.backUpTopScroll = document.documentElement.scrollTop;
         } else {
           var top = JSON.parse(JSON.stringify(this.backUpTopScroll));
-          setTimeout(function() {
+          setTimeout(function () {
             document.documentElement.scrollTop = top;
           }, 10);
           this.backUpTopScroll = 0;
         }
       }
       this.isShowAside = !this.isShowAside;
-    }
+    },
   },
   created() {
-    // if (process.client) {
-    //   new DevicePixelRatio().init();
-    // }
-
-    if (["/Article", "/Links"].indexOf(this.$route.path) >= 0) {
-      this.isShowOpenAsideBtn = true;
-    } else {
-      this.isShowOpenAsideBtn = false;
-    }
+    this.isShowOpenAsideBtn = true;
   },
   beforeRouteUpdate(to, from, next) {
     if (process.browser) {
@@ -131,17 +130,14 @@ export default {
       util.openModal(false);
       this.isShowNav = false;
       this.isShowAside = false;
-      if (["/Article", "/Links"].indexOf(to.path) >= 0) {
-        this.isShowOpenAsideBtn = true;
-      } else {
-        this.isShowOpenAsideBtn = false;
-      }
+      this.isShowOpenAsideBtn = true;
+
       next();
     }
   },
   mounted() {
     // 修复qq浏览器不能成功post
-  }
+  },
 };
 </script> 
 <style scoped  lang="scss">

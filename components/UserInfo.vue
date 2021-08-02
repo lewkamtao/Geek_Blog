@@ -69,7 +69,7 @@ export default {
     color: #fff;
     font-size: 18px;
     font-weight: bold;
-    background: #0071de;
+    background: #333;
   }
   .description {
     font-size: 14px;

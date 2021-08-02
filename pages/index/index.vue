@@ -1,13 +1,14 @@
 <template>
   <Detail
     :options="{
-  type: 'index',
-  catalogue: false,
-  comments: false,
-  tag: false,
-  article: false,
-  articleList:articleList
-  }"
+      type: 'index',
+      catalogue: false,
+      comments: false,
+      tag: false,
+      article: false,
+      articleList: articleList,
+      newComments: newComments,
+    }"
   />
 </template>
 
@@ -21,9 +22,17 @@ export default {
   props: {},
   data() {
     return {
-      page: 1,
-      limit: 10
+      newComments: {},
     };
-  }
+  },
+  methods: {
+    async getNewComments() {
+      const newComments = (await this.$axios.get("/comments?limit=5")).data;
+      this.newComments = newComments;
+    },
+  },
+  created() {
+    this.getNewComments();
+  },
 };
 </script> 

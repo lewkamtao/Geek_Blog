@@ -1,5 +1,5 @@
 <template>
-  <div class="part article-sort" style="margin-bottom: 14px">
+  <div class="part article-sort" style="margin-bottom: 30px">
     <div class="main-title">归档</div>
     <div class="article-title-list">
       <ul>
@@ -9,7 +9,9 @@
           @click="getArticleBySort(item.id)"
         >
           {{ item.name }}
-          <div class="badge" :class="tagsClass[index]">{{item.expand.count}}</div>
+          <div class="badge" :class="tagsClass[index]">
+            {{ item.expand.count }}
+          </div>
         </li>
       </ul>
     </div>
@@ -22,12 +24,12 @@ export default {
   props: {
     article_sort: {
       type: Object,
-      default: {}
-    }
+      default: {},
+    },
   },
   data() {
     return {
-      tagsClass: []
+      tagsClass: [],
     };
   },
   watch: {},
@@ -44,13 +46,13 @@ export default {
       }
     },
     getArticleBySort(id) {
-      console.log(id)
-    }
+      console.log(id);
+    },
   },
   created() {
     this.getTagColor();
   },
-  mounted() {}
+  mounted() {},
 };
 </script>
 <style lang="scss" scoped>

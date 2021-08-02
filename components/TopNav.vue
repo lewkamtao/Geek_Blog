@@ -38,13 +38,16 @@
             type="text"
           />
           <div class="res-box" :class="{ 'is-show-res-box': isShowResBox }">
-            <div class="title">{{ searchArticle.length > 0 ? "搜索结果推荐文章" : "暂无结果" }}</div>
+            <div class="title">
+              {{ searchArticle.length > 0 ? "搜索结果推荐文章" : "暂无结果" }}
+            </div>
             <ul>
               <nuxt-link
                 v-for="(item, index) in searchArticle"
                 :key="index"
                 :to="'/Article?id=' + item.id"
-              >{{ item.title }}</nuxt-link>
+                >{{ item.title }}</nuxt-link
+              >
             </ul>
           </div>
         </div>
@@ -89,8 +92,8 @@ export default {
   props: {
     options: {
       type: Object,
-      default: {}
-    }
+      default: {},
+    },
   },
   data() {
     return {
@@ -100,24 +103,24 @@ export default {
       searchValue: "",
       timer: "",
       searchArticle: [],
-      isShowResBox: false
+      isShowResBox: false,
     };
   },
   watch: {
-    mode: function(val) {
+    mode: function (val) {
       if (val) {
         document.getElementsByTagName("body")[0].className = "dark";
       } else {
         document.body.removeAttribute("class");
       }
     },
-    searchValue: function(val) {
+    searchValue: function (val) {
       var that = this;
       clearTimeout(this.timer);
-      this.timer = setTimeout(async function() {
+      this.timer = setTimeout(async function () {
         that.searchArticleFn();
       }, 250);
-    }
+    },
   },
   computed: {},
   methods: {
@@ -128,13 +131,13 @@ export default {
     },
     hidResBox() {
       var that = this;
-      setTimeout(function() {
+      setTimeout(function () {
         that.isShowResBox = false;
       }, 500);
     },
     showNav() {
       this.$emit("showNav");
-    }
+    },
   },
   created() {
     if (this.$cookies.get("token")) {
@@ -150,7 +153,7 @@ export default {
     }
     next();
   },
-  mounted() {}
+  mounted() {},
 };
 </script>
 <style lang="scss" scoped>
@@ -239,7 +242,7 @@ export default {
         width: 320px;
         height: 40px;
         padding-left: 20px;
-        font-size: 15px;
+        font-size: 14px;
         border-radius: 12px;
         border: none;
         background: #eee;
@@ -260,6 +263,7 @@ export default {
         .title {
           width: 100%;
           color: #999;
+          font-size: 14px;
           padding: 5px 5px 5px 10px;
         }
         ul {
@@ -270,7 +274,8 @@ export default {
             width: 100%;
             padding: 3px 10px;
             border-radius: 10px;
-            font-size: 13px;
+            font-size: 14px;
+            color: #666;
           }
           a::before {
             position: absolute;
@@ -282,7 +287,7 @@ export default {
             content: "";
           }
           a:hover {
-            background: rgba($color: #000000, $alpha: 0.07);
+            background: rgba($color: #000000, $alpha: 0.05);
           }
           a:hover::before {
             display: none;

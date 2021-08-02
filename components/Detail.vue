@@ -2,17 +2,26 @@
   <div class="right-wrapper article-wrapper-master">
     <div ref="articleMain" class="main">
       <article-detail
-        v-if="options.article&&options.type=='article'"
+        v-if="options.article && options.type == 'article'"
         :article="options.article"
         :minHidth="asideHidth"
         class="part"
       ></article-detail>
-      <links-detail v-if="options.links&&options.type=='links'" :links="options.links" class="part"></links-detail>
+      <links-detail
+        v-if="options.links && options.type == 'links'"
+        :links="options.links"
+        class="part"
+      ></links-detail>
       <index-detail
-        v-if="options.articleList&&options.type=='index'"
+        v-if="options.type == 'index'"
         :articleList="options.articleList"
         class="part"
       ></index-detail>
+      <message-detail
+        v-if="options.type == 'message'"
+        :comments="options.comments"
+        class="part"
+      ></message-detail>
     </div>
     <div ref="aside" :style="setAsideLeft" class="aside">
       <!-- 标签云 -->
@@ -24,23 +33,32 @@
       <!-- 评论板块 -->
       <comment
         @reloadComments="reloadComments"
-        v-if="options.comments"
+        v-if="options.comments && options.type != 'message'"
         :comments="options.comments"
-        :articleId="options.article?options.article.id:99"
+        :articleId="options.article ? options.article.id : 99"
         :type="options.type"
       ></comment>
 
       <!-- 内容更新 -->
-      <developments v-if="options.type=='index'"></developments>
+      <developments v-if="options.type == 'index'"></developments>
 
       <!-- 最新评论 -->
-      <lately v-if="options.type=='index'"></lately>
+      <lately
+        v-if="options.type == 'index'"
+        :newComments="options.newComments"
+      ></lately>
 
       <!-- 联系方式 -->
-      <info v-if="options.type=='index'"></info>
+      <info v-if="options.type == 'index'"></info>
 
       <!-- 博客信息 -->
-      <concact v-if="options.type=='index'"></concact>
+      <concact v-if="options.type == 'index'"></concact>
+
+      <!-- 评论排行榜 -->
+      <comment-rank
+        v-if="options.type == 'message'"
+        :commentsGroup="options.commentsGroup"
+      ></comment-rank>
     </div>
   </div>
 </template> 
@@ -49,6 +67,7 @@
 import ArticleDetail from "@/components/detail/ArticleDetail";
 import LinksDetail from "@/components/detail/LinksDetail";
 import IndexDetail from "@/components/detail/IndexDetail";
+import MessageDetail from "@/components/detail/MessageDetail";
 
 import Catalogue from "@/components/detail/parts/Catalogue";
 import Comment from "@/components/detail/parts/Comment";
@@ -57,12 +76,14 @@ import Info from "@/components/detail/parts/Info";
 import Developments from "@/components/detail/parts/Developments";
 import Lately from "@/components/detail/parts/Lately";
 import Concact from "@/components/detail/parts/Concact";
+import CommentRank from "@/components/detail/parts/CommentRank";
 
 export default {
   components: {
     ArticleDetail,
     IndexDetail,
     LinksDetail,
+    MessageDetail,
 
     Catalogue,
     Comment,
@@ -70,7 +91,8 @@ export default {
     Developments,
     Lately,
     Info,
-    Concact
+    Concact,
+    CommentRank,
   },
   props: {
     options: {
@@ -82,15 +104,17 @@ export default {
         comments: false,
         tag: false,
         article: false,
-        articleList: false
-      }
-    }
+        articleList: false,
+        commentsGroup: false,
+        newComments: false, // 最新评论
+      },
+    },
   },
   data() {
     return {
       setAsideLeft: "", // 用于计算侧边栏
       asideHidth: 0,
-      id: ""
+      id: "",
     };
   },
   beforeRouteUpdate(to, from, next) {
@@ -104,7 +128,7 @@ export default {
   methods: {
     reloadComments() {
       this.$emit("reloadComments");
-    }
+    },
   },
   created() {},
   mounted() {
@@ -116,11 +140,11 @@ export default {
       7;
     that.setAsideLeft = "left:" + articleMainWidth + "px;position: fixed;";
 
-    that.$nextTick(function() {
+    that.$nextTick(function () {
       that.asideHidth = that.$refs.aside.offsetHeight - 120;
     });
-    window.onresize = function() {
-      that.$nextTick(function() {
+    window.onresize = function () {
+      that.$nextTick(function () {
         articleMainWidth =
           that.$refs.articleMain.offsetLeft +
           that.$refs.articleMain.clientWidth +
@@ -133,7 +157,7 @@ export default {
   },
   beforeDestroy() {
     window.onresize = null;
-  }
+  },
 };
 </script>
 <style lang="scss" scoped>
@@ -153,6 +177,7 @@ export default {
   height: 100%;
   overflow-y: scroll;
   width: 350px;
+
   margin-bottom: 50px;
   z-index: 999;
   scrollbar-color: transparent transparent;
@@ -178,12 +203,14 @@ export default {
     }
     .aside {
       width: calc(100% - 14px);
+      opacity: 0;
       transition: all 0.5s;
     }
   }
   .isShowAside {
     .aside {
       left: 7px !important;
+      opacity: 1;
       padding: 75px 7px 55px 7px;
     }
     .main {

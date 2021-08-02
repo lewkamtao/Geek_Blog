@@ -3,8 +3,13 @@
     <div class="comment-card">
       <div class="left">
         <div class="avatar border border-primary">
-          <img :class="getBorderType()" :src="comment.expand.head_img" alt srcset />
-          <span class="ua">{{getUA(comment.expand.agent)}}</span>
+          <img
+            :class="getBorderType()"
+            :src="comment.expand.head_img"
+            alt
+            srcset
+          />
+          <span class="ua">{{ getUA(comment.expand.agent) }}</span>
         </div>
       </div>
       <div class="right">
@@ -22,32 +27,43 @@
           </a>
         </div>-->
         <div class="footer">
-          <span class="create_time">{{ getBeautifyTime(comment.create_time)}}</span>
+          <span class="create_time">{{
+            getBeautifyTime(comment.create_time)
+          }}</span>
         </div>
       </div>
-      <label class="reply-btn" @click="reply(comment)" for="modal-reply">
+      <label
+        v-if="type != 'new'"
+        class="reply-btn"
+        @click="reply(comment)"
+        for="modal-reply"
+      >
         <svg
           class="Zi Zi--Reply"
           fill="currentColor"
           viewBox="0 0 24 24"
           width="16"
           height="16"
-          style="margin-right: 5px;"
+          style="margin-right: 5px"
         >
           <path
             d="M22.959 17.22c-1.686-3.552-5.128-8.062-11.636-8.65-.539-.053-1.376-.436-1.376-1.561V4.678c0-.521-.635-.915-1.116-.521L1.469 10.67a1.506 1.506 0 0 0-.1 2.08s6.99 6.818 7.443 7.114c.453.295 1.136.124 1.135-.501V17a1.525 1.525 0 0 1 1.532-1.466c1.186-.139 7.597-.077 10.33 2.396 0 0 .396.257.536.257.892 0 .614-.967.614-.967z"
             fill-rule="evenodd"
-          />
-        </svg>回复
+          /></svg
+        >回复
       </label>
     </div>
-    <div v-if="comment.son&&comment.son.length != 0" class="son-box">
-      <div class="comments-box" v-for="(son, index) in comment.son" :key="index">
+    <div v-if="comment.son && comment.son.length != 0" class="son-box">
+      <div
+        class="comments-box"
+        v-for="(son, index) in comment.son"
+        :key="index"
+      >
         <div class="comment-card">
           <div class="left">
             <div class="avatar border border-primary" :class="getBorderType()">
               <img :src="son.expand.head_img" alt srcset />
-              <span class="ua">{{getUA(son.expand.agent)}}</span>
+              <span class="ua">{{ getUA(son.expand.agent) }}</span>
             </div>
           </div>
           <div class="right">
@@ -61,23 +77,30 @@
               <a :href="'http://' + son.url" target="_blank">{{ son.url }}</a>
             </div>-->
             <div class="footer">
-              <span class="create_time">{{ getBeautifyTime(son.create_time)}}</span>
+              <span class="create_time">{{
+                getBeautifyTime(son.create_time)
+              }}</span>
             </div>
           </div>
-          <label class="reply-btn" @click="reply(son)" for="modal-reply">
+          <label
+            v-if="type != 'new'"
+            class="reply-btn"
+            @click="reply(son)"
+            for="modal-reply"
+          >
             <svg
               class="Zi Zi--Reply"
               fill="currentColor"
               viewBox="0 0 24 24"
               width="16"
               height="16"
-              style="margin-right: 5px;"
+              style="margin-right: 5px"
             >
               <path
                 d="M22.959 17.22c-1.686-3.552-5.128-8.062-11.636-8.65-.539-.053-1.376-.436-1.376-1.561V4.678c0-.521-.635-.915-1.116-.521L1.469 10.67a1.506 1.506 0 0 0-.1 2.08s6.99 6.818 7.443 7.114c.453.295 1.136.124 1.135-.501V17a1.525 1.525 0 0 1 1.532-1.466c1.186-.139 7.597-.077 10.33 2.396 0 0 .396.257.536.257.892 0 .614-.967.614-.967z"
                 fill-rule="evenodd"
-              />
-            </svg>回复
+              /></svg
+            >回复
           </label>
         </div>
       </div>
@@ -92,6 +115,11 @@ import CommentCard from "./CommentCard.vue";
 export default {
   components: { CommentCard },
   props: {
+    type: {
+      type: String,
+      default: "",
+    },
+
     comment: {
       type: Object,
       default: {
@@ -112,9 +140,9 @@ export default {
         opt: null,
         create_time: "2021-03-22 17:45:09",
         create_time: "2021-03-23 18:36:31",
-        son: []
-      }
-    }
+        son: [],
+      },
+    },
   },
   data() {
     return {};
@@ -122,12 +150,12 @@ export default {
   watch: {},
   computed: {
     getBeautifyTime() {
-      return function(time) {
+      return function (time) {
         return util.getBeautifyTime(time);
       };
     },
     getUA() {
-      return function(agent) {
+      return function (agent) {
         return (
           "来自 " +
           (agent.os.os + " " + agent.os.os_ver + " " + agent.browser.browser)
@@ -135,18 +163,18 @@ export default {
       };
     },
     getBorderType() {
-      return function() {
+      return function () {
         return "border-" + Math.floor(Math.random() * 6 + 1);
       };
-    }
+    },
   },
   methods: {
     reply(replyObj) {
       this.$emit("setReply", replyObj);
-    }
+    },
   },
   created() {},
-  mounted() {}
+  mounted() {},
 };
 </script>
 <style lang="scss" scoped>
@@ -168,7 +196,15 @@ export default {
       opacity: 1;
       transform: scale(1.05);
     }
+    .left {
+      .avatar {
+        .ua {
+          opacity: 1;
+        }
+      }
+    }
   }
+
   .comment-card {
     position: relative;
     padding: 10px;
@@ -192,7 +228,6 @@ export default {
           white-space: nowrap;
           border-radius: 2px;
           padding: 2px 5px;
-          font-weight: lighter;
           transition: opacity 0.25s;
           background: rgba($color: #000, $alpha: 0.5);
           font-size: 12px;
@@ -207,11 +242,6 @@ export default {
           border-top-right-radius: 0px;
           width: 100%;
           height: auto;
-        }
-      }
-      .avatar:hover {
-        .ua {
-          opacity: 1;
         }
       }
     }

@@ -89,6 +89,14 @@ body {
     z-index: 9999999;
 }
 
+.icon {
+    width: 1em;
+    height: 1em;
+    vertical-align: -0.15em;
+    fill: currentColor;
+    overflow: hidden;
+}
+
 
 /* 滚动槽 */
 
@@ -126,6 +134,7 @@ html::-webkit-scrollbar-thumb:hover {
     color: #333;
     font-size: 18px;
     margin-bottom: 20px;
+    display: flex;
     align-items: center;
 }
 

@@ -25,7 +25,7 @@
           v-for="(item, index) in articleList.data"
         >
           <nuxt-link :to="'/Article?id=' + item.id">
-            <div v-if="false" class="cover">
+            <div  class="cover">
               <v-img v-if="item.img_src" :src="item.img_src"></v-img>
               <v-img v-if="!item.img_src" :src="'https://picsum.photos/800/450?' + index"></v-img>
               <h4 class="card-title">{{ item.title }}</h4>
