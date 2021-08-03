@@ -382,7 +382,7 @@ export default {
     this.$nextTick(function () {
       this.timeLine.width = this.$refs.timeLine.clientWidth;
       this.volumeLine.width = this.$refs.volumeLine.clientWidth;
-      this.$refs.audioRef.volume = 0.75;
+      this.$refs.audioRef.volume = 0.618;
       this.volumeLine.isOpenWidth =
         this.$refs.audioRef.volume * this.volumeLine.width;
     });

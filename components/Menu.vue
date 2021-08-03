@@ -170,13 +170,7 @@ export default {
           window.open("https://api.kamtao.com/", "_blank");
           break;
         case "musicBox":
-          if (this.menu[index].title == "音乐") {
-            this.menu[index].title = "音乐（再次点击关闭）";
-            this.$emit("openMusicBox");
-          } else {
-            this.menu[index].title = "音乐";
-            this.$emit("openMusicBox");
-          }
+          this.$emit("openMusicBox");
           break;
         default:
           break;
