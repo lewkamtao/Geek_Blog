@@ -35,12 +35,12 @@
         stroke-linejoin="round"
         class="css-i6dzq1 music-list-btn"
       >
-        <line x1="8" y1="6" x2="21" y2="6"></line>
-        <line x1="8" y1="12" x2="21" y2="12"></line>
-        <line x1="8" y1="18" x2="21" y2="18"></line>
-        <line x1="3" y1="6" x2="3.01" y2="6"></line>
-        <line x1="3" y1="12" x2="3.01" y2="12"></line>
-        <line x1="3" y1="18" x2="3.01" y2="18"></line>
+        <line x1="8" y1="6" x2="21" y2="6" />
+        <line x1="8" y1="12" x2="21" y2="12" />
+        <line x1="8" y1="18" x2="21" y2="18" />
+        <line x1="3" y1="6" x2="3.01" y2="6" />
+        <line x1="3" y1="12" x2="3.01" y2="12" />
+        <line x1="3" y1="18" x2="3.01" y2="18" />
       </svg>
     </div>
 
@@ -124,7 +124,7 @@
           stroke-linejoin="round"
           class="css-i6dzq1"
         >
-          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
         </svg>
         <div ref="volumeLine"  @mousedown="changeVolumeMousedown" class="line-wrapper-volume">
           <div class="volume-line">
@@ -148,10 +148,8 @@
           stroke-linejoin="round"
           class="css-i6dzq1"
         >
-          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-          <path
-            d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"
-          ></path>
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+          <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07" />
         </svg>
       </div>
       <div class="error-url" v-show="music.song.url == ''">
@@ -186,7 +184,7 @@ export default {
       },
 
       isShowSongsList: false,
-      songs: [],
+      songs: []
     };
   },
   watch: {},
@@ -389,7 +387,7 @@ export default {
         this.$refs.audioRef.volume * this.volumeLine.width;
     });
   },
-  mounted() {},
+  mounted() {}
 };
 </script>
 <style lang="scss" scoped>
