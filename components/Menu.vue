@@ -7,12 +7,7 @@
         class="nav-list-wrapper"
         v-show="item.isLogin ? (isLogin ? true : false) : true"
       >
-        <nuxt-link
-          :to="item.path"
-          class="menu-child"
-          @click.stop="toFn(item.type)"
-          v-if="!item.type"
-        >
+        <nuxt-link :to="item.path" class="menu-child" v-if="!item.type">
           <i
             v-html="item.icon"
             :style="'background:' + item.iconBg + ';color:' + item.iconColor"
@@ -39,7 +34,7 @@
         <div
           :to="item.path"
           class="menu-child"
-          @click.stop="toFn(item.type)"
+          @click.stop="toFn(index, item.type)"
           v-if="item.type"
         >
           <i
@@ -111,6 +106,14 @@ export default {
           icon: `<svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><path d="M21 2H3v16h5v4l4-4h5l4-4V2zm-10 9V7m5 4V7"></path></svg>`,
         },
         {
+          path: "#",
+          type: "musicBox",
+          title: "音乐",
+          iconBg: "#fff",
+          iconColor: "#999",
+          icon: `<svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg>`,
+        },
+        {
           path: "/Links",
           title: "友情链接",
           iconBg: "#fff",
@@ -133,6 +136,7 @@ export default {
           iconColor: "#999",
           icon: `<svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>`,
         },
+
         {
           path: "/Setting",
           isLogin: true,
@@ -157,13 +161,22 @@ export default {
   watch: {},
   computed: {},
   methods: {
-    toFn(type) {
+    toFn(index, type) {
       switch (type) {
         case "loginOut":
           this.loginOut();
           break;
         case "back":
           window.open("https://api.kamtao.com/", "_blank");
+          break;
+        case "musicBox":
+          if (this.menu[index].title == "音乐") {
+            this.menu[index].title = "音乐（再次点击关闭）";
+            this.$emit("openMusicBox");
+          } else {
+            this.menu[index].title = "音乐";
+            this.$emit("openMusicBox");
+          }
           break;
         default:
           break;

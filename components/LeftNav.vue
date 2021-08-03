@@ -1,9 +1,8 @@
 <template>
   <div class="left-nav">
     <UserInfo class="user-info" :options="options" />
-    <MusicBox />
-    <Menu :options="options" />
-
+    <Menu :options="options" @openMusicBox="openMusicBox" />
+    <MusicBox v-if="musicBoxSwitch" />
     <Pages :pages="pages" />
     <ArticleSort
       class="article-sort"
@@ -37,11 +36,17 @@ export default {
     },
   },
   data() {
-    return {};
+    return {
+      musicBoxSwitch: false,
+    };
   },
   watch: {},
   computed: {},
-  methods: {},
+  methods: {
+    openMusicBox() {
+      this.musicBoxSwitch = !this.musicBoxSwitch;
+    },
+  },
   created() {},
   mounted() {},
 };

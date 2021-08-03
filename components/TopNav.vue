@@ -52,8 +52,10 @@
           </div>
         </div>
         <div class="right-links">
+        
           <nuxt-link v-if="isLogin" to="/about">{{ user.nickname }}</nuxt-link>
-          <nuxt-link v-else to="/login">
+
+          <nuxt-link v-if="!isLogin" to="/login">
             <svg
               style="margin-top: 5px"
               xmlns="http://www.w3.org/2000/svg"
