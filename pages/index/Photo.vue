@@ -2,7 +2,7 @@
   <div class="index-wrapper-master part">
     <div class="more-btn" style="margin-bottom: 50px">
       相册功能
-      尚未完善，图库来源：https://www.kancloud.cn/lizhixuan/free_api/1165107
+      尚未完善，图库来源：https://www.kancloud.cn/lizhixuan/free_api/1165107 和 https://api.ixiaowai.cn/api/api.php
     </div>
     <div ref="masonry" class="masonry">
       <div class="img-box" :key="index" v-for="(item, index) in imgData">
