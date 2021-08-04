@@ -386,7 +386,7 @@ export default {
       }
       .search {
         margin-right: 10px;
-        width: calc(100% - 80px);
+        width: calc(100% - 40px);
         input {
           height: 30px;
           width: 100%;

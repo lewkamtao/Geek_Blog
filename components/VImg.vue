@@ -27,6 +27,6 @@ export default {
       // 图片加载成功后把地址给原来的img
       this.url = newImg.src;
     };
-  }, 
+  },
 };
 </script>

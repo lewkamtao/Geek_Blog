@@ -1,15 +1,12 @@
 <template>
   <div class="index-wrapper-master part">
-    <div class="masonry">
-      <div class="card" :key="index" v-for="(item, index) in imgList">
-        <div class="cover">
-          <v-img :src="item.img"> </v-img>
-          <!-- <v-img
-              v-if="!item.img_src"
-              :src="'https://picsum.photos/800/450?' + index"
-            ></v-img> -->
-          <h4 class="card-title">{{ item.title }}</h4>
-        </div>
+    <div class="more-btn" style="margin-bottom: 50px">
+      相册功能
+      尚未完善，图库来源：https://www.kancloud.cn/lizhixuan/free_api/1165107
+    </div>
+    <div ref="masonry" class="masonry">
+      <div class="img-box" :key="index" v-for="(item, index) in imgData">
+        <auto-img-list :width="masonryWidth" :imgData="item"></auto-img-list>
       </div>
     </div>
     <div @click="getImgList()" class="more-btn">点击加载更多</div>
@@ -17,16 +14,23 @@
 </template>
 
 <script>
-import VImg from "@/components/VImg";
+import AutoImgList from "@/components/AutoImgList";
+import qs from "qs";
 
 export default {
   components: {
-    "v-img": VImg,
+    AutoImgList,
   },
   props: {},
   async asyncData({ $axios }) {
-    const imgList = (await $axios.get("https://api.apiopen.top/getImages"))
-      .result;
+    const imgList = (
+      await $axios.post(
+        "https://api.apiopen.top/getImages",
+        qs.stringify({
+          count: "100",
+        })
+      )
+    ).result;
     return { imgList };
   },
   data() {
@@ -34,6 +38,9 @@ export default {
       page: 1,
       limit: 10,
       hidMasonry: true,
+      imgList: [],
+      imgData: [],
+      masonryWidth: 0,
     };
   },
   watch: {},
@@ -41,9 +48,44 @@ export default {
   methods: {
     async getImgList() {
       const imgList = (
-        await this.$axios.get("https://api.apiopen.top/getImages")
+        await this.$axios.post(
+          "https://api.apiopen.top/getImages",
+          qs.stringify({
+            count: "100",
+          })
+        )
       ).result;
-      this.imgList = this.imgList.concat(imgList);
+      this.$nextTick(function () {
+        this.masonryWidth = this.$refs.masonry.clientWidth;
+      });
+      this.imgList = imgList;
+      this.imgList = this.imgList.map((img) => {
+        return img.img;
+      });
+      this.formatImgData();
+    },
+    formatImgData() {
+      var rnum = this.randomNum(3, 5);
+      if (this.imgList.length > rnum) {
+        this.imgData.push(this.imgList.slice(0, rnum));
+        this.imgList = this.imgList.splice(rnum);
+        if (this.imgList.length != 0) {
+          this.formatImgData();
+        }
+      } else if (this.imgList.length != 0) {
+        this.imgData.push(this.imgList);
+      }
+    },
+    //生成从minNum到maxNum的随机数
+    randomNum(minNum, maxNum) {
+      switch (arguments.length) {
+        case 1:
+          return parseInt(Math.random() * minNum + 1, 10);
+        case 2:
+          return parseInt(Math.random() * (maxNum - minNum + 1) + minNum, 10);
+        default:
+          return 0;
+      }
     },
   },
   created() {
@@ -86,10 +128,5 @@ export default {
 }
 .masonry {
   width: 100%;
-  columns: 4; // 默认列数
-  column-gap: 15px; // 列间距
-  .card {
-    margin-bottom: 15px;
-  }
 }
 </style>
