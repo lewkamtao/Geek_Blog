@@ -27,7 +27,7 @@ export default {
       await $axios.post(
         "https://api.apiopen.top/getImages",
         qs.stringify({
-          count: "100",
+          count: "10000",
         })
       )
     ).result;

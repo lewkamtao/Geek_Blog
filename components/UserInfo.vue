@@ -2,10 +2,10 @@
   <div class="part">
     <div class="user-info">
       <div class="avatar border border-primary" :class="getBorderType()">
-        <img :src="options.site_img" alt srcset />
+        <img :src="geek_config.master_info.avatar_url" alt srcset />
       </div>
-      <div class="nickname">{{ options.title }}</div>
-      <div class="description">{{ options.description }}</div>
+      <div class="nickname">{{ geek_config.master_info.name }}</div>
+      <div class="description">{{geek_config.master_info.intro }}</div>
     </div>
   </div>
 </template>
@@ -14,10 +14,14 @@
 export default {
   components: {},
   props: {
+    geek_config: {
+      type: Object,
+      default: {}
+    },
     options: {
       type: Object,
-      default: {},
-    },
+      default: {}
+    }
   },
   data() {
     return {};
@@ -25,14 +29,14 @@ export default {
   watch: {},
   computed: {
     getBorderType() {
-      return function () {
+      return function() {
         return "border-" + Math.floor(Math.random() * 6 + 1);
       };
-    },
+    }
   },
   methods: {},
   created() {},
-  mounted() {},
+  mounted() {}
 };
 </script>
 <style lang="scss" scoped>

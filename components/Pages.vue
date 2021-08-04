@@ -1,5 +1,5 @@
 <template>
-  <div v-if="false" v-show="false" class="part pages" style="margin-bottom:30px">
+  <div v-show="false" class="part pages" style="margin-bottom:30px">
     <div class="main-title">一些好玩的</div>
     <div class="nav-list">
       <div

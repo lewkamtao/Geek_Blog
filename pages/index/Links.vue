@@ -55,6 +55,7 @@ export default {
       const comments = (
         await this.$axios.get("/comments", {
           params: {
+            mode: "type",
             type: "links",
             tree: false,
             limit: 10000

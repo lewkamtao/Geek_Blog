@@ -174,7 +174,7 @@ export default {
     padding: 0px 20px;
     display: flex;
     justify-content: space-between;
-    border-radius: 15px;
+    border-radius: 12px;
     align-items: center;
     a {
       background-image: none;
@@ -254,7 +254,7 @@ export default {
         position: absolute;
         left: 0px;
         top: 0px;
-        border-radius: 15px;
+        border-radius: 12px;
         width: 320px;
         height: 0px;
         overflow-y: scroll;
@@ -305,10 +305,10 @@ export default {
         display: none;
       }
       input:hover {
-        background: rgba($color: #000000, $alpha: 0.2);
+        background: rgba($color: #000000, $alpha: 0.1);
       }
       input:focus {
-        background: rgba($color: #ffffff, $alpha: 0.9);
+        background: rgba($color: #ffffff, $alpha: 1);
       }
       .is-show-res-box {
         height: 450px;
@@ -329,7 +329,7 @@ export default {
   width: 100%;
   height: 100%;
   z-index: -9;
-  border-radius: 15px;
+  border-radius: 12px;
   transition: opacity 0.25s;
   opacity: 0;
   background: rgba($color: #000000, $alpha: 0.55);

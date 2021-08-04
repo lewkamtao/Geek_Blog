@@ -1,15 +1,16 @@
 <template>
   <div class="left-nav">
-    <UserInfo class="user-info" :options="options" />
-    <Menu :options="options" @openMusicBox="openMusicBox" />
+    <UserInfo class="user-info" :options="options" :geek_config="geek_config" />
     <MusicBox v-if="musicBoxSwitch" />
-    <Pages :pages="pages" />
-    <ArticleSort
-      class="article-sort"
-      :article_sort="article_sort"
-      :article="article"
+    <Menu
+      :options="options"
+      :geek_config="geek_config"
+      @openMusicBox="openMusicBox"
+      @closeMusicBox="closeMusicBox"
     />
-    <div class="copy">{{ options.copy }}</div>
+    <!-- <Pages :pages="pages" /> -->
+    <ArticleSort class="article-sort" :article_sort="article_sort" />
+    <div class="permit-no" v-html="geek_config.site_info.permit_no"></div>
   </div>
 </template>
 
@@ -18,37 +19,37 @@ export default {
   components: {},
 
   props: {
+    geek_config: {
+      type: Object,
+      default: {}
+    },
     options: {
       type: Object,
-      default: {},
+      default: {}
     },
     article_sort: {
       type: Object,
-      default: {},
+      default: {}
     },
-    article: {
-      type: Object,
-      default: [],
-    },
-    pages: {
-      type: Array,
-      default: [],
-    },
+
   },
   data() {
     return {
-      musicBoxSwitch: false,
+      musicBoxSwitch: false
     };
   },
   watch: {},
   computed: {},
   methods: {
     openMusicBox() {
-      this.musicBoxSwitch = !this.musicBoxSwitch;
+      this.musicBoxSwitch = true;
     },
+    closeMusicBox() {
+      this.musicBoxSwitch = false;
+    }
   },
   created() {},
-  mounted() {},
+  mounted() {}
 };
 </script>
 <style lang="scss" scoped>
@@ -59,12 +60,8 @@ export default {
   .user-info {
     margin-top: 15px;
   }
-  .copy {
-    font-size: 13px;
-    color: #999;
-    letter-spacing: 0.5px;
-    text-align: center;
-    margin: -10px 0px 40px 0px;
+  .permit-no {
+    margin: 30px 0px 150px 0px;
   }
 }
 // 移动端适配

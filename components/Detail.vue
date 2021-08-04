@@ -12,15 +12,12 @@
         :links="options.links"
         class="part"
       ></links-detail>
-      <index-detail
-        v-if="options.type == 'index'"
-        :articleList="options.articleList"
-        class="part"
-      ></index-detail>
+      <index-detail v-if="options.type == 'index'" :articleList="options.articleList" class="part"></index-detail>
       <message-detail
         v-if="options.type == 'message'"
         :comments="options.comments"
         class="part"
+        @reloadComments="reloadComments"
       ></message-detail>
     </div>
     <div ref="aside" :style="setAsideLeft" class="aside">
@@ -39,14 +36,11 @@
         :type="options.type"
       ></comment>
 
+      <!-- 最新评论 -->
+      <lately v-if="options.type == 'index'" :newComments="options.newComments"></lately>
+
       <!-- 内容更新 -->
       <developments v-if="options.type == 'index'"></developments>
-
-      <!-- 最新评论 -->
-      <lately
-        v-if="options.type == 'index'"
-        :newComments="options.newComments"
-      ></lately>
 
       <!-- 联系方式 -->
       <info v-if="options.type == 'index'"></info>
@@ -55,10 +49,7 @@
       <concact v-if="options.type == 'index'"></concact>
 
       <!-- 评论排行榜 -->
-      <comment-rank
-        v-if="options.type == 'message'"
-        :commentsGroup="options.commentsGroup"
-      ></comment-rank>
+      <comment-rank v-if="options.type == 'message'" :commentsGroup="options.commentsGroup"></comment-rank>
     </div>
   </div>
 </template> 
@@ -92,7 +83,7 @@ export default {
     Lately,
     Info,
     Concact,
-    CommentRank,
+    CommentRank
   },
   props: {
     options: {
@@ -106,15 +97,15 @@ export default {
         article: false,
         articleList: false,
         commentsGroup: false,
-        newComments: false, // 最新评论
-      },
-    },
+        newComments: false // 最新评论
+      }
+    }
   },
   data() {
     return {
       setAsideLeft: "", // 用于计算侧边栏
       asideHidth: 0,
-      id: "",
+      id: ""
     };
   },
   beforeRouteUpdate(to, from, next) {
@@ -128,7 +119,7 @@ export default {
   methods: {
     reloadComments() {
       this.$emit("reloadComments");
-    },
+    }
   },
   created() {},
   mounted() {
@@ -140,11 +131,11 @@ export default {
       7;
     that.setAsideLeft = "left:" + articleMainWidth + "px;position: fixed;";
 
-    that.$nextTick(function () {
+    that.$nextTick(function() {
       that.asideHidth = that.$refs.aside.offsetHeight - 120;
     });
-    window.onresize = function () {
-      that.$nextTick(function () {
+    window.onresize = function() {
+      that.$nextTick(function() {
         articleMainWidth =
           that.$refs.articleMain.offsetLeft +
           that.$refs.articleMain.clientWidth +
@@ -157,7 +148,7 @@ export default {
   },
   beforeDestroy() {
     window.onresize = null;
-  },
+  }
 };
 </script>
 <style lang="scss" scoped>

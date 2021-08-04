@@ -16,7 +16,7 @@
 export default {
   components: {},
   async asyncData({ $axios }) {
-    const articleList = (await $axios.get("/article?limit=10")).data;
+    const articleList = (await $axios.get("/article?limit=5")).data;
     return { articleList };
   },
   props: {},

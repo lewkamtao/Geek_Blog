@@ -5,203 +5,117 @@
       <div class="subTitle">菜单显示设置</div>
 
       <fieldset class="form-group">
-        <label class="paper-switch-label"> 关于我 </label>
+        <label class="paper-switch-label">关于我</label>
         <label class="paper-switch">
-          <input
-            type="checkbox"
-            v-model="geek_config_form.menu_switch.about"
-            checked
-          />
+          <input type="checkbox" v-model="geek_config_form.menu_switch.about" checked />
           <span class="paper-switch-slider"></span>
         </label>
       </fieldset>
 
       <fieldset class="form-group">
-        <label class="paper-switch-label"> 相册 </label>
+        <label class="paper-switch-label">相册</label>
         <label class="paper-switch">
-          <input
-            v-model="geek_config_form.menu_switch.photo"
-            type="checkbox"
-            checked
-          />
+          <input v-model="geek_config_form.menu_switch.photo" type="checkbox" checked />
           <span class="paper-switch-slider"></span>
         </label>
       </fieldset>
 
       <fieldset class="form-group">
-        <label class="paper-switch-label"> 时光机 </label>
+        <label class="paper-switch-label">时光机</label>
         <label class="paper-switch">
-          <input
-            type="checkbox"
-            checked
-            v-model="geek_config_form.menu_switch.time_line"
-          />
+          <input type="checkbox" checked v-model="geek_config_form.menu_switch.time_line" />
           <span class="paper-switch-slider"></span>
         </label>
       </fieldset>
 
       <fieldset class="form-group">
-        <label class="paper-switch-label"> 音乐 </label>
+        <label class="paper-switch-label">音乐</label>
         <label class="paper-switch">
-          <input
-            type="checkbox"
-            checked
-            v-model="geek_config_form.menu_switch.music_box"
-          />
+          <input type="checkbox" checked v-model="geek_config_form.menu_switch.music_box" />
           <span class="paper-switch-slider"></span>
         </label>
       </fieldset>
 
       <fieldset class="form-group">
-        <label class="paper-switch-label"> 友情链接 </label>
+        <label class="paper-switch-label">友情链接</label>
         <label class="paper-switch">
-          <input
-            type="checkbox"
-            checked
-            v-model="geek_config_form.menu_switch.links"
-          />
+          <input type="checkbox" checked v-model="geek_config_form.menu_switch.links" />
           <span class="paper-switch-slider"></span>
         </label>
       </fieldset>
 
       <fieldset class="form-group">
-        <label class="paper-switch-label"> 留言墙 </label>
+        <label class="paper-switch-label">留言墙</label>
         <label class="paper-switch">
-          <input
-            type="checkbox"
-            checked
-            v-model="geek_config_form.menu_switch.message"
-          />
+          <input type="checkbox" checked v-model="geek_config_form.menu_switch.message" />
           <span class="paper-switch-slider"></span>
         </label>
       </fieldset>
 
       <fieldset class="form-group">
-        <label class="paper-switch-label"> 后台管理 </label>
+        <label class="paper-switch-label">后台管理</label>
         <label class="paper-switch">
-          <input
-            type="checkbox"
-            checked
-            v-model="geek_config_form.menu_switch.adm"
-          />
+          <input type="checkbox" checked v-model="geek_config_form.menu_switch.adm" />
           <span class="paper-switch-slider"></span>
         </label>
       </fieldset>
 
       <div class="subTitle">站点设置</div>
       <div class="form-group">
-        <label for="back_site_url">博客标题</label>
-        <input
-          type="text"
-          v-model="geek_config_form.site_info.title"
-          placeholder="是一尘不染的猫"
-          id="back_site_url"
-        />
+        <label>博客标题</label>
+        <input type="text" v-model="geek_config_form.site_info.title" />
       </div>
       <div class="form-group">
-        <label for="back_site_url">关键字（SEO）</label>
-        <input
-          v-model="geek_config_form.site_info.keywords"
-          type="text"
-          placeholder="Geek,博客,个人博客"
-          id="back_site_url"
-        />
+        <label>关键字（SEO）</label>
+        <input v-model="geek_config_form.site_info.keywords" type="text" />
       </div>
       <div class="form-group">
-        <label for="back_site_url">站点简介</label>
-        <textarea
-          v-model="geek_config_form.site_info.intro"
-          id="footer"
-          placeholder="Powered by inis | 本站自豪使用了全世界最好的Vue框架 <br> Copyright (c) 2021-present, Kamtao (To) Lew"
-        ></textarea>
+        <label>站点简介</label>
+        <textarea v-model="geek_config_form.site_info.intro" id="footer"></textarea>
       </div>
       <div class="form-group">
-        <label for="back_site_url">备案信息 (支持html)</label>
-        <input
-          v-model="geek_config_form.site_info.permit_no"
-          type="text"
-          placeholder="粤ICP备18056223号"
-          id="back_site_url"
-        />
+        <label>备案信息 (支持html)</label>
+        <input v-model="geek_config_form.site_info.permit_no" type="text" />
       </div>
       <div class="form-group">
-        <label for="back_site_url">站点 favicon 图标</label>
-        <input
-          v-model="geek_config_form.site_info.favicon_url"
-          type="text"
-          placeholder="https://tngeek.com/favicon.ico"
-          id="back_site_url"
-        />
+        <label>站点 favicon 图标</label>
+        <input v-model="geek_config_form.site_info.favicon_url" type="text" />
       </div>
       <div class="form-group">
-        <label for="back_site_url">站点 Logo 链接</label>
-        <input
-          v-model="geek_config_form.site_info.logo_url"
-          type="text"
-          placeholder="https://q2.qlogo.cn/g?b=qq&nk=1057072668&s=100"
-          id="back_site_url"
-        />
+        <label>站点 Logo 链接</label>
+        <input v-model="geek_config_form.site_info.logo_url" type="text" />
       </div>
       <div class="form-group">
-        <label for="back_site_url">站点地址</label>
-        <input
-          v-model="geek_config_form.site_info.blog_site_url"
-          type="text"
-          placeholder="https://api.kamtao.com/"
-          id="back_site_url"
-        />
+        <label>站点地址</label>
+        <input v-model="geek_config_form.site_info.blog_site_url" type="text" />
       </div>
       <div class="form-group">
-        <label for="back_site_url">后台地址</label>
-        <input
-          v-model="geek_config_form.site_info.adm_site_url"
-          type="text"
-          placeholder="https://api.kamtao.com/"
-          id="back_site_url"
-        />
+        <label>后台地址</label>
+        <input v-model="geek_config_form.site_info.adm_site_url" type="text" />
       </div>
       <div class="form-group">
         <label for="footer">页面脚部 (支持html)</label>
-        <textarea
-          v-model="geek_config_form.site_info.footer_html"
-          id="footer"
-          placeholder="Powered by inis | 本站自豪使用了全世界最好的Vue框架 <br> Copyright (c) 2021-present, Kamtao (To) Lew"
-        ></textarea>
+        <textarea v-model="geek_config_form.site_info.footer_html" id="footer"></textarea>
       </div>
 
       <div class="subTitle">博主信息</div>
       <div class="form-group">
-        <label for="back_site_url">博主名</label>
-        <input type="text" placeholder="是一尘不染的猫" id="back_site_url" />
+        <label>博主名</label>
+        <input v-model="geek_config_form.master_info.name" type="text" />
       </div>
       <div class="form-group">
-        <label for="back_site_url">简介</label>
-        <textarea
-          v-model="geek_config_form.master_info.intro"
-          id="footer"
-          placeholder="Powered by inis | 本站自豪使用了全世界最好的Vue框架 <br> Copyright (c) 2021-present, Kamtao (To) Lew"
-        ></textarea>
+        <label>简介</label>
+        <textarea v-model="geek_config_form.master_info.intro" id="footer"></textarea>
       </div>
       <div class="form-group">
-        <label for="back_site_url">头像</label>
-        <input
-          v-model="geek_config_form.master_info.avatar_url"
-          type="text"
-          placeholder="是一尘不染的猫"
-          id="back_site_url"
-        />
+        <label>头像</label>
+        <input v-model="geek_config_form.master_info.avatar_url" type="text" />
       </div>
 
       <div class="form-subTitle"># 关于我 - 页面配置</div>
       <div class="form-group">
-        <label for="footer"
-          >页面主体自定义HTML文本（这个页面高度个性化，支持html，可以自行发挥。暂不支持js）</label
-        >
-        <textarea
-          v-model="geek_config_form.master_info.body_html"
-          id="footer"
-          placeholder="Powered by inis | 本站自豪使用了全世界最好的Vue框架 <br> Copyright (c) 2021-present, Kamtao (To) Lew"
-        ></textarea>
+        <label for="footer">页面主体自定义HTML文本（这个页面高度个性化，支持html，可以自行发挥。暂不支持js）</label>
+        <textarea v-model="geek_config_form.master_info.body_html" id="footer"></textarea>
       </div>
       <!-- <div class="form-subTitle"># 右侧模块显示设置</div>
 
@@ -229,7 +143,7 @@
             <input class="input-block" type="text" id="paperInputs3" />
           </div>
         </div> 
-  </div> -->
+      </div>-->
       <div class="row flex-center">
         <button @click="submit" class="btn-block save-btn">保存配置</button>
       </div>
@@ -246,7 +160,7 @@ export default {
       geek_config_form: {
         site_info: {
           title: "Geek", // 站点标题
-          keywords: "极简,清新,博客", // 关键词
+          keywords: "Geek,博客,个人博客", // 关键词
           intro: "一个前端写的一个博客", // 介绍
           permit_no: `<div>粤ICP备18056223号</div>`, // 备案号
           favicon_url: "https://tngeek.com/favicon.ico", // 站点ico
@@ -257,53 +171,56 @@ export default {
     Powered by
     <a href="https://inis.cc/" >inis</a> | 本站自豪使用了全世界最好的Vue框架
     <br>Copyright (c) 2021-present, Kamtao (To) Lew
-  </div>`, // 脚部html
+  </div>` // 脚部html
         },
         master_info: {
           name: "小卢他人不错",
           intro: "98年前端工程师，做一个很酷的人。",
           avatar_url: "https://q2.qlogo.cn/g?b=qq&nk=1057072668&s=100",
-          body_html: `<h1>测试</h1>`,
+          body_html: `<h1>测试</h1>`
         },
         menu_switch: {
-          about: false,
-          photo: false,
-          time_line: false,
-          music_box: false,
-          links: false,
-          message: false,
-          adm: false,
-        },
-      },
+          about: true,
+          photo: true,
+          time_line: true,
+          music_box: true,
+          links: true,
+          message: true,
+          adm: true
+        }
+      }
     };
   },
   watch: {},
   computed: {},
   methods: {
     async getOption() {
-      const options = (await this.$axios.get("/options")).data;
-      console.log(options);
+      const res = await this.$axios.get("/options?key=geek_config&cache=false");
+      if (res.code == 200) {
+        this.geek_config_form = res.data.opt;
+      }
     },
     submit() {
-      var data = {};
       if (this.$cookies.get("token")) {
-        data["login-token"] = this.$cookies.get("token");
-      }
-      data.keys = "geek_config";
-      data.opt = JSON.parse(JSON.stringify(this.geek_config_form));
-      this.$axios.post("/options", data).then((res) => {
-        if (res.code == 200) {
-          setTimeout(function () {
+        var data = {
+          "login-token": this.$cookies.get("token"),
+          keys: "geek_config",
+          value: "这是一个测试的内容！",
+          opt: this.geek_config_form
+        };
+
+        this.$axios.post("/options", data).then(res => {
+          if (res.code == 200) {
             location.reload();
-          }, 200);
-        }
-      });
-    },
+          }
+        });
+      }
+    }
   },
   created() {
     this.getOption();
   },
-  mounted() {},
+  mounted() {}
 };
 </script>
 <style lang="scss" scoped>

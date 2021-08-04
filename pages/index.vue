@@ -1,24 +1,20 @@
 <template>
-  <div
-    id="top"
-    class="wrapper"
-    :class="{ isShowNav: isShowNav, isShowAside: isShowAside }"
-  >
+  <div id="top" class="wrapper" :class="{ isShowNav: isShowNav, isShowAside: isShowAside }">
     <TopNav
       @showNav="showNav()"
       :options="options"
+      :geek_config="geek_config"
       class="top-nav-wrapper-master"
     />
     <LeftNav
       :options="options"
+      :geek_config="geek_config"
       :article_sort="article_sort"
-      :article="article"
-      :pages="pages"
       class="left-nav"
     />
     <div class="index-main">
       <nuxt-child :options="options" />
-      <Footer />
+      <Footer :geek_config="geek_config" />
     </div>
 
     <div class="to-top">
@@ -64,21 +60,20 @@ export default {
         {
           hid: "description",
           name: "description",
-          content: this.options.keywords,
-        },
+          content: this.options.keywords
+        }
       ],
-      link: [
-        { rel: "icon", type: "image/x-icon", href: this.options.site_ico },
-      ],
+      link: [{ rel: "icon", type: "image/x-icon", href: this.options.site_ico }]
     };
   },
   async asyncData({ $axios }) {
     const options = (await $axios.get("/options")).data;
+    const geek_config = (
+      await $axios.get("/options?key=geek_config&cache=false")
+    ).data.opt;
     const article_sort = (await $axios.get("/article-sort?limit=1000")).data;
-    const pages = (await $axios.get("/page")).data.data;
-    const article = (await $axios.get("/article?limit=5")).data;
 
-    return { options, article_sort, article, pages };
+    return { options, article_sort, geek_config };
   },
   props: {},
   data() {
@@ -86,7 +81,7 @@ export default {
       isShowNav: false,
       isShowAside: false,
       isShowOpenAsideBtn: false,
-      backUpTopScroll: 0,
+      backUpTopScroll: 0
     };
   },
   watch: {},
@@ -98,7 +93,7 @@ export default {
           this.backUpTopScroll = document.documentElement.scrollTop;
         } else {
           var top = JSON.parse(JSON.stringify(this.backUpTopScroll));
-          setTimeout(function () {
+          setTimeout(function() {
             document.documentElement.scrollTop = top;
           }, 10);
           this.backUpTopScroll = 0;
@@ -112,14 +107,14 @@ export default {
           this.backUpTopScroll = document.documentElement.scrollTop;
         } else {
           var top = JSON.parse(JSON.stringify(this.backUpTopScroll));
-          setTimeout(function () {
+          setTimeout(function() {
             document.documentElement.scrollTop = top;
           }, 10);
           this.backUpTopScroll = 0;
         }
       }
       this.isShowAside = !this.isShowAside;
-    },
+    }
   },
   created() {
     this.isShowOpenAsideBtn = true;
@@ -137,7 +132,7 @@ export default {
   },
   mounted() {
     // 修复qq浏览器不能成功post
-  },
+  }
 };
 </script> 
 <style scoped  lang="scss">

@@ -16,7 +16,7 @@
 
     <div class="info">
       <div class="cover">
-        <img :src="music.song.cover" alt="" srcset="" />
+        <img :src="music.song.cover" alt srcset />
       </div>
       <div class="content">
         <div class="title">{{ music.song.name }}</div>
@@ -57,7 +57,7 @@
           class="icon icon-playing"
           aria-hidden="true"
         >
-          <use xlink:href="#icon-play"></use>
+          <use xlink:href="#icon-play" />
         </svg>
       </div>
     </div>
@@ -65,19 +65,11 @@
     <div class="contorl">
       <div class="line-box">
         <!-- 时间进度调节 -->
-        <div
-          ref="timeLine"
-          class="line-wrapper-time"
-          @mousedown="changeTimeMousedown"
-        >
+        <div ref="timeLine" class="line-wrapper-time" @mousedown="changeTimeMousedown">
           <div class="time-line">
             <div class="start-time">{{ music.startTimeStr || "00:00" }}</div>
             <div class="end-time">- {{ music.endTimeStr || "00:00" }}</div>
-            <div
-              :style="'width:' + timeLine.isPlayWidth + 'px'"
-              class="line"
-              ref="isPlayWidth"
-            >
+            <div :style="'width:' + timeLine.isPlayWidth + 'px'" class="line" ref="isPlayWidth">
               <span @mousedown="changeTimeMousemove" class="line-btn"></span>
             </div>
           </div>
@@ -85,7 +77,7 @@
       </div>
       <div class="btn-box">
         <svg @click="prev()" class="icon icon-prev" aria-hidden="true">
-          <use xlink:href="#icon-prev"></use>
+          <use xlink:href="#icon-prev" />
         </svg>
 
         <svg
@@ -94,7 +86,7 @@
           class="icon icon-play"
           aria-hidden="true"
         >
-          <use xlink:href="#icon-play"></use>
+          <use xlink:href="#icon-play" />
         </svg>
 
         <svg
@@ -103,11 +95,11 @@
           class="icon icon-pause"
           aria-hidden="true"
         >
-          <use xlink:href="#icon-pause"></use>
+          <use xlink:href="#icon-pause" />
         </svg>
 
         <svg @click="next()" class="icon icon-next" aria-hidden="true">
-          <use xlink:href="#icon-next"></use>
+          <use xlink:href="#icon-next" />
         </svg>
       </div>
 
@@ -126,13 +118,9 @@
         >
           <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
         </svg>
-        <div ref="volumeLine"  @mousedown="changeVolumeMousedown" class="line-wrapper-volume">
+        <div ref="volumeLine" @mousedown="changeVolumeMousedown" class="line-wrapper-volume">
           <div class="volume-line">
-            <div
-              class="line"
-              ref="isOpenWidth"
-              :style="'width:' + volumeLine.isOpenWidth + 'px'"
-            >
+            <div class="line" ref="isOpenWidth" :style="'width:' + volumeLine.isOpenWidth + 'px'">
               <span class="line-btn" @mousedown="changeVolumeMousemove"></span>
             </div>
           </div>
@@ -152,9 +140,7 @@
           <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07" />
         </svg>
       </div>
-      <div class="error-url" v-show="music.song.url == ''">
-        播放地址失效，请切换下一首
-      </div>
+      <div class="error-url" v-show="music.song.url == ''">播放地址失效，请切换下一首</div>
     </div>
   </div>
 </template>
@@ -171,16 +157,16 @@ export default {
         status: "pause",
         volume: 0,
         startTimeStr: "",
-        endTimeStr: "",
+        endTimeStr: ""
       },
 
       timeLine: {
         isPlayWidth: 0,
-        width: 0,
+        width: 0
       },
       volumeLine: {
         isOpenWidth: 0,
-        width: 0,
+        width: 0
       },
 
       isShowSongsList: false,
@@ -249,7 +235,7 @@ export default {
       that.timeLine.isMove = true;
       var deX = de.x;
       var isPlayWidth = that.timeLine.isPlayWidth;
-      document.onmousemove = function (me) {
+      document.onmousemove = function(me) {
         var meX = me.x;
         var w = isPlayWidth + (meX - deX);
 
@@ -260,7 +246,7 @@ export default {
         }
         that.timeLine.isPlayWidth = w;
       };
-      document.onmouseup = function () {
+      document.onmouseup = function() {
         var currentTime =
           (that.timeLine.isPlayWidth / that.timeLine.width) *
           that.music.duration;
@@ -280,11 +266,11 @@ export default {
       var deX = de.x;
       var isOpenWidth = that.volumeLine.isOpenWidth;
 
-      document.onmousemove = function (me) {
+      document.onmousemove = function(me) {
         var meX = me.x;
         var w = isOpenWidth + (meX - deX);
-        if (w > that.volumeLine.width) {
-          w = that.volumeLine.width;
+        if (w > that.volumeLine.width - 15) {
+          w = that.volumeLine.width - 15;
         } else if (w < 0) {
           w = 0;
         }
@@ -292,7 +278,7 @@ export default {
         var volume = that.volumeLine.isOpenWidth / that.volumeLine.width;
         that.$refs.audioRef.volume = volume;
       };
-      document.onmouseup = function () {
+      document.onmouseup = function() {
         document.onmousemove = null;
         document.onmouseup = null;
       };
@@ -334,19 +320,21 @@ export default {
       this.music.duration = res.target.duration;
     },
     async getMusicList() {
-      const data = (await this.$axios.get("/music?id=2&mode=list")).data;
+      const data = (await this.$axios.get("/music?id=1&mode=list&cache=false"))
+        .data;
       this.songs = data.songs;
       this.getMusicDetail(0, this.songs[0].song_id);
     },
     async getMusicDetail(index, id) {
       var that = this;
-      const data = (await this.$axios.get("/music?id=" + id + "&mode=song"))
-        .data;
+      const data = (
+        await this.$axios.get("/music?id=" + id + "&mode=song&cache=false")
+      ).data;
       data.index = index;
       this.music.song = data;
 
       if (!this.isLock) {
-        setTimeout(function () {
+        setTimeout(function() {
           that.play();
         }, 200);
       } else {
@@ -375,12 +363,12 @@ export default {
       } else {
         return "0:00:00";
       }
-    },
+    }
   },
   created() {
     this.getMusicList();
- 
-    this.$nextTick(function () {
+
+    this.$nextTick(function() {
       this.timeLine.width = this.$refs.timeLine.clientWidth;
       this.volumeLine.width = this.$refs.volumeLine.clientWidth;
       this.$refs.audioRef.volume = 0.618;

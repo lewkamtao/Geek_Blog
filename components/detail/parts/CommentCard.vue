@@ -1,14 +1,9 @@
 <template>
-  <div class="comment-wrapper">
+  <div class="comment-wrapper" :class="{lately:type == 'lately'}" @click="toDetail()">
     <div class="comment-card">
       <div class="left">
         <div class="avatar border border-primary">
-          <img
-            :class="getBorderType()"
-            :src="comment.expand.head_img"
-            alt
-            srcset
-          />
+          <img :class="getBorderType()" :src="comment.expand.head_img" alt srcset />
           <span class="ua">{{ getUA(comment.expand.agent) }}</span>
         </div>
       </div>
@@ -27,17 +22,14 @@
           </a>
         </div>-->
         <div class="footer">
-          <span class="create_time">{{
+          <span class="create_time">
+            {{
             getBeautifyTime(comment.create_time)
-          }}</span>
+            }}
+          </span>
         </div>
       </div>
-      <label
-        v-if="type != 'new'"
-        class="reply-btn"
-        @click="reply(comment)"
-        for="modal-reply"
-      >
+      <label class="reply-btn" @click="reply(comment)" for="modal-reply">
         <svg
           class="Zi Zi--Reply"
           fill="currentColor"
@@ -49,16 +41,12 @@
           <path
             d="M22.959 17.22c-1.686-3.552-5.128-8.062-11.636-8.65-.539-.053-1.376-.436-1.376-1.561V4.678c0-.521-.635-.915-1.116-.521L1.469 10.67a1.506 1.506 0 0 0-.1 2.08s6.99 6.818 7.443 7.114c.453.295 1.136.124 1.135-.501V17a1.525 1.525 0 0 1 1.532-1.466c1.186-.139 7.597-.077 10.33 2.396 0 0 .396.257.536.257.892 0 .614-.967.614-.967z"
             fill-rule="evenodd"
-          /></svg
-        >回复
+          />
+        </svg>回复
       </label>
     </div>
     <div v-if="comment.son && comment.son.length != 0" class="son-box">
-      <div
-        class="comments-box"
-        v-for="(son, index) in comment.son"
-        :key="index"
-      >
+      <div class="comments-box" v-for="(son, index) in comment.son" :key="index">
         <div class="comment-card">
           <div class="left">
             <div class="avatar border border-primary" :class="getBorderType()">
@@ -77,17 +65,14 @@
               <a :href="'http://' + son.url" target="_blank">{{ son.url }}</a>
             </div>-->
             <div class="footer">
-              <span class="create_time">{{
+              <span class="create_time">
+                {{
                 getBeautifyTime(son.create_time)
-              }}</span>
+                }}
+              </span>
             </div>
           </div>
-          <label
-            v-if="type != 'new'"
-            class="reply-btn"
-            @click="reply(son)"
-            for="modal-reply"
-          >
+          <label class="reply-btn" @click="reply(son)" for="modal-reply">
             <svg
               class="Zi Zi--Reply"
               fill="currentColor"
@@ -99,8 +84,8 @@
               <path
                 d="M22.959 17.22c-1.686-3.552-5.128-8.062-11.636-8.65-.539-.053-1.376-.436-1.376-1.561V4.678c0-.521-.635-.915-1.116-.521L1.469 10.67a1.506 1.506 0 0 0-.1 2.08s6.99 6.818 7.443 7.114c.453.295 1.136.124 1.135-.501V17a1.525 1.525 0 0 1 1.532-1.466c1.186-.139 7.597-.077 10.33 2.396 0 0 .396.257.536.257.892 0 .614-.967.614-.967z"
                 fill-rule="evenodd"
-              /></svg
-            >回复
+              />
+            </svg>回复
           </label>
         </div>
       </div>
@@ -117,7 +102,7 @@ export default {
   props: {
     type: {
       type: String,
-      default: "",
+      default: ""
     },
 
     comment: {
@@ -140,9 +125,9 @@ export default {
         opt: null,
         create_time: "2021-03-22 17:45:09",
         create_time: "2021-03-23 18:36:31",
-        son: [],
-      },
-    },
+        son: []
+      }
+    }
   },
   data() {
     return {};
@@ -150,12 +135,12 @@ export default {
   watch: {},
   computed: {
     getBeautifyTime() {
-      return function (time) {
+      return function(time) {
         return util.getBeautifyTime(time);
       };
     },
     getUA() {
-      return function (agent) {
+      return function(agent) {
         return (
           "来自 " +
           (agent.os.os + " " + agent.os.os_ver + " " + agent.browser.browser)
@@ -163,18 +148,43 @@ export default {
       };
     },
     getBorderType() {
-      return function () {
+      return function() {
         return "border-" + Math.floor(Math.random() * 6 + 1);
       };
-    },
+    }
   },
   methods: {
     reply(replyObj) {
       this.$emit("setReply", replyObj);
     },
+    toDetail() {
+      if (this.type == "lately") {
+        if (this.comment.article_id) {
+          this.$router.push("/Article?id=" + this.comment.article_id);
+        } else {
+          switch (this.comment.type) {
+            case "links":
+              this.$router.push("/Links");
+              break;
+            case "msg_wall":
+              this.$router.push("/Message");
+              break;
+            case "timeline":
+              this.$router.push("/Timeline");
+              break;
+            case "about":
+              this.$router.push("/About");
+              break;
+
+            default:
+              break;
+          }
+        }
+      }
+    }
   },
   created() {},
-  mounted() {},
+  mounted() {}
 };
 </script>
 <style lang="scss" scoped>
@@ -182,6 +192,7 @@ export default {
   background: rgba($color: #000, $alpha: 0.025);
   border-radius: 10px;
   margin-bottom: 12px;
+
   .son-box {
     width: calc(100% - 30px);
     margin: 0px 0px 0px 30px;
@@ -293,6 +304,12 @@ export default {
     font-weight: normal;
     cursor: default;
   }
+}
+.lately {
+  .reply-btn {
+    display: none;
+  }
+  cursor: pointer;
 }
 @media screen and (max-width: 1025px) {
   .comment-wrapper {

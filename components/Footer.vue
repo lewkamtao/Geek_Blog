@@ -1,17 +1,18 @@
 <template>
   <div class="footer-wrapper">
-    <div class="by">
-      Powered by
-      <a href="https://inis.cc/">inis</a> | 本站自豪使用了全世界最好的Vue框架
-      <br />Copyright (c) 2021-present, Kamtao (To) Lew
-    </div>
+    <div v-html="geek_config.site_info.footer_html"></div>
   </div>
 </template>
 
 <script>
 export default {
   components: {},
-  props: {},
+  props: {
+    geek_config: {
+      type: Object,
+      default: {}
+    }
+  },
   data() {
     return {};
   },
@@ -28,14 +29,7 @@ export default {
   height: 100px;
   display: flex;
   align-items: center;
-  .by {
-    line-height: 24px;
-    color: #999;
-    font-size: 13px;
-    letter-spacing: 0.5px;
-  }
 }
-
 .isShowAside {
   .footer-wrapper {
     display: none;
