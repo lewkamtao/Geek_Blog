@@ -334,7 +334,7 @@ export default {
       this.music.duration = res.target.duration;
     },
     async getMusicList() {
-      const data = (await this.$axios.get("/music?id=37432514&mode=list")).data;
+      const data = (await this.$axios.get("/music?id=2&mode=list")).data;
       this.songs = data.songs;
       this.getMusicDetail(0, this.songs[0].song_id);
     },
