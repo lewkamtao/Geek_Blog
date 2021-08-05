@@ -302,7 +302,7 @@ export default {
       .title::before {
         position: absolute;
         content: "";
-        top: 0px;
+        top:1px;
         left: 0px;
         width: 100%;
         height: 1px;
