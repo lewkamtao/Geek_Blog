@@ -2,7 +2,7 @@
   <div class="article-wrapper" :style="'min-height:' + minHidth + 'px;'">
     <header
       class="border border-primary"
-      :style="'background:url(https://picsum.photos/1280/720?grayscale)'"
+      :style="'background:url(https://api.kenvie.com/webp.php)'"
       :class="getBorderType"
     >
       <div class="mask"></div>

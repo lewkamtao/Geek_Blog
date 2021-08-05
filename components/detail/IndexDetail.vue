@@ -13,7 +13,7 @@
             <v-img v-if="item.img_src" :src="item.img_src"></v-img>
             <v-img
               v-if="!item.img_src"
-              :src="'https://api.ixiaowai.cn/api/api.php?' + index"
+              :src="'https://api.kenvie.com/webp.php?' + index"
             ></v-img>
           </div>
 
