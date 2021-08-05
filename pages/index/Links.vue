@@ -2,9 +2,9 @@
   <Detail
     @reloadComments="getComments"
     :options="{
-    type: 'links',
-    comments: comments,
-    links: links
+      type: 'links',
+      comments: comments,
+      links: links,
     }"
   />
 </template>
@@ -14,7 +14,7 @@ export default {
   components: {},
   head() {
     return {
-      title: "友情链接 - " + this.options.title
+      title: "友情链接 - " + this.geek_config.site_info.title,
     };
   },
   async asyncData({ $axios, route }) {
@@ -25,17 +25,17 @@ export default {
           mode: "type",
           type: "links",
           tree: false,
-          limit: 10000
-        }
+          limit: 10000,
+        },
       })
     ).data;
     return { comments, links };
   },
   props: {
-    options: {
+    geek_config: {
       type: Object,
-      default: {}
-    }
+      default: {},
+    },
   },
   data() {
     return {};
@@ -44,10 +44,10 @@ export default {
   watch: {},
   computed: {
     getBorderType() {
-      return function() {
+      return function () {
         return "border-" + Math.floor(Math.random() * 6 + 1);
       };
-    }
+    },
   },
   methods: {
     // 获取评论
@@ -58,12 +58,12 @@ export default {
             mode: "type",
             type: "links",
             tree: false,
-            limit: 10000
-          }
+            limit: 10000,
+          },
         })
       ).data;
       this.comments = comments;
-    }
-  }
+    },
+  },
 };
 </script>

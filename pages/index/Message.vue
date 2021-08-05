@@ -19,7 +19,7 @@ export default {
   components: {},
   head() {
     return {
-      title: "留言墙 - " + this.options.title,
+      title: "留言墙 - " + this.geek_config.site_info.title,
     };
   },
   async asyncData({ $axios }) {
@@ -46,7 +46,7 @@ export default {
     return { comments, commentsGroup };
   },
   props: {
-    options: {
+    geek_config: {
       type: Object,
       default: {},
     },

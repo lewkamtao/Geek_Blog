@@ -9,14 +9,16 @@
             <div class="arm"></div>
             <div class="arm arm-r"></div>
           </div>
-          <div v-show="loginErrorTips" class="loginErrorTips">{{ loginErrorTips }}</div>
+          <div v-show="loginErrorTips" class="loginErrorTips">
+            {{ loginErrorTips }}
+          </div>
         </div>
         <div class="item">
           <label>账号</label>
           <input
             style="width: 100%"
-            @focus="loginErrorTips = ''"
             v-model="form.account"
+            autocomplete="off"
             @keyup.enter="login"
             type="text"
           />
@@ -25,15 +27,18 @@
           <label>密码</label>
           <input
             style="width: 100%"
-            @blur="(isActivePassWord = false), (loginErrorTips = '')"
+            @blur="isActivePassWord = false"
             @focus="isActivePassWord = true"
             type="password"
+            autocomplete="off"
             v-model="form.password"
             @keyup.enter="login"
           />
         </div>
         <div class="row flex-right" style="margin-bottom: 0px">
-          <button @click="login" class="paper-btn btn-secondary login-button">登录</button>
+          <button @click="login" class="paper-btn btn-secondary login-button">
+            登录
+          </button>
         </div>
       </div>
     </div>
@@ -48,11 +53,11 @@ export default {
     return {
       form: {
         account: "",
-        password: ""
+        password: "",
       },
       isActivePassWord: false,
       loginErrorTips: "",
-      borderStyle: ""
+      borderStyle: "",
     };
   },
   watch: {},
@@ -66,7 +71,7 @@ export default {
             "&password=" +
             this.form.password
         )
-        .then(res => {
+        .then((res) => {
           if (res.code == "200") {
             this.$cookies.set("token", res.data["login-token"]);
             this.$cookies.set("user", res.data.user);
@@ -78,16 +83,19 @@ export default {
     },
     getBorderType() {
       this.borderStyle = "border-" + Math.floor(Math.random() * 6 + 1);
-    }
+    },
   },
   created() {
+    this.getBorderType();
     if (this.$cookies.get("token")) {
       this.$router.push("/"); //否则跳转至首页
     }
-
-    this.getBorderType();
   },
-  mounted() {}
+  mounted() {
+    if ($nuxt.$route.query.token_status == 403) {
+      this.loginErrorTips = "登录过期，请重新登录！";
+    }
+  },
 };
 </script>
 <style  scoped lang="less">

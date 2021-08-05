@@ -1,5 +1,5 @@
 <template>
-  <div class="links">
+  <div class="links-detail">
     <header
       class="border border-primary"
       :style="'background:url(http://www.dmoe.cc/random.php)'"
@@ -22,8 +22,12 @@
               stroke-linejoin="round"
               class="feather feather-link"
             >
-              <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
-              <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+              <path
+                d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"
+              />
+              <path
+                d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"
+              />
             </svg>
             {{ links.count }}
           </div>
@@ -57,8 +61,8 @@ export default {
   props: {
     links: {
       type: Object,
-      default: {}
-    }
+      default: {},
+    },
   },
   data() {
     return {};
@@ -67,15 +71,15 @@ export default {
   watch: {},
   computed: {
     getBorderType() {
-      return function() {
+      return function () {
         return "border-" + Math.floor(Math.random() * 6 + 1);
       };
-    }
+    },
   },
   methods: {},
   created() {},
   mounted() {},
-  beforeDestroy() {}
+  beforeDestroy() {},
 };
 </script>
 <style lang="scss" scoped>
@@ -92,7 +96,7 @@ header {
   color: #000;
   text-align: center;
   background-size: cover !important;
-
+ 
   .mask {
     position: absolute;
     top: -5%;
@@ -137,6 +141,7 @@ header {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
+
   .links-card {
     width: calc(100% / 2 - 30px);
     margin: 15px;
@@ -228,6 +233,7 @@ header {
     margin-top: 0px;
     padding: 20px;
     box-sizing: border-box;
+
     .links-card {
       width: 100%;
       margin: 5px 0px;

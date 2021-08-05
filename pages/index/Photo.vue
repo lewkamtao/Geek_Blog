@@ -121,6 +121,7 @@ export default {
   justify-content: center;
   img {
     width: 400px;
+ 
   }
 }
 .more-btn:hover {

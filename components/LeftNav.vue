@@ -1,9 +1,8 @@
 <template>
   <div class="left-nav">
-    <UserInfo class="user-info" :options="options" :geek_config="geek_config" />
+    <UserInfo class="user-info" :geek_config="geek_config" />
     <MusicBox v-if="musicBoxSwitch" />
     <Menu
-      :options="options"
       :geek_config="geek_config"
       @openMusicBox="openMusicBox"
       @closeMusicBox="closeMusicBox"
@@ -21,21 +20,17 @@ export default {
   props: {
     geek_config: {
       type: Object,
-      default: {}
-    },
-    options: {
-      type: Object,
-      default: {}
-    },
-    article_sort: {
-      type: Object,
-      default: {}
+      default: {},
     },
 
+    article_sort: {
+      type: Object,
+      default: {},
+    },
   },
   data() {
     return {
-      musicBoxSwitch: false
+      musicBoxSwitch: true,
     };
   },
   watch: {},
@@ -46,10 +41,10 @@ export default {
     },
     closeMusicBox() {
       this.musicBoxSwitch = false;
-    }
+    },
   },
   created() {},
-  mounted() {}
+  mounted() {},
 };
 </script>
 <style lang="scss" scoped>

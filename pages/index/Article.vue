@@ -16,7 +16,7 @@ export default {
   components: {},
   head() {
     return {
-      title: this.article.title + " - " + this.options.title
+      title: this.article.title + " - " + this.geek_config.site_info.title
     };
   },
   async asyncData({ $axios, route }) {
@@ -40,7 +40,7 @@ export default {
     return { article, comments };
   },
   props: {
-    options: {
+    geek_config: {
       type: Object,
       default: {}
     }

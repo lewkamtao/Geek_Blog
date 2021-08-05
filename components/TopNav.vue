@@ -5,15 +5,15 @@
       <div class="left">
         <nuxt-link class="pc-logo" to="/">
           <div class="logo">
-            <img width="30" src="https://cos.tngeek.com/logo.png" alt srcset />
-            <div class="title">Geek</div>
+            <img width="30" :src="geek_config.site_info.logo_url" alt srcset />
+            <div class="title">{{ geek_config.site_info.title }}</div>
           </div>
         </nuxt-link>
         <div @click="showNav()" class="logo mobile-logo">
           <img width="35" src="https://cos.tngeek.com/logo.png" alt srcset />
         </div>
       </div>
-      <div class="right">
+      <div class="right"> 
         <div class="search">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -52,7 +52,6 @@
           </div>
         </div>
         <div class="right-links">
-        
           <nuxt-link v-if="isLogin" to="/about">{{ user.nickname }}</nuxt-link>
 
           <nuxt-link v-if="!isLogin" to="/login">
@@ -92,7 +91,7 @@
 export default {
   components: {},
   props: {
-    options: {
+    geek_config: {
       type: Object,
       default: {},
     },

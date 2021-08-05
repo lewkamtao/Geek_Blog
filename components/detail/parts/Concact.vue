@@ -1,5 +1,5 @@
 <template>
-  <div style="margin-bottom: 14px" class="info part">
+  <div v-if="false" style="margin-bottom: 14px" class="info part">
     <div class="main-title" style="margin-bottom: 12px">联系方式</div>
     <div>
       <ul>
