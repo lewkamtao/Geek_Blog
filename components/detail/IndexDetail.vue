@@ -305,6 +305,16 @@ export default {
   }
   .masonry .card {
     margin: 15px 0px;
+    a {
+      flex-direction: column;
+    }
+    .card-body {
+      width: 100%;    padding-bottom: 50px;
+      .card-title { 
+        font-size: 18px;
+      }
+  
+    }
   }
   .more-btn {
     height: 40px;
