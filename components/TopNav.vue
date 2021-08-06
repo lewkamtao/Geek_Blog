@@ -321,7 +321,6 @@ export default {
   width: 100%;
   height: 100%;
   z-index: -9;
-  border-radius: 12px;
   transition: opacity 0.25s;
   opacity: 0;
   background: rgba($color: #000000, $alpha: 0.55);
@@ -331,9 +330,12 @@ export default {
     z-index: 9;
     opacity: 1 !important;
   }
+  .search {
+    z-index: -9 !important;
+  }
 }
 
-@media screen and (max-width: 1480px) {
+@media screen and (max-width: 1300px) {
   .top-nav-mask {
     width: calc(100% - 30px);
     left: 15px;

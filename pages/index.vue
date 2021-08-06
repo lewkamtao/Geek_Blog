@@ -225,12 +225,12 @@ export default {
   display: none;
   scrollbar-width: none;
 }
-@media screen and (max-width: 1480px) {
+@media screen and (max-width: 1300px) {
   .wrapper {
     padding: 0px 14px;
     box-sizing: border-box;
     .top-nav-wrapper-master {
-      padding: 0px 14px;
+      padding: 0px 20px;
       box-sizing: border-box;
     }
   }
