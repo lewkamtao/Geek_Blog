@@ -135,8 +135,8 @@ export default {
 };
 </script> 
 <style scoped  lang="scss">
-.wrapper { 
-  max-width: 1281px;
+.wrapper {
+  max-width: 1351px;
   min-width: 1180px;
   display: flex;
   justify-content: space-between;
@@ -224,8 +224,11 @@ export default {
   height: 0px;
   display: none;
   scrollbar-width: none;
+  -ms-overflow-style: none;
+  overflow: -moz-scrollbars-none;
+  scrollbar-color: transparent transparent;
 }
-@media screen and (max-width: 1300px) {
+@media screen and (max-width: 1380px) {
   .wrapper {
     padding: 0px 14px;
     box-sizing: border-box;
@@ -259,6 +262,7 @@ export default {
     padding: 0px 7px;
     .top-nav-wrapper-master {
       margin-top: 15px;
+      padding: 0px 14px;
       height: 45px;
       width: 100%;
       background: none;

@@ -242,6 +242,7 @@ export default {
       font-weight: 400;
       font-size: 12px;
       margin-right: 7px;
+      padding: 1px 2px;
     }
   }
   .card:hover {

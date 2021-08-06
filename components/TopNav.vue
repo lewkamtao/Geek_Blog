@@ -2,6 +2,15 @@
   <div class="top-nav-wrapper">
     <div id="topNavMask" class="top-nav-mask modal-bg"></div>
     <div class="top-nav">
+      <div class="mode-select">
+        <fieldset class="form-group mode-setting">
+          <!-- <label for="mode" class="paper-switch-label">{{ mode ? "黑夜" : "白天" }}</label> -->
+          <label class="paper-switch">
+            <input id="paperSwitch4" name="mode" v-model="mode" type="checkbox" />
+            <span class="paper-switch-slider"></span>
+          </label>
+        </fieldset>
+      </div>
       <div class="left">
         <nuxt-link class="pc-logo" to="/">
           <div class="logo">
@@ -31,7 +40,7 @@
             <line x1="21" y1="21" x2="16.65" y2="16.65" />
           </svg>
           <input
-            placeholder="本全站点还处于开发中"
+            placeholder="最右边是有个开关的"
             v-model="searchValue"
             @focus="(isShowResBox = true), searchArticleFn()"
             @blur="hidResBox()"
@@ -70,14 +79,6 @@
               />
             </svg>
           </nuxt-link>
-
-          <!-- <fieldset class="form-group mode-setting">
-          <label for="mode" class="paper-switch-label">{{ mode ? "黑夜" : "白天" }}</label>
-          <label class="paper-switch">
-            <input id="paperSwitch4" name="mode" v-model="mode" type="checkbox" />
-            <span class="paper-switch-slider"></span>
-          </label>
-          </fieldset>-->
         </div>
       </div>
     </div>
@@ -107,9 +108,9 @@ export default {
   watch: {
     mode: function(val) {
       if (val) {
-        document.getElementsByTagName("body")[0].className = "dark";
+        document.getElementsByTagName("html")[0].className = "geek-dark";
       } else {
-        document.body.removeAttribute("class");
+        document.documentElement.removeAttribute("class");
       }
     },
     searchValue: function(val) {
@@ -160,7 +161,7 @@ export default {
   height: 100%;
 
   .top-nav {
-    max-width: calc(1281px - 14px);
+    max-width: calc(1351px - 14px);
     margin: 0 auto;
     width: 100%;
     height: 60px;
@@ -310,6 +311,20 @@ export default {
       }
     }
   }
+  .mode-select {
+    position: absolute;
+    right: 50px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    .paper-switch-label {
+      margin-top: 0px;
+    }
+    .paper-switch {
+      margin-top: 3px;
+    }
+  }
 }
 .form-group {
   margin: 0px;
@@ -353,6 +368,9 @@ export default {
     }
   }
   .top-nav-wrapper {
+    .mode-select {
+      display: none;
+    }
     .top-nav {
       height: 45px;
       padding: 0px 10px;

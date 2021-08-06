@@ -18,6 +18,34 @@ html {
     font-family: "Source Sans Pro", "Hiragino Sans GB", "Microsoft Yahei", SimSun, Helvetica, Arial, Sans-serif, monospace;
 }
 
+.geek-dark {
+    filter: invert(1) hue-rotate(180deg) !important;
+    img,
+    #owl-login,
+    .logo,
+    .volume-line .line-btn,
+    .article-wrapper header,
+    .badge,
+    .nav-list .icon,
+    video {
+        filter: invert(1) hue-rotate(180deg);
+    }
+    .part,
+    .top-nav-wrapper {
+        background: #e9e9e9 !important;
+    }
+    .logo .title {
+        color: #fff;
+    }
+    .modal-bg,
+    .top-nav-mask {
+        background: rgba($color: #fff, $alpha: 0.8) !important;
+    }
+    body {
+        background: #fff !important;
+    }
+}
+
 * {
     font-family: "Source Sans Pro", "Hiragino Sans GB", "Microsoft Yahei", SimSun, Helvetica, Arial, Sans-serif, monospace;
 }
@@ -28,6 +56,38 @@ html {
 
 .vditor-reset img {
     border-radius: 0px;
+}
+
+.vditor-reset {
+    a {
+        background-image: none;
+    }
+    pre {
+        overflow: hidden;
+        border: none;
+        border-radius: 12px;
+        background: rgba($color: #000, $alpha: 0.025);
+        .hljs {
+            font-size: 100%;
+            font-family: 'Lucida Console', Monaco, monospace;
+            padding: 15px;
+            background: none;
+            background-color: none;
+        }
+        .hljs-comment,
+        .hljs-quote {
+            font-style: normal;
+        }
+        .hljs::-webkit-scrollbar {
+            width: 0px;
+            height: 0px;
+            display: none;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            overflow: -moz-scrollbars-none;
+            scrollbar-color: transparent transparent;
+        }
+    }
 }
 
 .vditor-reset .alert {
@@ -156,7 +216,6 @@ html::-webkit-scrollbar-thumb:hover {
 .article-list {
     li>span {
         margin-bottom: 5px;
-        background: #fff;
         font-size: 14px;
     }
     li>span:hover {

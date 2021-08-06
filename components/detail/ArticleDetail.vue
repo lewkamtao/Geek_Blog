@@ -276,21 +276,23 @@ export default {
     .title {
       font-size: 40px;
       font-weight: bold;
+      text-align: left;
       margin-bottom: 24px;
     }
     .summary {
       display: flex;
-      justify-content: center;
-      align-items: center;
+      justify-content: flex-start;
+      align-items: flex-start;
+      flex-direction: column;
       white-space: nowrap;
       div {
         display: flex;
         justify-content: center;
         align-items: center;
-        margin: 10px 20px;
-        font-size: 15px;
+        margin: 10px 0px;
+        font-size: 14px;
         .feather {
-          margin-right: 10px;
+          margin-right: 5px;
         }
       }
     }

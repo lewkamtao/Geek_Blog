@@ -204,6 +204,8 @@ export default {
 .aside::-webkit-scrollbar {
   width: 0px;
   height: 0px;
+  -ms-overflow-style: none;
+  overflow: -moz-scrollbars-none;
   display: none;
 }
 
