@@ -1,5 +1,5 @@
 <template>
-  <div class="index-wrapper-master part">
+  <div class="index-wrapper-master">
     <div class="masonry">
       <div
         class="card border border-primary"
@@ -11,10 +11,7 @@
         <nuxt-link :to="'/Article?id=' + item.id">
           <div class="cover">
             <v-img v-if="item.img_src" :src="item.img_src"></v-img>
-            <v-img
-              v-if="!item.img_src"
-              :src="'https://api.kenvie.com/webp.php?' + index"
-            ></v-img>
+            <v-img v-if="!item.img_src" :src="'https://api.kenvie.com/webp.php?' + index"></v-img>
           </div>
 
           <div class="card-body">
@@ -26,8 +23,7 @@
                 :key="index"
                 class="badge"
                 :class="getTagColor()"
-                >{{ tag.name }}</span
-              >
+              >{{ tag.name }}</span>
             </div>
             <div class="card-footer">
               <div>
@@ -62,9 +58,7 @@
                   stroke-linejoin="round"
                   class="feather feather-message-square"
                 >
-                  <path
-                    d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
-                  />
+                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
                 </svg>
                 {{ item.expand.comments }}
               </div>
@@ -112,9 +106,9 @@
     </div>
     <div @click="getArticleList()" class="more-btn">
       {{
-        articleList.data.length != articleList.count
-          ? "点击加载更多"
-          : "没有更多了"
+      articleList.data.length != articleList.count
+      ? "点击加载更多"
+      : "没有更多了"
       }}
     </div>
   </div>
@@ -122,37 +116,33 @@
 
 <script>
 import util from "@/util/index";
-import VImg from "@/components/VImg";
-
 export default {
-  components: {
-    "v-img": VImg,
-  },
+  components: {},
   props: {
     articleList: {
       type: Object,
-      default: {},
-    },
+      default: {}
+    }
   },
   data() {
     return {
       page: 1,
       limit: 5,
-      hidMasonry: true,
+      hidMasonry: true
     };
   },
   watch: {},
   computed: {
     getBeautifyTime() {
-      return function (time) {
+      return function(time) {
         return util.getBeautifyTime(time);
       };
     },
     getBorderType() {
-      return function () {
+      return function() {
         return "border-" + Math.floor(Math.random() * 6 + 1);
       };
-    },
+    }
   },
   methods: {
     getTagColor() {
@@ -172,12 +162,12 @@ export default {
         params = {
           id: this.isSelect_article_id,
           limit: this.limit,
-          page: this.page,
+          page: this.page
         };
         this.articleList.data = this.articleList.concat(
           (
             await this.$axios.get("/article-sort", {
-              params,
+              params
             })
           ).data.expand.data
         );
@@ -186,15 +176,15 @@ export default {
         this.articleList.data = this.articleList.data.concat(
           (
             await this.$axios.get("/article", {
-              params,
+              params
             })
           ).data.data
         );
       }
-    },
+    }
   },
   created() {},
-  mounted() {},
+  mounted() {}
 };
 </script> 
 <style lang="scss" scoped>
@@ -238,7 +228,9 @@ export default {
     margin: 15px;
     overflow: hidden;
     cursor: pointer;
-    background: #fff;
+    background: rgba($color: #000000, $alpha: 0.02);
+    border-color: rgba($color: #000000, $alpha: 0.05);
+    border-width: 1px;
     box-shadow: none;
     a {
       background-image: none;
@@ -253,7 +245,8 @@ export default {
     }
   }
   .card:hover {
-    transform: translateY(-5px);
+    transform: none;
+    border-color: rgba($color: #000000, $alpha: 0.2);
   }
   .cover {
     width: 320px;
@@ -266,7 +259,7 @@ export default {
     padding: 20px;
   }
   .card-title {
-    font-size: 24px;
+    font-size: 18px;
     font-weight: bold;
   }
   .card-subtitle {
@@ -299,21 +292,24 @@ export default {
 }
 
 // 移动端适配
-@media screen and (max-width: 1025px) {
+@media screen and (max-width: 1355px) {
   .index-wrapper-master {
-    padding: 0px 15px 15px 15px;
+    padding: 15px 25px 25px 25px;
   }
   .masonry .card {
     margin: 15px 0px;
     a {
       flex-direction: column;
     }
+    .cover {
+      width: 100%;
+    }
     .card-body {
-      width: 100%;    padding-bottom: 50px;
-      .card-title { 
+      width: 100%;
+      padding-bottom: 50px;
+      .card-title {
         font-size: 18px;
       }
-  
     }
   }
   .more-btn {
@@ -331,6 +327,12 @@ export default {
     img {
       width: 400px;
     }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .index-wrapper-master {
+    padding: 0px 15px 15px 15px;
   }
 }
 </style>

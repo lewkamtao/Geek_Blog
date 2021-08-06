@@ -1,36 +1,53 @@
 <template>
   <div class="left-nav">
-    <UserInfo class="user-info" :geek_config="geek_config" />
-    <MusicBox v-if="musicBoxSwitch" />
-    <Menu
-      :geek_config="geek_config"
-      @openMusicBox="openMusicBox"
-      @closeMusicBox="closeMusicBox"
-    />
-    <!-- <Pages :pages="pages" /> -->
-    <ArticleSort class="article-sort" :article_sort="article_sort" />
-    <div class="permit-no" v-html="geek_config.site_info.permit_no"></div>
+    <div>
+      <!-- 个人信息 -->
+      <user-info class="user-info" :geek_config="geek_config"></user-info>
+
+      <!-- 音乐盒 -->
+      <music-box v-if="musicBoxSwitch"></music-box>
+
+      <!-- 菜单列表 -->
+      <menu-list
+        :geek_config="geek_config"
+        @openMusicBox="openMusicBox"
+        @closeMusicBox="closeMusicBox"
+      ></menu-list>
+
+      <!-- 归档 -->
+      <article-sort class="article-sort" :article_sort="article_sort"></article-sort>
+
+      <!-- 备案号 -->
+      <permit-no :geek_config="geek_config"></permit-no>
+    </div>
   </div>
 </template>
 
 <script>
-export default {
-  components: {},
+import UserInfo from "@/components/nav/UserInfo";
+import MusicBox from "@/components/nav/MusicBox";
+import MenuList from "@/components/nav/MenuList";
+import ArticleSort from "@/components/nav/ArticleSort";
+import PermitNo from "@/components/nav/PermitNo";
 
+export default {
+  components: { UserInfo, MusicBox, MenuList, ArticleSort, PermitNo },
   props: {
     geek_config: {
       type: Object,
-      default: {},
+      default: function() {
+        return {};
+      }
     },
 
     article_sort: {
       type: Object,
-      default: {},
-    },
+      default: {}
+    }
   },
   data() {
     return {
-      musicBoxSwitch: true,
+      musicBoxSwitch: true
     };
   },
   watch: {},
@@ -41,10 +58,10 @@ export default {
     },
     closeMusicBox() {
       this.musicBoxSwitch = false;
-    },
+    }
   },
   created() {},
-  mounted() {},
+  mounted() {}
 };
 </script>
 <style lang="scss" scoped>

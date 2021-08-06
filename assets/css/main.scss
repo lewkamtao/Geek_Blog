@@ -82,7 +82,7 @@ button {
 
 body {
     font-size: 14px;
-    background-color: #eff3f6;
+    background: rgba($color: #000000, $alpha: 0.055);
 }
 
 .modal {
@@ -120,7 +120,7 @@ html::-webkit-scrollbar-thumb:hover {
     position: relative;
     width: 100%;
     height: auto;
-    padding: 20px;
+    padding: 15px;
     background: #fff;
     border-radius: 12px;
     transition: all .25s;

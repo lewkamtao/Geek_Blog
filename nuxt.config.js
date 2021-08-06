@@ -29,8 +29,8 @@ export default {
     plugins: [
         '@/plugins/axios',
         '@/plugins/route',
+        '@/plugins/v-img',
         { src: '~/plugins/vue-masonry', ssr: false },
-
     ],
 
     // Auto import components: https://go.nuxtjs.dev/config-components
@@ -84,5 +84,5 @@ export default {
         extractCSS: { allChunks: true }
 
     },
-    loading: '~/components/Loading.vue'
+    loading: '~/components/custom/Loading.vue'
 }

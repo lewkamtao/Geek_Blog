@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import AutoImgList from "@/components/AutoImgList";
+import AutoImgList from "@/components/custom/AutoImgList";
 import qs from "qs";
 
 export default {

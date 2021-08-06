@@ -13,7 +13,7 @@
           <img width="35" src="https://cos.tngeek.com/logo.png" alt srcset />
         </div>
       </div>
-      <div class="right"> 
+      <div class="right">
         <div class="search">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -38,16 +38,13 @@
             type="text"
           />
           <div class="res-box" :class="{ 'is-show-res-box': isShowResBox }">
-            <div class="title">
-              {{ searchArticle.length > 0 ? "搜索结果推荐文章" : "暂无结果" }}
-            </div>
+            <div class="title">{{ searchArticle.length > 0 ? "搜索结果推荐文章" : "暂无结果" }}</div>
             <ul>
               <nuxt-link
                 v-for="(item, index) in searchArticle"
                 :key="index"
                 :to="'/Article?id=' + item.id"
-                >{{ item.title }}</nuxt-link
-              >
+              >{{ item.title }}</nuxt-link>
             </ul>
           </div>
         </div>
@@ -93,8 +90,8 @@ export default {
   props: {
     geek_config: {
       type: Object,
-      default: {},
-    },
+      default: {}
+    }
   },
   data() {
     return {
@@ -104,24 +101,24 @@ export default {
       searchValue: "",
       timer: "",
       searchArticle: [],
-      isShowResBox: false,
+      isShowResBox: false
     };
   },
   watch: {
-    mode: function (val) {
+    mode: function(val) {
       if (val) {
         document.getElementsByTagName("body")[0].className = "dark";
       } else {
         document.body.removeAttribute("class");
       }
     },
-    searchValue: function (val) {
+    searchValue: function(val) {
       var that = this;
       clearTimeout(this.timer);
-      this.timer = setTimeout(async function () {
+      this.timer = setTimeout(async function() {
         that.searchArticleFn();
       }, 250);
-    },
+    }
   },
   computed: {},
   methods: {
@@ -132,13 +129,13 @@ export default {
     },
     hidResBox() {
       var that = this;
-      setTimeout(function () {
+      setTimeout(function() {
         that.isShowResBox = false;
       }, 500);
     },
     showNav() {
       this.$emit("showNav");
-    },
+    }
   },
   created() {
     if (this.$cookies.get("token")) {
@@ -154,23 +151,19 @@ export default {
     }
     next();
   },
-  mounted() {},
+  mounted() {}
 };
 </script>
 <style lang="scss" scoped>
 .top-nav-wrapper {
   width: 100%;
   height: 100%;
-  background: none !important;
 
   .top-nav {
+    max-width: calc(1281px - 14px);
+    margin: 0 auto;
     width: 100%;
     height: 60px;
-    background: rgba(255, 255, 255, 0.8);
-    -webkit-backdrop-filter: saturate(200%) blur(20px);
-    box-shadow: 0px 0px 15px -5px rgb(0 0 0 / 25%);
-    backdrop-filter: saturate(200%) blur(20px);
-    padding: 0px 20px;
     display: flex;
     justify-content: space-between;
     border-radius: 12px;
@@ -361,6 +354,10 @@ export default {
     .top-nav {
       height: 45px;
       padding: 0px 10px;
+      background: rgba(255, 255, 255, 0.8);
+      -webkit-backdrop-filter: saturate(200%) blur(20px);
+      box-shadow: 0px 0px 15px -5px rgb(0 0 0 / 15%);
+      backdrop-filter: saturate(200%) blur(20px);
       .left {
         .pc-logo {
           display: none;

@@ -367,14 +367,15 @@ export default {
   },
   created() {
     this.getMusicList();
-
-    this.$nextTick(function() {
-      this.timeLine.width = this.$refs.timeLine.clientWidth;
-      this.volumeLine.width = this.$refs.volumeLine.clientWidth;
-      this.$refs.audioRef.volume = 0.618;
-      this.volumeLine.isOpenWidth =
-        this.$refs.audioRef.volume * this.volumeLine.width;
-    });
+    if (process.browser) {
+      this.$nextTick(function() {
+        this.timeLine.width = this.$refs.timeLine.clientWidth;
+        this.volumeLine.width = this.$refs.volumeLine.clientWidth;
+        this.$refs.audioRef.volume = 0.618;
+        this.volumeLine.isOpenWidth =
+          this.$refs.audioRef.volume * this.volumeLine.width;
+      });
+    }
   },
   mounted() {}
 };
@@ -383,6 +384,7 @@ export default {
 .musicBox {
   width: 100%;
   margin: 14px 0px;
+
   -moz-user-select: none; /*火狐*/
   -webkit-user-select: none; /*webkit浏览器*/
   -ms-user-select: none; /*IE10*/

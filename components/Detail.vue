@@ -1,26 +1,42 @@
 <template>
   <div class="right-wrapper article-wrapper-master">
     <div ref="articleMain" class="main">
+      <!-- 文章内页 -->
       <article-detail
         v-if="options.article && options.type == 'article'"
         :article="options.article"
         :minHidth="asideHidth"
         class="part"
       ></article-detail>
+
+      <!-- 友情链接 -->
       <links-detail
         v-if="options.links && options.type == 'links'"
         :links="options.links"
         class="part"
       ></links-detail>
+
+      <!-- 首页 -->
       <index-detail v-if="options.type == 'index'" :articleList="options.articleList" class="part"></index-detail>
+
+      <!-- 留言板 -->
       <message-detail
         v-if="options.type == 'message'"
         :comments="options.comments"
         class="part"
         @reloadComments="reloadComments"
       ></message-detail>
+
+      <!-- 关于我 -->
+      <about-detail v-if="options.type == 'about'" class="part"></about-detail>
+
+      <!-- 时光机 -->
+      <timeline-detail v-if="options.type == 'timeline'" class="part"></timeline-detail>
     </div>
     <div ref="aside" :style="setAsideLeft" class="aside">
+      <!-- 天气 -->
+      <weather></weather>
+
       <!-- 标签云 -->
       <tag-cloud v-if="options.tag" :tag="options.tag"></tag-cloud>
 
@@ -39,9 +55,6 @@
       <!-- 最新评论 -->
       <lately v-if="options.type == 'index'" :newComments="options.newComments"></lately>
 
-      <!-- 内容更新 -->
-      <developments v-if="options.type == 'index'"></developments>
-
       <!-- 联系方式 -->
       <info v-if="options.type == 'index'"></info>
 
@@ -59,15 +72,17 @@ import ArticleDetail from "@/components/detail/ArticleDetail";
 import LinksDetail from "@/components/detail/LinksDetail";
 import IndexDetail from "@/components/detail/IndexDetail";
 import MessageDetail from "@/components/detail/MessageDetail";
+import AboutDetail from "@/components/detail/AboutDetail";
+import TimelineDetail from "@/components/detail/TimelineDetail";
 
 import Catalogue from "@/components/detail/parts/Catalogue";
 import Comment from "@/components/detail/parts/Comment";
 import TagCloud from "@/components/detail/parts/TagCloud";
 import Info from "@/components/detail/parts/Info";
-import Developments from "@/components/detail/parts/Developments";
 import Lately from "@/components/detail/parts/Lately";
 import Concact from "@/components/detail/parts/Concact";
 import CommentRank from "@/components/detail/parts/CommentRank";
+import Weather from "@/components/detail/parts/Weather";
 
 export default {
   components: {
@@ -75,17 +90,25 @@ export default {
     IndexDetail,
     LinksDetail,
     MessageDetail,
+    AboutDetail,
+    TimelineDetail,
 
+    Weather,
     Catalogue,
     Comment,
     TagCloud,
-    Developments,
     Lately,
     Info,
     Concact,
     CommentRank
   },
   props: {
+    geek_config: {
+      type: Object,
+      default: function() {
+        return {};
+      }
+    },
     options: {
       type: Object,
       default: {

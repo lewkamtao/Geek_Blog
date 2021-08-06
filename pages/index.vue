@@ -1,50 +1,40 @@
 <template>
-  <div
-    id="top"
-    class="wrapper"
-    :class="{ isShowNav: isShowNav, isShowAside: isShowAside }"
-  >
-    <TopNav
-      @showNav="showNav()"
-      :geek_config="geek_config"
-      class="top-nav-wrapper-master"
-    />
-    <LeftNav
-      :geek_config="geek_config"
-      :article_sort="article_sort"
-      class="left-nav"
-    />
-    <div class="index-main">
-      <nuxt-child :geek_config="geek_config" />
-      <Footer :geek_config="geek_config" />
-    </div>
-
-    <div class="to-top">
-      <div
-        @click="showAside()"
-        class="show-aside-btn"
-        :class="{ isShowOpenAsideBtn: isShowOpenAsideBtn }"
-      >
-        <div style="margin-top: -5px">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20px"
-            height="20px"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="feather feather-twitch"
-          >
-            <path d="M21 2H3v16h5v4l4-4h5l4-4V2zm-10 9V7m5 4V7" />
-          </svg>
-        </div>
+  <div class="wrap">
+    <div id="top" class="wrapper" :class="{ isShowNav: isShowNav, isShowAside: isShowAside }">
+      <TopNav @showNav="showNav()" :geek_config="geek_config" class="top-nav-wrapper-master" />
+      <LeftNav :geek_config="geek_config" :article_sort="article_sort" class="left-nav" />
+      <div class="index-main">
+        <nuxt-child :geek_config="geek_config" />
+        <Footer :geek_config="geek_config" />
       </div>
-      <a href="#top" class="paper-btn">
-        <div>^</div>
-      </a>
+
+      <div class="to-top">
+        <div
+          @click="showAside()"
+          class="show-aside-btn"
+          :class="{ isShowOpenAsideBtn: isShowOpenAsideBtn }"
+        >
+          <div style="margin-top: -5px">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20px"
+              height="20px"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="feather feather-twitch"
+            >
+              <path d="M21 2H3v16h5v4l4-4h5l4-4V2zm-10 9V7m5 4V7" />
+            </svg>
+          </div>
+        </div>
+        <a href="#top" class="paper-btn">
+          <div>^</div>
+        </a>
+      </div>
     </div>
   </div>
 </template>
@@ -62,21 +52,21 @@ export default {
         {
           hid: "keywords",
           name: "keywords",
-          content: this.geek_config.site_info.keywords,
+          content: this.geek_config.site_info.keywords
         },
         {
           hid: "description",
           name: "description",
-          content: this.geek_config.site_info.description,
-        },
+          content: this.geek_config.site_info.description
+        }
       ],
       link: [
         {
           rel: "icon",
           type: "image/x-icon",
-          href: this.geek_config.site_info.favicon_url,
-        },
-      ],
+          href: this.geek_config.site_info.favicon_url
+        }
+      ]
     };
   },
   async asyncData({ $axios }) {
@@ -92,7 +82,7 @@ export default {
       isShowNav: false,
       isShowAside: false,
       isShowOpenAsideBtn: false,
-      backUpTopScroll: 0,
+      backUpTopScroll: 0
     };
   },
   watch: {},
@@ -104,7 +94,7 @@ export default {
           this.backUpTopScroll = document.documentElement.scrollTop;
         } else {
           var top = JSON.parse(JSON.stringify(this.backUpTopScroll));
-          setTimeout(function () {
+          setTimeout(function() {
             document.documentElement.scrollTop = top;
           }, 10);
           this.backUpTopScroll = 0;
@@ -118,14 +108,14 @@ export default {
           this.backUpTopScroll = document.documentElement.scrollTop;
         } else {
           var top = JSON.parse(JSON.stringify(this.backUpTopScroll));
-          setTimeout(function () {
+          setTimeout(function() {
             document.documentElement.scrollTop = top;
           }, 10);
           this.backUpTopScroll = 0;
         }
       }
       this.isShowAside = !this.isShowAside;
-    },
+    }
   },
   created() {
     this.isShowOpenAsideBtn = true;
@@ -141,12 +131,12 @@ export default {
       next();
     }
   },
-  mounted() {},
+  mounted() {}
 };
 </script> 
 <style scoped  lang="scss">
-.wrapper {
-  max-width: 1441px;
+.wrapper { 
+  max-width: 1281px;
   min-width: 1180px;
   display: flex;
   justify-content: space-between;
@@ -155,7 +145,12 @@ export default {
   box-sizing: border-box;
   .top-nav-wrapper-master {
     position: fixed;
-    max-width: calc(1441px - 14px);
+    max-width: 100%;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    -webkit-backdrop-filter: saturate(200%) blur(20px);
+    box-shadow: 0px 0px 15px -5px rgb(0 0 0 / 15%);
+    backdrop-filter: saturate(200%) blur(20px);
     height: 60px;
     left: 50%;
     top: 0px;
@@ -232,10 +227,10 @@ export default {
 }
 @media screen and (max-width: 1480px) {
   .wrapper {
-    padding: 0px 15px;
+    padding: 0px 14px;
     box-sizing: border-box;
     .top-nav-wrapper-master {
-      padding: 0px 15px;
+      padding: 0px 14px;
       box-sizing: border-box;
     }
   }
@@ -266,6 +261,9 @@ export default {
       margin-top: 15px;
       height: 45px;
       width: 100%;
+      background: none;
+      backdrop-filter: none;
+      box-shadow: none;
     }
     .index-main {
       width: 100%;

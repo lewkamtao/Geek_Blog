@@ -7,7 +7,7 @@
 <script>
 export default {
   data: () => ({
-    loading: false,
+    loading: false
   }),
   methods: {
     start() {
@@ -15,11 +15,11 @@ export default {
     },
     finish() {
       var that = this;
-      setTimeout(function () {
+      setTimeout(function() {
         that.loading = false;
       }, 500);
-    },
-  },
+    }
+  }
 };
 </script>
 

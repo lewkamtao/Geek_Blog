@@ -1,5 +1,5 @@
 <template>
-  <div style="margin-bottom: 14px" class="info part">
+  <div style="margin-bottom:14px" class="info part">
     <div class="main-title" style="margin-bottom: 12px">
       甜狗日记
       <svg
@@ -12,22 +12,20 @@
         fill="none"
         stroke-linecap="round"
         stroke-linejoin="round"
-        class="css-i6dzq1 rotate-cw"
+        class="css-i6dzq1 rotate-cw" 
       >
-        <polyline points="23 4 23 10 17 10"></polyline>
-        <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+        <polyline points="23 4 23 10 17 10" />
+        <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10" />
       </svg>
     </div>
-    <div class="diary">
-      {{ content }}
-    </div>
+    <div class="diary">{{ content }}</div>
   </div>
 </template>
 <script>
 export default {
   data() {
     return {
-      content: "",
+      content: ""
     };
   },
   methods: {
@@ -35,11 +33,11 @@ export default {
       this.content = await this.$axios.get(
         "https://api.ixiaowai.cn/tgrj/index.php"
       );
-    },
+    }
   },
   created() {
     this.getContent();
-  },
+  }
 };
 </script>
 
@@ -48,7 +46,7 @@ export default {
   line-height: 24px;
   letter-spacing: 1px;
   background: rgba($color: #000000, $alpha: 0.025);
-  padding: 15px ; 
+  padding: 15px;
   border-radius: 10px;
 }
 .rotate-cw {

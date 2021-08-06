@@ -16,9 +16,10 @@ export default {
   props: {
     geek_config: {
       type: Object,
-      default: {}
-    },
-   
+      default: function() {
+        return {};
+      }
+    }
   },
   data() {
     return {};
@@ -67,10 +68,9 @@ export default {
   }
   .nickname {
     margin: 22px 0px 14px 0px;
-    color: #fff;
+    color: #000;
     font-size: 18px;
     font-weight: bold;
-    background: #333;
   }
   .description {
     font-size: 14px;

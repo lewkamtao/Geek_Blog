@@ -9,9 +9,7 @@
           @click="getArticleBySort(item.id)"
         >
           {{ item.name }}
-          <div class="badge" :class="tagsClass[index]">
-            {{ item.expand.count }}
-          </div>
+          <div class="badge" :class="tagsClass[index]">{{ item.expand.count }}</div>
         </li>
       </ul>
     </div>
@@ -24,12 +22,14 @@ export default {
   props: {
     article_sort: {
       type: Object,
-      default: {},
-    },
+      default: function() {
+        return {};
+      }
+    }
   },
   data() {
     return {
-      tagsClass: [],
+      tagsClass: []
     };
   },
   watch: {},
@@ -47,12 +47,12 @@ export default {
     },
     getArticleBySort(id) {
       console.log(id);
-    },
+    }
   },
   created() {
     this.getTagColor();
   },
-  mounted() {},
+  mounted() {}
 };
 </script>
 <style lang="scss" scoped>
@@ -87,7 +87,7 @@ ul {
   }
   li::before {
     position: absolute;
-    top: 1px;
+    top: 0px;
     left: 0px;
     content: "";
     width: 100%;
