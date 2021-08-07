@@ -14,11 +14,11 @@
       @play="onPlay"
     ></audio>
 
-    <div class="info">
+    <div class="song-info">
       <div class="cover">
         <img :src="music.song.cover" alt srcset />
       </div>
-      <div class="content">
+      <div class="info">
         <div class="title">{{ music.song.name }}</div>
         <div class="author">演唱： {{ music.song.author }}</div>
       </div>
@@ -407,11 +407,11 @@ export default {
   -khtml-user-select: none; /*早期浏览器*/
   user-select: none;
 
-  .info {
+  .song-info {
     position: relative;
     display: flex;
     align-items: flex-start;
-    .content {
+    .info {
       width: calc(100% - 60px);
       margin-left: 10px;
       display: flex;
