@@ -368,6 +368,10 @@ export default {
     }
   }
   .top-nav-wrapper {
+    background: none;
+    -webkit-backdrop-filter: none;
+    box-shadow: none;
+    backdrop-filter: none;
     .mode-select {
       display: none;
     }
