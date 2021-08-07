@@ -265,6 +265,15 @@ export default {
   }
   .card-subtitle {
     font-size: 14px;
+    color: #999;
+    line-height: 22px;
+    text-overflow: -o-ellipsis-lastline;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
   }
   .card-footer {
     position: absolute;

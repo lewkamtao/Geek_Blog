@@ -5,7 +5,10 @@
       <user-info class="user-info" :geek_config="geek_config"></user-info>
 
       <!-- 音乐盒 -->
-      <music-box v-if="musicBoxSwitch"></music-box>
+      <music-box
+        v-if="musicBoxSwitch&&geek_config.menu_switch.music_box"
+        :geek_config="geek_config"
+      ></music-box>
 
       <!-- 菜单列表 -->
       <menu-list

@@ -1,0 +1,998 @@
+<style>
+    .about-html-wrapper {
+        font-size: 1.4rem;
+        padding: 30px
+    }
+    
+    html {
+        overflow-y: scroll;
+    }
+    
+    body {
+        margin: 0;
+        padding: 0;
+        background: #eee;
+    }
+    
+    div,
+    dl,
+    dt,
+    dd,
+    ul,
+    ol,
+    li,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    pre,
+    form,
+    fieldset,
+    input,
+    textarea,
+    blockquote,
+    p {
+        padding: 0;
+        margin: 0;
+    }
+    
+    table,
+    td,
+    tr,
+    th {
+        font-size: 12px;
+    }
+    
+    li {
+        list-style-type: none;
+    }
+    
+    img {
+        vertical-align: top;
+        border: 0;
+    }
+    
+    ol,
+    ul {
+        list-style: none;
+    }
+    
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-weight: normal;
+    }
+    
+    address,
+    cite,
+    code,
+    em,
+    th {
+        font-weight: normal;
+        font-style: normal;
+    }
+    
+    a {
+        text-decoration: none;
+        color: #44617b;
+    }
+    
+    * {
+        font-size: 1.4rem;
+    }
+    
+    code {
+        padding: 1px;
+        margin-left: 5px;
+        font-family: Helvetica Neue， Helvetica， PingFang SC， Microsoft YaHei， \\5FAE\8F6F\96C5\9ED1， Arial， sans-serif;
+        font-size: 1.4rem;
+        line-height: 14px;
+        border-radius: 3px;
+        font-weight: 500;
+        white-space: nowrap;
+        color: #d63200;
+        margin: 2px;
+        padding: 0 5px;
+        background-color: #f6f5f5;
+        font-style: normal;
+    }
+    
+    html {
+        font-size: 63.5%;
+        color: #333;
+    }
+    
+    .content {
+        max-width: 1024px;
+        box-shadow: 0 0 15px #c0c0c0;
+        border-radius: 5px;
+        overflow: hidden;
+        margin: 0 auto;
+        background: #fff;
+    }
+    
+    .content-hd {
+        width: 100%;
+        overflow: hidden;
+        background: #02AAB0;
+        /* fallback for old browsers */
+        background: -webkit-linear-gradient(to right, #40a78f, #02c195);
+        /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to right, #40a78f, #02c195);
+        /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        color: #333;
+        box-sizing: border-box;
+        padding: 50px;
+    }
+    
+    .content-hd a {
+        color: #333;
+    }
+    
+    .title {
+        width: 100%;
+        overflow: hidden;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+    
+    .name {
+        text-align: left;
+        width: calc(100%);
+        padding-top: 20px;
+        color: #fff;
+    }
+    
+    .name-tao {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        margin-bottom: 10px;
+    }
+    
+    .job {
+        text-align: right;
+        width: 170px;
+        overflow: hidden;
+    }
+    
+    .name-tao h1 {
+        font-size: 4.3rem;
+        line-height: 3.2rem;
+        margin-bottom: 10px;
+        width: 50%;
+    }
+    
+    .name .line {
+        height: 2px;
+        width: 100%;
+        background-color: #1e9076;
+    }
+    
+    .name h2 {
+        font-size: 1.8rem;
+        line-height: 2.2rem;
+    }
+    
+    .info h3 {
+        font-size: 1.5rem;
+        line-height: 2.8rem;
+    }
+    
+    .name small {
+        font-size: 2.3rem;
+        margin-left: 10px;
+    }
+    
+    .name-tao span {
+        font-size: 1.8rem;
+        text-align: right;
+        width: 50%;
+    }
+    
+    .job img {
+        width: 150px;
+        height: auto;
+        margin-left: 20px;
+        border-radius: 5px;
+    }
+    
+    .jieshao {
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 20px;
+    }
+    
+    .contact-link {
+        margin-right: 5px;
+    }
+    
+    .info {
+        width: 50%;
+        text-align: left;
+    }
+    
+    .contact {
+        width: 50%;
+        text-align: right;
+    }
+    
+    .contact a {
+        color: #fff;
+        font-size: 1.5rem;
+        line-height: 2.8rem;
+    }
+    
+    .content-bd {
+        padding: 50px;
+        width: 100%;
+        box-sizing: border-box;
+        padding-top: 20px;
+    }
+    
+    .content-kuang {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    
+    .content-left {
+        width: 48%;
+    }
+    
+    .mid {
+        width: 4%;
+    }
+    
+    .content-right {
+        width: 48%;
+    }
+    
+    .section-title {
+        font-size: 1.8rem;
+        line-height: 35px;
+        font-weight: 500;
+        text-align: center;
+        background: #00A381;
+    }
+    
+    .item-hd span {
+        margin-right: 10px;
+    }
+    
+    .item {
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+    
+    .item li {
+        line-height: 2.6rem;
+        text-align: justify;
+    }
+    
+    .prize .item {
+        padding-top: 0px;
+        overflow: hidden;
+        padding-bottom: 0px;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+    
+    .prize .item span:nth-child(1) {
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+    
+    .prize .item dd {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .prize .item dd span {
+        width: auto;
+    }
+    
+    .prize .item dd span:nth-child(1) {
+        margin-right: 10px;
+    }
+    
+    .personal .item-part {
+        padding-top: 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        padding-bottom: 15px;
+    }
+    
+    .a-btn {
+        color: #fff;
+        display: none;
+        background: #00B38A;
+        border-radius: 3px;
+        padding: 5px 7px 5px 7px;
+    }
+    
+    .personal .item-part span {
+        text-align: right;
+    }
+    
+    .section-bd {
+        margin-top: 10px;
+    }
+    
+    .personal .item {
+        padding-bottom: 10px;
+        padding-top: 0px;
+    }
+    
+    .personal .item-part dd {
+        padding-left: 0px;
+        font-weight: 500;
+        font-size: 16px;
+    }
+    
+    .personal .item-part span:nth-child(2) {
+        background: #00b38a;
+        color: #fff;
+        display: none;
+        border-radius: 3px;
+        padding: 5px 7px 5px 7px;
+    }
+    
+    .personal .item-part span:nth-child(2):hover {
+        background: #00a381;
+    }
+    
+    .personal .item-part span:nth-child(1) {
+        list-style: disc;
+        font-size: 1.4rem;
+        margin-right: 5px;
+    }
+    
+    .personal .item li:first-child {
+        text-indent: 0em;
+        padding-left: 0px;
+    }
+    
+    .personal .item li {
+        margin-bottom: 6px;
+        padding-left: 30px;
+    }
+    
+    .personal .item li:first-child:before {
+        display: none;
+    }
+    
+    .personal .item li::before {
+        content: '·';
+        font-weight: bold;
+        font-size: 2.0rem;
+        margin-right: 10px;
+        margin-left: -20px;
+    }
+    
+    .practice .item {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    
+    .practice li {
+        list-style: disc;
+        cursor: pointer;
+        align-items: center;
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    .practice .item dd {
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    .practice p {
+        transition: auto;
+    }
+    
+    .practice-zt-pc {
+        display: block;
+    }
+    
+    .practice-zt-mobile {
+        display: none;
+    }
+    
+    .personal .item a {
+        color: #fff;
+    }
+    
+    .jieshao {
+        line-height: 2.4rem;
+    }
+    
+    .top {
+        max-width: 1024px;
+        margin: 0 auto;
+        padding-top: 30px;
+        padding-bottom: 30px;
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    
+    .content-bd .section-hd {
+        color: #333;
+        position: relative;
+        margin-top: 10px;
+        display: flex;
+        overflow: hidden;
+        text-align: center;
+        align-items: center;
+    }
+    
+    .content-bd .section-title-l,
+    .content-bd .section-title-r {
+        flex: 1;
+        height: 2px;
+        background: #f4f4f4;
+    }
+    
+    .content-bd .section-title {
+        position: relative;
+        display: inline-block;
+        padding-left: 20px;
+        padding-right: 20px;
+        margin: 10px;
+        border-radius: 32px;
+        font-size: 16px;
+        text-align: center;
+        background-color: #f4f4f4;
+    }
+    
+    .top span:nth-child(1) {
+        text-align: left;
+        width: 50%;
+        letter-spacing: 1px;
+    }
+    
+    .btn-xiazai {
+        border-radius: 5px;
+        background: #00b38a;
+        border: #29967c 1px solid;
+        color: #fff;
+        padding: 8px;
+    }
+    
+    .practice .item {
+        padding-top: 25px;
+        padding-bottom: 10px;
+    }
+    
+    .practice .item i {
+        background: #fff;
+        color: #333;
+        transition: all 0.1s;
+        padding: 3px 7px;
+        border: 1px #259DAB solid;
+    }
+    
+    .practice p {
+        line-height: 25px;
+        margin: 10px auto;
+        text-align: justify;
+    }
+    
+    .practice .item i:hover {
+        background: #259DAB;
+        color: #fff;
+    }
+    
+    .practice .fa {
+        border: none !important;
+        transform: rotate(0deg);
+        transition: all 0.05s;
+        background: none;
+        font-size: 18px
+    }
+    
+    .practice-item {
+        padding: 10px 0px;
+    }
+    
+    @media only screen and (max-width:1024px) {
+        .content {
+            width: 100%;
+            border-radius: 30px;
+        }
+        .top {
+            width: 100%;
+            padding: 20px;
+        }
+        .prize .item dd {
+            padding-left: 0px;
+            width: 100%;
+        }
+        .prize .item span {
+            width: 100%;
+        }
+        .personal .item-header span {
+            width: auto;
+        }
+    }
+    
+    .job-mobile {
+        display: none;
+        margin-bottom: 20px;
+    }
+    
+    @media only screen and (max-width:765px) {
+        .job-mobile {
+            display: block;
+        }
+        .job-pc {
+            display: none;
+        }
+        .practice dd {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        .practice-zt-mobile {
+            display: block;
+        }
+        .practice-zt-pc {
+            display: none;
+        }
+        .prize .item {
+            padding-top: 0px;
+        }
+        .content-left {
+            width: 100%;
+        }
+        .job img {
+            margin-left: 0px;
+        }
+        .prize .item i {
+            margin-left: 0px;
+            padding-left: 0px;
+        }
+        .mid {
+            display: none;
+        }
+        .job img {
+            margin-top: 20px;
+        }
+        .name-tao h1 {
+            width: 100%;
+            text-align: center;
+        }
+        .name-tao span {
+            width: 100%;
+            text-align: center;
+        }
+        .content-right {
+            width: 100%;
+        }
+        .info {
+            width: 100%;
+            text-align: center;
+        }
+        .contact {
+            width: 100%;
+            text-align: center;
+        }
+        .name {
+            width: 100%;
+            text-align: center;
+        }
+        .job {
+            width: 100%;
+            text-align: center;
+        }
+        .content-hd {
+            background: #02AAB0;
+            /* fallback for old browsers */
+            background: -webkit-linear-gradient(to right, #40a78f, #02c195);
+            /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to right, #40a78f, #02c195);
+            /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+            padding: 20px;
+            padding-top: 50px;
+            padding-bottom: 30px;
+        }
+        .content-bd {
+            padding: 20px;
+            padding-top: 0px;
+        }
+        .job img {
+            position: static;
+        }
+    }
+    
+    @media only screen and (max-width:405px) {
+        .top {
+            align-items: flex-start;
+        }
+    }
+    
+    .foot-beian {
+        padding: 15px;
+        margin-bottom: 30px;
+    }
+    
+    .foot-beian-kuang {
+        display: flex;
+        flex-wrap: wrap;
+        text-align: center;
+        ;
+        justify-content: center;
+    }
+    
+    .foot-beian dl {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+    
+    .foot-beian span:nth-child(1) {
+        padding-left: 15px;
+        padding-right: 5px;
+    }
+    
+    .foot-beian span:nth-child(2) img {
+        height: 20px;
+        width: auto;
+    }
+    
+    .foot-beian div a {
+        color: #666;
+    }
+    
+    .personal .item li:first-child {
+        font-weight: bold;
+    }
+    
+    .zwpj li {
+        list-style: disc;
+    }
+    
+    .toubg {
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100vh;
+        background: rgb(0, 0, 0, 0.5);
+        z-index: 999;
+    }
+    
+    .touimg {
+        width: 250px;
+        height: 250px;
+    }
+    
+    .close-btn {
+        color: #000;
+        margin-top: 20px;
+        max-width: 250px;
+        width: 250px;
+        text-align: center;
+        padding: 10px 20px;
+        box-sizing: border-box;
+        display: inline-block;
+        border-radius: 8px;
+        transition: all 0.25s;
+        letter-spacing: 3px;
+        background: rgb(255, 255, 255, 0.9);
+    }
+    
+    .demo-btn {
+        cursor: pointer;
+    }
+    
+    .close-btn:hover {
+        background: #e3e3e3;
+        cursor: pointer;
+    }
+    
+    .touimg img {
+        max-width: 250px;
+        background: #fff;
+        border-radius: 8px;
+        box-sizing: border-box;
+        padding: 30px;
+        height: auto;
+    }
+    
+    .Skill li {
+        margin: 15px 0px;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+</style>
+<div id="bodyh" class="about-html-wrapper">
+    <div class="top">
+        <span>最近一次更新于 2021/03/31
+			</span>
+    </div>
+    <div class="content">
+        <header class="content-hd">
+            <section class="title">
+                <div class="name">
+                    <div class="name-tao">
+                        <h1>小卢乱撞<small>Kamtao</small></h1>
+                        <span>Web前端开发工程师</span>
+                    </div>
+                    <div class="line"></div>
+
+                    <div class="jieshao">
+
+                        <section class="info">
+                            <h3>男 / 1998.11</h3>
+                            <h3>专科 / 2年工作经验</h3>
+                            <h3>清远职业技术学院 &middot; 计算机系</h3>
+
+                        </section>
+                        <section class="contact">
+                            <ul>
+                                <li><a href="tel:158****4279" target="_blank"><span
+												class="contact-link">158****4279</span>电话</a></li>
+                                <li><a href="http://kamtao.com/" target="_blank"><span
+												class="contact-link">http://kamtao.com</span>主页</a></li>
+                                <li><a href="mailto:div@kamtao.com" target="_blank"><span
+												class="contact-link">div@kamtao.com</span>邮箱</a></li>
+
+
+                            </ul>
+                        </section>
+                    </div>
+                </div>
+
+            </section>
+        </header>
+        <div class="content-bd">
+            <div class="content-kuang">
+                <div class="content-left">
+
+                    <section class="practice">
+                        <header class="section-hd">
+                            <span class="section-title-l"></span>
+                            <h2 class="section-title">工作经验</h2>
+                            <span class="section-title-r"></span>
+                        </header>
+                        <div class="section-bd">
+
+
+                            <div class="item">
+
+                                <dd>
+                                    <span>2020.07 ~ 至今</span>
+                                    <span class="practice-zt-mobile"> <a class="a-btn">全干工程师</a></span>
+                                </dd> <span>广州市左边广告有限公司</span> <span class="practice-zt-pc"> <a
+											class="a-btn">全干工程师</a></span>
+                                <div class="practice-item">
+
+
+                                    <li>
+                                        运营后台管理系统 · B端运营管理系统 · 官方网站
+                                    </li>
+                                    <p>独立先后完成运营后台管理系统、B端运营管理系统、官方网站，对接阿里云OSS和视频点播等第三方开发，独立完成多个大型组件，播放器组件等，并独立完成构建和部署，目前已上线。
+                                    </p>
+
+                                </div>
+                            </div>
+                            <div class="item">
+
+                                <dd>
+                                    <span>2019.07 ~ 2020.02</span>
+                                    <span class="practice-zt-mobile"> <a class="a-btn"
+												href="http://qyeastshow.com/">工作</a></a></span>
+                                </dd> <span>清远市东秀集团有限公司</span> <span class="practice-zt-pc"> <a class="a-btn"
+											href="http://qyeastshow.com/">工作</a></ span>
+								</div>
+								<div class="practice-item">
+
+
+									<li>
+										电商部 · 麻鸡村电商产业园 · 商城
+										<!-- <i class="fa fa-angle-down" aria-hidden="true"></i> -->
+									</li>
+									<p>负责整个小程序的架构设计及研发，利用凡科小程序开发完成小程序发布，负责产品设计和上架，以及页面布局和调试，微信支付等接口配置等。</p>
+
+								</div>
+								<div class="practice-item">
+									<li>
+										企划部 · 东秀集团 · 官方网站
+										<!-- <i class="fa fa-angle-down" aria-hidden="true"></i> -->
+									</li>
+									<p>官网负责人，官网整体采用扁平化的设计，去除冗余、厚重和繁杂的装饰效果。而具体表现在去掉了多余的透视、纹理、渐变以及能做出3D效果的元素。</p>
+								</div>
+
+
+							</div>
+						</section>
+						<section class="Skill">
+							<header class="section-hd">
+								<span class="section-title-l"></span>
+                                <h2 class="section-title">专业技能</h2>
+                                <span class="section-title-r"></span>
+                                </header>
+                                <div class="section-bd">
+
+
+                                    <div class="item">
+
+                                        <li>Web开发：<code>HTML/HTML5</code>、<code>CSS/CSS3</code>、<code>Javascript</code>、<code>DOM/BOM</code>、<code>Ajax</code>、<code>JSON</code>、<code>NodeJs</code>
+                                        </li>
+                                        <li>前端框架、库、常用插件：<code>Vue/Nuxt</code>、<code>JQuery</code>、<code>Axios</code></li>
+                                        <li>前端工具：<code>Webpack</code>、<code>Npm</code>、<code>Less</code>、<code>Babel</code>、<code>Eslint</code>
+                                        </li>
+                                        <li>小程序相关：<code>Uniapp</code>、<code>WXML</code>、<code>WXSS</code>、<code>MVVM</code>
+                                        </li>
+                                        <li>Vue 相关：
+                                            <code>Element-ui</code>、<code>nuxt.js</code>、<code>vue-router</code>、<code>vuex</code>、<code>vue-cli</code>、<code>ant-ui</code>
+                                        </li>
+                                        <li>NodeJs 类库、管理工具：<code>Koa</code>、<code>Express</code>、<code>Node </code>生态常用模块
+                                        </li>
+                                        <li>数据库、后端工具：<code>Postman</code>、<code>Linux 常用命令</code>、<code>SSH 常用命令</code></li>
+                                        <li>版本管理、仓库托管、文档和自动化部署工具：<code>GitLab</code>、<code>Github</code>、<code>Markdown</code>、<code>Linux
+											服务器</code></li>
+                                        <li>开发工具和运行平台：<code>VSCode/Sublime</code>，<code>Chrome/Safari</code>、<code>MacBook/Window</code>
+                                        </li>
+
+                                    </div>
+                                </div>
+                    </section>
+                    <section class="prize">
+                        <header class="section-hd">
+                            <span class="section-title-l"></span>
+                            <h2 class="section-title">奖项证书</h2>
+                            <span class="section-title-r"></span>
+                        </header>
+                        <div class="section-bd">
+                            <div class="item">
+                                <span> 2020.05</span>
+                                <dd>
+                                    <span>清职院学生优秀奖学金</span>
+                                    <span>一等奖 &middot; 院校级</span>
+                                </dd>
+                            </div>
+                            <div class="item">
+                                <span> 2019.04</span>
+                                <dd>
+                                    <span>HTML5交互融媒体设计大赛</span>
+                                    <span>二等奖 &middot; 省部级</span>
+                                </dd>
+                            </div>
+
+
+
+                            <div class="item">
+                                <span> 2018.11</span>
+                                <dd>
+                                    <span>清职院中软国际网页设计大赛</span>
+                                    <span>一等奖 &middot; 院校级</span>
+                                </dd>
+                            </div>
+
+                            <div class="item">
+                                <span> 2018.01</span>
+                                <dd>
+                                    <span>清职院信创院蓝桥杯 C语言</span>
+                                    <span>三等奖 &middot; 院校级</span>
+                                </dd>
+                            </div>
+
+                        </div>
+                    </section>
+                    </div>
+                    <div class="mid"></div>
+                    <div class="content-right">
+                        <section class="personal">
+                            <header class="section-hd">
+                                <span class="section-title-l"></span>
+                                <h2 class="section-title">开源项目和作品</h2>
+                                <span class="section-title-r"></span>
+                            </header>
+                            <div class="section-bd">
+                                <div class="item">
+                                    <div class="item-part">
+                                        <li>
+                                            <span>30秒运营后台管理系统 + 30秒企业端管理系统 </span> 2020.08
+                                        </li>
+                                        <span><a target="_blank">保密阶段</a></span>
+                                    </div>
+                                    <li>项目用于管理app项目中的广告和优惠券、用户、企业、主题等功能。</li>
+                                    <li>功能实现：广告管理、视频上传、封面裁剪、excel批量上传等</li>
+                                    <li>技术栈：<br><code>Vue</code><code>router</code><code>Webpack</code><code>VueCli</code><code>Element
+											UI</code><code>Node</code><code>koa2</code><code>阿里云oss</code></li>
+                                    <li>描述：常年积累的独立开发能力和良好的组件化思想，从而让我在几个月时间内，一个人从0到1开发整个运营后台和b端管理后台，过程中和后端人员无缝对接，做到了高效开发。 中途遇到困难，主动参与讨论，过程中独立研究了 阿里云oss 和 视频点播 服务、淘宝客开放能力等，并用node逐一对接相应SDK。
+                                    </li>
+                                </div>
+
+
+
+                                <div class="item">
+                                    <div class="item-part">
+                                        <li>
+                                            <span>大学生作品交易平台</span> 2020.07
+                                        </li>
+                                        <span><a target="_blank" href="http://mall.tngeek.com/#/">演示</a></span>
+                                    </div>
+                                    <li>项目用于大学生发布设计作品，并且支付购买后自动下载等功能。</li>
+                                    <li>功能实现：发布 / 删除信息、注册登录（第三方微信扫码授权登录）。订单管理、微信支付、下载、照片上传等</li>
+                                    <li>技术栈：<br><code>Vue</code><code>vueX</code><code>router</code><code>Webpack</code><code>VueCli</code><code>Element
+											UI</code></li>
+                                    <li>使用Vue.js技术栈，用Vue CLI进行快速开发，运用知晓云平台实现前后端分离。利用Element UI搭建后台管理系统，订单和用户管理的表格功能，处理后端返回的JSON数据，编写复杂的表单验证，用router实现登录页面路由守卫与拦截等功能。
+                                    </li>
+                                </div>
+
+                                <div class="item">
+                                    <div class="item-part">
+                                        <li>
+                                            <span>千你寻 | 小程序 </span> 2020.02
+                                        </li>
+                                        <span target="_blank" class="demo-btn">演示</span>
+                                    </div>
+                                    <li>千你寻是一个可以发布表白信息和个人信息的交友平台。</li>
+                                    <li>功能实现：发布 / 删除信息，点赞，评论，收藏，照片上传等</li>
+                                    <li>技术栈：<br><code>WXML</code><code>WXS</code><code>JavaScript</code><code>JSON</code><code>MVVM</code><code>color
+											UI</code></li>
+                                    <li>利用微信云开发，获取腾讯云API调用凭证，免搭建服务器。利用阿里云AI人脸识别的技术，实现用户上传两张照片进行匹配，实现对比后可以分析情侣相似指数。统一仓库目录、开发、测试、文档等规范。
+                                    </li>
+                                </div>
+
+                                <div class="item">
+                                    <div class="item-part">
+                                        <li>
+                                            <span>个人主页 | 技术博客</span> 2018.05
+                                        </li>
+                                        <span><a target="_blank" href="http://kamtao.com">演示</a></span>
+                                    </div>
+                                    <li>爱好琢磨一些有趣有意思的东西，并以kamtao.com作为个人域名，用于记录自己开发过程中的踩坑记录和学习笔记，搭建维护过基于<code>Wordpress</code>、<code>hero</code>、<code>Typecho</code>等的技术博客。
+                                    </li>
+                                </div>
+
+
+
+                            </div>
+
+                        </section>
+
+                        <section class="Future">
+                            <header class="section-hd">
+                                <span class="section-title-l"></span>
+                                <h2 class="section-title">自我评价</h2>
+                                <span class="section-title-r"></span>
+                            </header>
+                            <div class="section-bd">
+                                <div class="item zwpj">
+
+
+
+                                    <li> 时刻保持好奇心，具有一定的创新创造精神，持续关注业内前沿技术。工作上积极执行有责任心，具有良好的沟通合作能力、分析解决问题能力以及较强的学习能力。</li>
+                                    <br />
+
+                                </div>
+                            </div>
+                        </section>
+                        <div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>

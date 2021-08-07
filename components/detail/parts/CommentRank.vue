@@ -32,8 +32,8 @@ export default {
   props: {
     commentsGroup: {
       type: Object,
-      default: [],
-    },
+      default: []
+    }
   },
   data() {
     return {};
@@ -41,17 +41,21 @@ export default {
   watch: {},
   computed: {
     getUA() {
-      return function (agent) {
+      return function(agent) {
         return (
           "来自 " +
-          (agent.os.os + " " + agent.os.os_ver + " " + agent.browser.browser)
+          (agent.os.system +
+            " " +
+            agent.os.version +
+            " " +
+            agent.browser.kernel)
         );
       };
-    },
+    }
   },
   methods: {},
   created() {},
-  mounted() {},
+  mounted() {}
 };
 </script>
 <style lang="scss" scoped>

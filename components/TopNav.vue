@@ -40,7 +40,7 @@
             <line x1="21" y1="21" x2="16.65" y2="16.65" />
           </svg>
           <input
-            placeholder="最右边是有个开关的"
+            placeholder="关键词"
             v-model="searchValue"
             @focus="(isShowResBox = true), searchArticleFn()"
             @blur="hidResBox()"

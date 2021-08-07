@@ -143,7 +143,11 @@ export default {
       return function(agent) {
         return (
           "来自 " +
-          (agent.os.os + " " + agent.os.os_ver + " " + agent.browser.browser)
+          (agent.os.system +
+            " " +
+            agent.os.version +
+            " " +
+            agent.browser.kernel)
         );
       };
     },

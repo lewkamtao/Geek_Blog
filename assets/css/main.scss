@@ -18,6 +18,14 @@ html {
     font-family: "Source Sans Pro", "Hiragino Sans GB", "Microsoft Yahei", SimSun, Helvetica, Arial, Sans-serif, monospace;
 }
 
+* {
+    font-family: "Source Sans Pro", "Hiragino Sans GB", "Microsoft Yahei", SimSun, Helvetica, Arial, Sans-serif, monospace;
+}
+
+.vditor-reset * {
+    font-family: "Source Sans Pro", "Hiragino Sans GB", "Microsoft Yahei", SimSun, Helvetica, Arial, Sans-serif, monospace;
+}
+
 .geek-dark {
     filter: invert(1) hue-rotate(180deg) !important;
     img,
@@ -46,12 +54,10 @@ html {
     }
 }
 
-* {
-    font-family: "Source Sans Pro", "Hiragino Sans GB", "Microsoft Yahei", SimSun, Helvetica, Arial, Sans-serif, monospace;
-}
-
-.vditor-reset * {
-    font-family: "Source Sans Pro", "Hiragino Sans GB", "Microsoft Yahei", SimSun, Helvetica, Arial, Sans-serif, monospace;
+.about-wrapper {
+    a {
+        background-image: none !important;
+    }
 }
 
 .vditor-reset img {

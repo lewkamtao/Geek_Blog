@@ -27,9 +27,6 @@
         @reloadComments="reloadComments"
       ></message-detail>
 
-      <!-- 关于我 -->
-      <about-detail v-if="options.type == 'about'" class="part"></about-detail>
-
       <!-- 时光机 -->
       <timeline-detail v-if="options.type == 'timeline'" class="part"></timeline-detail>
     </div>
@@ -72,7 +69,6 @@ import ArticleDetail from "@/components/detail/ArticleDetail";
 import LinksDetail from "@/components/detail/LinksDetail";
 import IndexDetail from "@/components/detail/IndexDetail";
 import MessageDetail from "@/components/detail/MessageDetail";
-import AboutDetail from "@/components/detail/AboutDetail";
 import TimelineDetail from "@/components/detail/TimelineDetail";
 
 import Catalogue from "@/components/detail/parts/Catalogue";
@@ -90,7 +86,6 @@ export default {
     IndexDetail,
     LinksDetail,
     MessageDetail,
-    AboutDetail,
     TimelineDetail,
 
     Weather,

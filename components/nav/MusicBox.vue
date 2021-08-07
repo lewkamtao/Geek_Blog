@@ -48,7 +48,7 @@
       <div
         v-for="(item, index) in songs"
         :key="item.id"
-        @click="getMusicDetail(index, item.song_id)"
+        @click="getMusicDetail(index)"
         class="item"
       >
         {{ item.name }}
@@ -140,7 +140,7 @@
           <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07" />
         </svg>
       </div>
-      <div class="error-url" v-show="music.song.url == ''">播放地址失效，请切换下一首</div>
+      <div class="error-url" v-show="error_tips">{{error_tips}}</div>
     </div>
   </div>
 </template>
@@ -148,7 +148,14 @@
 <script>
 export default {
   components: {},
-  props: {},
+  props: {
+    geek_config: {
+      type: Object,
+      default: function() {
+        return {};
+      }
+    }
+  },
   data() {
     return {
       isLock: true, // 首次锁住
@@ -170,7 +177,8 @@ export default {
       },
 
       isShowSongsList: false,
-      songs: []
+      songs: [],
+      error_tips: ""
     };
   },
   watch: {},
@@ -187,26 +195,17 @@ export default {
     // 下一首
     next() {
       if (this.music.song.index == this.songs.length - 1) {
-        this.getMusicDetail(0, this.songs[0].song_id);
+        this.getMusicDetail(0);
       } else {
-        this.getMusicDetail(
-          this.music.song.index + 1,
-          this.songs[this.music.song.index + 1].song_id
-        );
+        this.getMusicDetail(this.music.song.index + 1);
       }
     },
     // 上一首
     prev() {
       if (this.music.song.index == 0) {
-        this.getMusicDetail(
-          this.songs.length - 1,
-          this.songs[this.songs.length - 1].song_id
-        );
+        this.getMusicDetail(this.songs.length - 1);
       } else {
-        this.getMusicDetail(
-          this.music.song.index - 1,
-          this.songs[this.music.song.index - 1].song_id
-        );
+        this.getMusicDetail(this.music.song.index - 1);
       }
     },
     // 点击调节进度
@@ -320,19 +319,36 @@ export default {
       this.music.duration = res.target.duration;
     },
     async getMusicList() {
-      const data = (await this.$axios.get("/music?id=1&mode=list&cache=false"))
-        .data;
-      this.songs = data.songs;
-      this.getMusicDetail(0, this.songs[0].song_id);
+      var list_id = this.geek_config.site_info.song_list_id || 1;
+      try {
+        const data = (
+          await this.$axios.get(
+            "/music?id=" + list_id + "&mode=list&cache=false"
+          )
+        ).data;
+        this.songs = data.songs;
+        this.getMusicDetail(0);
+      } catch {
+        this.error_tips = "歌单ID已失效，请检查歌单ID";
+      }
     },
-    async getMusicDetail(index, id) {
+    async getMusicDetail(index) {
       var that = this;
       const data = (
-        await this.$axios.get("/music?id=" + id + "&mode=song&cache=false")
+        await this.$axios.get(
+          "/music?id=" + this.songs[index].song_id + "&mode=song&cache=false"
+        )
       ).data;
       data.index = index;
       this.music.song = data;
-
+      if (this.music.song.url == "") {
+        this.error_tips = "歌曲地址已失效，请切换下一首。";
+        setTimeout(function() {
+          that.getMusicDetail(index + 1, this.songs[index + 1].song_id);
+        });
+      } else {
+        this.error_tips = "";
+      }
       if (!this.isLock) {
         setTimeout(function() {
           that.play();

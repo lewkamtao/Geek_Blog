@@ -45,7 +45,7 @@
               <circle cx="12" cy="12" r="3" />
             </svg>
             <polyline points="12 6 12 12 16 14"></polyline>
-            {{ article.views }}
+            {{ article.views || 1 }}
           </div>
           <div>
             <svg
