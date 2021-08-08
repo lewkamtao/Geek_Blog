@@ -378,14 +378,14 @@ export default {
     }
     .top-nav {
       height: 45px;
-      padding: 0px 10px; 
+      padding: 0px 10px;
       background: rgba(255, 255, 255, 0.8);
       -webkit-backdrop-filter: saturate(200%) blur(20px);
-      box-shadow: 0px 0px 15px -5px rgb(0 0 0 / 15%);
+      box-shadow: none;
       backdrop-filter: saturate(200%) blur(20px);
       .left {
         .pc-logo {
-          display: none;
+          display: none; 
         }
         .mobile-logo {
           display: block;
