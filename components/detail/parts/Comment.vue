@@ -89,22 +89,7 @@
               placeholder
             ></textarea>
           </div>
-          <div
-            v-if="
-              replyObj.expand &&
-              replyObj.expand.pay &&
-              !isLogin &&
-              type == 'links'
-            "
-          >
-            <h5>申请示例：</h5>
-            <ul style="margin: 10px 0px 30px 18px">
-              <li>名称：{{ replyObj.expand.nickname }}</li>
-              <li>地址：{{ replyObj.expand.address_url || "https://kamtao.com/" }}</li>
-              <li>头像：{{ replyObj.expand.head_img }}</li>
-              <li>描述：{{ replyObj.expand.description || "做一个很酷的人" }}</li>
-            </ul>
-          </div>
+
           <div v-show="error_tips" class="alert alert-danger dismissible alert-reply">
             {{ error_tips }}
             <label
@@ -245,7 +230,6 @@ export default {
         data["login-token"] = this.$cookies.get("token");
       }
 
-      
       this.$axios.post("/comments", data).then(res => {
         if (res.code == 200) {
           this.comments_form = {

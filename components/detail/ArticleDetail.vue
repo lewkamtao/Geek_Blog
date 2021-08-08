@@ -274,7 +274,7 @@ export default {
       color: #fff;
     }
     .title {
-      font-size: 40px;
+      font-size: 30px;
       font-weight: bold;
       text-align: left;
       margin-bottom: 24px;

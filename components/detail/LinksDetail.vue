@@ -1,33 +1,14 @@
 <template>
   <div class="links-detail">
     <header
-      class="border border-primary"
+      class="border border-primary card"
       :style="'background:url(http://www.dmoe.cc/random.php)'"
       :class="getBorderType"
     >
       <div class="mask"></div>
-      <div class="content">
-        <div class="title">友情链接</div>
-        <div class="summary">
-          <div>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16px"
-              height="16px"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="feather feather-link"
-            >
-              <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
-              <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
-            </svg>
-            {{ links.count }}
-          </div>
-        </div>
+      <div class="card-body">
+        <h4 class="card-title">朋友，你好!</h4>
+        <p class="card-text">但也不全是，有些是我不要脸单方面连的，比如：尤雨溪。</p>
       </div>
     </header>
     <div class="links">
@@ -48,6 +29,7 @@
         </a>
       </div>
     </div>
+    <div></div>
   </div>
 </template>
 
@@ -88,7 +70,7 @@ header {
   margin: 15px 15px 15px 15px;
   position: relative;
   overflow: hidden;
-  padding: 50px;
+  padding: 20px;
   color: #000;
   text-align: center;
   background-size: cover !important;
@@ -101,30 +83,17 @@ header {
     height: 110%;
     background: rgba($color: #000000, $alpha: 0.4);
   }
-  .content {
+  .card-body {
     position: relative;
-    z-index: 999;
+    z-index: 99;
     color: #fff;
-  }
-  .title {
-    font-size: 40px;
-    margin-bottom: 24px;
-    font-weight: bold;
-  }
-  .summary {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    white-space: nowrap;
-    div {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin: 10px 20px;
-      font-size: 15px;
-      .feather {
-        margin-right: 10px;
-      }
+    text-align: left;
+    .card-title {
+      font-weight: bold;
+    }
+    .card-text {
+      color: #fff;
+      margin-top: 30px;
     }
   }
 }
