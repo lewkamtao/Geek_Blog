@@ -278,9 +278,10 @@ export default {
       padding: 0px 14px;
       height: 45px;
       width: 100%;
-      background: rgba(0, 0, 0, 0);
-      backdrop-filter: saturate(0%) blur(0px);
-      box-shadow: none;
+      background: rgba(0, 0, 0, 0) !important;
+      -webkit-backdrop-filter: saturate(0%) blur(0px);
+      backdrop-filter: saturate(0%) blur(0px) !important;
+      box-shadow: none !important;
     }
     .index-main {
       width: 100%;
