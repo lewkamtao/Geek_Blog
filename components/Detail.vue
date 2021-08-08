@@ -31,9 +31,6 @@
       <timeline-detail v-if="options.type == 'timeline'" class="part"></timeline-detail>
     </div>
     <div ref="aside" :style="setAsideLeft" class="aside">
-      <!-- 天气 -->
-      <weather></weather>
-
       <!-- 标签云 -->
       <tag-cloud v-if="options.tag" :tag="options.tag"></tag-cloud>
 
@@ -60,6 +57,9 @@
 
       <!-- 评论排行榜 -->
       <comment-rank v-if="options.type == 'message'" :commentsGroup="options.commentsGroup"></comment-rank>
+
+      <!-- 日记 -->
+      <diary v-if="options.type == 'index'"></diary>
     </div>
   </div>
 </template> 
@@ -78,7 +78,7 @@ import Info from "@/components/detail/parts/Info";
 import Lately from "@/components/detail/parts/Lately";
 import Concact from "@/components/detail/parts/Concact";
 import CommentRank from "@/components/detail/parts/CommentRank";
-import Weather from "@/components/detail/parts/Weather";
+import Diary from "@/components/detail/parts/Diary";
 
 export default {
   components: {
@@ -88,7 +88,7 @@ export default {
     MessageDetail,
     TimelineDetail,
 
-    Weather,
+    Diary,
     Catalogue,
     Comment,
     TagCloud,

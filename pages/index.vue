@@ -42,6 +42,7 @@
 <script>
 import DevicePixelRatio from "@/util/devicePixelRatio.js";
 import util from "@/util/index";
+import first_geek_config from "@/util/geek.config.js";
 
 export default {
   components: {},
@@ -70,9 +71,21 @@ export default {
     };
   },
   async asyncData({ $axios }) {
-    const geek_config = (
-      await $axios.get("/options?key=geek_config&cache=false")
-    ).data.opt;
+    var geek_config = {};
+
+    try {
+      const res_geek_config = await $axios.get(
+        "/options?key=geek_config&cache=false"
+      );
+      if (res_geek_config.code == 200 && res_geek_config.data.opt) {
+        geek_config = res_geek_config.data.opt;
+      } else {
+        geek_config = first_geek_config.geek_config;
+      }
+    } catch {
+      geek_config = first_geek_config.geek_config;
+    }
+
     const article_sort = (await $axios.get("/article-sort?limit=1000")).data;
     return { article_sort, geek_config };
   },
@@ -256,7 +269,7 @@ export default {
     }
   }
   .wrapper {
-    max-width: 100%;
+    max-width: 100%; 
     min-width: 100%;
     width: 100%;
     padding: 0px 7px;
@@ -266,6 +279,7 @@ export default {
       height: 45px;
       width: 100%;
       background: none;
+      background: #000;
       backdrop-filter: none;
       box-shadow: none;
     }

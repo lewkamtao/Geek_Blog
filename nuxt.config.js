@@ -66,7 +66,9 @@ export default {
     },
     proxy: {
         '/api/': {
+            // target: 'https://api.zets.cn/api',
             target: 'https://api.kamtao.com/api',
+
             pathRewrite: {
                 '^/api/': '/',
                 changeOrigin: true
