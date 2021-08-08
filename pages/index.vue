@@ -269,7 +269,7 @@ export default {
     }
   }
   .wrapper {
-    max-width: 100%; 
+    max-width: 100%;
     min-width: 100%;
     width: 100%;
     padding: 0px 7px;
@@ -279,7 +279,6 @@ export default {
       height: 45px;
       width: 100%;
       background: none;
-      background: #000;
       backdrop-filter: none;
       box-shadow: none;
     }

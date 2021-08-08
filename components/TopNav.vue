@@ -169,6 +169,7 @@ export default {
     justify-content: space-between;
     border-radius: 12px;
     align-items: center;
+    overflow: hidden;
     a {
       background-image: none;
     }
