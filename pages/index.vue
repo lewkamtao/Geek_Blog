@@ -278,8 +278,8 @@ export default {
       padding: 0px 14px;
       height: 45px;
       width: 100%;
-      background: none;
-      backdrop-filter: none;
+      background: rgba(0, 0, 0, 0);
+      backdrop-filter: saturate(0%) blur(0px);
       box-shadow: none;
     }
     .index-main {
