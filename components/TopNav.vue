@@ -2,15 +2,6 @@
   <div class="top-nav-wrapper">
     <div id="topNavMask" class="top-nav-mask modal-bg"></div>
     <div class="top-nav">
-      <div class="mode-select">
-        <fieldset class="form-group mode-setting">
-          <!-- <label for="mode" class="paper-switch-label">{{ mode ? "黑夜" : "白天" }}</label> -->
-          <label class="paper-switch">
-            <input id="paperSwitch4" name="mode" v-model="mode" type="checkbox" />
-            <span class="paper-switch-slider"></span>
-          </label>
-        </fieldset>
-      </div>
       <div class="left">
         <nuxt-link class="pc-logo" to="/">
           <div class="logo">
@@ -96,7 +87,6 @@ export default {
   },
   data() {
     return {
-      mode: false,
       isLogin: false,
       user: false,
       searchValue: "",
@@ -106,13 +96,6 @@ export default {
     };
   },
   watch: {
-    mode: function(val) {
-      if (val) {
-        document.getElementsByTagName("html")[0].className = "geek-dark";
-      } else {
-        document.documentElement.removeAttribute("class");
-      }
-    },
     searchValue: function(val) {
       var that = this;
       clearTimeout(this.timer);
@@ -169,7 +152,6 @@ export default {
     justify-content: space-between;
     border-radius: 12px;
     align-items: center;
-    overflow: hidden;
     a {
       background-image: none;
     }
@@ -312,20 +294,6 @@ export default {
       }
     }
   }
-  .mode-select {
-    position: absolute;
-    right: 50px;
-    top: 50%;
-    transform: translateY(-50%);
-    display: flex;
-    align-items: center;
-    .paper-switch-label {
-      margin-top: 0px;
-    }
-    .paper-switch {
-      margin-top: 3px;
-    }
-  }
 }
 .form-group {
   margin: 0px;
@@ -373,9 +341,7 @@ export default {
     -webkit-backdrop-filter: none;
     box-shadow: none;
     backdrop-filter: none;
-    .mode-select {
-      display: none;
-    }
+
     .top-nav {
       height: 45px;
       padding: 0px 10px;
@@ -385,7 +351,7 @@ export default {
       backdrop-filter: saturate(200%) blur(20px);
       .left {
         .pc-logo {
-          display: none; 
+          display: none;
         }
         .mobile-logo {
           display: block;

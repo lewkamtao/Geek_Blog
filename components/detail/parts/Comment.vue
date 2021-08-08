@@ -6,9 +6,7 @@
         <span class="badge secondary">{{ comments.count }}</span>
       </div>
     </div>
-    <div style="margin-bottom: 20px" v-if="comments.data.length == 0">
-      暂无评论
-    </div>
+    <div style="margin-bottom: 20px" v-if="comments.data.length == 0">暂无评论</div>
     <label
       class="border border-secondary reply-main-btn"
       @click="
@@ -18,8 +16,7 @@
         })
       "
       for="modal-reply"
-      >发表评论</label
-    >
+    >发表评论</label>
     <input class="modal-state" id="modal-reply" type="checkbox" />
     <div class="modal reply-modal">
       <label class="modal-bg"></label>
@@ -31,12 +28,11 @@
           </div>
           <div class="user-info">
             <div class="nickname">{{ replyObj.nickname }}</div>
-            <div class="content">
-              {{ replyObj.content || replyObj.expand.description }}
-            </div>
-            <div v-if="replyObj.create_time" class="create_time">
-              {{ getBeautifyTime(replyObj.create_time) }}
-            </div>
+            <div class="content">{{ replyObj.content || replyObj.expand.description }}</div>
+            <div
+              v-if="replyObj.create_time"
+              class="create_time"
+            >{{ getBeautifyTime(replyObj.create_time) }}</div>
           </div>
         </div>
 
@@ -104,19 +100,12 @@
             <h5>申请示例：</h5>
             <ul style="margin: 10px 0px 30px 18px">
               <li>名称：{{ replyObj.expand.nickname }}</li>
-              <li>
-                地址：{{ replyObj.expand.address_url || "https://kamtao.com/" }}
-              </li>
+              <li>地址：{{ replyObj.expand.address_url || "https://kamtao.com/" }}</li>
               <li>头像：{{ replyObj.expand.head_img }}</li>
-              <li>
-                描述：{{ replyObj.expand.description || "做一个很酷的人" }}
-              </li>
+              <li>描述：{{ replyObj.expand.description || "做一个很酷的人" }}</li>
             </ul>
           </div>
-          <div
-            v-show="error_tips"
-            class="alert alert-danger dismissible alert-reply"
-          >
+          <div v-show="error_tips" class="alert alert-danger dismissible alert-reply">
             {{ error_tips }}
             <label
               @click="error_tips = ''"
@@ -128,24 +117,17 @@
                 transform: translateX(10px) scaleX(1.8) rotate(-3deg);
               "
               class="btn-close"
-              >X</label
-            >
+            >X</label>
           </div>
 
           <div class="row flex-right">
-            <button @click="submitComments" class="btn-secondary reply-btn">
-              发送
-            </button>
+            <button @click="submitComments" class="btn-secondary reply-btn">发送</button>
           </div>
         </div>
       </div>
     </div>
     <div v-if="comments.data.length != 0" class="comments">
-      <div
-        class="comments-box"
-        v-for="(item, index) in comments.data"
-        :key="index"
-      >
+      <div class="comments-box" v-for="(item, index) in comments.data" :key="index">
         <comment-card @setReply="setReply" :comment="item"></comment-card>
       </div>
     </div>
@@ -162,16 +144,16 @@ export default {
   props: {
     type: {
       type: String,
-      default: {},
+      default: {}
     },
     comments: {
       type: Object,
-      default: {},
+      default: {}
     },
     articleId: {
       type: Number,
-      default: "",
-    },
+      default: ""
+    }
   },
   data() {
     return {
@@ -182,22 +164,22 @@ export default {
         email: "",
         nickname: "",
         url: "",
-        content: "",
+        content: ""
       },
       tagsClass: [],
-      error_tips: "",
+      error_tips: ""
     };
   },
   watch: {},
   computed: {
     getBeautifyTime(time) {
-      return function (time) {
+      return function(time) {
         return util.getBeautifyTime(time);
       };
     },
     getBorderType() {
       return "border-" + Math.floor(Math.random() * 6 + 1);
-    },
+    }
   },
   methods: {
     openModal() {
@@ -257,16 +239,20 @@ export default {
         this.error_tips = "* 内容不能为空";
         return;
       }
+
+      // 博主
       if (this.$cookies.get("token")) {
         data["login-token"] = this.$cookies.get("token");
       }
-      this.$axios.post("/comments", data).then((res) => {
+
+      
+      this.$axios.post("/comments", data).then(res => {
         if (res.code == 200) {
           this.comments_form = {
             email: "",
             nickname: "",
             url: "",
-            content: "",
+            content: ""
           };
           if (process.browser) {
             document.getElementById("modal-reply").click();
@@ -278,14 +264,14 @@ export default {
           this.error_tips = "*必填项不能为空";
         }
       });
-    },
+    }
   },
   created() {
     if (this.$cookies.get("token")) {
       this.isLogin = true;
     }
   },
-  mounted() {},
+  mounted() {}
 };
 </script>
 <style lang="scss" scoped>

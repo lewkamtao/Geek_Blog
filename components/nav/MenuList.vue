@@ -248,7 +248,7 @@ export default {
 .menu {
   width: 100%;
   margin-top: 14px;
-  padding: 9px;
+  padding: 8px;
 }
 
 .list {
@@ -268,7 +268,7 @@ export default {
       position: relative;
       display: flex;
       width: 100%;
-      padding: 0px 5px 0px 42px;
+      padding: 0px 5px 0px 48px;
       font-size: 16px;
       background-image: none;
       text-align: left;
@@ -276,7 +276,7 @@ export default {
       cursor: pointer;
       .icon {
         position: absolute;
-        left: 8px;
+        left: 13px;
         top: 50%;
         width: 24px;
         height: 24px;
@@ -308,7 +308,7 @@ export default {
         left: 0px;
         width: 100%;
         height: 1px;
-        background: #eee;
+        background: rgba($color: #000000, $alpha: 0.05);
       }
     }
   }
@@ -318,7 +318,7 @@ export default {
   }
   .nav-list-wrapper:hover {
     background: rgba($color: #000000, $alpha: 0.05);
-    border-radius: 10px;
+    border-radius: 8px;
     .title::before {
       display: none;
     }

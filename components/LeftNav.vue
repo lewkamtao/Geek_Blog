@@ -17,6 +17,9 @@
         @closeMusicBox="closeMusicBox"
       ></menu-list>
 
+      <!-- 设置 -->
+      <mode-set></mode-set>
+      
       <!-- 归档 -->
       <article-sort class="article-sort" :article_sort="article_sort"></article-sort>
 
@@ -32,9 +35,10 @@ import MusicBox from "@/components/nav/MusicBox";
 import MenuList from "@/components/nav/MenuList";
 import ArticleSort from "@/components/nav/ArticleSort";
 import PermitNo from "@/components/nav/PermitNo";
+import ModeSet from "@/components/nav/ModeSet";
 
 export default {
-  components: { UserInfo, MusicBox, MenuList, ArticleSort, PermitNo },
+  components: { UserInfo, MusicBox, MenuList, ArticleSort, PermitNo, ModeSet },
   props: {
     geek_config: {
       type: Object,

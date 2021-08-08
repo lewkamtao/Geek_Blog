@@ -22,12 +22,8 @@
               stroke-linejoin="round"
               class="feather feather-link"
             >
-              <path
-                d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"
-              />
-              <path
-                d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"
-              />
+              <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+              <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
             </svg>
             {{ links.count }}
           </div>
@@ -61,8 +57,8 @@ export default {
   props: {
     links: {
       type: Object,
-      default: {},
-    },
+      default: {}
+    }
   },
   data() {
     return {};
@@ -71,15 +67,15 @@ export default {
   watch: {},
   computed: {
     getBorderType() {
-      return function () {
+      return function() {
         return "border-" + Math.floor(Math.random() * 6 + 1);
       };
-    },
+    }
   },
   methods: {},
   created() {},
   mounted() {},
-  beforeDestroy() {},
+  beforeDestroy() {}
 };
 </script>
 <style lang="scss" scoped>
@@ -96,7 +92,7 @@ header {
   color: #000;
   text-align: center;
   background-size: cover !important;
- 
+
   .mask {
     position: absolute;
     top: -5%;
@@ -146,6 +142,7 @@ header {
     width: calc(100% / 2 - 30px);
     margin: 15px;
     overflow: hidden;
+    background-color: rgba($color: #000000, $alpha: 0.05);
     .user-item {
       display: flex;
       background-image: none;
@@ -240,6 +237,7 @@ header {
       border-radius: 0px;
       border: none;
       border-bottom: 1px #eee solid;
+
       .user-item {
         .avatar {
           width: 50px;

@@ -1,5 +1,5 @@
 <template>
-  <div class="part article-sort" style="margin-bottom: 30px">
+  <div class="part article-sort">
     <div class="main-title">归档</div>
     <div class="article-title-list">
       <ul>
@@ -71,9 +71,9 @@ ul {
     width: 100%;
     background-image: none;
     border-radius: 10px;
-    line-height: 24px;
+    line-height: 28px;
     min-height: 36px;
-    padding: 8px 15px;
+    padding: 4px 15px;
     display: inline-block;
     box-sizing: border-box;
     font-size: 14px;
