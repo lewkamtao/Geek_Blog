@@ -1,8 +1,20 @@
 <template>
   <div class="wrap">
-    <div id="top" class="wrapper" :class="{ isShowNav: isShowNav, isShowAside: isShowAside }">
-      <TopNav @showNav="showNav()" :geek_config="geek_config" class="top-nav-wrapper-master" />
-      <LeftNav :geek_config="geek_config" :article_sort="article_sort" class="left-nav" />
+    <div
+      id="top"
+      class="wrapper"
+      :class="{ isShowNav: isShowNav, isShowAside: isShowAside }"
+    >
+      <TopNav
+        @showNav="showNav()"
+        :geek_config="geek_config"
+        class="top-nav-wrapper-master"
+      />
+      <LeftNav
+        :geek_config="geek_config"
+        :article_sort="article_sort"
+        class="left-nav"
+      />
       <div class="index-main">
         <nuxt-child :geek_config="geek_config" />
         <Footer :geek_config="geek_config" />
@@ -53,21 +65,21 @@ export default {
         {
           hid: "keywords",
           name: "keywords",
-          content: this.geek_config.site_info.keywords
+          content: this.geek_config.site_info.keywords,
         },
         {
           hid: "description",
           name: "description",
-          content: this.geek_config.site_info.description
-        }
+          content: this.geek_config.site_info.description,
+        },
       ],
       link: [
         {
           rel: "icon",
           type: "image/x-icon",
-          href: this.geek_config.site_info.favicon_url
-        }
-      ]
+          href: this.geek_config.site_info.favicon_url,
+        },
+      ],
     };
   },
   async asyncData({ $axios }) {
@@ -95,7 +107,7 @@ export default {
       isShowNav: false,
       isShowAside: false,
       isShowOpenAsideBtn: false,
-      backUpTopScroll: 0
+      backUpTopScroll: 0,
     };
   },
   watch: {},
@@ -107,7 +119,7 @@ export default {
           this.backUpTopScroll = document.documentElement.scrollTop;
         } else {
           var top = JSON.parse(JSON.stringify(this.backUpTopScroll));
-          setTimeout(function() {
+          setTimeout(function () {
             document.documentElement.scrollTop = top;
           }, 10);
           this.backUpTopScroll = 0;
@@ -121,14 +133,14 @@ export default {
           this.backUpTopScroll = document.documentElement.scrollTop;
         } else {
           var top = JSON.parse(JSON.stringify(this.backUpTopScroll));
-          setTimeout(function() {
+          setTimeout(function () {
             document.documentElement.scrollTop = top;
           }, 10);
           this.backUpTopScroll = 0;
         }
       }
       this.isShowAside = !this.isShowAside;
-    }
+    },
   },
   created() {
     this.isShowOpenAsideBtn = true;
@@ -144,7 +156,7 @@ export default {
       next();
     }
   },
-  mounted() {}
+  mounted() {},
 };
 </script> 
 <style scoped  lang="scss">

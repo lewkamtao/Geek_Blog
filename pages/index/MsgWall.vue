@@ -1,10 +1,10 @@
 <template>
   <Detail
     @reloadComments="getComments"
+    :msg_wall="msg_wall"
     :options="{
-      type: 'message',
+      type: 'msg_wall',
       catalogue: false,
-      comments: comments,
       tag: false,
       article: false,
       commentsGroup: commentsGroup,
@@ -23,7 +23,7 @@ export default {
     };
   },
   async asyncData({ $axios }) {
-    const comments = (
+    const msg_wall = (
       await $axios.get("/comments", {
         params: {
           mode: "type",
@@ -43,7 +43,7 @@ export default {
         },
       })
     ).data;
-    return { comments, commentsGroup };
+    return { msg_wall, commentsGroup };
   },
   props: {
     geek_config: {
@@ -60,7 +60,7 @@ export default {
   methods: {
     // 获取评论
     async getComments() {
-      const comments = (
+      const msg_wall = (
         await this.$axios.get("/comments", {
           params: {
             mode: "type",
@@ -70,7 +70,7 @@ export default {
           },
         })
       ).data;
-      this.comments = comments;
+      this.msg_wall = msg_wall;
     },
   },
 };

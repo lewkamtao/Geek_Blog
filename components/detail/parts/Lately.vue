@@ -1,6 +1,6 @@
 <template>
   <div style="margin-bottom: 14px" class="info part">
-    <div class="main-title" style="margin-bottom: 12px">最新评论</div>
+    <div class="main-title" style="margin-bottom: 12px">动态</div>
     <div class="comments-box" v-for="(item, index) in newComments.data" :key="index">
       <comment-card type="lately" :comment="item"></comment-card>
     </div>

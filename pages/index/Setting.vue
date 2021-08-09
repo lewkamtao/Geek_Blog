@@ -1,5 +1,5 @@
 <template>
-  <div class="setting part">
+  <div v-if="geek_config_form" class="setting part">
     <div class="form">
       <div class="title">通用设置</div>
       <div class="subTitle">菜单显示设置</div>
@@ -7,23 +7,36 @@
       <fieldset class="form-group">
         <label class="paper-switch-label">关于我</label>
         <label class="paper-switch">
-          <input type="checkbox" v-model="geek_config_form.menu_switch.about" checked />
+          <input
+            type="checkbox"
+            v-model="geek_config_form.menu_switch.about"
+            checked
+          />
           <span class="paper-switch-slider"></span>
         </label>
       </fieldset>
 
-      <fieldset class="form-group">
+      <!-- 暂时没开发好 -->
+      <!-- <fieldset class="form-group">
         <label class="paper-switch-label">相册</label>
         <label class="paper-switch">
-          <input v-model="geek_config_form.menu_switch.photo" type="checkbox" checked />
+          <input
+            v-model="geek_config_form.menu_switch.photo"
+            type="checkbox"
+            checked
+          />
           <span class="paper-switch-slider"></span>
         </label>
-      </fieldset>
+      </fieldset> -->
 
       <fieldset class="form-group">
         <label class="paper-switch-label">时光机</label>
         <label class="paper-switch">
-          <input type="checkbox" checked v-model="geek_config_form.menu_switch.time_line" />
+          <input
+            type="checkbox"
+            checked
+            v-model="geek_config_form.menu_switch.time_line"
+          />
           <span class="paper-switch-slider"></span>
         </label>
       </fieldset>
@@ -31,7 +44,11 @@
       <fieldset class="form-group">
         <label class="paper-switch-label">音乐</label>
         <label class="paper-switch">
-          <input type="checkbox" checked v-model="geek_config_form.menu_switch.music_box" />
+          <input
+            type="checkbox"
+            checked
+            v-model="geek_config_form.menu_switch.music_box"
+          />
           <span class="paper-switch-slider"></span>
         </label>
       </fieldset>
@@ -39,7 +56,11 @@
       <fieldset class="form-group">
         <label class="paper-switch-label">友情链接</label>
         <label class="paper-switch">
-          <input type="checkbox" checked v-model="geek_config_form.menu_switch.links" />
+          <input
+            type="checkbox"
+            checked
+            v-model="geek_config_form.menu_switch.links"
+          />
           <span class="paper-switch-slider"></span>
         </label>
       </fieldset>
@@ -47,7 +68,11 @@
       <fieldset class="form-group">
         <label class="paper-switch-label">留言墙</label>
         <label class="paper-switch">
-          <input type="checkbox" checked v-model="geek_config_form.menu_switch.message" />
+          <input
+            type="checkbox"
+            checked
+            v-model="geek_config_form.menu_switch.msg_wall"
+          />
           <span class="paper-switch-slider"></span>
         </label>
       </fieldset>
@@ -55,7 +80,11 @@
       <fieldset class="form-group">
         <label class="paper-switch-label">后台管理</label>
         <label class="paper-switch">
-          <input type="checkbox" checked v-model="geek_config_form.menu_switch.adm" />
+          <input
+            type="checkbox"
+            checked
+            v-model="geek_config_form.menu_switch.adm"
+          />
           <span class="paper-switch-slider"></span>
         </label>
       </fieldset>
@@ -71,11 +100,18 @@
       </div>
       <div class="form-group">
         <label>站点描述（SEO）</label>
-        <textarea v-model="geek_config_form.site_info.description" id="footer"></textarea>
+        <textarea
+          v-model="geek_config_form.site_info.description"
+          id="footer"
+        ></textarea>
       </div>
       <div class="form-group">
         <label>备案信息 (支持html)</label>
-        <textarea v-model="geek_config_form.site_info.permit_no" type="text" id="footer"></textarea>
+        <textarea
+          v-model="geek_config_form.site_info.permit_no"
+          type="text"
+          id="footer"
+        ></textarea>
       </div>
       <div class="form-group">
         <label>站点 favicon 图标</label>
@@ -85,6 +121,15 @@
         <label>站点 Logo 链接</label>
         <input v-model="geek_config_form.site_info.logo_url" type="text" />
       </div>
+      <div class="form-group">
+        <label>时光机头部背景图链接</label>
+        <input v-model="geek_config_form.site_info.timeline_bg" type="text" />
+      </div>
+      <div class="form-group">
+        <label>友情链接头部背景图链接</label>
+        <input v-model="geek_config_form.site_info.links_bg" type="text" />
+      </div>
+
       <div class="form-group">
         <label>站点地址</label>
         <input v-model="geek_config_form.site_info.blog_site_url" type="text" />
@@ -103,18 +148,33 @@
       </div>-->
       <div class="form-group">
         <label for="footer">页面脚部 (支持html)</label>
-        <textarea v-model="geek_config_form.site_info.footer_html" id="footer"></textarea>
+        <textarea
+          v-model="geek_config_form.site_info.footer_html"
+          id="footer"
+        ></textarea>
       </div>
 
       <div class="subTitle">博主信息</div>
       <div class="form-group">
         <label>博主名</label>
-        <input v-model="geek_config_form.master_info.name" type="text" />
+        <input v-model="geek_config_form.master_info.nickname" type="text" />
       </div>
       <div class="form-group">
         <label>简介</label>
-        <textarea v-model="geek_config_form.master_info.intro" id="footer"></textarea>
+        <textarea
+          v-model="geek_config_form.master_info.description"
+          id="footer"
+        ></textarea>
       </div>
+      <div class="form-group">
+        <label>手机</label>
+        <input v-model="geek_config_form.master_info.phone" type="text" />
+      </div>
+      <div class="form-group">
+        <label>邮箱</label>
+        <input v-model="geek_config_form.master_info.email" type="text" />
+      </div>
+
       <div class="form-group">
         <label>头像</label>
         <input v-model="geek_config_form.master_info.avatar_url" type="text" />
@@ -122,8 +182,15 @@
 
       <div class="form-subTitle"># 关于我 - 页面配置</div>
       <div class="form-group">
-        <label for="footer">页面主体自定义HTML文本（这个页面高度个性化，仅支持html，可以自行发挥。可以在编译器运行后拷贝到这里，不支持js。）</label>
-        <textarea v-model="geek_config_form.master_info.about_detail_html" id="footer"></textarea>
+        <label for="footer">页面主体</label>
+        <textarea
+          style="height: 500px"
+          v-model="geek_config_form.master_info.about_detail_html"
+          id="footer"
+        ></textarea>
+        <div style="margin-top: 10px">
+          自定义HTML文本（这个页面高度个性化，仅支持html，可以自行发挥。可以在编译器运行后拷贝到这里，不支持js。）
+        </div>
       </div>
       <!-- <div class="form-subTitle"># 右侧模块显示设置</div>
 
@@ -160,53 +227,28 @@
 </template>
 
 <script>
+import first_geek_config from "@/util/geek.config.js";
+
 export default {
   components: {},
   props: {},
   data() {
     return {
-      geek_config_form: {
-        site_info: {
-          title: "Geek", // 站点标题
-          keywords: "Geek,博客,个人博客", // 关键词
-          description: "一个前端写的一个博客", // 描述
-          permit_no: `<div>粤ICP备18056223号</div>`, // 备案号
-          favicon_url: "https://tngeek.com/favicon.ico", // 站点ico
-          logo_url: "https://cos.tngeek.com/logo.png", // 站点logo
-          blog_site_url: "https://blog.kamtao.com/", // 博客地址
-          adm_site_url: "https://api.kamtao.com/", // 运营地址
-          song_list_id: "",
-          footer_html: `<div>
-    Powered by
-    <a href="https://inis.cc/" >inis</a> | 本站自豪使用了全世界最好的Vue框架
-    <br>Copyright (c) 2021-present, Kamtao (To) Lew
-  </div>` // 脚部html
-        },
-        master_info: {
-          name: "小卢他人不错",
-          intro: "98年前端工程师，做一个很酷的人。",
-          avatar_url: "https://q2.qlogo.cn/g?b=qq&nk=1057072668&s=100",
-          about_detail_html: `<h1></h1>`
-        },
-        menu_switch: {
-          about: true,
-          photo: true,
-          time_line: true,
-          music_box: true,
-          links: true,
-          message: true,
-          adm: true
-        }
-      }
+      geek_config_form: false,
+      checkSubmit: 0,
     };
   },
   watch: {},
   computed: {},
   methods: {
     async getOption() {
-      const res = await this.$axios.get("/options?key=geek_config&cache=false");
-      if (res.code == 200) {
-        this.geek_config_form = res.data.opt;
+      const res_geek_config = await this.$axios.get(
+        "/options?key=geek_config&cache=false"
+      );
+      if (res_geek_config.code == 200 && res_geek_config.data.opt) {
+        this.geek_config_form = res_geek_config.data.opt;
+      } else {
+        this.geek_config_form = first_geek_config.geek_config;
       }
     },
     submit() {
@@ -214,22 +256,44 @@ export default {
         var data = {
           "login-token": this.$cookies.get("token"),
           keys: "geek_config",
-          value: "这是一个测试的内容！",
-          opt: this.geek_config_form
+          opt: this.geek_config_form,
         };
 
-        this.$axios.post("/options", data).then(res => {
+        this.$axios.post("/options", data).then((res) => {
           if (res.code == 200) {
-            location.reload();
+            this.checkSubmit += 1;
+            this.reload();
+          }
+        });
+
+        var userdata = {
+          "login-token": this.$cookies.get("token"),
+          id: this.$cookies.get("user").id,
+          nickname: this.geek_config_form.master_info.nickname,
+          description: this.geek_config_form.master_info.description,
+          email: this.geek_config_form.master_info.email,
+          phone: this.geek_config_form.master_info.phone,
+          head_img: this.geek_config_form.master_info.head_img,
+        };
+
+        this.$axios.post("/users", userdata).then((res) => {
+          if (res.code == 200) {
+            this.checkSubmit += 1;
+            this.reload();
           }
         });
       }
-    }
+    },
+    reload() {
+      if (this.checkSubmit == 2) {
+        location.reload();
+      }
+    },
   },
   created() {
     this.getOption();
   },
-  mounted() {}
+  mounted() {},
 };
 </script>
 <style lang="scss" scoped>
@@ -296,6 +360,10 @@ export default {
     }
   }
   .save-btn {
+    position: fixed;
+    bottom: 140px;
+    left: 50%;
+    transform: translateX(calc(-50% + 140px));
     width: 200px;
     margin-top: 30px;
     font-size: 16px;
@@ -309,6 +377,12 @@ export default {
     width: 100%;
     max-width: 100%;
     min-width: 100%;
+  }
+  .form {
+    .save-btn {
+      bottom: 30px;
+      transform: translateX(calc(-50%)) ;
+    }
   }
 }
 </style>

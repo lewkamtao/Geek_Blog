@@ -13,20 +13,17 @@
     src: url(https://cdn.jsdelivr.net/gh/max32002/naikaifont@1.0/webfont/NaikaiFont-Regular.woff2) format("woff2"), url(https://cdn.jsdelivr.net/gh/max32002/naikaifont@1.0/webfont/NaikaiFont-Regular.woff) format("woff");
 } */
 
-// @import "https://30sec.oss-cn-guangzhou.aliyuncs.com/public/SanCFont.css";
+@import "https://30sec.oss-cn-guangzhou.aliyuncs.com/public/SanCFont.css";
 html {
-    font-family: "Source Sans Pro", "Hiragino Sans GB", "Microsoft Yahei", SimSun, Helvetica, Arial, Sans-serif,
-        monospace;
+    font-family: "Noto Sans SC", "Source Sans Pro", "Hiragino Sans GB", "Microsoft Yahei", SimSun, Helvetica, Arial, Sans-serif, monospace;
 }
 
 * {
-    font-family: "Source Sans Pro", "Hiragino Sans GB", "Microsoft Yahei", SimSun, Helvetica, Arial, Sans-serif,
-        monospace;
+    font-family: "Noto Sans SC", "Source Sans Pro", "Hiragino Sans GB", "Microsoft Yahei", SimSun, Helvetica, Arial, Sans-serif, monospace;
 }
 
 .vditor-reset * {
-    font-family: "Source Sans Pro", "Hiragino Sans GB", "Microsoft Yahei", SimSun, Helvetica, Arial, Sans-serif,
-        monospace;
+    font-family: "Noto Sans SC", "Source Sans Pro", "Hiragino Sans GB", "Microsoft Yahei", SimSun, Helvetica, Arial, Sans-serif, monospace;
 }
 
 .geek-dark {
@@ -36,6 +33,7 @@ html {
     .logo,
     .links-detail header,
     .article-wrapper header,
+    .timeline-wrapper header,
     .badge,
     .nav-list .icon,
     video {
@@ -44,15 +42,16 @@ html {
     .volume-line .line-btn {
         background-color: #333 !important;
     }
-    .part,
+    .part {
+        background: rgba($color: #000, $alpha: 0.1) !important;
+    }
     .top-nav-wrapper {
-        background: #e9e9e9 !important;
+        background: rgba($color: #000, $alpha: 0.1) !important;
     }
     .logo .title {
         color: #fff;
     }
-    .modal-bg,
-    .top-nav-mask {
+    .modal-bg {
         background: rgba($color: #fff, $alpha: 0.8) !important;
     }
     body {
@@ -128,6 +127,7 @@ html {
     border-bottom: rgba(0, 0, 0, 0%) 2px solid;
 }
 
+
 /* .article-list .vditor-outline__item--current span span {
     border-bottom: 2px #0071de solid;
     box-sizing: border-box;
@@ -143,9 +143,18 @@ input,
 option,
 button,
 textarea {
-    font-family: "Source Sans Pro", "Hiragino Sans GB", "Microsoft Yahei", SimSun, Helvetica, Arial, Sans-serif,
-        monospace;
+    font-family: "Source Sans Pro", "Hiragino Sans GB", "Microsoft Yahei", SimSun, Helvetica, Arial, Sans-serif, monospace;
     outline: none;
+}
+
+textarea::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+    display: none;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    overflow: -moz-scrollbars-none;
+    scrollbar-color: transparent transparent;
 }
 
 button {
@@ -154,7 +163,7 @@ button {
 
 body {
     font-size: 14px;
-    background: #eff3f6;
+    background: #eee;
 }
 
 .modal {
@@ -169,11 +178,31 @@ body {
     overflow: hidden;
 }
 
+// 禁止文字选择
+.no-select {
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Chrome/Safari/Opera */
+    -khtml-user-select: none;
+    /* Konqueror */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
+    /* Non-prefixed version, currently
+
+not supported by any browser */
+}
+
+
 /* 滚动槽 */
 
 html::-webkit-scrollbar-track {
     border-radius: 10px;
 }
+
 
 /* 滚动条滑块 */
 
@@ -206,11 +235,11 @@ html::-webkit-scrollbar-thumb:hover {
     align-items: center;
 }
 
-.modal .modal-body > .btn-close {
+.modal .modal-body>.btn-close {
     transform: scaleX(1.3) rotate(-3deg);
 }
 
-.article-list > ul {
+.article-list>ul {
     padding-left: 0px !important;
 }
 
@@ -224,11 +253,11 @@ html::-webkit-scrollbar-thumb:hover {
 }
 
 .article-list {
-    li > span {
+    li>span {
         margin-bottom: 5px;
         font-size: 14px;
     }
-    li > span:hover {
+    li>span:hover {
         border-radius: 8px;
         background: rgba($color: #000, $alpha: 0.05);
     }
@@ -239,5 +268,22 @@ html::-webkit-scrollbar-thumb:hover {
     .main-title {
         color: #333;
         font-size: 16px;
+    }
+    .geek-dark {
+        .top-nav {
+            background: rgba($color: #000, $alpha: 0.1) !important;
+        }
+        .top-nav-wrapper {
+            background: none !important;
+        }
+    }
+    html {
+        font-family: "Source Sans Pro", "Hiragino Sans GB", "Microsoft Yahei", SimSun, Helvetica, Arial, Sans-serif, monospace;
+    }
+    * {
+        font-family: "Source Sans Pro", "Hiragino Sans GB", "Microsoft Yahei", SimSun, Helvetica, Arial, Sans-serif, monospace;
+    }
+    .vditor-reset * {
+        font-family: "Source Sans Pro", "Hiragino Sans GB", "Microsoft Yahei", SimSun, Helvetica, Arial, Sans-serif, monospace;
     }
 }

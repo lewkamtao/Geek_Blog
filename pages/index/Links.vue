@@ -1,6 +1,7 @@
 <template>
   <Detail
     @reloadComments="getComments"
+    :geek_config="geek_config"
     :options="{
       type: 'links',
       comments: comments,

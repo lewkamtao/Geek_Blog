@@ -305,6 +305,7 @@ export default {
   width: 100%;
   height: 100%;
   z-index: -9;
+
   transition: opacity 0.25s;
   opacity: 0;
   background: rgba($color: #000000, $alpha: 0.55);

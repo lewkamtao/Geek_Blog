@@ -2,10 +2,10 @@
   <div class="part">
     <div class="user-info">
       <div class="avatar border border-primary" :class="getBorderType()">
-        <img :src="geek_config.master_info.avatar_url" alt srcset />
+        <img :src="geek_config.master_info.head_img" alt srcset />
       </div>
-      <div class="nickname">{{ geek_config.master_info.name }}</div>
-      <div class="description">{{geek_config.master_info.intro }}</div>
+      <div class="nickname">{{ geek_config.master_info.nickname }}</div>
+      <div class="description">{{geek_config.master_info.description }}</div>
     </div>
   </div>
 </template>

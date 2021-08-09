@@ -11,24 +11,34 @@
 
       <!-- 友情链接 -->
       <links-detail
+        :geek_config="geek_config"
         v-if="options.links && options.type == 'links'"
         :links="options.links"
         class="part"
       ></links-detail>
 
       <!-- 首页 -->
-      <index-detail v-if="options.type == 'index'" :articleList="options.articleList" class="part"></index-detail>
+      <index-detail
+        v-if="options.type == 'index'"
+        :articleList="options.articleList"
+        class="part"
+      ></index-detail>
 
       <!-- 留言板 -->
-      <message-detail
-        v-if="options.type == 'message'"
-        :comments="options.comments"
+      <msg-wall-detail
+        v-if="options.type == 'msg_wall'"
+        :msg_wall="msg_wall" 
         class="part"
         @reloadComments="reloadComments"
-      ></message-detail>
-
+      ></msg-wall-detail>
+ 
       <!-- 时光机 -->
-      <timeline-detail v-if="options.type == 'timeline'" class="part"></timeline-detail>
+      <timeline-detail
+        v-if="options.type == 'timeline'"
+        :geek_config="geek_config"
+        class="part"
+        :timeline="timeline"
+      ></timeline-detail>
     </div>
     <div ref="aside" :style="setAsideLeft" class="aside">
       <!-- 标签云 -->
@@ -40,14 +50,17 @@
       <!-- 评论板块 -->
       <comment
         @reloadComments="reloadComments"
-        v-if="options.comments && options.type != 'message'"
+        v-if="options.comments && options.type != 'msg_wall'"
         :comments="options.comments"
         :articleId="options.article ? options.article.id : 99"
         :type="options.type"
       ></comment>
 
       <!-- 最新评论 -->
-      <lately v-if="options.type == 'index'" :newComments="options.newComments"></lately>
+      <lately
+        v-if="options.type == 'index'"
+        :newComments="options.newComments"
+      ></lately>
 
       <!-- 联系方式 -->
       <info v-if="options.type == 'index'"></info>
@@ -56,10 +69,19 @@
       <concact v-if="options.type == 'index'"></concact>
 
       <!-- 评论排行榜 -->
-      <comment-rank v-if="options.type == 'message'" :commentsGroup="options.commentsGroup"></comment-rank>
+      <comment-rank
+        v-if="options.type == 'msg_wall'"
+        :commentsGroup="options.commentsGroup"
+      ></comment-rank>
+
+      <!-- 发布时光机 -->
+      <post-time-line
+        @reloadComments="reloadComments"
+        v-if="options.type == 'timeline' && isLogin"
+      ></post-time-line>
 
       <!-- 日记 -->
-      <diary v-if="options.type == 'index'"></diary>
+      <diary v-if="['index', 'timeline'].indexOf(options.type) >= 0"></diary>
     </div>
   </div>
 </template> 
@@ -68,7 +90,7 @@
 import ArticleDetail from "@/components/detail/ArticleDetail";
 import LinksDetail from "@/components/detail/LinksDetail";
 import IndexDetail from "@/components/detail/IndexDetail";
-import MessageDetail from "@/components/detail/MessageDetail";
+import MsgWallDetail from "@/components/detail/MsgWallDetail";
 import TimelineDetail from "@/components/detail/TimelineDetail";
 
 import Catalogue from "@/components/detail/parts/Catalogue";
@@ -78,6 +100,7 @@ import Info from "@/components/detail/parts/Info";
 import Lately from "@/components/detail/parts/Lately";
 import Concact from "@/components/detail/parts/Concact";
 import CommentRank from "@/components/detail/parts/CommentRank";
+import PostTimeLine from "@/components/detail/parts/PostTimeLine";
 import Diary from "@/components/detail/parts/Diary";
 
 export default {
@@ -85,7 +108,7 @@ export default {
     ArticleDetail,
     IndexDetail,
     LinksDetail,
-    MessageDetail,
+    MsgWallDetail,
     TimelineDetail,
 
     Diary,
@@ -95,14 +118,27 @@ export default {
     Lately,
     Info,
     Concact,
-    CommentRank
+    PostTimeLine,
+    CommentRank,
   },
   props: {
     geek_config: {
       type: Object,
-      default: function() {
+      default: function () {
         return {};
-      }
+      },
+    },
+    timeline: {
+      type: Object,
+      default: function () {
+        return {};
+      },
+    },
+    msg_wall: {
+      type: Object,
+      default: function () {
+        return {};
+      },
     },
     options: {
       type: Object,
@@ -115,15 +151,16 @@ export default {
         article: false,
         articleList: false,
         commentsGroup: false,
-        newComments: false // 最新评论
-      }
-    }
+        newComments: false, // 最新评论
+      },
+    },
   },
   data() {
     return {
+      isLogin: false,
       setAsideLeft: "", // 用于计算侧边栏
       asideHidth: 0,
-      id: ""
+      id: "",
     };
   },
   beforeRouteUpdate(to, from, next) {
@@ -137,9 +174,13 @@ export default {
   methods: {
     reloadComments() {
       this.$emit("reloadComments");
+    },
+  },
+  created() {
+    if (this.$cookies.get("token")) {
+      this.isLogin = true;
     }
   },
-  created() {},
   mounted() {
     var that = this;
     this.id = parseInt($nuxt.$route.query.id);
@@ -149,11 +190,11 @@ export default {
       7;
     that.setAsideLeft = "left:" + articleMainWidth + "px;position: fixed;";
 
-    that.$nextTick(function() {
+    that.$nextTick(function () {
       that.asideHidth = that.$refs.aside.offsetHeight - 120;
     });
-    window.onresize = function() {
-      that.$nextTick(function() {
+    window.onresize = function () {
+      that.$nextTick(function () {
         articleMainWidth =
           that.$refs.articleMain.offsetLeft +
           that.$refs.articleMain.clientWidth +
@@ -166,7 +207,7 @@ export default {
   },
   beforeDestroy() {
     window.onresize = null;
-  }
+  },
 };
 </script>
 <style lang="scss" scoped>

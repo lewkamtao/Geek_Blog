@@ -3,7 +3,7 @@
 export default {
     geek_config: {
         site_info: {
-            title: "Geek2", // 站点标题
+            title: "Geek(请用inis账号登录后前往通用设置配置初始信息)", // 站点标题
             keywords: "Geek,博客,个人博客", // 关键词
             description: "一个前端写的一个博客", // 描述
             permit_no: `<div class="permit-no-text"  style="">粤ICP备18056223号</div>
@@ -16,6 +16,8 @@ export default {
             logo_url: "https://cos.tngeek.com/logo.png", // 站点logo
             blog_site_url: "https://blog.kamtao.com/", // 博客地址
             adm_site_url: "https://api.kamtao.com/", // 运营地址
+            timeline_bg: "https://img.keai.cool/2021/08/09/a11d5c69b9894.webp", // 朋友圈背景
+            links_bg: "http://www.dmoe.cc/random.php", // 朋友圈背景
             song_list_id: "3",
             footer_html: `<div style=" line-height: 24px; color:#999">
             Powered by
@@ -24,18 +26,20 @@ export default {
           </div>` // 脚部html
         },
         master_info: {
-            name: "小卢他人不错",
-            intro: "98年前端工程师，做一个很酷的人。",
-            avatar_url: "https://q2.qlogo.cn/g?b=qq&nk=1057072668&s=100",
+            nickname: "小卢他人不错",
+            description: "98年前端工程师，做一个很酷的人。",
+            email: "",
+            phone: "",
+            head_img: "https://q2.qlogo.cn/g?b=qq&nk=1057072668&s=100",
             about_detail_html: ``
         },
         menu_switch: {
             about: true,
-            photo: true,
+            photo: false,
             time_line: true,
             music_box: true,
             links: true,
-            message: true,
+            msg_wall: true,
             adm: true
         }
     }

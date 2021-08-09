@@ -2,13 +2,15 @@
   <div class="links-detail">
     <header
       class="border border-primary card"
-      :style="'background:url(http://www.dmoe.cc/random.php)'"
+      :style="'background:url(' + geek_config.site_info.links_bg + ')'"
       :class="getBorderType"
     >
       <div class="mask"></div>
       <div class="card-body">
         <h4 class="card-title">朋友，你好!</h4>
-        <p class="card-text">但也不全是，有些是我不要脸单方面连的，比如：尤雨溪。</p>
+        <p class="card-text">
+          但也不全是，有些是我不要脸单方面连的，比如：尤雨溪。
+        </p>
       </div>
     </header>
     <div class="links">
@@ -37,10 +39,16 @@
 export default {
   components: {},
   props: {
+    geek_config: {
+      type: Object,
+      default: function () {
+        return {};
+      },
+    },
     links: {
       type: Object,
-      default: {}
-    }
+      default: {},
+    },
   },
   data() {
     return {};
@@ -49,15 +57,15 @@ export default {
   watch: {},
   computed: {
     getBorderType() {
-      return function() {
+      return function () {
         return "border-" + Math.floor(Math.random() * 6 + 1);
       };
-    }
+    },
   },
   methods: {},
   created() {},
   mounted() {},
-  beforeDestroy() {}
+  beforeDestroy() {},
 };
 </script>
 <style lang="scss" scoped>
@@ -70,11 +78,11 @@ header {
   margin: 15px 15px 15px 15px;
   position: relative;
   overflow: hidden;
-  padding: 20px;
+  padding:50px 20px;
   color: #000;
   text-align: center;
   background-size: cover !important;
-
+  box-shadow: none;
   .mask {
     position: absolute;
     top: -5%;
@@ -205,13 +213,14 @@ header {
       margin: 5px 0px;
       border-radius: 0px;
       border: none;
-      border-bottom: 1px #eee solid;
-
+      border-bottom: 1px rgba($color: #000000, $alpha: 0.05) solid;
+      background: none;
       .user-item {
+        padding: 10px;
         .avatar {
           width: 50px;
           height: 50px;
-          border-radius: 10px;
+          border-radius: 5px;
           overflow: hidden;
           img {
             width: 50px;
