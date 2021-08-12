@@ -307,9 +307,9 @@ html::-webkit-scrollbar-thumb:hover {
     color: #333;
     font-size: 16px;
   }
-  .geek-dark {
+  .geek-isDark {
     .top-nav {
-      background: rgba($color: #000, $alpha: 0.1) !important;
+      background: rgba($color: #e1e1e1, $alpha: 1) !important;
     }
     .top-nav-wrapper {
       background: none !important;
