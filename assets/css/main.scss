@@ -89,7 +89,7 @@ html {
 
 .isShowModal {
   .top-nav-mask {
-    z-index: 9;
+    z-index: 9 !important;
     opacity: 1 !important;
   }
   .search,
