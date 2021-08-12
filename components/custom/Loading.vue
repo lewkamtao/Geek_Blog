@@ -1,34 +1,35 @@
 <template lang="html">
-  <div class="loading-page" v-if="loading">
-    <img width="300" src="https://kamtao-1255310647.cos.ap-chengdu.myqcloud.com/img/loading.gif" alt srcset />
+  <div class="loading" v-if="false">
   </div>
 </template>
 
 <script>
 export default {
-  data: () => ({
-    loading: false
-  }),
+  data: () => ({}),
   methods: {
     start() {
-      this.loading = true;
+      if (process.browser) {
+        var geek_main = document.getElementById("geek_main");
+        geek_main.classList.add("isGeekMainLoading");
+      }
     },
     finish() {
-      var that = this;
-      setTimeout(function() {
-        that.loading = false;
-      }, 500);
-    }
-  }
+      if (process.browser) {
+        setTimeout(function () {
+          var geek_main = document.getElementById("geek_main");
+          geek_main.classList.remove("isGeekMainLoading");
+        }, 500);
+      }
+    },
+  },
 };
 </script>
 
 <style scoped>
 .loading-page {
-  position: fixed;
-  bottom: 50px;
-  left: -50px;
-  z-index: 9999999999;
+  position: absolute;
+  z-index: -999;
+  transition: opacity 0.25s;
 }
 @media screen and (max-width: 1025px) {
   .loading-page {

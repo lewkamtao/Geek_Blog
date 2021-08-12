@@ -6,7 +6,7 @@
 
       <!-- 音乐盒 -->
       <music-box
-        v-if="musicBoxSwitch&&geek_config.menu_switch.music_box"
+        v-if="musicBoxSwitch && geek_config.menu_switch.music_box"
         :geek_config="geek_config"
       ></music-box>
 
@@ -19,9 +19,12 @@
 
       <!-- 设置 -->
       <mode-set></mode-set>
-      
+
       <!-- 归档 -->
-      <article-sort class="article-sort" :article_sort="article_sort"></article-sort>
+      <article-sort
+        class="article-sort"
+        :article_sort="article_sort"
+      ></article-sort>
 
       <!-- 备案号 -->
       <permit-no :geek_config="geek_config"></permit-no>
@@ -42,19 +45,19 @@ export default {
   props: {
     geek_config: {
       type: Object,
-      default: function() {
+      default: function () {
         return {};
-      }
+      },
     },
 
     article_sort: {
       type: Object,
-      default: {}
-    }
+      default: {},
+    },
   },
   data() {
     return {
-      musicBoxSwitch: true
+      musicBoxSwitch: true,
     };
   },
   watch: {},
@@ -65,10 +68,10 @@ export default {
     },
     closeMusicBox() {
       this.musicBoxSwitch = false;
-    }
+    },
   },
   created() {},
-  mounted() {}
+  mounted() {},
 };
 </script>
 <style lang="scss" scoped>

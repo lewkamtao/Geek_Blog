@@ -15,7 +15,7 @@
         :article_sort="article_sort"
         class="left-nav"
       />
-      <div class="index-main">
+      <div id="geek_main" class="index-main">
         <nuxt-child :geek_config="geek_config" />
         <Footer :geek_config="geek_config" />
       </div>
@@ -158,7 +158,7 @@ export default {
   },
   mounted() {},
 };
-</script> 
+</script>
 <style scoped  lang="scss">
 .wrapper {
   max-width: 1351px;
@@ -333,4 +333,3 @@ export default {
   }
 }
 </style>
- 

@@ -27,11 +27,11 @@
       <!-- 留言板 -->
       <msg-wall-detail
         v-if="options.type == 'msg_wall'"
-        :msg_wall="msg_wall" 
+        :msg_wall="msg_wall"
         class="part"
         @reloadComments="reloadComments"
       ></msg-wall-detail>
- 
+
       <!-- 时光机 -->
       <timeline-detail
         v-if="options.type == 'timeline'"
@@ -84,8 +84,8 @@
       <diary v-if="['index', 'timeline'].indexOf(options.type) >= 0"></diary>
     </div>
   </div>
-</template> 
- 
+</template>
+
 <script>
 import ArticleDetail from "@/components/detail/ArticleDetail";
 import LinksDetail from "@/components/detail/LinksDetail";
@@ -185,7 +185,7 @@ export default {
     var that = this;
     this.id = parseInt($nuxt.$route.query.id);
     var articleMainWidth =
-      that.$refs.articleMain.offsetLeft +
+      that.$refs.articleMain.getBoundingClientRect().left +
       that.$refs.articleMain.clientWidth +
       7;
     that.setAsideLeft = "left:" + articleMainWidth + "px;position: fixed;";
@@ -213,6 +213,7 @@ export default {
 <style lang="scss" scoped>
 .article-wrapper-master {
   display: flex;
+  width: 100%;
   .main {
     width: calc(100% - 350px);
     min-width: 500px;
