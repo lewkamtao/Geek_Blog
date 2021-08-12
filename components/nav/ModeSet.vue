@@ -2,9 +2,30 @@
   <div>
     <div class="mode-setting part">
       <fieldset class="form-group mode-setting-box">
-        <label for="mode" class="paper-switch-label">{{ mode ? "暗黑模式" : "白天模式" }}</label>
+        <label for="mode" class="paper-switch-label">{{
+          mode.isDark ? "暗黑模式" : "白天模式"
+        }}</label>
         <label class="paper-switch-2">
-          <input id="paperSwitch4" name="mode" v-model="mode" type="checkbox" />
+          <input
+            id="paperSwitch4"
+            name="theme"
+            v-model="mode.isDark"
+            type="checkbox"
+          />
+          <span class="paper-switch-slider round"></span>
+        </label>
+      </fieldset>
+      <fieldset class="form-group mode-setting-box">
+        <label for="mode" class="paper-switch-label">{{
+          mode.isSharp ? "锐利模式" : "圆滑模式"
+        }}</label>
+        <label class="paper-switch-2">
+          <input
+            id="paperSwitch4"
+            name="mode"
+            v-model="mode.isSharp"
+            type="checkbox"
+          />
           <span class="paper-switch-slider round"></span>
         </label>
       </fieldset>
@@ -13,25 +34,44 @@
 </template>
 
 <script>
+import util from "@/util/index";
+
 export default {
   components: {},
   props: {},
   data() {
-    return { mode: false };
+    return {
+      mode: {
+        isDark: false,
+        isSharp: false,
+      },
+    };
   },
   watch: {
-    mode: function(val) {
-      if (val) {
-        document.getElementsByTagName("html")[0].className = "geek-dark";
-      } else {
-        document.documentElement.removeAttribute("class");
-      }
-    }
+    "mode.isDark": function (status) {
+      this.$cookies.set("mode", this.mode);
+      util.darkHandle(status);
+    },
+    "mode.isSharp": function (status) {
+      this.$cookies.set("mode", this.mode);
+      util.sharpHandle(status);
+    },
   },
   computed: {},
   methods: {},
-  created() {},
-  mounted() {}
+  created() {
+    var mode = this.$cookies.get("mode");
+    if (!!mode) {
+      this.mode = mode;
+      if (mode.isDark) {
+        util.darkHandle(mode.sharp);
+      }
+      if (mode.isSharp) {
+        util.sharpHandle(mode.sharp);
+      }
+    }
+  },
+  mounted() {},
 };
 </script>
 <style lang="scss" scoped>

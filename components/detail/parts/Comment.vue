@@ -205,13 +205,13 @@ export default {
           data.article_id = this.articleId;
           break;
         case "links":
-          data.type = this.type;
+          data.type = "links";
           break;
         case "msg_wall":
           data.type = "msg_wall";
           break;
         case "about":
-          data.type = this.type;
+          data.type = "about";
           break;
         default:
           break;

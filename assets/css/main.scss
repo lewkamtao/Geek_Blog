@@ -29,7 +29,7 @@ html {
     "Microsoft Yahei", SimSun, Helvetica, Arial, Sans-serif, monospace;
 }
 
-.geek-dark {
+.geek-isDark {
   filter: invert(1) hue-rotate(180deg) !important;
   img,
   #owl-login,
@@ -49,7 +49,7 @@ html {
     background: rgba($color: #000, $alpha: 0.1) !important;
   }
   .top-nav-wrapper {
-    background: rgba($color: #000, $alpha: 0.1) !important;
+    background: rgba($color: #e1e1e1, $alpha: 1) !important;
   }
   .logo .title {
     color: #fff;
@@ -61,6 +61,11 @@ html {
     background: #fff !important;
   }
 }
+
+.geek-isSharp * {
+  border-radius: 0px !important;
+}
+
 // .isGeekMainLoading {
 //   position: relative;
 // }
@@ -77,11 +82,22 @@ html {
 // }
 .index-main .part > * {
   transition: opacity 0.25s !important;
-  opacity: 1 !important;
 }
 .isGeekMainLoading .part > * {
   opacity: 0 !important;
 }
+
+.isShowModal {
+  .top-nav-mask {
+    z-index: 9;
+    opacity: 1 !important;
+  }
+  .search,
+  .article-wrapper header .content {
+    z-index: -9 !important;
+  }
+}
+
 .about-wrapper {
   a {
     background-image: none !important;
@@ -309,5 +325,17 @@ html::-webkit-scrollbar-thumb:hover {
   .vditor-reset * {
     font-family: "Source Sans Pro", "Hiragino Sans GB", "Microsoft Yahei",
       SimSun, Helvetica, Arial, Sans-serif, monospace;
+  }
+
+  .isShowModal {
+    .top-nav-wrapper {
+      display: none;
+    }
+    .aside-wrapper {
+      height: 0px;
+    }
+    .to-top {
+      display: none;
+    }
   }
 }

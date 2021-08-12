@@ -48,6 +48,28 @@
         </a>
       </div>
     </div>
+    <div class="mode-set-box">
+      <input
+        class="modal-state"
+        id="modal-1"
+        type="checkbox"
+        :checked="isShowModeSet"
+      />
+      <div class="modal">
+        <label class="modal-bg" for="modal-1"></label>
+        <div class="modal-body">
+          <label class="btn-close" for="modal-1" @click="closeModeSetBox"
+            >X</label
+          >
+          <h4 class="modal-title">请选择你喜爱的风格</h4>
+          <p class="modal-text">
+            你可以选择当道的圆滑，也可以别有个性的锐利。若关闭窗口后，你想再次修改，可以在左侧导航栏设置模式。
+          </p>
+          <button @click="sharpHandle(false)">圆滑模式</button>
+          <button @click="sharpHandle(true)">锐利模式</button>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -108,6 +130,7 @@ export default {
       isShowAside: false,
       isShowOpenAsideBtn: false,
       backUpTopScroll: 0,
+      isShowModeSet: false,
     };
   },
   watch: {},
@@ -141,9 +164,25 @@ export default {
       }
       this.isShowAside = !this.isShowAside;
     },
+    sharpHandle(status) {
+      util.sharpHandle(status);
+      var mode = {
+        isDark: false,
+        isSharp: status,
+      };
+      var mode = this.$cookies.set("mode", mode);
+    },
+    closeModeSetBox() {
+      util.openModal(false);
+    },
   },
   created() {
     this.isShowOpenAsideBtn = true;
+    var mode = this.$cookies.get("mode");
+    if (!mode) {
+      util.openModal(true);
+      this.isShowModeSet = true;
+    }
   },
   beforeRouteUpdate(to, from, next) {
     if (process.browser) {
@@ -253,6 +292,15 @@ export default {
   overflow: -moz-scrollbars-none;
   scrollbar-color: transparent transparent;
 }
+
+.mode-set-box {
+  button {
+    margin-right: 15px;
+    font-size: 14px;
+    padding: 10px;
+  }
+}
+
 @media screen and (max-width: 1380px) {
   .wrapper {
     padding: 0px 14px;
@@ -272,14 +320,7 @@ export default {
     display: none !important;
     scrollbar-width: none;
   }
-  .isShowModal {
-    .aside-wrapper {
-      height: 0px;
-    }
-    .to-top {
-      display: none;
-    }
-  }
+
   .wrapper {
     max-width: 100%;
     min-width: 100%;

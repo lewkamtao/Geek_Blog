@@ -120,7 +120,6 @@ ul {
       border-radius: 3px;
       background: #fff;
       color: #000;
-      border: 1px rgba($color: #000000, $alpha: 0.1) solid;
       font-size: 12px;
     }
   }

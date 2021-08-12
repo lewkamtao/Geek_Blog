@@ -49,7 +49,7 @@
           </div>
         </div>
         <div class="right-links">
-          <nuxt-link v-if="isLogin" to="/about">{{ user.nickname }}</nuxt-link>
+          <nuxt-link class="nickname" v-if="isLogin" to="/about">{{ user.nickname }}</nuxt-link>
 
           <nuxt-link v-if="!isLogin" to="/login">
             <svg
@@ -197,10 +197,13 @@ export default {
         transition: all 0.25s;
       }
       a:hover {
-        transform: scale(1.1);
+        transform: scale(1.05);
       }
       a:active {
         transform: scale(0.9);
+      }
+      .nickname {
+        font-size: 14px;
       }
     }
     .search {
@@ -310,15 +313,7 @@ export default {
   opacity: 0;
   background: rgba($color: #000000, $alpha: 0.55);
 }
-.isShowModal {
-  .top-nav-mask {
-    z-index: 9;
-    opacity: 1 !important;
-  }
-  .search {
-    z-index: -9 !important;
-  }
-}
+
 
 @media screen and (max-width: 1300px) {
   .top-nav-mask {
@@ -332,11 +327,7 @@ export default {
 
 // 移动端适配
 @media screen and (max-width: 1025px) {
-  .isShowModal {
-    .top-nav-wrapper {
-      display: none;
-    }
-  }
+
   .top-nav-wrapper {
     background: none;
     -webkit-backdrop-filter: none;

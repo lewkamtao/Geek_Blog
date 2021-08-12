@@ -39,6 +39,12 @@
         class="part"
         :timeline="timeline"
       ></timeline-detail>
+      <!-- 时光机 -->
+      <about-detail
+        v-if="options.type == 'about'"
+        :geek_config="geek_config"
+        class="part"
+      ></about-detail>
     </div>
     <div ref="aside" :style="setAsideLeft" class="aside">
       <!-- 标签云 -->
@@ -46,6 +52,15 @@
 
       <!-- 目录 -->
       <catalogue v-if="options.catalogue"></catalogue>
+
+      <!-- 联系方式 -->
+      <concact
+        v-if="options.type == 'about'"
+        :geek_config="geek_config"
+      ></concact>
+
+      <!-- 统计信息 -->
+      <record v-if="options.type == 'about'"> </record>
 
       <!-- 评论板块 -->
       <comment
@@ -62,11 +77,8 @@
         :newComments="options.newComments"
       ></lately>
 
-      <!-- 联系方式 -->
-      <info v-if="options.type == 'index'"></info>
-
       <!-- 博客信息 -->
-      <concact v-if="options.type == 'index'"></concact>
+      <info v-if="options.type == 'index'"></info>
 
       <!-- 评论排行榜 -->
       <comment-rank
@@ -92,6 +104,7 @@ import LinksDetail from "@/components/detail/LinksDetail";
 import IndexDetail from "@/components/detail/IndexDetail";
 import MsgWallDetail from "@/components/detail/MsgWallDetail";
 import TimelineDetail from "@/components/detail/TimelineDetail";
+import AboutDetail from "@/components/detail/AboutDetail";
 
 import Catalogue from "@/components/detail/parts/Catalogue";
 import Comment from "@/components/detail/parts/Comment";
@@ -99,6 +112,7 @@ import TagCloud from "@/components/detail/parts/TagCloud";
 import Info from "@/components/detail/parts/Info";
 import Lately from "@/components/detail/parts/Lately";
 import Concact from "@/components/detail/parts/Concact";
+import Record from "@/components/detail/parts/Record";
 import CommentRank from "@/components/detail/parts/CommentRank";
 import PostTimeLine from "@/components/detail/parts/PostTimeLine";
 import Diary from "@/components/detail/parts/Diary";
@@ -110,6 +124,7 @@ export default {
     LinksDetail,
     MsgWallDetail,
     TimelineDetail,
+    AboutDetail,
 
     Diary,
     Catalogue,
@@ -118,6 +133,7 @@ export default {
     Lately,
     Info,
     Concact,
+    Record,
     PostTimeLine,
     CommentRank,
   },
