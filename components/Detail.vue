@@ -53,14 +53,14 @@
       <!-- 目录 -->
       <catalogue v-if="options.catalogue"></catalogue>
 
-      <!-- 联系方式 -->
-      <concact
-        v-if="options.type == 'about'"
-        :geek_config="geek_config"
-      ></concact>
-
       <!-- 统计信息 -->
       <record v-if="options.type == 'about'"> </record>
+
+      <!-- 社交媒体 -->
+      <concact
+        v-if="options.type == 'about' && geek_config.master_info.concact_switch"
+        :geek_config="geek_config"
+      ></concact>
 
       <!-- 评论板块 -->
       <comment

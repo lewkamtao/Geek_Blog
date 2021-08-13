@@ -403,7 +403,7 @@ export default {
 
 @media screen and (max-width: 1440px) {
   .aside {
-    width: 280px;
+    width: 260px;
   }
 }
 

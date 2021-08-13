@@ -160,7 +160,7 @@ export default {
 }
 
 .loginErrorTips {
-  width: 220px;
+  width: 260px;
   position: absolute;
   top: 20px;
   left: calc(100% - 20px);

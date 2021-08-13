@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="60px" height="60px" viewBox="0 0 60 60" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
+    <title>Mail</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Social_icons" transform="translate(-1002.000000, -602.000000)">
+            <g id="Mail" transform="translate(1002.000000, 602.000000)">
+                <circle id="Oval" fill="#0971BD" cx="30" cy="30" r="30"></circle>
+                <path d="M30.418,28.31628 C28.0744,28.31628 16,21.4692 16,21.4692 L16,20.4 C16,19.0752 17.0752,18 18.4024,18 L42.4336,18 C43.762,18 44.8372,19.0752 44.8372,20.4 L44.818,21.6 C44.818,21.6 32.8744,28.31628 30.418,28.31628 Z M30.418,31.61628 C32.9872,31.61628 44.818,25.2 44.818,25.2 L44.8372,39.6 C44.8372,40.9248 43.762,42 42.4336,42 L18.4024,42 C17.0764,42 16,40.9248 16,39.6 L16.0192,25.2 C16.018,25.2 28.0744,31.61628 30.418,31.61628 Z" id="Shape" fill="#FFFFFF"></path>
+            </g>
+        </g>
+    </g>
+</svg>

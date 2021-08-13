@@ -1,6 +1,6 @@
 <template>
-  <div v-if="geek_config_form" class="setting part">
-    <div class="form">
+  <div class="setting-wrapper part">
+    <div v-if="geek_config_form" class="form">
       <div class="title">通用设置</div>
       <div class="subTitle">菜单显示设置</div>
 
@@ -205,36 +205,60 @@
           自定义HTML文本（这个页面高度个性化，仅支持html，可以自行发挥。可以在编译器运行后拷贝到这里，不支持js。）
         </div>
       </div>
-      <!-- <div class="form-subTitle"># 右侧模块显示设置</div>
+      <div class="form-subTitle"># 右侧模块显示设置</div>
 
       <fieldset class="form-group">
         <label class="paper-switch-label"> 联系方式 </label>
         <label class="paper-switch">
-          <input type="checkbox" checked />
+          <input
+            type="checkbox"
+            checked
+            v-model="geek_config_form.master_info.concact_switch"
+          />
           <span class="paper-switch-slider"></span>
         </label>
       </fieldset>
-      <div class="contact">
+      <div
+        class="contact"
+        v-for="(item, index) in geek_config_form.master_info.concact_array"
+        :key="index"
+      >
         <div class="left">
           <div class="form-group">
-            <label for="paperSelects1">平台</label>
-            <select id="paperSelects1">
-              <option value="1">Option 1</option>
-              <option value="2">Option 2</option>
-              <option value="3">Option 3</option>
+            <label>平台</label>
+            <select v-model="item.key">
+              <option
+                v-for="(op_item, index) in concact_options"
+                :key="index"
+                :value="op_item.value"
+              >
+                {{ op_item.label }}
+              </option>
             </select>
           </div>
         </div>
         <div class="right">
           <div class="form-group">
-            <label for="paperInputs3">联系方式 / 地址</label>
-            <input class="input-block" type="text" id="paperInputs3" />
+            <label>联系方式 / 地址</label>
+            <input class="input-block" v-model="item.value" type="text" />
           </div>
         </div>
-      </div>-->
-      <div class="row flex-center">
-        <button @click="submit" class="btn-block save-btn">保存配置</button>
+        <button
+          class="add-btn"
+          @click="addConcactItem"
+          v-show="
+            index == geek_config_form.master_info.concact_array.length - 1
+          "
+        >
+          添加
+        </button>
       </div>
+    </div>
+    <p>
+      注意链接如需添加昵称在url中加入参数，例如：https://weibo.com/u/5107135569?nickname=小卢他人不错(如不需要，留空即可，保存自动清除空值)
+    </p>
+    <div class="row flex-center">
+      <button @click="submit" class="btn-block save-btn">保存配置</button>
     </div>
   </div>
 </template>
@@ -249,11 +273,60 @@ export default {
     return {
       geek_config_form: false,
       checkSubmit: 0,
+      concact_options: [
+        {
+          label: "手机",
+          value: "Phone",
+        },
+        {
+          label: "QQ",
+          value: "QQ",
+        },
+        {
+          label: "微信",
+          value: "Wechat",
+        },
+        {
+          label: "微博",
+          value: "Weibo",
+        },
+        {
+          label: "邮箱",
+          value: "Mail",
+        },
+        {
+          label: "Github",
+          value: "Github",
+        },
+
+        {
+          label: "Instagram",
+          value: "Instagram",
+        },
+        {
+          label: "Twitter",
+          value: "Twitter",
+        },
+        {
+          label: "Wordpress",
+          value: "Wordpress",
+        },
+        {
+          label: "Youtube",
+          value: "Youtube",
+        },
+      ],
     };
   },
   watch: {},
   computed: {},
   methods: {
+    addConcactItem() {
+      this.geek_config_form.master_info.concact_array.push({
+        key: "",
+        value: "",
+      });
+    },
     async getOption() {
       const res_geek_config = await this.$axios.get(
         "/options?key=geek_config&cache=false"
@@ -266,10 +339,18 @@ export default {
     },
     submit() {
       if (this.$cookies.get("token")) {
+        var form = JSON.parse(JSON.stringify(this.geek_config_form));
+
+        form.master_info.concact_array = form.master_info.concact_array.filter(
+          (item) => {
+            return item.key != "" && item.value != "";
+          }
+        );
+
         var data = {
           "login-token": this.$cookies.get("token"),
           keys: "geek_config",
-          opt: this.geek_config_form,
+          opt: form,
         };
 
         this.$axios.post("/options", data).then((res) => {
@@ -310,6 +391,9 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+.setting-wrapper {
+  min-height: calc(100vh - 70px);
+}
 .form {
   max-width: 600px;
   min-width: 500px;
@@ -358,6 +442,7 @@ export default {
     margin: 50px 0px 30px 0px;
   }
   .contact {
+    position: relative;
     display: flex;
     margin-bottom: 0px;
     .left {
@@ -371,20 +456,28 @@ export default {
     .right {
       width: calc(100% - 170px);
     }
-  }
-  .save-btn {
-    position: fixed;
-    bottom: 140px;
-    left: 50%;
-    transform: translateX(calc(-50% + 140px));
-    width: 200px;
-    margin-top: 30px;
-    font-size: 16px;
-    height: 40px;
-    padding: 0px;
+    .add-btn {
+      position: absolute;
+      right: -70px;
+      font-size: 14px;
+      bottom: 20px;
+      padding: 0px;
+      width: 60px;
+      height: 40px;
+      line-height: 40px;
+    }
   }
 }
-
+.save-btn {
+  position: fixed;
+  top: 47px;
+  right: 110px;
+  width: 100px;
+  margin-top: 30px;
+  font-size: 16px;
+  height: 40px;
+  padding: 0px;
+}
 @media screen and (max-width: 1025px) {
   .form {
     width: 100%;

@@ -223,7 +223,7 @@ export default {
   }
   .left-nav {
     position: fixed;
-    width: 280px;
+    width: 260px;
     height: 100%;
     overflow-y: scroll;
     z-index: 999;
@@ -233,8 +233,8 @@ export default {
   }
 
   .index-main {
-    width: calc(100% - 280px);
-    margin-left: 280px;
+    width: calc(100% - 260px);
+    margin-left: 260px;
     margin-top: 68px;
     padding: 7px;
     height: auto;
