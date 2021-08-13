@@ -25,3 +25,8 @@ export default {
   },
 };
 </script>
+<style lang="scss" scoped>
+.about-wrapper {
+  padding: 0px;
+}
+</style>
