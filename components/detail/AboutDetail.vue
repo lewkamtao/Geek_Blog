@@ -78,86 +78,12 @@ export default {
   methods: {
     renderMarkdown(md) {
       var that = this;
-      const initOutline = () => {
-        const headingElements = [];
-        this.article_title_list = [];
-        Array.from(document.getElementById("preview").children).forEach(
-          (item, index) => {
-            if (
-              item.tagName.length === 2 &&
-              item.tagName !== "HR" &&
-              item.tagName.indexOf("H") === 0
-            ) {
-              item.id = item.innerText + "_" + index;
 
-              this.article_title_list.push({
-                dom: item,
-                id: item.id,
-                title: item.innerText,
-                offsetTop: item.offsetTop,
-              });
-            }
-          }
-        );
-        Array.from(
-          document.getElementById("outline").getElementsByTagName("li")
-        ).forEach((item, index) => {
-          item.setAttribute(
-            "data-target-id",
-            this.article_title_list[index].id
-          );
-        });
-
-        let toc = this.article_title_list.map((item) => {
-          return item.dom;
-        });
-        window.addEventListener("scroll", () => {
-          const scrollTop = window.scrollY;
-          const currentElement = document.querySelector(
-            ".vditor-outline__item--current"
-          );
-          for (let i = 0, iMax = toc.length; i < iMax; i++) {
-            if (scrollTop < toc[i].offsetTop - 250) {
-              if (currentElement) {
-                currentElement.classList.remove(
-                  "vditor-outline__item--current"
-                );
-              }
-              let index = i > 0 ? i - 1 : 0;
-              document
-                .querySelector(
-                  'li[data-target-id="' +
-                    this.article_title_list[index].id +
-                    '"]'
-                )
-                .classList.add("vditor-outline__item--current");
-              break;
-            }
-          }
-        });
-      };
       Vditor.preview(document.querySelector("#preview"), md, {
         speech: {
           enable: true,
         },
         anchor: 1,
-        after() {
-          const outlineElement = document.querySelector("#outline");
-          Vditor.outlineRender(
-            document.querySelector("#preview"),
-            outlineElement
-          );
-
-          if (outlineElement.innerText.trim() !== "") {
-            outlineElement.style.display = "block";
-            that.$nextTick(function () {
-              initOutline();
-            });
-          } else {
-            outlineElement.style.display = "block";
-            outlineElement.innerHTML = "暂无目录";
-          }
-        },
       });
     },
   },
