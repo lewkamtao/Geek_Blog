@@ -92,7 +92,7 @@ export default {
   .item {
     display: flex;
     align-items: center;
-    padding: 5px 0px;
+    padding: 8px 0px;
     transition: all 0.15s;
     .concact-value {
       width: calc(100% - 80px);
