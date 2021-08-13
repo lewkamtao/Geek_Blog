@@ -1,6 +1,7 @@
 <template>
   <Detail
     @reloadComments="getComments"
+    :about="about"
     :geek_config="geek_config"
     :options="{
       type: 'about',
@@ -28,7 +29,12 @@ export default {
         },
       })
     ).data;
-    return { comments };
+    var about = {};
+    const aboutRes = await $axios.get("/page?alias=about&cache=false");
+    if (aboutRes.code == 200) {
+      about = aboutRes.data;
+    }
+    return { comments, about };
   },
   props: {
     geek_config: {

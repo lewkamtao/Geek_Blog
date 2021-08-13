@@ -126,6 +126,10 @@
         <input v-model="geek_config_form.site_info.timeline_bg" type="text" />
       </div>
       <div class="form-group">
+        <label>关于我头部背景图链接</label>
+        <input v-model="geek_config_form.site_info.about_bg" type="text" />
+      </div>
+      <div class="form-group">
         <label>友情链接头部背景图链接</label>
         <input v-model="geek_config_form.site_info.links_bg" type="text" />
       </div>
@@ -180,20 +184,7 @@
         <input v-model="geek_config_form.master_info.avatar_url" type="text" />
       </div>
 
-      <div class="form-subTitle"># 关于我 - 页面配置</div>
-      <div class="form-group">
-        <label for="footer">页面主体</label>
-        <textarea
-          style="height: 500px"
-          v-model="geek_config_form.master_info.about_detail_html"
-          id="footer"
-        ></textarea>
-        <div style="margin-top: 10px">
-          自定义HTML文本（这个页面高度个性化，仅支持html，可以自行发挥。可以在编译器运行后拷贝到这里，不支持js。）
-        </div>
-      </div>
-      <div class="form-subTitle"># 右侧模块显示设置</div>
-
+      <div class="form-subTitle"># 关于我 - 右侧模块显示设置</div>
       <fieldset class="form-group">
         <label class="paper-switch-label"> 联系方式 </label>
         <label class="paper-switch">

@@ -1,5 +1,5 @@
 <template>
-  <div class="article-wrapper" :style="'min-height:' + minHidth + 'px;'">
+  <div class="article-wrapper">
     <header
       class="border border-primary"
       :style="'background:url(https://api.kenvie.com/webp.php)'"
@@ -26,7 +26,7 @@
               <circle cx="12" cy="7" r="4" />
             </svg>
             <polyline points="12 6 12 12 16 14"></polyline>
-            {{article.expand? article.expand.author.nickname:"" }}
+            {{ article.expand ? article.expand.author.nickname : "" }}
           </div>
           <div>
             <svg
@@ -60,14 +60,16 @@
               stroke-linejoin="round"
               class="feather feather-message-square"
             >
-              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+              <path
+                d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+              />
             </svg>
             {{ article.expand.comments || "暂无评论" }}
           </div>
           <div>
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="18px" 
+              width="18px"
               height="18px"
               viewBox="0 0 24 24"
               fill="none"
@@ -87,7 +89,7 @@
       </div>
     </header>
 
-    <main class="section" id="post-content">
+    <main class="section">
       <div class="vditor-reset" id="preview"></div>
     </main>
   </div>
@@ -105,50 +107,44 @@ export default {
         {
           rel: "stylesheet",
           type: "text/css",
-          href:
-            "https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.3/css/all.css"
+          href: "https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.3/css/all.css",
         },
         {
           rel: "stylesheet",
           type: "text/css",
-          href: "https://cdn.jsdelivr.net/npm/vditor/dist/index.css"
-        }
-      ]
+          href: "https://cdn.jsdelivr.net/npm/vditor/dist/index.css",
+        },
+      ],
     };
   },
   components: {},
   props: {
-    minHidth: {
-      // 受缩放插件影响需要，同步一下高度
-      type: Number,
-      default: 500
-    },
     article: {
       type: Object,
-      default: {}
-    }
+      default: {},
+    },
   },
   data() {
     return {
-      article_title_list: []
+      article_title_list: [],
     };
   },
   watch: {
-    article: function() {
+    article: function () {
       this.renderMarkdown(this.article.content);
-    }
+    },
   },
   computed: {
     getBorderType() {
-      return function() {
+      return function () {
         return "border-" + Math.floor(Math.random() * 6 + 1);
       };
     },
     getBeautifyTime() {
-      return function(time) {
+      return function (time) {
         return util.getBeautifyTime(time);
       };
-    }
+    },
   },
   methods: {
     renderMarkdown(md) {
@@ -169,7 +165,7 @@ export default {
                 dom: item,
                 id: item.id,
                 title: item.innerText,
-                offsetTop: item.offsetTop
+                offsetTop: item.offsetTop,
               });
             }
           }
@@ -183,7 +179,7 @@ export default {
           );
         });
 
-        let toc = this.article_title_list.map(item => {
+        let toc = this.article_title_list.map((item) => {
           return item.dom;
         });
         window.addEventListener("scroll", () => {
@@ -213,7 +209,7 @@ export default {
       };
       Vditor.preview(document.querySelector("#preview"), md, {
         speech: {
-          enable: true
+          enable: true,
         },
         anchor: 1,
         after() {
@@ -225,25 +221,25 @@ export default {
 
           if (outlineElement.innerText.trim() !== "") {
             outlineElement.style.display = "block";
-            that.$nextTick(function() {
+            that.$nextTick(function () {
               initOutline();
             });
           } else {
             outlineElement.style.display = "block";
             outlineElement.innerHTML = "暂无目录";
           }
-        }
+        },
       });
-    }
+    },
   },
   created() {
     if (process.browser) {
-      this.$nextTick(function() {
+      this.$nextTick(function () {
         this.renderMarkdown(this.article.content);
       });
     }
   },
-  mounted() {}
+  mounted() {},
 };
 </script>
 <style lang="scss" scoped>
@@ -306,16 +302,16 @@ export default {
   .section:after {
     margin-top: 150px;
   }
+}
 
-  @media screen and (max-width: 1440px) {
-    header {
-      text-align: left;
-      .summary {
-        align-items: flex-start;
-        flex-direction: column;
-        div {
-          margin: 10px 0px;
-        }
+@media screen and (max-width: 1440px) {
+  header {
+    text-align: left;
+    .summary {
+      align-items: flex-start;
+      flex-direction: column;
+      div {
+        margin: 10px 0px;
       }
     }
   }
@@ -338,4 +334,4 @@ export default {
     }
   }
 }
-</style> 
+</style>

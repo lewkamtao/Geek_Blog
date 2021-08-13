@@ -16,7 +16,9 @@ export default {
       logo_url: "https://cos.tngeek.com/logo.png", // 站点logo
       blog_site_url: "https://blog.kamtao.com/", // 博客地址
       adm_site_url: "https://api.kamtao.com/", // 运营地址
+
       timeline_bg: "https://img.keai.cool/2021/08/09/a11d5c69b9894.webp", // 朋友圈背景
+      about_bg: "http://www.dmoe.cc/random.php", // 关于我背景
       links_bg: "http://www.dmoe.cc/random.php", // 朋友圈背景
       song_list_id: "3",
       footer_html: `<div style=" line-height: 24px; color:#999">

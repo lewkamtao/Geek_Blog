@@ -5,7 +5,6 @@
       <article-detail
         v-if="options.article && options.type == 'article'"
         :article="options.article"
-        :minHidth="asideHidth"
         class="part"
       ></article-detail>
 
@@ -39,10 +38,12 @@
         class="part"
         :timeline="timeline"
       ></timeline-detail>
-      <!-- 时光机 -->
+
+      <!-- 关于 -->
       <about-detail
         v-if="options.type == 'about'"
         :geek_config="geek_config"
+        :article="about"
         class="part"
       ></about-detail>
     </div>
@@ -150,6 +151,12 @@ export default {
         return {};
       },
     },
+    about: {
+      type: Object,
+      default: function () {
+        return {};
+      },
+    },
     msg_wall: {
       type: Object,
       default: function () {
@@ -175,7 +182,6 @@ export default {
     return {
       isLogin: false,
       setAsideLeft: "", // 用于计算侧边栏
-      asideHidth: 0,
       id: "",
     };
   },
@@ -206,9 +212,6 @@ export default {
       7;
     that.setAsideLeft = "left:" + articleMainWidth + "px;position: fixed;";
 
-    that.$nextTick(function () {
-      that.asideHidth = that.$refs.aside.offsetHeight - 120;
-    });
     window.onresize = function () {
       that.$nextTick(function () {
         articleMainWidth =
@@ -216,7 +219,6 @@ export default {
           that.$refs.articleMain.clientWidth +
           7;
 
-        that.asideHidth = that.$refs.aside.offsetHeight - 120;
         that.setAsideLeft = "left:" + articleMainWidth + "px;position: fixed;";
       });
     };
