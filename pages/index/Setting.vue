@@ -181,19 +181,6 @@
       </div>
 
       <div class="form-subTitle"># 关于我 - 页面配置</div>
-
-      <div class="form-group">
-        <label for="footer">联系方式</label>
-        <textarea
-          style="height: 200px"
-          v-model="geek_config_form.master_info.concact_html"
-          id="footer"
-        ></textarea>
-        <div style="margin-top: 10px">
-          自定义HTML文本（这个板块高度个性化，仅支持html，可以自行发挥。可以在编译器运行后拷贝到这里，不支持js。）
-        </div>
-      </div>
-
       <div class="form-group">
         <label for="footer">页面主体</label>
         <textarea
