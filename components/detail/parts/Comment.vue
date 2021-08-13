@@ -90,7 +90,7 @@
               style="width: 100%; height: 150px"
               class="no-resize"
               id="no-resize"
-              placeholder
+              placeholder="这一刻的想法..."
             ></textarea>
           </div>
 

@@ -64,22 +64,17 @@ export default {
   computed: {},
   methods: {
     login() {
-      this.$axios
-        .get(
-          "/users/login?account=" +
-            this.form.account +
-            "&password=" +
-            this.form.password
-        )
-        .then((res) => {
-          if (res.code == "200") {
-            this.$cookies.set("token", res.data["login-token"]);
-            this.$cookies.set("user", res.data.user);
-            location.reload();
-          } else {
-            this.loginErrorTips = res.msg;
-          }
-        });
+      var data = this.form;
+      data.mode = "login";
+      this.$axios.post("/users", data).then((res) => {
+        if (res.code == "200") {
+          this.$cookies.set("token", res.data["login-token"]);
+          this.$cookies.set("user", res.data.user);
+          location.reload();
+        } else {
+          this.loginErrorTips = res.msg;
+        }
+      });
     },
     getBorderType() {
       this.borderStyle = "border-" + Math.floor(Math.random() * 6 + 1);
