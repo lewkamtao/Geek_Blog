@@ -1,7 +1,7 @@
 <template>
   <div class="article-wrapper">
     <header
-      :style="'background:url(' + geek_config.site_info.timeline_bg + ')'"
+      :style="'background:url(' + geek_config.site_info.about_bg + ')'"
     ></header>
     <div class="user-info">
       <div class="user-box">
