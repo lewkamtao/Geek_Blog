@@ -14,6 +14,7 @@
     </div>
     <main class="section">
       <div class="vditor-reset" id="preview"></div>
+      <div v-if="article_tips">{{ article_tips }}</div>
     </main>
   </div>
 </template>
@@ -55,14 +56,10 @@ export default {
   },
   data() {
     return {
-      article_title_list: [],
+      article_tips: "",
     };
   },
-  watch: {
-    article: function () {
-      this.renderMarkdown(this.article.content);
-    },
-  },
+  watch: {},
   computed: {
     getBorderType() {
       return function () {
@@ -88,10 +85,13 @@ export default {
     },
   },
   created() {
-    if (process.browser) {
+    if (process.browser && JSON.stringify(this.article) != "{}") {
       this.$nextTick(function () {
         this.renderMarkdown(this.article.content);
       });
+    } else {
+      this.article_tips =
+        "请在后台添加页面，【别名】必须为：about，否则不生效。";
     }
   },
   mounted() {},

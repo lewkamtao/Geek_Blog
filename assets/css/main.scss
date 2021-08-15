@@ -116,8 +116,12 @@ html {
   a {
     background-image: none;
   }
-  p {
+  p,
+  li {
     font-size: 14px;
+  }
+  p {
+    margin-bottom: 5px;
   }
   pre {
     overflow: hidden;

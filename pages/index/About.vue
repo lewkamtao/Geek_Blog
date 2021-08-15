@@ -30,10 +30,15 @@ export default {
       })
     ).data;
     var about = {};
-    const aboutRes = await $axios.get("/page?alias=about&cache=false");
-    if (aboutRes.code == 200) {
-      about = aboutRes.data;
+    try {
+      const aboutRes = await $axios.get("/page?alias=about&cache=false");
+      if (aboutRes.code == 200) {
+        about = aboutRes.data;
+      }
+    } catch {
+      about = {};
     }
+
     return { comments, about };
   },
   props: {
