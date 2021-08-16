@@ -4,7 +4,7 @@ export default ({ $axios, $cookies }) => {
     });
 
     $axios.onResponse(res => {
-        if (res.data.code == 403) {
+        if (res.data.code == 400) {
             window.location.replace("/login?token_status=403");
             $cookies.remove("token")
         }
