@@ -314,7 +314,7 @@ export default {
           this.geek_config_form.master_info.concact_array[0] = {
             key: "",
             value: "",
-          }; 
+          };  
         }
       } else {
         this.geek_config_form = first_geek_config.geek_config;
