@@ -3,7 +3,6 @@
     <div v-if="geek_config_form" class="form">
       <div class="title">通用设置</div>
       <div class="subTitle">菜单显示设置</div>
-
       <fieldset class="form-group">
         <label class="paper-switch-label">关于我</label>
         <label class="paper-switch">

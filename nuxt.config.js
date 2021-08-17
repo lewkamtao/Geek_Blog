@@ -30,6 +30,7 @@ export default {
         "@/plugins/axios",
         "@/plugins/route",
         "@/plugins/v-img",
+        "@/plugins/element-ui",
         { src: "~/plugins/vue-masonry", ssr: false }
     ],
 
@@ -83,7 +84,17 @@ export default {
             config.output.chunkFilename = `js/[name].${Timestamp}.js`;
             // ...
         },
-        extractCSS: { allChunks: true }
+        extractCSS: { allChunks: true },
+        babel: {
+            plugins: [
+                ['component',
+                    {
+                        libraryName: 'element-ui',
+                        styleLibraryName: 'theme-chalk'
+                    }
+                ]
+            ]
+        }
     },
     loading: "~/components/custom/Loading.vue"
 };
