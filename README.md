@@ -35,7 +35,7 @@ $ npm run generate
 
 ### [线上预览地址](https://blog.kamtao.com)
 
-
+![](https://tngeek-mall-1255310647.cos.ap-guangzhou.myqcloud.com/public/geek_blog_readme/geek_1.png)
 
 ## 简单讲一下宝塔的安装教程（大佬请忽略）
 
@@ -152,3 +152,22 @@ $ pm2 restart all
 mail：div@kamtao.com
 
 QQ：1057072668
+
+
+### 预览图
+
+![](https://tngeek-mall-1255310647.cos.ap-guangzhou.myqcloud.com/public/geek_blog_readme/geek_1.png)
+
+![](https://tngeek-mall-1255310647.cos.ap-guangzhou.myqcloud.com/public/geek_blog_readme/geek_2.png)
+
+![](https://tngeek-mall-1255310647.cos.ap-guangzhou.myqcloud.com/public/geek_blog_readme/geek_3.png)
+
+![](https://tngeek-mall-1255310647.cos.ap-guangzhou.myqcloud.com/public/geek_blog_readme/geek_4.png)
+
+![](https://tngeek-mall-1255310647.cos.ap-guangzhou.myqcloud.com/public/geek_blog_readme/geek_5.png)
+
+![](https://tngeek-mall-1255310647.cos.ap-guangzhou.myqcloud.com/public/geek_blog_readme/geek_6.png)
+
+![](https://tngeek-mall-1255310647.cos.ap-guangzhou.myqcloud.com/public/geek_blog_readme/geek_7.png)
+
+![](https://tngeek-mall-1255310647.cos.ap-guangzhou.myqcloud.com/public/geek_blog_readme/geek_8.png)
