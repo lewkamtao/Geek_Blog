@@ -3,7 +3,6 @@
     <div v-if="geek_config_form" class="form">
       <div class="title">通用设置</div>
       <div class="subTitle">菜单显示设置</div>
-
       <fieldset class="form-group">
         <label class="paper-switch-label">关于我</label>
         <label class="paper-switch">
@@ -181,7 +180,7 @@
 
       <div class="form-group">
         <label>头像</label>
-        <input v-model="geek_config_form.master_info.avatar_url" type="text" />
+        <input v-model="geek_config_form.master_info.head_img" type="text" />
       </div>
 
       <div class="form-subTitle"># 关于我 - 右侧模块显示设置</div>
@@ -311,6 +310,12 @@ export default {
       );
       if (res_geek_config.code == 200 && res_geek_config.data.opt) {
         this.geek_config_form = res_geek_config.data.opt;
+        if (this.geek_config_form.master_info.concact_array.length == 0) {
+          this.geek_config_form.master_info.concact_array[0] = {
+            key: "",
+            value: "",
+          };  
+        }
       } else {
         this.geek_config_form = first_geek_config.geek_config;
       }

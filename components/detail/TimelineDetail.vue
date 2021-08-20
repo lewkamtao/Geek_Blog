@@ -31,7 +31,7 @@
             {{ getBeautifyTime(item.create_time) }}
             <span
               v-if="isLogin"
-              @dblclick.stop="del(index, item.id)"
+              @click.stop="delConfirm(index, item.id)"
               class="del-btn no-select"
             >
               删除</span
@@ -83,11 +83,27 @@ export default {
     },
   },
   methods: {
+    delConfirm(index, id) {
+      this.$confirm("此操作将永久删除该信息, 是否继续?", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning",
+      })
+        .then(() => {
+          this.del(index, id);
+        })
+        .catch(() => {
+          this.$message({
+            type: "info",
+            message: "已取消删除",
+          });
+        });
+    },
     del(index, id) {
       if (this.$cookies.get("token")) {
         var data = {
           "login-token": this.$cookies.get("token"),
-          mode: "delete",
+          mode: "remove",
           id: JSON.stringify(id),
         };
 

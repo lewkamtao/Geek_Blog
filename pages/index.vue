@@ -1,7 +1,6 @@
 <template>
   <div class="wrap">
     <div
-      id="top"
       class="wrapper"
       :class="{ isShowNav: isShowNav, isShowAside: isShowAside }"
     >
@@ -20,55 +19,7 @@
         <Footer :geek_config="geek_config" />
       </div>
 
-      <div class="to-top">
-        <div
-          @click="showAside()"
-          class="show-aside-btn"
-          :class="{ isShowOpenAsideBtn: isShowOpenAsideBtn }"
-        >
-          <div style="margin-top: -5px">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20px"
-              height="20px"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="feather feather-twitch"
-            >
-              <path d="M21 2H3v16h5v4l4-4h5l4-4V2zm-10 9V7m5 4V7" />
-            </svg>
-          </div>
-        </div>
-        <a href="#top" class="paper-btn">
-          <div>^</div>
-        </a>
-      </div>
-    </div>
-    <div class="mode-set-box">
-      <input
-        class="modal-state"
-        id="modal-1"
-        type="checkbox"
-        :checked="isShowModeSet"
-      />
-      <div class="modal">
-        <label class="modal-bg" for="modal-1"></label>
-        <div class="modal-body">
-          <label class="btn-close" for="modal-1" @click="closeModeSetBox"
-            >X</label
-          >
-          <h4 class="modal-title">请选择你喜爱的风格</h4>
-          <p class="modal-text">
-            你可以选择当道的圆滑，也可以别有个性的锐利。若关闭窗口后，你想再次修改，可以在左侧导航栏设置模式。
-          </p>
-          <button @click="sharpHandle(false)">圆滑模式</button>
-          <button @click="sharpHandle(true)">锐利模式</button>
-        </div>
-      </div>
+      <el-backtop :right="300"><i class="el-icon-caret-top"></i></el-backtop>
     </div>
   </div>
 </template>
@@ -164,25 +115,9 @@ export default {
       }
       this.isShowAside = !this.isShowAside;
     },
-    sharpHandle(status) {
-      util.sharpHandle(status);
-      var mode = {
-        isDark: false,
-        isSharp: status,
-      };
-      var mode = this.$cookies.set("mode", mode);
-    },
-    closeModeSetBox() {
-      util.openModal(false);
-    },
   },
   created() {
     this.isShowOpenAsideBtn = true;
-    var mode = this.$cookies.get("mode");
-    if (!mode) {
-      util.openModal(true);
-      this.isShowModeSet = true;
-    }
   },
   beforeRouteUpdate(to, from, next) {
     if (process.browser) {
@@ -219,7 +154,7 @@ export default {
     left: 50%;
     top: 0px;
     transform: translateX(-50%);
-    z-index: 99999999;
+    z-index: 99999;
   }
   .left-nav {
     position: fixed;

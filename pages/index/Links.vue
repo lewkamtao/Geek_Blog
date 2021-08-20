@@ -19,7 +19,7 @@ export default {
     };
   },
   async asyncData({ $axios, route }) {
-    const links = (await $axios.get("/links")).data;
+    const links = (await $axios.get("/links?limit=100000")).data;
     const comments = (
       await $axios.get("/comments", {
         params: {
