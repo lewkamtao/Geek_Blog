@@ -1,6 +1,5 @@
 <template>
   <div class="top-nav-wrapper">
-    <div id="topNavMask" class="top-nav-mask modal-bg"></div>
     <div class="top-nav">
       <div class="left">
         <nuxt-link class="pc-logo" to="/">
@@ -147,10 +146,10 @@ export default {
     max-width: calc(1351px - 14px);
     margin: 0 auto;
     width: 100%;
-    height: 60px;
+    height: 50px;
     display: flex;
     justify-content: space-between;
-    border-radius: 12px;
+    border-radius: 7px;
     align-items: center;
     a {
       background-image: none;
@@ -221,10 +220,10 @@ export default {
         position: relative;
         z-index: 99;
         width: 320px;
-        height: 40px;
+        height: 35px;
         padding-left: 20px;
         font-size: 14px;
-        border-radius: 12px;
+        border-radius: 7px;
         border: none;
         background: #eee;
         transition: all 0.25s;
@@ -233,7 +232,7 @@ export default {
         position: absolute;
         left: 0px;
         top: 0px;
-        border-radius: 12px;
+        border-radius: 7px;
         width: 320px;
         height: 0px;
         overflow-y: scroll;
@@ -254,7 +253,7 @@ export default {
             position: relative;
             width: 100%;
             padding: 3px 10px;
-            border-radius: 10px;
+            border-radius: 7px;
             font-size: 14px;
             color: #666;
           }
@@ -301,25 +300,11 @@ export default {
 .form-group {
   margin: 0px;
 }
-.top-nav-mask {
-  position: absolute;
-  left: 0px;
-  top: 0px;
-  width: 100%;
-  height: 100%;
-  z-index: -9;
 
-  transition: opacity 0.25s;
-  opacity: 0;
-  background: rgba($color: #000000, $alpha: 0.55);
-}
 
 
 @media screen and (max-width: 1300px) {
-  .top-nav-mask {
-    width: calc(100% - 30px);
-    left: 15px;
-  }
+
   .top-nav-wrapper {
     width: calc(100% - 14px);
   }
@@ -375,7 +360,7 @@ export default {
         }
 
         .res-box {
-          border-radius: 10px;
+          border-radius: 7px;
           width: 100%;
         }
       }

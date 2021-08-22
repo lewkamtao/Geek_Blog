@@ -18,15 +18,35 @@
         <nuxt-child :geek_config="geek_config" />
         <Footer :geek_config="geek_config" />
       </div>
-
-      <el-backtop :right="300"><i class="el-icon-caret-top"></i></el-backtop>
+    </div>
+    <div class="to-top">
+      <div
+        @click="showAside()"
+        class="show-aside-btn"
+        :class="{ isShowOpenAsideBtn: isShowOpenAsideBtn }"
+      >
+        <div style="margin-top: -5px">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20px"
+            height="20px"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="feather feather-twitch"
+          >
+            <path d="M21 2H3v16h5v4l4-4h5l4-4V2zm-10 9V7m5 4V7" />
+          </svg>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import DevicePixelRatio from "@/util/devicePixelRatio.js";
-import util from "@/util/index";
 import first_geek_config from "@/util/geek.config.js";
 
 export default {
@@ -122,11 +142,9 @@ export default {
   beforeRouteUpdate(to, from, next) {
     if (process.browser) {
       //  隐藏遮罩 优先级
-      util.openModal(false);
       this.isShowNav = false;
       this.isShowAside = false;
       this.isShowOpenAsideBtn = true;
-
       next();
     }
   },
@@ -150,18 +168,18 @@ export default {
     -webkit-backdrop-filter: saturate(200%) blur(20px);
     box-shadow: 0px 0px 15px -5px rgb(0 0 0 / 15%);
     backdrop-filter: saturate(200%) blur(20px);
-    height: 60px;
+    height: 50px;
     left: 50%;
     top: 0px;
     transform: translateX(-50%);
-    z-index: 99999;
+    z-index: 999;
   }
   .left-nav {
     position: fixed;
     width: 260px;
     height: 100%;
     overflow-y: scroll;
-    z-index: 999;
+    z-index: 99;
     scrollbar-color: transparent transparent;
     scrollbar-track-color: transparent;
     -ms-scrollbar-track-color: transparent;
@@ -170,7 +188,7 @@ export default {
   .index-main {
     width: calc(100% - 260px);
     margin-left: 260px;
-    margin-top: 68px;
+    margin-top: 58px;
     padding: 7px;
     height: auto;
   }
@@ -178,12 +196,14 @@ export default {
   .to-top {
     position: fixed;
     bottom: 50px;
-    right: 100px;
+    right: 50px;
     display: flex;
     flex-direction: column;
     margin: 10px;
     z-index: 999999;
     transition: all 0.25s;
+    width: 50px;
+    height: 50px;
     .show-aside-btn {
       display: none;
       font-size: 30px;
@@ -198,22 +218,6 @@ export default {
       background: #fff;
       border: #000 solid 2px;
       margin-bottom: 20px;
-    }
-    .paper-btn {
-      font-size: 30px;
-      width: 45px;
-      height: 45px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-top-left-radius: 185px 160px;
-      border-top-right-radius: 200px 195px;
-      border-bottom-right-radius: 160px 195px;
-      border-bottom-left-radius: 185px 190px;
-      div {
-        transform: scaleX(1.3);
-        margin-top: 3px;
-      }
     }
   }
 }
@@ -286,6 +290,7 @@ export default {
       transition: all 0.5s;
     }
     .to-top {
+      position: fixed;
       bottom: 20px;
       right: 10px;
       .isShowOpenAsideBtn {

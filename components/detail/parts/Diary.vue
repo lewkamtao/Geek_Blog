@@ -12,7 +12,7 @@
         fill="none"
         stroke-linecap="round"
         stroke-linejoin="round"
-        class="css-i6dzq1 rotate-cw" 
+        class="css-i6dzq1 rotate-cw"
       >
         <polyline points="23 4 23 10 17 10" />
         <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10" />
@@ -47,7 +47,7 @@ export default {
   letter-spacing: 1px;
   background: rgba($color: #000000, $alpha: 0.025);
   padding: 15px;
-  border-radius: 10px;
+  border-radius: 7px;
 }
 .rotate-cw {
   cursor: pointer;

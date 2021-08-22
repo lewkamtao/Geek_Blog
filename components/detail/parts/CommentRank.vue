@@ -16,7 +16,9 @@
           <div class="user-info">
             <div class="name">
               {{ item.nickname }}
-              <div class="badge danger">{{ item.count }}</div>
+              <span style="margin-left: 10px" class="ui mini label">{{
+                item.count
+              }}</span>
             </div>
             <p class="agent">{{ getUA(item.expand.agent) }}</p>
           </div>
@@ -32,8 +34,8 @@ export default {
   props: {
     commentsGroup: {
       type: Object,
-      default: []
-    }
+      default: [],
+    },
   },
   data() {
     return {};
@@ -41,7 +43,7 @@ export default {
   watch: {},
   computed: {
     getUA() {
-      return function(agent) {
+      return function (agent) {
         return (
           "来自 " +
           (agent.os.system +
@@ -51,11 +53,11 @@ export default {
             agent.browser.kernel)
         );
       };
-    }
+    },
   },
   methods: {},
   created() {},
-  mounted() {}
+  mounted() {},
 };
 </script>
 <style lang="scss" scoped>
@@ -76,7 +78,7 @@ export default {
   background-image: none;
   padding: 10px;
   box-sizing: border-box;
-  border-radius: 10px;
+  border-radius: 7px;
 
   .avatar {
     width: 40px;
@@ -105,12 +107,12 @@ export default {
       display: flex;
       align-items: center;
       line-height: 16px;
-      .badge {
+      .label {
         font-size: 12px;
-        margin-left: 5px;
-        padding: 1px 4px;
-        font-weight: normal;
-        background: #999;
+        height: 18px;
+        line-height: 18px;
+        padding: 0px 8px;
+        font-weight: bold;
       }
     }
     .agent {
@@ -125,8 +127,9 @@ export default {
 .user-item:first-child {
   .user-info {
     .name {
-      .badge {
+      .label {
         background: #f05050;
+        color: #fff;
       }
     }
   }
@@ -134,8 +137,9 @@ export default {
 .user-item:nth-child(2) {
   .user-info {
     .name {
-      .badge {
+      .label {
         background: #f94;
+        color: #fff;
       }
     }
   }
@@ -143,8 +147,9 @@ export default {
 .user-item:nth-child(3) {
   .user-info {
     .name {
-      .badge {
+      .label {
         background: #5f6984;
+        color: #fff;
       }
     }
   }

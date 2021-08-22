@@ -3,8 +3,8 @@
     <div ref="articleMain" class="main">
       <!-- 文章内页 -->
       <article-detail
-        v-if="options.article && options.type == 'article'"
-        :article="options.article"
+        v-if="options.type == 'article'"
+        :article="article"
         class="part"
       ></article-detail>
 
@@ -27,7 +27,6 @@
       <msg-wall-detail
         v-if="options.type == 'msg_wall'"
         :msg_wall="msg_wall"
-        class="part"
         @reloadComments="reloadComments"
       ></msg-wall-detail>
 
@@ -49,7 +48,10 @@
     </div>
     <div ref="aside" :style="setAsideLeft" class="aside">
       <!-- 标签云 -->
-      <tag-cloud v-if="options.tag" :tag="options.tag"></tag-cloud>
+      <tag-cloud
+        v-if="options.type == 'article' && article.expand.tag"
+        :tags="article.expand.tag"
+      ></tag-cloud>
 
       <!-- 目录 -->
       <catalogue v-if="options.catalogue"></catalogue>
@@ -151,6 +153,12 @@ export default {
         return {};
       },
     },
+    article: {
+      type: Object,
+      default: function () {
+        return {};
+      },
+    },
     about: {
       type: Object,
       default: function () {
@@ -206,19 +214,20 @@ export default {
   mounted() {
     var that = this;
     this.id = parseInt($nuxt.$route.query.id);
-    var articleMainWidth =
-      that.$refs.articleMain.getBoundingClientRect().left +
-      that.$refs.articleMain.clientWidth +
-      7;
-    that.setAsideLeft = "left:" + articleMainWidth + "px;position: fixed;";
-
+    var articleMainWidth = "";
+    that.$nextTick(function () {
+      articleMainWidth =
+        that.$refs.articleMain.getBoundingClientRect().left +
+        that.$refs.articleMain.clientWidth +
+        7;
+      that.setAsideLeft = "left:" + articleMainWidth + "px;position: fixed;";
+    });
     window.onresize = function () {
       that.$nextTick(function () {
         articleMainWidth =
           that.$refs.articleMain.offsetLeft +
           that.$refs.articleMain.clientWidth +
           7;
-
         that.setAsideLeft = "left:" + articleMainWidth + "px;position: fixed;";
       });
     };
@@ -240,7 +249,7 @@ export default {
 }
 .aside {
   top: 0px;
-  padding: 75px 7px 110px 7px;
+  padding: 65px 7px 110px 7px;
   box-sizing: border-box;
   max-height: 100%;
   height: 100%;
@@ -248,7 +257,7 @@ export default {
   width: 350px;
 
   margin-bottom: 50px;
-  z-index: 999;
+  z-index: 99;
   scrollbar-color: transparent transparent;
   scrollbar-track-color: transparent;
   -ms-scrollbar-track-color: transparent;

@@ -1,11 +1,11 @@
 <template>
   <div class="part">
     <div class="user-info">
-      <div class="avatar border border-primary" :class="getBorderType()">
+      <div class="avatar">
         <img :src="geek_config.master_info.head_img" alt srcset />
       </div>
       <div class="nickname">{{ geek_config.master_info.nickname }}</div>
-      <div class="description">{{geek_config.master_info.description }}</div>
+      <div class="description">{{ geek_config.master_info.description }}</div>
     </div>
   </div>
 </template>
@@ -16,25 +16,19 @@ export default {
   props: {
     geek_config: {
       type: Object,
-      default: function() {
+      default: function () {
         return {};
-      }
-    }
+      },
+    },
   },
   data() {
     return {};
   },
   watch: {},
-  computed: {
-    getBorderType() {
-      return function() {
-        return "border-" + Math.floor(Math.random() * 6 + 1);
-      };
-    }
-  },
+  computed: {},
   methods: {},
   created() {},
-  mounted() {}
+  mounted() {},
 };
 </script>
 <style lang="scss" scoped>
@@ -56,18 +50,17 @@ export default {
     }
   }
   .avatar {
-    width: 80px;
-    height: 80px;
+    width: 60px;
+    height: 60px;
     overflow: hidden;
     img {
-      border-bottom-left-radius: 0px;
-      border-bottom-right-radius: 0px;
-      border-top-left-radius: 0px;
-      border-top-right-radius: 0px;
+      width: 100%;
+      height: 100%;
+      border-radius: 5px;
     }
   }
   .nickname {
-    margin: 22px 0px 14px 0px;
+    margin-top: 14px;margin-bottom:5px;
     color: #000;
     font-size: 18px;
     font-weight: bold;
@@ -76,7 +69,6 @@ export default {
     font-size: 14px;
     line-height: 22px;
     color: #000;
-    margin-bottom: 10px;
   }
 }
 </style>

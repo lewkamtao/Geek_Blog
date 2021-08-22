@@ -65,11 +65,19 @@
     <div class="contorl">
       <div class="line-box">
         <!-- 时间进度调节 -->
-        <div ref="timeLine" class="line-wrapper-time" @mousedown="changeTimeMousedown">
+        <div
+          ref="timeLine"
+          class="line-wrapper-time"
+          @mousedown="changeTimeMousedown"
+        >
           <div class="time-line">
             <div class="start-time">{{ music.startTimeStr || "00:00" }}</div>
             <div class="end-time">- {{ music.endTimeStr || "00:00" }}</div>
-            <div :style="'width:' + timeLine.isPlayWidth + 'px'" class="line" ref="isPlayWidth">
+            <div
+              :style="'width:' + timeLine.isPlayWidth + 'px'"
+              class="line"
+              ref="isPlayWidth"
+            >
               <span @mousedown="changeTimeMousemove" class="line-btn"></span>
             </div>
           </div>
@@ -118,9 +126,17 @@
         >
           <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
         </svg>
-        <div ref="volumeLine" @mousedown="changeVolumeMousedown" class="line-wrapper-volume">
+        <div
+          ref="volumeLine"
+          @mousedown="changeVolumeMousedown"
+          class="line-wrapper-volume"
+        >
           <div class="volume-line">
-            <div class="line" ref="isOpenWidth" :style="'width:' + volumeLine.isOpenWidth + 'px'">
+            <div
+              class="line"
+              ref="isOpenWidth"
+              :style="'width:' + volumeLine.isOpenWidth + 'px'"
+            >
               <span class="line-btn" @mousedown="changeVolumeMousemove"></span>
             </div>
           </div>
@@ -137,10 +153,12 @@
           class="css-i6dzq1"
         >
           <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
-          <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07" />
+          <path
+            d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"
+          />
         </svg>
       </div>
-      <div class="error-url" v-show="error_tips">{{error_tips}}</div>
+      <div class="error-url" v-show="error_tips">{{ error_tips }}</div>
     </div>
   </div>
 </template>
@@ -151,10 +169,10 @@ export default {
   props: {
     geek_config: {
       type: Object,
-      default: function() {
+      default: function () {
         return {};
-      }
-    }
+      },
+    },
   },
   data() {
     return {
@@ -164,21 +182,21 @@ export default {
         status: "pause",
         volume: 0,
         startTimeStr: "",
-        endTimeStr: ""
+        endTimeStr: "",
       },
 
       timeLine: {
         isPlayWidth: 0,
-        width: 0
+        width: 0,
       },
       volumeLine: {
         isOpenWidth: 0,
-        width: 0
+        width: 0,
       },
 
       isShowSongsList: false,
       songs: [],
-      error_tips: ""
+      error_tips: "",
     };
   },
   watch: {},
@@ -234,7 +252,7 @@ export default {
       that.timeLine.isMove = true;
       var deX = de.x;
       var isPlayWidth = that.timeLine.isPlayWidth;
-      document.onmousemove = function(me) {
+      document.onmousemove = function (me) {
         var meX = me.x;
         var w = isPlayWidth + (meX - deX);
 
@@ -245,7 +263,7 @@ export default {
         }
         that.timeLine.isPlayWidth = w;
       };
-      document.onmouseup = function() {
+      document.onmouseup = function () {
         var currentTime =
           (that.timeLine.isPlayWidth / that.timeLine.width) *
           that.music.duration;
@@ -265,7 +283,7 @@ export default {
       var deX = de.x;
       var isOpenWidth = that.volumeLine.isOpenWidth;
 
-      document.onmousemove = function(me) {
+      document.onmousemove = function (me) {
         var meX = me.x;
         var w = isOpenWidth + (meX - deX);
         if (w > that.volumeLine.width - 15) {
@@ -277,7 +295,7 @@ export default {
         var volume = that.volumeLine.isOpenWidth / that.volumeLine.width;
         that.$refs.audioRef.volume = volume;
       };
-      document.onmouseup = function() {
+      document.onmouseup = function () {
         document.onmousemove = null;
         document.onmouseup = null;
       };
@@ -343,14 +361,14 @@ export default {
       this.music.song = data;
       if (this.music.song.url == "") {
         this.error_tips = "歌曲地址已失效，请切换下一首。";
-        setTimeout(function() {
+        setTimeout(function () {
           that.getMusicDetail(index + 1, this.songs[index + 1].song_id);
         });
       } else {
         this.error_tips = "";
       }
       if (!this.isLock) {
-        setTimeout(function() {
+        setTimeout(function () {
           that.play();
         }, 200);
       } else {
@@ -379,12 +397,12 @@ export default {
       } else {
         return "0:00:00";
       }
-    }
+    },
   },
   created() {
     this.getMusicList();
     if (process.browser) {
-      this.$nextTick(function() {
+      this.$nextTick(function () {
         this.timeLine.width = this.$refs.timeLine.clientWidth;
         this.volumeLine.width = this.$refs.volumeLine.clientWidth;
         this.$refs.audioRef.volume = 0.618;
@@ -393,7 +411,7 @@ export default {
       });
     }
   },
-  mounted() {}
+  mounted() {},
 };
 </script>
 <style lang="scss" scoped>
@@ -406,7 +424,13 @@ export default {
   -ms-user-select: none; /*IE10*/
   -khtml-user-select: none; /*早期浏览器*/
   user-select: none;
-
+  .icon {
+    width: 1em;
+    height: 1em;
+    vertical-align: -0.15em;
+    fill: currentColor;
+    overflow: hidden;
+  }
   .song-info {
     position: relative;
     display: flex;
@@ -499,11 +523,11 @@ export default {
   /* 滚动槽 */
   .songs-list::-webkit-scrollbar-track {
     -webkit-box-shadow: inset006pxrgba(0, 0, 0, 0.3);
-    border-radius: 10px;
+    border-radius: 7px;
   }
   /* 滚动条滑块 */
   .songs-list::-webkit-scrollbar-thumb {
-    border-radius: 10px;
+    border-radius: 7px;
     background: rgba(0, 0, 0, 0.1);
     -webkit-box-shadow: inset006pxrgba(0, 0, 0, 0.5);
   }

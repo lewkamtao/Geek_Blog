@@ -19,18 +19,7 @@ function getBeautifyTime(date) {
   }
 }
 
-/**
- * 处理顶部栏优先级遮罩层
- */
-function openModal(status) {
-  if (process.browser) {
-    if (status) {
-      document.getElementsByTagName("body")[0].classList.add("isShowModal");
-    } else {
-      document.getElementsByTagName("body")[0].classList.remove("isShowModal");
-    }
-  }
-}
+
 /**
  * 暗黑模式
  */
@@ -57,7 +46,6 @@ function sharpHandle(status) {
 }
 export default {
   getBeautifyTime,
-  openModal,
   darkHandle,
   sharpHandle
 };

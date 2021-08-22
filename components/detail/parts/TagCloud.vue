@@ -1,30 +1,25 @@
 <template>
   <div class="tagCloud part">
     <div class="main-title">标签云</div>
-    <div class="tags-box">
-      <span
-        v-for="(item, index) in tag"
-        :key="index"
-        class="badge"
-        :class="tagsClass[index]"
-      >{{ item.name }}</span>
-    </div>
-    <div v-if="tag.length==0">暂无标签</div>
+    <tag-list :tags="tags" v-if="tags.length > 0"> </tag-list>
+    <div v-if="tags.length == 0">暂无标签</div>
   </div>
 </template>
 
 <script>
+import TagList from "../../custom/TagList.vue";
+
 export default {
-  components: {},
+  components: { TagList },
   props: {
-    tag: {
+    tags: {
       type: Array,
-      default: []
-    }
+      default: [],
+    },
   },
   data() {
     return {
-      tagsClass: []
+      tagsClass: [],
     };
   },
   watch: {},
@@ -39,12 +34,12 @@ export default {
         });
         this.$forceUpdate();
       }
-    }
+    },
   },
   created() {},
   mounted() {
     this.getTagColor();
-  }
+  },
 };
 </script>
 <style lang="scss" scoped>

@@ -43,13 +43,7 @@ export default {
   },
 
   watch: {},
-  computed: {
-    getBorderType() {
-      return function () {
-        return "border-" + Math.floor(Math.random() * 6 + 1);
-      };
-    },
-  },
+  computed: {},
   methods: {
     // 获取评论
     async getComments() {

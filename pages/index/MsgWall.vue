@@ -10,7 +10,7 @@
       commentsGroup: commentsGroup,
     }"
   />
-</template> 
+</template>
 
 <script>
 // 这里是留言墙的id 注意要是文章的id 文章标题必须是：留言墙

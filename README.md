@@ -35,7 +35,7 @@ $ npm run generate
 
 ### [线上预览地址](https://blog.kamtao.com)
 
-![](https://tngeek-mall-1255310647.cos.ap-guangzhou.myqcloud.com/public/geek_blog_readme/geek_1.png)
+![](https://tngeek-mall-1255310647.cos.ap-guangzhou.myqcloud.com/public/geek_blog_readme/geek_1.png!custom)
 
 ## 简单讲一下宝塔的安装教程（大佬请忽略）
 
@@ -54,7 +54,7 @@ $ npm run generate
 首先先安装一下 pm2 管理工具，去宝塔软件商店里面下载。
 （如果已经安装，忽略此步骤）
 
-<img src="https://tngeek-mall-1255310647.cos.ap-guangzhou.myqcloud.com/public/geek_blog_readme/%E5%AE%89%E8%A3%85PM2%E5%92%8Cnode.png" style="zoom:50%;" />
+<img src="https://tngeek-mall-1255310647.cos.ap-guangzhou.myqcloud.com/public/geek_blog_readme/%E5%AE%89%E8%A3%85PM2%E5%92%8Cnode.png!custom" style="zoom:50%;" />
 
 ### 第二步
 
@@ -62,19 +62,19 @@ $ npm run generate
 
 [这是教程，如果会的，请忽略]: https://jingyan.baidu.com/article/eae07827e0a9ff5eec548591.html
 
-<img src="https://tngeek-mall-1255310647.cos.ap-guangzhou.myqcloud.com/public/geek_blog_readme/%E6%B7%BB%E5%8A%A0%E7%AB%99%E7%82%B9.png" style="zoom: 50%;" />
+<img src="https://tngeek-mall-1255310647.cos.ap-guangzhou.myqcloud.com/public/geek_blog_readme/%E6%B7%BB%E5%8A%A0%E7%AB%99%E7%82%B9.png!custom" style="zoom: 50%;" />
 
 ### 第三步
 
 然后把整个 nuxt 项目拷贝到域名绑定的目录下（这个目录位置是上一步的目录）
 
-<img src="https://tngeek-mall-1255310647.cos.ap-guangzhou.myqcloud.com/public/geek_blog_readme/%E9%A1%B9%E7%9B%AE%E6%94%BE%E5%9C%A8%E7%9B%AE%E5%BD%95%E9%87%8C%E9%9D%A2.png" style="zoom:50%;" />
+<img src="https://tngeek-mall-1255310647.cos.ap-guangzhou.myqcloud.com/public/geek_blog_readme/%E9%A1%B9%E7%9B%AE%E6%94%BE%E5%9C%A8%E7%9B%AE%E5%BD%95%E9%87%8C%E9%9D%A2.png!custom" style="zoom:50%;" />
 
 然后打开，项目文件nuxt.config.js，把api地址修改为你的后台接口的域名，见图示。
 
-<img src="https://tngeek-mall-1255310647.cos.ap-guangzhou.myqcloud.com/public/geek_blog_readme/%E4%BF%AE%E6%94%B9%E6%96%87%E4%BB%B6.png" style="zoom: 50%;" />
+<img src="https://tngeek-mall-1255310647.cos.ap-guangzhou.myqcloud.com/public/geek_blog_readme/%E4%BF%AE%E6%94%B9%E6%96%87%E4%BB%B6.png!custom" style="zoom: 50%;" />
 
-<img src="https://tngeek-mall-1255310647.cos.ap-guangzhou.myqcloud.com/public/geek_blog_readme/%E4%BF%AE%E6%94%B9%E6%8E%A5%E5%8F%A3%E5%9C%B0%E5%9D%80.png" style="zoom:50%;" />
+<img src="https://tngeek-mall-1255310647.cos.ap-guangzhou.myqcloud.com/public/geek_blog_readme/%E4%BF%AE%E6%94%B9%E6%8E%A5%E5%8F%A3%E5%9C%B0%E5%9D%80.png!custom" style="zoom:50%;" />
 
 
 
@@ -102,7 +102,7 @@ $ pm2 list
 # 如果看到以下的样子 说明成功了
 ```
 
-<img src="https://tngeek-mall-1255310647.cos.ap-guangzhou.myqcloud.com/public/geek_blog_readme/%E9%83%A8%E7%BD%B2pm2%E5%AE%8C%E6%88%90%E7%9A%84%E6%A0%B7%E5%AD%90.png" style="zoom:50%;" />
+<img src="https://tngeek-mall-1255310647.cos.ap-guangzhou.myqcloud.com/public/geek_blog_readme/%E9%83%A8%E7%BD%B2pm2%E5%AE%8C%E6%88%90%E7%9A%84%E6%A0%B7%E5%AD%90.png!custom" style="zoom:50%;" />
 
 
 
@@ -110,7 +110,7 @@ $ pm2 list
 
 这个时候如果没有啥问题的话就成功了，之后我们去设置反向代理，找到刚刚创建的网站，点击设置，找到反向代理，具体设置如图
 
-<img src="https://tngeek-mall-1255310647.cos.ap-guangzhou.myqcloud.com/public/geek_blog_readme/%E7%AB%AF%E5%8F%A3%E4%BF%9D%E6%8C%81%E4%B8%80%E8%87%B4.png" style="zoom:50%;" />
+<img src="https://tngeek-mall-1255310647.cos.ap-guangzhou.myqcloud.com/public/geek_blog_readme/%E7%AB%AF%E5%8F%A3%E4%BF%9D%E6%8C%81%E4%B8%80%E8%87%B4.png!custom" style="zoom:50%;" />
 
 
 
@@ -121,7 +121,7 @@ $ pm2 list
 $ pm2 restart all
 ```
 
-<img src="https://tngeek-mall-1255310647.cos.ap-guangzhou.myqcloud.com/public/geek_blog_readme/%E6%9B%B4%E6%94%B9%E7%AB%AF%E5%8F%A3.png" style="zoom:50%;" />
+<img src="https://tngeek-mall-1255310647.cos.ap-guangzhou.myqcloud.com/public/geek_blog_readme/%E6%9B%B4%E6%94%B9%E7%AB%AF%E5%8F%A3.png!custom" style="zoom:50%;" />
 
 
 
@@ -157,22 +157,22 @@ QQ：1057072668
 
 ### 预览图
 
-![](https://tngeek-mall-1255310647.cos.ap-guangzhou.myqcloud.com/public/geek_blog_readme/geek_1.png)
+![](https://tngeek-mall-1255310647.cos.ap-guangzhou.myqcloud.com/public/geek_blog_readme/geek_1.png!custom)
 
-![](https://tngeek-mall-1255310647.cos.ap-guangzhou.myqcloud.com/public/geek_blog_readme/geek_2.png)
+![](https://tngeek-mall-1255310647.cos.ap-guangzhou.myqcloud.com/public/geek_blog_readme/geek_2.png!custom)
 
-![](https://tngeek-mall-1255310647.cos.ap-guangzhou.myqcloud.com/public/geek_blog_readme/geek_3.png)
+![](https://tngeek-mall-1255310647.cos.ap-guangzhou.myqcloud.com/public/geek_blog_readme/geek_3.png!custom)
 
-![](https://tngeek-mall-1255310647.cos.ap-guangzhou.myqcloud.com/public/geek_blog_readme/geek_4.png)
+![](https://tngeek-mall-1255310647.cos.ap-guangzhou.myqcloud.com/public/geek_blog_readme/geek_4.png!custom)
 
-![](https://tngeek-mall-1255310647.cos.ap-guangzhou.myqcloud.com/public/geek_blog_readme/geek_5.png)
+![](https://tngeek-mall-1255310647.cos.ap-guangzhou.myqcloud.com/public/geek_blog_readme/geek_5.png!custom)
 
-![](https://tngeek-mall-1255310647.cos.ap-guangzhou.myqcloud.com/public/geek_blog_readme/geek_6.png)
+![](https://tngeek-mall-1255310647.cos.ap-guangzhou.myqcloud.com/public/geek_blog_readme/geek_6.png!custom)
 
-![](https://tngeek-mall-1255310647.cos.ap-guangzhou.myqcloud.com/public/geek_blog_readme/geek_7.png)
+![](https://tngeek-mall-1255310647.cos.ap-guangzhou.myqcloud.com/public/geek_blog_readme/geek_7.png!custom)
 
-![](https://tngeek-mall-1255310647.cos.ap-guangzhou.myqcloud.com/public/geek_blog_readme/geek_8.png)
+![](https://tngeek-mall-1255310647.cos.ap-guangzhou.myqcloud.com/public/geek_blog_readme/geek_8.png!custom)
 
-![](https://tngeek-mall-1255310647.cos.ap-guangzhou.myqcloud.com/public/geek_blog_readme/geek_9.png)
+![](https://tngeek-mall-1255310647.cos.ap-guangzhou.myqcloud.com/public/geek_blog_readme/geek_9.png!custom)
 
-![](https://tngeek-mall-1255310647.cos.ap-guangzhou.myqcloud.com/public/geek_blog_readme/geek_10.png)
+![](https://tngeek-mall-1255310647.cos.ap-guangzhou.myqcloud.com/public/geek_blog_readme/geek_10.png!custom)

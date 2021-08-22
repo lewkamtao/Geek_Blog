@@ -1,7 +1,7 @@
 <template>
   <main>
     <div class="login-wrapper part">
-      <div id="login" class="form border" :class="borderStyle">
+      <div id="login" class="form part" :class="borderStyle">
         <div id="owl-login" :class="{ password: isActivePassWord }">
           <div class="hand"></div>
           <div class="hand hand-r"></div>
@@ -76,18 +76,14 @@ export default {
         }
       });
     },
-    getBorderType() {
-      this.borderStyle = "border-" + Math.floor(Math.random() * 6 + 1);
-    },
   },
   created() {
-    this.getBorderType();
     if (this.$cookies.get("token")) {
       this.$router.push("/"); //否则跳转至首页
     }
   },
   mounted() {
-    if ($nuxt.$route.query.token_status == 403) {
+    if ($nuxt.$route.query.token_status == 400) {
       this.loginErrorTips = "登录过期，请重新登录！";
     }
   },
@@ -113,6 +109,7 @@ export default {
   width: 350px;
   height: auto;
   background: #fff;
+  box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
   .item {
     margin-bottom: 15px;
     label {
@@ -186,7 +183,7 @@ export default {
       left: 50%;
       transform: translateX(-50%) translateY(420px);
       text-align: center;
-      border-radius: 10px;
+      border-radius: 7px;
     }
   }
 }

@@ -2,144 +2,43 @@
   <div class="part">
     <div class="main-title">
       <div class="title">
-        评论
-        <span class="badge secondary">{{ comments.count }}</span>
+        {{ type == "msg_wall" ? "留言" : "评论" }}
+        <span style="margin-left: 10px" class="ui mini red label">{{
+          comments.count
+        }}</span>
       </div>
     </div>
     <div style="margin-bottom: 20px" v-if="comments.data.length == 0">
-      暂无评论
+      {{ type == "msg_wall" ? "暂无留言" : "暂无评论" }}
     </div>
-    <label
-      class="border border-secondary reply-main-btn"
-      @click="
-        setReply({
-          nickname: '',
-          expand: {},
-        })
-      "
-      for="modal-reply"
-      >发表评论</label
-    >
-    <input class="modal-state" id="modal-reply" type="checkbox" />
-    <div class="modal reply-modal">
-      <label class="modal-bg"></label>
-      <div class="modal-body">
-        <label class="btn-close" @click="openModal" for="modal-reply">X</label>
-        <div v-if="replyObj && replyObj.expand.head_img" class="reply-obj">
-          <div class="avatar border border-primary" :class="getBorderType">
-            <img :src="replyObj.expand.head_img" alt srcset />
-          </div>
-          <div class="user-info">
-            <div class="nickname">{{ replyObj.nickname }}</div>
-            <div class="content">
-              {{ replyObj.content || replyObj.expand.description }}
-            </div>
-            <div v-if="replyObj.create_time" class="create_time">
-              {{ getBeautifyTime(replyObj.create_time) }}
-            </div>
-          </div>
-        </div>
-
-        <div class="reply-form">
-          <div v-if="!isLogin" class="concact">
-            <div class="form-group">
-              <label for="paperInputs1">
-                昵称
-                <span class="badge danger">必填</span>
-              </label>
-              <input
-                v-model="comments_form.nickname"
-                class="input-block"
-                type="text"
-                id="paperInputs1"
-                placeholder
-              />
-            </div>
-            <div class="form-group">
-              <label for="paperInputs2">
-                邮箱
-                <span class="badge danger">必填</span>
-              </label>
-              <input
-                v-model="comments_form.email"
-                class="input-block"
-                type="text"
-                id="paperInputs2"
-                placeholder
-              />
-            </div>
-          </div>
-
-          <div v-if="!isLogin" class="form-group">
-            <label for="paperInputs3">博客地址</label>
-            <input
-              v-model="comments_form.url"
-              class="input-block"
-              type="text"
-              id="paperInputs3"
-              placeholder
-            />
-          </div>
-          <div class="form-group">
-            <label>
-              内容
-              <span class="badge danger">必填</span>
-            </label>
-            <textarea
-              v-model="comments_form.content"
-              style="width: 100%; height: 150px"
-              class="no-resize"
-              id="no-resize"
-              placeholder="这一刻的想法..."
-            ></textarea>
-          </div>
-
-          <div
-            v-show="error_tips"
-            class="alert alert-danger dismissible alert-reply"
-          >
-            {{ error_tips }}
-            <label
-              @click="error_tips = ''"
-              style="
-                position: static;
-                color: #cb453c;
-                margin-top: -5px;
-                font-size: 25px;
-                transform: translateX(10px) scaleX(1.8) rotate(-3deg);
-              "
-              class="btn-close"
-              >X</label
-            >
-          </div>
-
-          <div class="row flex-right">
-            <button @click="submitComments" class="btn-secondary reply-btn">
-              发送
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
+    <comment-form
+      :type="type"
+      style="margin-bottom: 20px"
+      @reloadComments="reloadComments"
+    ></comment-form>
     <div v-if="comments.data.length != 0" class="comments">
       <div
         class="comments-box"
         v-for="(item, index) in comments.data"
         :key="index"
       >
-        <comment-card @setReply="setReply" :comment="item"></comment-card>
+        <comment-card
+          @setCurId="setCurId"
+          :curId="curId"
+          :comment="item"
+          @reloadComments="reloadComments"
+        ></comment-card>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import util from "@/util/index";
 import CommentCard from "./CommentCard.vue";
-import checkStr from "@/util/checkStr";
+import CommentForm from "./CommentForm.vue";
 
 export default {
-  components: { CommentCard },
+  components: { CommentCard, CommentForm },
   props: {
     type: {
       type: String,
@@ -151,114 +50,23 @@ export default {
     },
     articleId: {
       type: Number,
-      default: "",
+      default: 0,
     },
   },
   data() {
     return {
-      replyObj: false,
-      isLogin: false,
-
-      comments_form: {
-        email: "",
-        nickname: "",
-        url: "",
-        content: "",
-      },
-      tagsClass: [],
-      error_tips: "",
+      curId: 0,
     };
   },
   watch: {},
-  computed: {
-    getBeautifyTime(time) {
-      return function (time) {
-        return util.getBeautifyTime(time);
-      };
-    },
-    getBorderType() {
-      return "border-" + Math.floor(Math.random() * 6 + 1);
-    },
-  },
+  computed: {},
   methods: {
-    openModal() {
-      //   隐藏遮罩 优先级
-      if (process.browser) {
-        util.openModal(false);
-      }
+    setCurId(id) {
+      this.curId = id;
     },
-    setReply(replyObj) {
-      if (replyObj.id >= 0 && !replyObj.expand.pay) {
-        this.comments_form.pid = replyObj.id;
-      }
-      //  显示遮罩 优先级
-      if (process.browser) {
-        util.openModal(true);
-      }
-
-      this.replyObj = replyObj;
-    },
-    submitComments() {
-      var data = JSON.parse(JSON.stringify(this.comments_form));
-      switch (this.type) {
-        case "article":
-          data.article_id = this.articleId;
-          break;
-        case "links":
-          data.type = "links";
-          break;
-        case "msg_wall":
-          data.type = "msg_wall";
-          break;
-        case "about":
-          data.type = "about";
-          break;
-        default:
-          break;
-      }
-
-      if (!this.isLogin) {
-        if (data.nickname == "") {
-          this.error_tips = "* 昵称不能为空";
-          return;
-        } else if (data.email == "") {
-          this.error_tips = "* 邮箱不能为空";
-          return;
-        } else if (!checkStr(data.email, "email")) {
-          this.error_tips = "* 邮箱格式错误";
-          return;
-        } else if (data.url && !checkStr(data.url, "URL")) {
-          this.error_tips = "* 网址格式错误(需要加http://或https://)";
-          return;
-        }
-      } else if (data.content == "") {
-        this.error_tips = "* 内容不能为空";
-        return;
-      }
-
-      // 博主
-      if (this.$cookies.get("token")) {
-        data["login-token"] = this.$cookies.get("token");
-      }
-
-      this.$axios.post("/comments", data).then((res) => {
-        if (res.code == 200) {
-          this.comments_form = {
-            email: "",
-            nickname: "",
-            url: "",
-            content: "",
-          };
-          if (process.browser) {
-            document.getElementById("modal-reply").click();
-            //  隐藏遮罩 优先级
-            util.openModal(false);
-          }
-          this.$emit("reloadComments");
-        } else {
-          this.error_tips = "*必填项不能为空";
-        }
-      });
+    reloadComments() {
+      this.curId = 0;
+      this.$emit("reloadComments");
     },
   },
   created() {
@@ -277,11 +85,6 @@ export default {
   .title {
     display: flex;
     align-items: center;
-  }
-  .badge {
-    margin: 0px 0px 0px 10px;
-    padding: 1px 3px;
-    font-size: 14px;
   }
 }
 .reply-main-btn {

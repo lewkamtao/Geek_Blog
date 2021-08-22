@@ -271,7 +271,8 @@ export default {
       font-size: 16px;
       background-image: none;
       text-align: left;
-      height: 38px;
+      height: 35px;
+      color: #999;
       cursor: pointer;
       .icon {
         position: absolute;
@@ -289,7 +290,7 @@ export default {
       .title {
         position: relative;
         width: 100%;
-        height: 38px;
+        height: 35px;
         display: flex;
         font-size: 14px;
         justify-content: space-between;
@@ -318,6 +319,9 @@ export default {
   .nav-list-wrapper:hover {
     background: rgba($color: #000000, $alpha: 0.05);
     border-radius: 8px;
+    .title {
+      color: #000;
+    }
     .title::before {
       display: none;
     }

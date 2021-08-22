@@ -9,7 +9,9 @@
           @click="getArticleBySort(item.id)"
         >
           {{ item.name }}
-          <div class="badge" :class="tagsClass[index]">{{ item.expand.count }}</div>
+          <span style="margin-left: 10px" class="ui mini label">{{
+            item.expand.count
+          }}</span>
         </li>
       </ul>
     </div>
@@ -22,14 +24,14 @@ export default {
   props: {
     article_sort: {
       type: Object,
-      default: function() {
+      default: function () {
         return {};
-      }
-    }
+      },
+    },
   },
   data() {
     return {
-      tagsClass: []
+      tagsClass: [],
     };
   },
   watch: {},
@@ -45,14 +47,12 @@ export default {
         this.$forceUpdate();
       }
     },
-    getArticleBySort(id) {
-      console.log(id);
-    }
+    getArticleBySort(id) {},
   },
   created() {
     this.getTagColor();
   },
-  mounted() {}
+  mounted() {},
 };
 </script>
 <style lang="scss" scoped>
@@ -70,15 +70,16 @@ ul {
     position: relative;
     width: 100%;
     background-image: none;
-    border-radius: 10px;
+    border-radius: 7px;
     line-height: 28px;
     min-height: 36px;
     padding: 4px 15px;
+    color: #999;
     display: inline-block;
     box-sizing: border-box;
     font-size: 14px;
     cursor: pointer;
-    div.badge {
+    .label {
       position: absolute;
       right: 15px;
       top: 50%;
@@ -98,6 +99,7 @@ ul {
     display: none;
   }
   li:hover {
+    color: #000;
     background: rgba($color: #000, $alpha: 0.05);
   }
   li:hover::before {

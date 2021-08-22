@@ -1,34 +1,36 @@
 <template>
   <div>
     <div class="mode-setting part">
-      <fieldset class="form-group mode-setting-box">
-        <label for="mode" class="paper-switch-label">{{
-          mode.isDark ? "暗黑模式" : "白天模式"
-        }}</label>
-        <label class="paper-switch-2">
-          <input
-            id="paperSwitch4"
-            name="theme"
-            v-model="mode.isDark"
-            type="checkbox"
-          />
-          <span class="paper-switch-slider round"></span>
-        </label>
-      </fieldset>
-      <fieldset class="form-group mode-setting-box">
-        <label for="mode" class="paper-switch-label">{{
-          mode.isSharp ? "锐利模式" : "圆滑模式"
-        }}</label>
-        <label class="paper-switch-2">
-          <input
-            id="paperSwitch4"
-            name="mode"
-            v-model="mode.isSharp"
-            type="checkbox"
-          />
-          <span class="paper-switch-slider round"></span>
-        </label>
-      </fieldset>
+      <div @click="mode.isDark = !mode.isDark" class="mode-setting-box">
+        <span> {{ mode.isDark ? "暗黑模式" : "白天模式" }}</span>
+        <div class="inline field">
+          <div class="ui toggle checkbox">
+            <input
+              type="checkbox"
+              v-model="mode.isDark"
+              tabindex="0"
+              id="mode1"
+              class="hidden"
+            />
+            <label></label>
+          </div>
+        </div>
+      </div>
+      <div @click="mode.isSharp = !mode.isSharp" class="mode-setting-box">
+        <span>{{ mode.isSharp ? "锐利模式" : "圆滑模式" }}</span>
+        <div class="inline field">
+          <div class="ui toggle checkbox">
+            <input
+              type="checkbox"
+              v-model="mode.isSharp"
+              tabindex="0"
+              id="mode2"
+              class="hidden"
+            />
+            <label></label>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -88,10 +90,18 @@ export default {
     margin-bottom: 0px;
     display: flex;
     border-radius: 8px;
+    color: #999;
     align-items: center;
     justify-content: space-between;
+    cursor: pointer;
+    .field {
+      display: flex;
+      align-items: center;
+      margin-right: -15px;
+    }
   }
   .mode-setting-box:hover {
+    color: #000;
     background: rgba($color: #000000, $alpha: 0.05);
   }
   .mode-setting-box:hover::before {
@@ -111,13 +121,6 @@ export default {
   }
   .mode-setting-box:first-child::before {
     display: none;
-  }
-
-  .paper-switch-label {
-    margin-top: 0px;
-  }
-  .paper-switch {
-    margin-top: 3px;
   }
 }
 </style>

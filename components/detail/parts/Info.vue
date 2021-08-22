@@ -96,7 +96,8 @@ export default {
 <style lang="scss" scoped>
 ul {
   padding: 1px 15px;
-  border-radius: 10px;
+  box-sizing: border-box;
+  border-radius: 7px;
   width: 100%;
   background: rgba($color: #000000, $alpha: 0.025);
   li {
@@ -105,7 +106,7 @@ ul {
     color: #333;
     div {
       margin: 25px 0px;
-      padding-left: 10px;
+      font-size: 14px;
       width: 100%;
       display: flex;
       justify-content: space-between;
@@ -116,8 +117,8 @@ ul {
     }
     span:nth-child(2) {
       text-align: center;
-      padding: 2px 6px 2px 12px;
-      border-radius: 3px;
+      padding: 2px 6px;
+      border-radius: 5px;
       background: #fff;
       color: #000;
       font-size: 12px;

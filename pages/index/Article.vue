@@ -1,22 +1,21 @@
 <template>
   <Detail
     @reloadComments="getComments"
+    :article="article"
     :options="{
-    type: 'article',
-    catalogue: true,
-    comments: comments,
-    tag: article.expand.tag,
-    article: article
+      type: 'article',
+      catalogue: true,
+      comments: comments,
     }"
   />
 </template>
- 
+
 <script>
 export default {
   components: {},
   head() {
     return {
-      title: this.article.title + " - " + this.geek_config.site_info.title
+      title: this.article.title + " - " + this.geek_config.site_info.title,
     };
   },
   async asyncData({ $axios, route }) {
@@ -24,8 +23,8 @@ export default {
       await $axios.get("/article", {
         params: {
           id: parseInt(route.query.id),
-          model: "md"
-        }
+          model: "md",
+        },
       })
     ).data;
     const comments = (
@@ -33,8 +32,8 @@ export default {
         params: {
           article_id: parseInt(route.query.id),
           tree: false,
-          limit: 10000
-        }
+          limit: 10000,
+        },
       })
     ).data;
     return { article, comments };
@@ -42,12 +41,12 @@ export default {
   props: {
     geek_config: {
       type: Object,
-      default: {}
-    }
+      default: {},
+    },
   },
   data() {
     return {
-      id: ""
+      id: "",
     };
   },
   beforeRouteUpdate(to, from, next) {
@@ -64,8 +63,8 @@ export default {
           params: {
             article_id: this.id,
             tree: false,
-            limit: 10000
-          }
+            limit: 10000,
+          },
         })
       ).data;
       this.comments = comments;
@@ -76,15 +75,15 @@ export default {
         await this.$axios.get("/article", {
           params: {
             id: this.id,
-            model: "md"
-          }
+            model: "md",
+          },
         })
       ).data;
       this.article = article;
-    }
+    },
   },
   mounted() {
     this.id = parseInt($nuxt.$route.query.id);
-  }
+  },
 };
 </script>

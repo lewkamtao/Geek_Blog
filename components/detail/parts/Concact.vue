@@ -106,6 +106,11 @@ export default {
       transition: all 0.15s;
     }
     .icon {
+      width: 1em;
+      height: 1em;
+      vertical-align: -0.15em;
+      fill: currentColor;
+      overflow: hidden;
       font-size: 30px;
       background: #fff;
       border-radius: 50% !important;

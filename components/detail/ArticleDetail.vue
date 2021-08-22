@@ -3,7 +3,6 @@
     <header
       class="border border-primary"
       :style="'background:url(https://api.kenvie.com/webp.php)'"
-      :class="getBorderType"
     >
       <div class="mask"></div>
       <div class="content">
@@ -135,11 +134,6 @@ export default {
     },
   },
   computed: {
-    getBorderType() {
-      return function () {
-        return "border-" + Math.floor(Math.random() * 6 + 1);
-      };
-    },
     getBeautifyTime() {
       return function (time) {
         return util.getBeautifyTime(time);

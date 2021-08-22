@@ -41,7 +41,7 @@
       </div>
     </div>
   </div>
-</template> 
+</template>
 
 <script>
 import util from "@/util/index";
@@ -110,6 +110,13 @@ export default {
         this.$axios.post("/comments", data).then((res) => {
           if (res.code == 200) {
             this.timelineData.data.splice(index, 1);
+            this.$notify({
+              type: "success",
+              title: "恭喜！",
+              message: "成功删除了一条时光机",
+              duration: 5000,
+              offset: 65,
+            });
           }
         });
       }
@@ -144,10 +151,12 @@ export default {
         font-weight: bold;
       }
       .avatar {
-        width: 75px;
-        height: 75px;
+        width: 70px;
+        height: 70px;
         margin-left: 15px;
         img {
+          width: 100%;
+          height: 100%;
           border-radius: 5px;
         }
       }
@@ -173,6 +182,8 @@ export default {
       height: 45px;
       margin-right: 10px;
       img {
+        width: 45px;
+        height: 45px;
         border-radius: 5px;
       }
     }

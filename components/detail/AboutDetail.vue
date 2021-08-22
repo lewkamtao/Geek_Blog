@@ -61,11 +61,6 @@ export default {
   },
   watch: {},
   computed: {
-    getBorderType() {
-      return function () {
-        return "border-" + Math.floor(Math.random() * 6 + 1);
-      };
-    },
     getBeautifyTime() {
       return function (time) {
         return util.getBeautifyTime(time);
@@ -74,8 +69,6 @@ export default {
   },
   methods: {
     renderMarkdown(md) {
-      var that = this;
-
       Vditor.preview(document.querySelector("#preview"), md, {
         speech: {
           enable: true,
@@ -118,10 +111,12 @@ export default {
         font-weight: bold;
       }
       .avatar {
-        width: 75px;
-        height: 75px;
+        width: 70px;
+        height: 70px;
         margin-left: 15px;
         img {
+          width: 100%;
+          height: 100%;
           border-radius: 5px;
         }
       }
