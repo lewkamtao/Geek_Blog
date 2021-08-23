@@ -13,12 +13,15 @@ function getBeautifyTime(date) {
   var arrn = [31536000, 2592000, 604800, 86400, 3600, 60, 1];
   for (var i = 0; i < 7; i++) {
     var inm = Math.floor(mistiming / arrn[i]);
+
     if (inm != 0) {
-      return inm + "" + arrr[i] + postfix;
+      if (i == 6) {
+        return "刚刚";
+      }
+      return inm + " " + arrr[i] + postfix;
     }
   }
 }
-
 
 /**
  * 暗黑模式
@@ -32,6 +35,7 @@ function darkHandle(status) {
     }
   }
 }
+
 /**
  * 锐利模式
  */

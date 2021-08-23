@@ -13,6 +13,7 @@
     </div>
     <comment-form
       :type="type"
+      :articleId="articleId"
       style="margin-bottom: 20px"
       @reloadComments="reloadComments"
     ></comment-form>
@@ -25,6 +26,7 @@
         <comment-card
           @setCurId="setCurId"
           :curId="curId"
+          :articleId="articleId"
           :comment="item"
           @reloadComments="reloadComments"
         ></comment-card>

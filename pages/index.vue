@@ -19,7 +19,7 @@
         <Footer :geek_config="geek_config" />
       </div>
     </div>
-    <div class="to-top">
+    <div class="to-top" v-if="false">
       <div
         @click="showAside()"
         class="show-aside-btn"
@@ -92,6 +92,7 @@ export default {
     }
 
     const article_sort = (await $axios.get("/article-sort?limit=1000")).data;
+
     return { article_sort, geek_config };
   },
   props: {},

@@ -117,9 +117,10 @@ ul {
     }
     span:nth-child(2) {
       text-align: center;
-      padding: 2px 6px;
-      border-radius: 5px;
+      padding: 0px 6px;
+      border-radius:3px;
       background: #fff;
+      box-shadow: 0px 0px 15px rgba($color: #000000, $alpha: 0.055);
       color: #000;
       font-size: 12px;
     }

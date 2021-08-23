@@ -38,8 +38,8 @@
                 class="Zi Zi--Reply"
                 fill="currentColor"
                 viewBox="0 0 24 24"
-                width="16"
-                height="16"
+                width="14"
+                height="14"
                 style="margin-right: 5px"
               >
                 <path
@@ -52,6 +52,7 @@
         </div>
         <comment-form
           :type="type"
+          :articleId="articleId"
           :pid="comment.id"
           v-if="curId == comment.id"
           @reloadComments="reloadComments"
@@ -90,8 +91,8 @@
                     class="Zi Zi--Reply"
                     fill="currentColor"
                     viewBox="0 0 24 24"
-                    width="16"
-                    height="16"
+                    width="14"
+                    height="14"
                     style="margin-right: 5px"
                   >
                     <path
@@ -104,6 +105,7 @@
             </div>
             <comment-form
               :type="type"
+              :articleId="articleId"
               :pid="son.id"
               v-if="curId == son.id"
               @reloadComments="reloadComments"
@@ -128,6 +130,10 @@ export default {
       default: "",
     },
     curId: {
+      type: Number,
+      default: 0,
+    },
+    articleId: {
       type: Number,
       default: 0,
     },
@@ -225,13 +231,12 @@ export default {
   .comments {
     margin-top: 0px;
   }
-
   .reply-btn {
     color: #999;
     padding: 2px 4px;
     cursor: pointer;
     font-weight: 400;
-    font-size: 13px;
+    font-size: 12px;
     transition: all 0.25s;
     margin-left: -5px;
     display: flex;

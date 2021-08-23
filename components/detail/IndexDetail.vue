@@ -19,7 +19,11 @@
           <div class="article-box-body">
             <div class="article-box-title">{{ item.title }}</div>
             <div class="article-box-subtitle">{{ item.description }}</div>
-            <tag-list style="margin-top:5px" v-if="item.expand.tag" :tags="item.expand.tag"></tag-list>
+            <tag-list
+              style="margin-top: 10px; margin-bottom: 10px"
+              v-if="item.expand.tag"
+              :tags="item.expand.tag"
+            ></tag-list>
             <div class="article-box-footer">
               <div>
                 <svg
@@ -145,6 +149,10 @@ export default {
       return tag_options[index];
     },
     async getArticleList(type) {
+      if (this.articleList.data.length == this.articleList.count) {
+        return;
+      }
+
       if (type == "new") {
         this.page = 1; // 重新选择分类
         this.articleList = [];
@@ -184,6 +192,7 @@ export default {
 <style lang="scss" scoped>
 .index-wrapper-master {
   width: 100%;
+  padding: 10px;
 }
 
 .more-btn {
@@ -219,7 +228,7 @@ export default {
   flex-wrap: wrap;
   .article-box {
     width: 100%;
-    margin: 15px;
+    margin: 5px;
     overflow: hidden;
     cursor: pointer;
     background: rgba($color: #000000, $alpha: 0.02);
@@ -282,7 +291,6 @@ export default {
     font-size: 12px;
     line-height: 24px;
     color: #000;
-    margin-top: 10px;
     margin-bottom: 0px;
     display: flex;
     white-space: nowrap;

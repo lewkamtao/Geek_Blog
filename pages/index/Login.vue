@@ -13,30 +13,31 @@
             {{ loginErrorTips }}
           </div>
         </div>
-        <div class="item">
-          <label>账号</label>
+        <div style="margin-bottom: 20px" class="ui input item">
           <input
-            style="width: 100%"
-            v-model="form.account"
-            autocomplete="off"
-            @keyup.enter="login"
             type="text"
+            v-model="form.account"
+            @keyup.enter="login"
+            placeholder="账号"
           />
         </div>
-        <div class="item">
-          <label>密码</label>
+        <div style="margin-bottom: 20px" class="ui input item">
           <input
-            style="width: 100%"
+            type="password"
+            v-model="form.password"
             @blur="isActivePassWord = false"
             @focus="isActivePassWord = true"
-            type="password"
-            autocomplete="off"
-            v-model="form.password"
             @keyup.enter="login"
+            placeholder="密码"
           />
         </div>
-        <div class="row flex-right" style="margin-bottom: 0px">
-          <button @click="login" class="paper-btn btn-secondary login-button">
+        <div class="row">
+          <button
+            @click="login"
+            style="width: 100%"
+            class="ui primary button"
+            :class="{ loading: loading }"
+          >
             登录
           </button>
         </div>
@@ -58,6 +59,7 @@ export default {
       isActivePassWord: false,
       loginErrorTips: "",
       borderStyle: "",
+      loading: false,
     };
   },
   watch: {},
@@ -66,7 +68,9 @@ export default {
     login() {
       var data = this.form;
       data.mode = "login";
+      this.loading = false;
       this.$axios.post("/users", data).then((res) => {
+        this.loading = true;
         if (res.code == "200") {
           this.$cookies.set("token", res.data["login-token"]);
           this.$cookies.set("user", res.data.user);
@@ -106,24 +110,18 @@ export default {
   margin: 0px auto;
   box-sizing: border-box;
   z-index: 99;
-  width: 350px;
+  width: 300px;
   height: auto;
   background: #fff;
   box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
   .item {
     margin-bottom: 15px;
+    width: 100%;
     label {
       font-size: 16px;
       line-height: 28px;
     }
   }
-}
-
-.form input {
-  color: #000;
-  font-size: 16px;
-  height: 35px;
-  padding-left: 6px;
 }
 
 .cover {

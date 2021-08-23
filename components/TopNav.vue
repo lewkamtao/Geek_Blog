@@ -4,7 +4,7 @@
       <div class="left">
         <nuxt-link class="pc-logo" to="/">
           <div class="logo">
-            <img width="30" :src="geek_config.site_info.logo_url" alt srcset />
+            <img width="26" :src="geek_config.site_info.logo_url" alt srcset />
             <div class="title">{{ geek_config.site_info.title }}</div>
           </div>
         </nuxt-link>
@@ -37,18 +37,23 @@
             type="text"
           />
           <div class="res-box" :class="{ 'is-show-res-box': isShowResBox }">
-            <div class="title">{{ searchArticle.length > 0 ? "搜索结果推荐文章" : "暂无结果" }}</div>
+            <div class="title">
+              {{ searchArticle.length > 0 ? "搜索结果推荐文章" : "暂无结果" }}
+            </div>
             <ul>
               <nuxt-link
                 v-for="(item, index) in searchArticle"
                 :key="index"
                 :to="'/Article?id=' + item.id"
-              >{{ item.title }}</nuxt-link>
+                >{{ item.title }}</nuxt-link
+              >
             </ul>
           </div>
         </div>
         <div class="right-links">
-          <nuxt-link class="nickname" v-if="isLogin" to="/about">{{ user.nickname }}</nuxt-link>
+          <nuxt-link class="nickname" v-if="isLogin" to="/about">{{
+            user.nickname
+          }}</nuxt-link>
 
           <nuxt-link v-if="!isLogin" to="/login">
             <svg
@@ -81,8 +86,8 @@ export default {
   props: {
     geek_config: {
       type: Object,
-      default: {}
-    }
+      default: {},
+    },
   },
   data() {
     return {
@@ -91,17 +96,17 @@ export default {
       searchValue: "",
       timer: "",
       searchArticle: [],
-      isShowResBox: false
+      isShowResBox: false,
     };
   },
   watch: {
-    searchValue: function(val) {
+    searchValue: function (val) {
       var that = this;
       clearTimeout(this.timer);
-      this.timer = setTimeout(async function() {
+      this.timer = setTimeout(async function () {
         that.searchArticleFn();
       }, 250);
-    }
+    },
   },
   computed: {},
   methods: {
@@ -112,13 +117,13 @@ export default {
     },
     hidResBox() {
       var that = this;
-      setTimeout(function() {
+      setTimeout(function () {
         that.isShowResBox = false;
       }, 500);
     },
     showNav() {
       this.$emit("showNav");
-    }
+    },
   },
   created() {
     if (this.$cookies.get("token")) {
@@ -134,7 +139,7 @@ export default {
     }
     next();
   },
-  mounted() {}
+  mounted() {},
 };
 </script>
 <style lang="scss" scoped>
@@ -165,7 +170,7 @@ export default {
 
         .title {
           margin-left: 15px;
-          font-size: 26px;
+          font-size: 22px;
           font-weight: 700;
           margin-right: 10px;
         }
@@ -301,10 +306,7 @@ export default {
   margin: 0px;
 }
 
-
-
 @media screen and (max-width: 1300px) {
-
   .top-nav-wrapper {
     width: calc(100% - 14px);
   }
@@ -312,7 +314,6 @@ export default {
 
 // 移动端适配
 @media screen and (max-width: 1025px) {
-
   .top-nav-wrapper {
     background: none;
     -webkit-backdrop-filter: none;

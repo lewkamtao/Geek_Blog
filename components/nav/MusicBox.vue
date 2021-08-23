@@ -418,7 +418,6 @@ export default {
 .musicBox {
   width: 100%;
   margin: 14px 0px;
-
   -moz-user-select: none; /*火狐*/
   -webkit-user-select: none; /*webkit浏览器*/
   -ms-user-select: none; /*IE10*/
@@ -479,12 +478,13 @@ export default {
     height: 0px;
     transition: all 0.5s;
     overflow-y: scroll;
-    margin: 5px 0px;
     .item {
       position: relative;
-      padding: 10px;
-      border-radius: 8px;
+      padding: 7px 10px;
+      border-radius: 6px;
       cursor: pointer;
+      font-size: 12px;
+      margin-right: 10px;
       .icon-playing {
         color: #999;
         margin-left: 10px;
@@ -518,7 +518,7 @@ export default {
   }
   /* 设置滚动条的样式 */
   .songs-list::-webkit-scrollbar {
-    width: 4px;
+    width: 3px;
   }
   /* 滚动槽 */
   .songs-list::-webkit-scrollbar-track {
@@ -590,8 +590,8 @@ export default {
   .time-line {
     position: relative;
     width: 100%;
-    height: 4px;
-    border-radius: 4px;
+    height: 3px;
+    border-radius: 3px;
     margin-bottom: 10px;
     background: #bfbfc4;
     cursor: pointer;
@@ -613,8 +613,8 @@ export default {
       position: absolute;
       left: 0px;
       top: 0px;
-      border-radius: 4px;
-      height: 4px;
+      border-radius: 3px;
+      height: 3px;
       width: 0%;
       background: #000;
       .line-btn {
@@ -643,16 +643,16 @@ export default {
     position: relative;
     width: 100%;
     margin: 0px 8px 0px 4px;
-    height: 4px;
-    border-radius: 4px;
+    height: 3px;
+    border-radius: 3px;
     cursor: pointer;
     background: #bfbfc4;
     .line {
       position: absolute;
       left: 0px;
       top: 0px;
-      border-radius: 4px;
-      height: 4px;
+      border-radius: 3px;
+      height: 3px;
       width: 0px;
       background: #000;
       .line-btn {

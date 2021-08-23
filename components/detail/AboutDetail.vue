@@ -12,9 +12,9 @@
       </div>
       <div class="direction">{{ geek_config.master_info.description }}</div>
     </div>
+    <div v-show="article_tips">{{ article_tips }}</div>
     <main class="section">
       <div class="vditor-reset" id="preview"></div>
-      <div v-if="article_tips">{{ article_tips }}</div>
     </main>
   </div>
 </template>
@@ -56,7 +56,7 @@ export default {
   },
   data() {
     return {
-      article_tips: "",
+      article_tips: false,
     };
   },
   watch: {},
@@ -83,8 +83,7 @@ export default {
         this.renderMarkdown(this.article.content);
       });
     } else {
-      this.article_tips =
-        "请在后台添加页面，【别名】必须为：about，否则不生效。";
+      this.article_tips = "请在后台添加页面，别名必须为：about，否则不生效。";
     }
   },
   mounted() {},
