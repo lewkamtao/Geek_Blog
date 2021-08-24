@@ -4,12 +4,6 @@
       <!-- 个人信息 -->
       <user-info class="user-info" :geek_config="geek_config"></user-info>
 
-      <!-- 音乐盒 -->
-      <music-box
-        v-if="musicBoxSwitch && geek_config.menu_switch.music_box"
-        :geek_config="geek_config"
-      ></music-box>
-
       <!-- 菜单列表 -->
       <menu-list
         :geek_config="geek_config"
@@ -17,14 +11,20 @@
         @closeMusicBox="closeMusicBox"
       ></menu-list>
 
-      <!-- 设置 -->
-      <mode-set></mode-set>
+      <!-- 音乐盒 -->
+      <music-box
+        v-if="musicBoxSwitch && geek_config.menu_switch.music_box"
+        :geek_config="geek_config"
+      ></music-box>
 
       <!-- 归档 -->
       <article-sort
         class="article-sort"
         :article_sort="article_sort"
       ></article-sort>
+
+      <!-- 设置 -->
+      <mode-set></mode-set>
 
       <!-- 备案号 -->
       <permit-no :geek_config="geek_config"></permit-no>

@@ -1,6 +1,5 @@
 <template>
   <div style="margin-bottom: 14px" class="record-wrapper part">
-    <div class="main-title" style="margin-bottom: 12px">统计</div>
     <div v-if="record" class="record">
       <div class="box">
         <div class="count">{{ record.article.count }}</div>
@@ -49,36 +48,39 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.record {
-  display: flex;
-  justify-content: space-between;
-  .box {
-    width: calc(100% / 3 - 8px);
+.record-wrapper {
+  padding: 12px;
+  .record {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 20px 0px;
-    background: #eee;
-    border-radius: 12px;
-    color: #666;
-    .tag {
-      font-weight: 300;
+    justify-content: space-between;
+    .box {
+      width: calc(100% / 3 - 8px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 0px;
+      background: #eee;
+      border-radius: 7px;
+      color: #666;
+      .tag {
+        font-weight: 300;
+      }
+      .count {
+        font-family: STHeiti Light [STXihei];
+        font-size: 30px;
+        margin-bottom: 10px;
+      }
     }
-    .count {
-      font-family: STHeiti Light [STXihei];
-      font-size: 30px;
-      margin-bottom: 10px;
+    .box:nth-child(1) {
+      background: rgba($color: #336633, $alpha: 0.05);
     }
-  }
-  .box:nth-child(1) {
-    background: rgba($color: #336633, $alpha: 0.05);
-  }
-  .box:nth-child(2) {
-    background: rgba($color: #0099cc, $alpha: 0.05);
-  }
-  .box:nth-child(3) {
-    background: rgba($color: #cc6699, $alpha: 0.05);
+    .box:nth-child(2) {
+      background: rgba($color: #0099cc, $alpha: 0.05);
+    }
+    .box:nth-child(3) {
+      background: rgba($color: #cc6699, $alpha: 0.05);
+    }
   }
 }
 </style>

@@ -11,8 +11,6 @@
         <div @click="showNav()" class="logo mobile-logo">
           <img width="35" src="https://cos.tngeek.com/logo.png" alt srcset />
         </div>
-      </div>
-      <div class="right">
         <div class="search">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -50,6 +48,8 @@
             </ul>
           </div>
         </div>
+      </div>
+      <div class="right">
         <div class="right-links">
           <nuxt-link class="nickname" v-if="isLogin" to="/about">{{
             user.nickname
@@ -167,12 +167,14 @@ export default {
       .logo {
         display: flex;
         align-items: center;
+        margin-right: 20px;
 
         .title {
           margin-left: 15px;
           font-size: 22px;
           font-weight: 700;
           margin-right: 10px;
+          font-style: italic;
         }
         img {
           transition: all 0.25s;
@@ -224,7 +226,7 @@ export default {
       input {
         position: relative;
         z-index: 99;
-        width: 320px;
+        width: 250px;
         height: 35px;
         padding-left: 20px;
         font-size: 14px;
@@ -238,10 +240,11 @@ export default {
         left: 0px;
         top: 0px;
         border-radius: 7px;
-        width: 320px;
+        width: 272px;
         height: 0px;
         overflow-y: scroll;
         padding: 0px 10px 0px 10px;
+        box-sizing: border-box;
         line-height: 30px;
         color: #000;
         transition: all 0.25s;

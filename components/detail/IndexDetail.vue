@@ -192,11 +192,11 @@ export default {
 <style lang="scss" scoped>
 .index-wrapper-master {
   width: 100%;
-  padding: 10px;
+  padding: 14px;
 }
 
 .more-btn {
-  margin-top: 20px;
+  margin-top: 5px;
   width: 100%;
   height: 45px;
   line-height: 45px;
@@ -228,7 +228,7 @@ export default {
   flex-wrap: wrap;
   .article-box {
     width: 100%;
-    margin: 5px;
+    margin:5px 0px;
     overflow: hidden;
     cursor: pointer;
     background: rgba($color: #000000, $alpha: 0.02);

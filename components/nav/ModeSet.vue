@@ -97,7 +97,7 @@ export default {
     .field {
       display: flex;
       align-items: center;
-      margin-right: -15px;
+      margin-right: -10px;
     }
   }
   .mode-setting-box:hover {

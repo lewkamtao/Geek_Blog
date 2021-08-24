@@ -48,10 +48,13 @@ export default {
       type: Number,
       default: 0,
     },
+    isLogin: {
+      type: Boolean,
+      default: false,
+    },
   },
   data() {
     return {
-      isLogin: false,
       form: {
         email: "",
         nickname: "",
@@ -93,7 +96,6 @@ export default {
       var token = this.$cookies.get("token");
       // 博主
       if (token) {
-        this.isLogin = true;
         this.form["login-token"] = token;
       }
       if (this.pid) {

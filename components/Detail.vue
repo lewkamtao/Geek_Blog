@@ -70,7 +70,7 @@
         @reloadComments="reloadComments"
         v-if="options.comments && options.type != 'msg_wall'"
         :comments="options.comments"
-        :articleId="options.article ? options.article.id : 99"
+        :articleId="article ? article.id : 0"
         :type="options.type"
       ></comment>
 

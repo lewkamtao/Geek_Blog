@@ -29,28 +29,25 @@
             <p>{{ comment.content }}</p>
           </div>
           <div class="actions">
-            <label
-              class="reply-btn"
-              @click="reply(comment.id)"
-              for="modal-reply"
-            >
-              <svg
-                class="Zi Zi--Reply"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-                width="14"
-                height="14"
-                style="margin-right: 5px"
+            <div class="btn-box">
+              <div
+                style="margin-right: 10px; color: #999; margin-left: 1px"
+                @click="reply(comment.id)"
               >
-                <path
-                  d="M22.959 17.22c-1.686-3.552-5.128-8.062-11.636-8.65-.539-.053-1.376-.436-1.376-1.561V4.678c0-.521-.635-.915-1.116-.521L1.469 10.67a1.506 1.506 0 0 0-.1 2.08s6.99 6.818 7.443 7.114c.453.295 1.136.124 1.135-.501V17a1.525 1.525 0 0 1 1.532-1.466c1.186-.139 7.597-.077 10.33 2.396 0 0 .396.257.536.257.892 0 .614-.967.614-.967z"
-                  fill-rule="evenodd"
-                /></svg
-              >回复
-            </label>
+                回复
+              </div>
+              <div
+                v-if="isLogin"
+                style="color: #a7342d"
+                @click="delConfirm(comment.id)"
+              >
+                删除
+              </div>
+            </div>
           </div>
         </div>
         <comment-form
+          :isLogin="isLogin"
           :type="type"
           :articleId="articleId"
           :pid="comment.id"
@@ -82,28 +79,25 @@
               </div>
               <div class="text">{{ son.content }}</div>
               <div class="actions">
-                <label
-                  class="reply-btn"
-                  @click="reply(son.id)"
-                  for="modal-reply"
-                >
-                  <svg
-                    class="Zi Zi--Reply"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                    width="14"
-                    height="14"
-                    style="margin-right: 5px"
+                <div class="btn-box">
+                  <div
+                    style="margin-right: 10px; color: #999; margin-left: 1px"
+                    @click="reply(son.id)"
                   >
-                    <path
-                      d="M22.959 17.22c-1.686-3.552-5.128-8.062-11.636-8.65-.539-.053-1.376-.436-1.376-1.561V4.678c0-.521-.635-.915-1.116-.521L1.469 10.67a1.506 1.506 0 0 0-.1 2.08s6.99 6.818 7.443 7.114c.453.295 1.136.124 1.135-.501V17a1.525 1.525 0 0 1 1.532-1.466c1.186-.139 7.597-.077 10.33 2.396 0 0 .396.257.536.257.892 0 .614-.967.614-.967z"
-                      fill-rule="evenodd"
-                    /></svg
-                  >回复
-                </label>
+                    回复
+                  </div>
+                  <div
+                    v-if="isLogin"
+                    style="color: #a7342d"
+                    @click="delConfirm(son.id)"
+                  >
+                    删除
+                  </div>
+                </div>
               </div>
             </div>
             <comment-form
+              :isLogin="isLogin"
               :type="type"
               :articleId="articleId"
               :pid="son.id"
@@ -162,7 +156,9 @@ export default {
     },
   },
   data() {
-    return {};
+    return {
+      isLogin: false,
+    };
   },
   watch: {},
   computed: {
@@ -192,6 +188,44 @@ export default {
     reloadComments() {
       this.$emit("reloadComments");
     },
+    delConfirm(id) {
+      this.$confirm("此操作将永久删除该信息, 是否继续?", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning",
+      })
+        .then(() => {
+          this.del(id);
+        })
+        .catch(() => {
+          this.$message({
+            type: "info",
+            message: "已取消删除",
+          });
+        });
+    },
+    del(id) {
+      if (this.$cookies.get("token")) {
+        var data = {
+          "login-token": this.$cookies.get("token"),
+          mode: "remove",
+          id: JSON.stringify(id),
+        };
+
+        this.$axios.post("/comments", data).then((res) => {
+          if (res.code == 200) {
+            this.$emit("reloadComments");
+            this.$notify({
+              type: "success",
+              title: "恭喜！",
+              message: "成功删除了一条评论",
+              duration: 5000,
+              offset: 65,
+            });
+          }
+        });
+      }
+    },
     toDetail() {
       if (this.type == "lately") {
         if (this.comment.article_id) {
@@ -219,7 +253,13 @@ export default {
     },
   },
   created() {},
-  mounted() {},
+  mounted() {
+    var token = this.$cookies.get("token");
+    // 博主
+    if (token) {
+      this.isLogin = true;
+    }
+  },
 };
 </script>
 <style lang="scss" scoped>
@@ -231,8 +271,7 @@ export default {
   .comments {
     margin-top: 0px;
   }
-  .reply-btn {
-    color: #999;
+  .btn-box {
     padding: 2px 4px;
     cursor: pointer;
     font-weight: 400;
@@ -242,32 +281,11 @@ export default {
     display: flex;
     align-items: center;
   }
-  .master {
-    background: #a7342d;
-    padding: 1px 2px;
-    margin-left: 5px;
-    opacity: 0.6;
-    font-weight: normal;
-    cursor: default;
-  }
 }
 .lately {
-  .reply-btn {
+  .btn-box {
     display: none;
   }
   cursor: pointer;
-}
-@media screen and (max-width: 1025px) {
-  .comment-wrapper {
-    .comment-card {
-      .reply-btn {
-        opacity: 0.8;
-      }
-      .master {
-        font-size: 80%;
-        padding: 1px 3px;
-      }
-    }
-  }
 }
 </style>

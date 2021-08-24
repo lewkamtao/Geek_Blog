@@ -158,9 +158,9 @@ export default {
   min-width: 1180px;
   display: flex;
   justify-content: space-between;
-  box-sizing: border-box;
   margin: 0px auto;
-  box-sizing: border-box;
+  box-sizing: content-box;
+  padding: 0px 7px 10px 7px;
   .top-nav-wrapper-master {
     position: fixed;
     max-width: 100%;
