@@ -1,5 +1,5 @@
 <template>
-  <div style="margin-bottom: 14px" class="info part">
+  <div style="margin-bottom: 8px" class="info part">
     <div class="main-title" style="margin-bottom: 12px">站点信息</div>
     <div>
       <ul>

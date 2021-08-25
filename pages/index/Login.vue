@@ -9,9 +9,6 @@
             <div class="arm"></div>
             <div class="arm arm-r"></div>
           </div>
-          <div v-show="loginErrorTips" class="loginErrorTips">
-            {{ loginErrorTips }}
-          </div>
         </div>
         <div style="margin-bottom: 20px" class="ui input item">
           <input
@@ -57,7 +54,6 @@ export default {
         password: "",
       },
       isActivePassWord: false,
-      loginErrorTips: "",
       borderStyle: "",
       loading: false,
     };
@@ -68,15 +64,13 @@ export default {
     login() {
       var data = this.form;
       data.mode = "login";
-      this.loading = false;
+      this.loading = true;
       this.$axios.post("/users", data).then((res) => {
-        this.loading = true;
+        this.loading = false;
         if (res.code == "200") {
           this.$cookies.set("token", res.data["login-token"]);
           this.$cookies.set("user", res.data.user);
           location.reload();
-        } else {
-          this.loginErrorTips = res.msg;
         }
       });
     },
@@ -86,11 +80,7 @@ export default {
       this.$router.push("/"); //否则跳转至首页
     }
   },
-  mounted() {
-    if ($nuxt.$route.query.token_status == 400) {
-      this.loginErrorTips = "登录过期，请重新登录！";
-    }
-  },
+  mounted() {},
 };
 </script>
 <style  scoped lang="less">
@@ -154,19 +144,6 @@ export default {
   padding: 5px 15px;
 }
 
-.loginErrorTips {
-  width: 260px;
-  position: absolute;
-  top: 20px;
-  left: calc(100% - 20px);
-  background: #e4adad;
-  border-radius: 12px 12px 12px 0px;
-  transform: translateY(-50%);
-  padding: 10px 15px;
-  font-size: 14px;
-  color: #fff;
-}
-
 // 移动端适配
 @media screen and (max-width: 1025px) {
   .login-wrapper {
@@ -176,12 +153,6 @@ export default {
     padding: 45px;
     .form {
       padding: 30px;
-    }
-    .loginErrorTips {
-      left: 50%;
-      transform: translateX(-50%) translateY(420px);
-      text-align: center;
-      border-radius: 7px;
     }
   }
 }

@@ -1,7 +1,7 @@
 <template>
-  <div style="margin-bottom: 14px" class="concact-wrapper part">
+  <div style="margin-bottom: 8px" class="concact-wrapper part">
     <div class="main-title" style="margin-bottom: 18px">社交媒体</div>
-    <div v-if="concact_array">
+    <div v-if="concact_array.length != 0">
       <a
         :href="checkStr(item.value, 'URL') ? item.value : '#'"
         v-for="(item, index) in concact_array"
@@ -18,6 +18,7 @@
         <div class="concact-value">{{ item.nickname || item.value }}</div>
       </a>
     </div>
+    <div v-if="concact_array.length == 0">未设置</div>
   </div>
 </template>
 <script>

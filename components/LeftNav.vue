@@ -77,7 +77,7 @@ export default {
 <style lang="scss" scoped>
 .left-nav {
   display: block;
-  padding: 50px 7px 7px 7px;
+  padding: 45px 4px 4px 4px;
   box-sizing: border-box;
   .user-info {
     margin-top: 15px;
@@ -89,7 +89,7 @@ export default {
 // 移动端适配
 @media screen and (max-width: 1025px) {
   .left-nav {
-    padding: 56px 14px 14px 14px;
+    padding: 56px 5px 5px 5px;
   }
 }
 </style>

@@ -32,12 +32,7 @@ export default {
       description: "98年前端工程师，做一个很酷的人。",
       email: "",
       phone: "",
-      concact_array: [
-        {
-          key: "",
-          value: ""
-        }
-      ],
+      concact_array: [],
       concact_switch: true,
       head_img: "https://q2.qlogo.cn/g?b=qq&nk=1057072668&s=100",
       about_detail_html: ``

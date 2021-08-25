@@ -189,8 +189,8 @@ export default {
   .index-main {
     width: calc(100% - 260px);
     margin-left: 260px;
-    margin-top: 58px;
-    padding: 7px;
+    margin-top: 56px;
+    padding: 4px;
     height: auto;
   }
 

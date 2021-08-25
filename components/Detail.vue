@@ -20,7 +20,6 @@
       <index-detail
         v-if="options.type == 'index'"
         :articleList="options.articleList"
-        class="part"
       ></index-detail>
 
       <!-- 留言板 -->
@@ -219,7 +218,7 @@ export default {
       articleMainWidth =
         that.$refs.articleMain.getBoundingClientRect().left +
         that.$refs.articleMain.clientWidth +
-        7;
+        4;
       that.setAsideLeft = "left:" + articleMainWidth + "px;position: fixed;";
     });
     window.onresize = function () {
@@ -227,7 +226,7 @@ export default {
         articleMainWidth =
           that.$refs.articleMain.offsetLeft +
           that.$refs.articleMain.clientWidth +
-          7;
+          4;
         that.setAsideLeft = "left:" + articleMainWidth + "px;position: fixed;";
       });
     };
@@ -249,13 +248,12 @@ export default {
 }
 .aside {
   top: 0px;
-  padding: 65px 7px 110px 7px;
+  padding: 60px 4px 110px 4px;
   box-sizing: border-box;
   max-height: 100%;
   height: 100%;
   overflow-y: scroll;
   width: 350px;
-
   margin-bottom: 50px;
   z-index: 99;
   scrollbar-color: transparent transparent;
@@ -263,7 +261,7 @@ export default {
   -ms-scrollbar-track-color: transparent;
 }
 .aside > div {
-  margin-bottom: 14px;
+  margin-bottom: 8px;
 }
 .aside::-webkit-scrollbar {
   width: 0px;
@@ -289,9 +287,9 @@ export default {
   }
   .isShowAside {
     .aside {
-      left: 7px !important;
+      left: 4px !important;
       opacity: 1;
-      padding: 75px 7px 55px 7px;
+      padding: 75px 4px 55px 4px;
     }
     .main {
       opacity: 0;

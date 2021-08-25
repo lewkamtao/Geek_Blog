@@ -26,7 +26,7 @@
             >
           </div>
           <div class="text">
-            <p>{{ comment.content }}</p>
+            <p v-html="comment.content"></p>
           </div>
           <div class="actions">
             <div class="btn-box">
@@ -77,7 +77,7 @@
                   {{ getBeautifyTime(son.create_time) }}</span
                 >
               </div>
-              <div class="text">{{ son.content }}</div>
+              <div  v-html="son.content" class="text"></div>
               <div class="actions">
                 <div class="btn-box">
                   <div

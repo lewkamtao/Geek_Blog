@@ -60,7 +60,7 @@ export default {
     }
   }
   .nickname {
-    margin-top: 14px;margin-bottom:5px;
+    margin-top: 8px;margin-bottom:5px;
     color: #000;
     font-size: 18px;
     font-weight: bold;

@@ -417,7 +417,7 @@ export default {
 <style lang="scss" scoped>
 .musicBox {
   width: 100%;
-  margin: 14px 0px;
+  margin: 8px 0px;
   -moz-user-select: none; /*火狐*/
   -webkit-user-select: none; /*webkit浏览器*/
   -ms-user-select: none; /*IE10*/

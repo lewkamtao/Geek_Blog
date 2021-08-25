@@ -26,7 +26,7 @@
           <div class="nickname">
             {{ item.nickname || "" }}
           </div>
-          <div class="content">{{ item.content }}</div>
+          <div v-html="item.content" class="content"></div>
           <div class="create_time">
             {{ getBeautifyTime(item.create_time) }}
             <span
@@ -132,6 +132,11 @@ export default {
   mounted() {},
 };
 </script>
+<style>
+.timeline-wrapper .timeline-box .right .content img {
+  max-width: 100%;
+}
+</style>
 <style lang="scss" scoped>
 .timeline-wrapper {
   padding: 0px;

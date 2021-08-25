@@ -246,7 +246,7 @@ export default {
 <style lang="scss" scoped>
 .menu {
   width: 100%;
-  margin-top: 14px;
+  margin-top: 8px;
   padding: 8px;
 }
 
@@ -272,7 +272,7 @@ export default {
       background-image: none;
       text-align: left;
       height: 35px;
-      color: #999;
+      color: #666;
       cursor: pointer;
       .icon {
         position: absolute;

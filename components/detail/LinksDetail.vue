@@ -9,8 +9,7 @@
         style="background-color: rgba(0, 0, 0, 0.65)"
       ></div>
       <div class="card-body">
-        <h1 style="margin-bottom: 30px">朋友，你好!</h1>
-        <p>但也不全是，有些是我不要脸单方面连的，比如：尤雨溪。</p>
+        <h1>朋友，你好!</h1>
       </div>
     </header>
     <div class="ui two column stackable grid">
@@ -26,7 +25,9 @@
               <img :src="item.head_img" />
             </div>
             <div class="content">
-              <a :href="item.url" target="_blank" class="header">{{ item.name }}</a>
+              <a :href="item.url" target="_blank" class="header">{{
+                item.name
+              }}</a>
               <div class="meta">
                 <span class="date">
                   {{ getBeautifyTime(item.create_time) }}</span
