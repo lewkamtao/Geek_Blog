@@ -1,6 +1,21 @@
 <template>
   <div>
     <div class="mode-setting part">
+      <div @click="mode.isBgMusic = !mode.isBgMusic" class="mode-setting-box">
+        <span>背景音乐</span>
+        <div class="inline field">
+          <div class="ui toggle checkbox">
+            <input
+              type="checkbox"
+              v-model="mode.isBgMusic"
+              tabindex="0"
+              id="mode2"
+              class="hidden"
+            />
+            <label></label>
+          </div>
+        </div>
+      </div>
       <div @click="mode.isDark = !mode.isDark" class="mode-setting-box">
         <span> {{ mode.isDark ? "暗黑模式" : "白天模式" }}</span>
         <div class="inline field">
@@ -46,10 +61,19 @@ export default {
       mode: {
         isDark: false,
         isSharp: false,
+        isBgMusic: true,
       },
     };
   },
   watch: {
+    "mode.isBgMusic": function (status) {
+      this.$cookies.set("mode", this.mode);
+      if (status) {
+        this.$emit("openMusicBox");
+      } else {
+        this.$emit("closeMusicBox");
+      }
+    },
     "mode.isDark": function (status) {
       this.$cookies.set("mode", this.mode);
       util.darkHandle(status);

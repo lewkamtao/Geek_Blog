@@ -24,7 +24,10 @@
       ></article-sort>
 
       <!-- 设置 -->
-      <mode-set></mode-set>
+      <mode-set
+        @openMusicBox="openMusicBox"
+        @closeMusicBox="closeMusicBox"
+      ></mode-set>
 
       <!-- 备案号 -->
       <permit-no :geek_config="geek_config"></permit-no>

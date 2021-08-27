@@ -31,7 +31,6 @@ export default {
     "@/plugins/route",
     "@/plugins/v-img",
     "@/plugins/element-ui",
-    { src: "~/plugins/vue-masonry", ssr: false }
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

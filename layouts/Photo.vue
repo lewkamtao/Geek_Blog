@@ -70,7 +70,7 @@ export default {
         this.imgData.push(this.imgList.slice(0, rnum));
         this.imgList = this.imgList.splice(rnum);
         if (this.imgList.length != 0) {
-          this.formatImgData();
+          this.formatImgData(); 
         }
       } else if (this.imgList.length != 0) {
         this.imgData.push(this.imgList);

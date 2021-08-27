@@ -15,7 +15,7 @@ export default {
   components: {},
   head() {
     return {
-      title: "友情链接 - " + this.geek_config.site_info.title,
+      title: "朋友 - " + this.geek_config.site_info.title,
     };
   },
   async asyncData({ $axios, route }) {

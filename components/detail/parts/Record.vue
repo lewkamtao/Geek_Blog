@@ -15,7 +15,7 @@
         <div class="count">
           {{ record.links.count }}
         </div>
-        <div class="tag">友情链接</div>
+        <div class="tag">朋友</div>
       </div>
     </div>
   </div>

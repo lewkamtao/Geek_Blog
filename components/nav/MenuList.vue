@@ -34,7 +34,6 @@
         <div
           :to="item.path"
           class="menu-child"
-          @dblclick.stop="dbToFn(index, item.type)"
           @click.stop="toFn(index, item.type)"
           v-if="item.type"
         >
@@ -93,7 +92,7 @@ export default {
           key: "about",
 
           path: "/About",
-          title: "关于我",
+          title: "关于",
           iconBg: "#fff",
           iconColor: "#999",
           icon: `<svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>`,
@@ -118,19 +117,16 @@ export default {
         },
         {
           key: "music_box",
-
-          path: "#",
-          type: "musicBox",
-          title: "音乐 / 双击关闭",
+          path: "/MusicBox",
+          title: "音乐",
           iconBg: "#fff",
           iconColor: "#999",
           icon: `<svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg>`,
         },
         {
           key: "links",
-
           path: "/Links",
-          title: "友情链接",
+          title: "朋友",
           iconBg: "#fff",
           iconColor: "#999",
           icon: `<svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>`,
@@ -161,7 +157,7 @@ export default {
 
           path: "/Setting",
           isLogin: true,
-          title: "通用设置",
+          title: "设置",
           iconBg: "#fff",
           iconColor: "#999",
           icon: `<svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>`,
@@ -172,7 +168,7 @@ export default {
           path: "#",
           type: "loginOut",
           isLogin: true,
-          title: "退出登陆",
+          title: "注销",
           iconBg: "#fff",
           iconColor: "#999",
           icon: `<svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><circle cx="12" cy="12" r="10"></circle><polyline points="12 8 8 12 12 16"></polyline><line x1="16" y1="12" x2="8" y2="12"></line></svg>`,
@@ -192,24 +188,11 @@ export default {
         case "back":
           window.open(this.geek_config.site_info.adm_site_url, "_blank");
           break;
-        case "musicBox":
-          this.menu[index].title = "音乐 / 双击关闭";
-          this.$emit("openMusicBox");
-          break;
         default:
           break;
       }
     },
-    dbToFn(index, type) {
-      switch (type) {
-        case "musicBox":
-          this.menu[index].title = "音乐";
-          this.$emit("closeMusicBox");
-          break;
-        default:
-          break;
-      }
-    },
+
     loginOut() {
       this.$cookies.remove("token");
       this.$router.push("/");

@@ -3,7 +3,8 @@
     <div class="main-title">归档</div>
     <div class="article-title-list">
       <ul>
-        <li
+        <a
+          href="#"
           v-for="(item, index) in article_sort.data"
           :key="index"
           @click="getArticleBySort(item.id)"
@@ -12,7 +13,7 @@
           <span style="margin-left: 10px" class="ui mini label">{{
             item.expand.count
           }}</span>
-        </li>
+        </a>
       </ul>
     </div>
   </div>
@@ -60,13 +61,13 @@ export default {
   width: 100%;
   margin-top: 8px;
 }
-.article-title-list {
+.article-title-divst {
   line-height: 30px;
 }
 ul {
   display: flex;
   flex-direction: column;
-  li {
+  a {
     position: relative;
     width: 100%;
     background-image: none;
@@ -86,7 +87,7 @@ ul {
       transform: translateY(-50%);
     }
   }
-  li::before {
+  a::before {
     position: absolute;
     top: 0px;
     left: 0px;
@@ -95,31 +96,18 @@ ul {
     height: 1px;
     background: rgba($color: #000000, $alpha: 0.05);
   }
-  li:first-child::before {
+  a:first-child::before {
     display: none;
   }
-  li:hover {
+  a:hover {
     color: #000;
     background: rgba($color: #000, $alpha: 0.05);
   }
-  li:hover::before {
+  a:hover::before {
     display: none;
   }
-  li:hover + li::before {
+  a:hover + a::before {
     display: none;
   }
-}
-
-.more-btn {
-  text-align: center;
-  padding: 10px;
-  cursor: pointer;
-  color: #000;
-  opacity: 0.5;
-  transition: opacity 0.25s;
-}
-
-.more-btn:hover {
-  opacity: 1;
 }
 </style>

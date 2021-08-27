@@ -1,9 +1,9 @@
-// 这是默认配置 用于第一次部署 开启通用设置之后，这个文件就不再生效了
+// 这是默认配置 用于第一次部署 开启设置之后，这个文件就不再生效了
 
 export default {
   geek_config: {
     site_info: {
-      title: "Geek(请用inis账号登录后前往通用设置配置初始信息)", // 站点标题
+      title: "Geek(请用inis账号登录后前往设置配置初始信息)", // 站点标题
       keywords: "Geek,博客,个人博客", // 关键词
       description: "一个前端写的一个博客", // 描述
       permit_no: `<div class="permit-no-text"  style="">粤ICP备18056223号</div>
@@ -18,7 +18,7 @@ export default {
       adm_site_url: "https://api.kamtao.com/", // 运营地址
 
       timeline_bg: "https://img.keai.cool/2021/08/09/a11d5c69b9894.webp", // 朋友圈背景
-      about_bg: "http://www.dmoe.cc/random.php", // 关于我背景
+      about_bg: "http://www.dmoe.cc/random.php", // 关于背景
       links_bg: "http://www.dmoe.cc/random.php", // 朋友圈背景
       song_list_id: "3",
       footer_html: `<div style=" line-height: 24px; color:#999">
