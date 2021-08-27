@@ -1,6 +1,4 @@
-# Geek 博客
-
-
+# Geek Blog
 
 > 一个前端，写了一个博客，很简单，不强大。
 
@@ -21,8 +19,6 @@ $ npm run start
 $ npm run generate
 ```
 
-
-
 ### 项目介绍
 
 项目中整合 vue + nuxt + axios + vuex + vue-router (nuxt 自带 vuex 和 vue-router)，一个基于 Nuxt 的服务器端渲染的博客
@@ -39,15 +35,11 @@ $ npm run generate
 
 ## 简单讲一下宝塔的安装教程（大佬请忽略）
 
-
-
 ### 前期准备
 
-+ 安装好宝塔面板
-+ 一个可以连接你的服务器的shh工具
-+ 一颗坚持不懈的心（重要）
-
-
+- 安装好宝塔面板
+- 一个可以连接你的服务器的 shh 工具
+- 一颗坚持不懈的心（重要）
 
 ### 第一步
 
@@ -70,13 +62,11 @@ $ npm run generate
 
 <img src="https://tngeek-mall-1255310647.cos.ap-guangzhou.myqcloud.com/public/geek_blog_readme/%E9%A1%B9%E7%9B%AE%E6%94%BE%E5%9C%A8%E7%9B%AE%E5%BD%95%E9%87%8C%E9%9D%A2.png!custom" style="zoom:50%;" />
 
-然后打开，项目文件nuxt.config.js，把api地址修改为你的后台接口的域名，见图示。
+然后打开，项目文件 nuxt.config.js，把 api 地址修改为你的后台接口的域名，见图示。
 
 <img src="https://tngeek-mall-1255310647.cos.ap-guangzhou.myqcloud.com/public/geek_blog_readme/%E4%BF%AE%E6%94%B9%E6%96%87%E4%BB%B6.png!custom" style="zoom: 50%;" />
 
 <img src="https://tngeek-mall-1255310647.cos.ap-guangzhou.myqcloud.com/public/geek_blog_readme/%E4%BF%AE%E6%94%B9%E6%8E%A5%E5%8F%A3%E5%9C%B0%E5%9D%80.png!custom" style="zoom:50%;" />
-
-
 
 ### 第四步
 
@@ -104,17 +94,13 @@ $ pm2 list
 
 <img src="https://tngeek-mall-1255310647.cos.ap-guangzhou.myqcloud.com/public/geek_blog_readme/%E9%83%A8%E7%BD%B2pm2%E5%AE%8C%E6%88%90%E7%9A%84%E6%A0%B7%E5%AD%90.png!custom" style="zoom:50%;" />
 
-
-
 ### 第五步
 
 这个时候如果没有啥问题的话就成功了，之后我们去设置反向代理，找到刚刚创建的网站，点击设置，找到反向代理，具体设置如图
 
 <img src="https://tngeek-mall-1255310647.cos.ap-guangzhou.myqcloud.com/public/geek_blog_readme/%E7%AB%AF%E5%8F%A3%E4%BF%9D%E6%8C%81%E4%B8%80%E8%87%B4.png!custom" style="zoom:50%;" />
 
-
-
-> 特别的：如果你当前的端口和你已经设置的冲突，那可以修改端口（在项目文件根目录的 ecosystem.config.js），请注意修改后要重启PM2。(如果端口没有冲突，请忽略）
+> 特别的：如果你当前的端口和你已经设置的冲突，那可以修改端口（在项目文件根目录的 ecosystem.config.js），请注意修改后要重启 PM2。(如果端口没有冲突，请忽略）
 
 ```bash
 # 重启PM2
@@ -123,28 +109,16 @@ $ pm2 restart all
 
 <img src="https://tngeek-mall-1255310647.cos.ap-guangzhou.myqcloud.com/public/geek_blog_readme/%E6%9B%B4%E6%94%B9%E7%AB%AF%E5%8F%A3.png!custom" style="zoom:50%;" />
 
-
-
-
-
 ### 第六步
 
-+ 这个时候访问一下，你的网址试试。到了这里基本就已经成功了。
+- 这个时候访问一下，你的网址试试。到了这里基本就已经成功了。
 
 > 如果仍然无法访问，有可能是端口的问题。
 > 阿里云、腾讯云在安全组那里开放一下，宝塔的安全组也要开放。
 
-
-
-
-
 ### 最后一步（重要）
 
-- 点一个star
-
-
-
-
+- 点一个 star
 
 ### 联系
 
@@ -153,7 +127,6 @@ $ pm2 restart all
 mail：div@kamtao.com
 
 QQ：1057072668
-
 
 ### 预览图
 
