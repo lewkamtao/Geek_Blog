@@ -8,7 +8,7 @@
         class="part"
       ></article-detail>
 
-      <!-- 友情链接 -->
+      <!-- 朋友 -->
       <links-detail
         :geek_config="geek_config"
         v-if="options.links && options.type == 'links'"
@@ -44,6 +44,13 @@
         :article="about"
         class="part"
       ></about-detail>
+
+      <!-- 设置 -->
+      <setting-detail
+        v-if="options.type == 'setting'"
+        :geek_config="geek_config"
+        class="part"
+      ></setting-detail>
     </div>
     <div ref="aside" :style="setAsideLeft" class="aside">
       <!-- 标签云 -->
@@ -59,10 +66,10 @@
       <record v-if="options.type == 'about'"> </record>
 
       <!-- 社交媒体 -->
-      <concact
+      <contact
         v-if="options.type == 'about' && geek_config.master_info.concact_switch"
         :geek_config="geek_config"
-      ></concact>
+      ></contact>
 
       <!-- 评论板块 -->
       <comment
@@ -96,6 +103,9 @@
 
       <!-- 日记 -->
       <diary v-if="['index', 'timeline'].indexOf(options.type) >= 0"></diary>
+
+      <!-- 日记 -->
+      <setting-menu v-if="['setting'].indexOf(options.type) >= 0"></setting-menu>
     </div>
   </div>
 </template>
@@ -107,17 +117,19 @@ import IndexDetail from "@/components/detail/IndexDetail";
 import MsgWallDetail from "@/components/detail/MsgWallDetail";
 import TimelineDetail from "@/components/detail/TimelineDetail";
 import AboutDetail from "@/components/detail/AboutDetail";
+import SettingDetail from "@/components/detail/SettingDetail";
 
 import Catalogue from "@/components/detail/parts/Catalogue";
 import Comment from "@/components/detail/parts/Comment";
 import TagCloud from "@/components/detail/parts/TagCloud";
 import Info from "@/components/detail/parts/Info";
 import Lately from "@/components/detail/parts/Lately";
-import Concact from "@/components/detail/parts/Concact";
+import Contact from "@/components/detail/parts/Contact";
 import Record from "@/components/detail/parts/Record";
 import CommentRank from "@/components/detail/parts/CommentRank";
 import PostTimeLine from "@/components/detail/parts/PostTimeLine";
 import Diary from "@/components/detail/parts/Diary";
+import SettingMenu from "@/components/detail/parts/SettingMenu";
 
 export default {
   components: {
@@ -127,6 +139,7 @@ export default {
     MsgWallDetail,
     TimelineDetail,
     AboutDetail,
+    SettingDetail,
 
     Diary,
     Catalogue,
@@ -134,10 +147,11 @@ export default {
     TagCloud,
     Lately,
     Info,
-    Concact,
+    Contact,
     Record,
     PostTimeLine,
     CommentRank,
+    SettingMenu,
   },
   props: {
     geek_config: {
