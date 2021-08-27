@@ -318,7 +318,7 @@ export default {
   }
   .nav-list-wrapper:hover {
     background: rgba($color: #000000, $alpha: 0.05);
-    border-radius: 8px;
+    border-radius: 6px;
     .title {
       color: #000;
     }

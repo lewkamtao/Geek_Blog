@@ -85,11 +85,11 @@ export default {
   flex-direction: column;
   .mode-setting-box {
     position: relative;
-    padding: 8px 8px 8px 15px;
+    padding: 7px 7px 7px 15px;
     width: 100%;
     margin-bottom: 0px;
     display: flex;
-    border-radius: 8px;
+    border-radius: 7px;
     color: #999;
     align-items: center;
     justify-content: space-between;

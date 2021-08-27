@@ -70,9 +70,9 @@ ul {
     position: relative;
     width: 100%;
     background-image: none;
-    border-radius: 7px;
-    line-height: 28px;
-    min-height: 36px;
+    border-radius: 6px;
+    line-height: 25px;
+    min-height: 32px;
     padding: 4px 15px;
     color: #999;
     display: inline-block;
