@@ -154,7 +154,7 @@ export default {
 .article-box-body {
   position: relative;
   width: calc(100% - 320px);
-  padding: 20px;
+  padding: 15px;
 }
 .article-box-title {
   font-size: 18px;
@@ -178,7 +178,7 @@ export default {
 .article-box-footer {
   position: absolute;
   bottom: 20px;
-  left: 20px;
+  left: 15px;
   background: none;
   border: none;
   padding: 0px;
@@ -206,7 +206,8 @@ export default {
     padding: 15px 25px 25px 25px;
   }
   .masonry .article-box {
-    margin: 15px 0px;
+    margin: 15px 0px 0px 0px 0px;
+    height: auto;
     a {
       flex-direction: column;
     }

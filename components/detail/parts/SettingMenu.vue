@@ -24,16 +24,20 @@ export default {
           name: "菜单",
         },
         {
-          id: "setting_contact",
-          name: "联系方式板块",
+          id: "setting_siteinfo",
+          name: "站点信息",
         },
         {
           id: "setting_master",
           name: "个人信息",
         },
         {
-          id: "setting_siteinfo",
-          name: "站点信息",
+          id: "image_set",
+          name: "图片设置",
+        },
+        {
+          id: "setting_contact",
+          name: "联系方式板块",
         },
       ],
     };

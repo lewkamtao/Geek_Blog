@@ -189,7 +189,7 @@ export default {
   .index-main {
     width: calc(100% - 260px);
     margin-left: 260px;
-    margin-top: 56px;
+    margin-top: 57px;
     padding: 4px;
     height: auto;
   }

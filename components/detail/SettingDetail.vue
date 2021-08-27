@@ -4,6 +4,7 @@
     <menu-set></menu-set>
     <site-info></site-info>
     <master> </master>
+    <image-set></image-set>
     <contact></contact>
   </div>
 </template>
@@ -14,9 +15,10 @@ import Contact from "../../components/setting/Contact.vue";
 import MenuSet from "../../components/setting/MenuSet.vue";
 import Master from "../../components/setting/Master.vue";
 import SiteInfo from "../../components/setting/SiteInfo.vue";
+import ImageSet from "../../components/setting/ImageSet.vue";
 
 export default {
-  components: { Contact, MenuSet, Master, SiteInfo },
+  components: { Contact, MenuSet, Master, SiteInfo, ImageSet },
   props: {},
   data() {
     return {
