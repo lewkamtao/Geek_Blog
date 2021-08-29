@@ -49,7 +49,6 @@
       <setting-detail
         v-if="options.type == 'setting'"
         :geek_config="geek_config"
-        class="part"
       ></setting-detail>
     </div>
     <div ref="aside" :style="setAsideLeft" class="aside">
@@ -86,9 +85,6 @@
         :newComments="options.newComments"
       ></lately>
 
-      <!-- 博客信息 -->
-      <info v-if="options.type == 'index'"></info>
-
       <!-- 评论排行榜 -->
       <comment-rank
         v-if="options.type == 'msg_wall'"
@@ -104,8 +100,13 @@
       <!-- 日记 -->
       <diary v-if="['index', 'timeline'].indexOf(options.type) >= 0"></diary>
 
-      <!-- 日记 -->
-      <setting-menu v-if="['setting'].indexOf(options.type) >= 0"></setting-menu>
+      <!-- 博客信息 -->
+      <info v-if="options.type == 'index'"></info>
+
+      <!-- 设置菜单 -->
+      <setting-menu
+        v-if="['setting'].indexOf(options.type) >= 0"
+      ></setting-menu>
     </div>
   </div>
 </template>
@@ -262,7 +263,7 @@ export default {
 }
 .aside {
   top: 0px;
-  padding: 60px 4px 110px 4px;
+  padding: 59px 4px 110px 4px;
   box-sizing: border-box;
   max-height: 100%;
   height: 100%;

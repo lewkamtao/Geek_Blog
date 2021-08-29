@@ -50,13 +50,13 @@ export default {
     }
   }
   .avatar {
-    width: 60px;
-    height: 60px;
+    width: 70px;
+    height: 70px;
     overflow: hidden;
     img {
       width: 100%;
       height: 100%;
-      border-radius: 5px;
+      border-radius: 8px;
     }
   }
   .nickname {

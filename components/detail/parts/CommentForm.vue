@@ -1,29 +1,40 @@
 <template>
   <form class="ui reply form">
     <div class="field">
-      <input
-        v-if="!isLogin"
-        v-model="form.nickname"
-        style="margin-bottom: 10px"
-        type="text"
-        placeholder="昵称"
-      />
-      <input
-        v-if="!isLogin"
-        v-model="form.email"
-        style="margin-bottom: 10px"
-        type="text"
-        placeholder="邮箱"
-      />
-      <input
-        v-if="!isLogin"
-        v-model="form.url"
-        style="margin-bottom: 10px"
-        type="text"
-        placeholder="站点"
-      />
-
-      <textarea v-model="form.content" placeholder="这一刻的想法..."></textarea>
+      <div class="field">
+        <div class="two fields">
+          <div class="field">
+            <input
+              v-if="!isLogin"
+              v-model="form.nickname"
+              type="text"
+              placeholder="昵称"
+            />
+          </div>
+          <div class="field">
+            <input
+              v-if="!isLogin"
+              v-model="form.email"
+              type="text"
+              placeholder="邮箱"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="field">
+        <input
+          v-if="!isLogin"
+          v-model="form.url"
+          type="text"
+          placeholder="站点"
+        />
+      </div>
+      <div class="field">
+        <textarea
+          v-model="form.content"
+          placeholder="这一刻的想法..."
+        ></textarea>
+      </div>
     </div>
     <div @click="submit" class="ui blue labeled submit icon button">
       <i class="icon edit"></i> 发表评论

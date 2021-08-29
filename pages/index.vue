@@ -177,7 +177,7 @@ export default {
   }
   .left-nav {
     position: fixed;
-    width: 260px;
+    width: 220px;
     height: 100%;
     overflow-y: scroll;
     z-index: 99;
@@ -187,9 +187,9 @@ export default {
   }
 
   .index-main {
-    width: calc(100% - 260px);
-    margin-left: 260px;
-    margin-top: 57px;
+    width: calc(100% - 220px);
+    margin-left: 220px;
+    margin-top: 55px;
     padding: 4px;
     height: auto;
   }

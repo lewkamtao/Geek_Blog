@@ -80,7 +80,7 @@ export default {
 <style lang="scss" scoped>
 .left-nav {
   display: block;
-  padding: 45px 4px 4px 4px;
+  padding: 44px 4px 4px 4px;
   box-sizing: border-box;
   .user-info {
     margin-top: 15px;

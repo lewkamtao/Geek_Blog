@@ -1,89 +1,107 @@
 <template>
-  <form class="ui form">
-    <h4 id="setting_contact" class="ui dividing header">联系方式板块</h4>
-
-    <div
-      v-for="(contact_info, index) in form.contact_info"
-      :key="'contact_info' + index"
-      class="fields"
-    >
-      <div class="four wide field">
-        <label>社交平台</label>
-        <select
-          class="ui fluid search dropdown"
-          v-model="contact_info.platform"
-          placeholder="请选择"
-        >
-          <option
-            v-for="(option, index) in concact_options"
-            :key="'concact_options' + index"
-            :value="option.value"
-          >
-            {{ option.label }}
-          </option>
-        </select>
+  <div class="part">
+    <form class="ui form">
+      <h2 class="ui dividing header">社交媒体配置</h2>
+      <div
+        v-if="message.type"
+        class="ui positive message"
+        :class="message.type"
+      >
+        <i @click="message.type == ''" class="close icon"></i>
+        <div class="header">真棒！当前配置有效。</div>
+        <p>你可以随时修改这些信息</p>
       </div>
+      <div
+        v-for="(contact_info, index) in form.contact_info"
+        :key="'contact_info' + index"
+        class="fields"
+      >
+        <div class="four wide field">
+          <label>社交平台</label>
+          <select
+            class="ui fluid search dropdown"
+            v-model="contact_info.platform"
+            placeholder="请选择"
+          >
+            <option
+              v-for="(option, index) in concact_options"
+              :key="'concact_options' + index"
+              :value="option.value"
+            >
+              {{ option.label }}
+            </option>
+          </select>
+        </div>
 
-      <div class="six wide field">
-        <label>{{ getContactLabel(contact_info.platform) }}</label>
-        <div style="display: flex">
-          <input
-            v-model="contact_info.value"
-            type="text"
-            placeholder="你的社交媒体链接"
-          />
-          <div
-            v-show="!getContactNickname(contact_info.platform)"
-            v-if="form.contact_info.length != 1"
-            @click="del(index)"
-            :style="`
+        <div class="six wide field">
+          <label>{{ getContactLabel(contact_info.platform) }}</label>
+          <div style="display: flex">
+            <input
+              v-model="contact_info.value"
+              type="text"
+              placeholder="你的社交媒体链接"
+            />
+            <div
+              v-show="!getContactNickname(contact_info.platform)"
+              v-if="form.contact_info.length != 1"
+              @click="del(index)"
+              :style="`
               margin-left: 15px;
               padding: 5px;
               display: flex;
               align-items: center;
             `"
-            class="ui red button"
-          >
-            <i style="margin-right: 0px" class="minus icon"></i>
+              class="ui red button"
+            >
+              <i style="margin-right: 0px" class="minus icon"></i>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="eight wide field">
-        <label v-show="getContactNickname(contact_info.platform)">{{
-          getContactNickname(contact_info.platform)
-        }}</label>
-        <div style="display: flex">
-          <input
-            v-show="getContactNickname(contact_info.platform)"
-            v-model="contact_info.nickname"
-            type="text"
-            placeholder="你的昵称"
-          />
-          <div
-            v-show="getContactNickname(contact_info.platform)"
-            v-if="form.contact_info.length != 1"
-            @click="del(index)"
-            :style="`
+        <div class="eight wide field">
+          <label v-show="getContactNickname(contact_info.platform)">{{
+            getContactNickname(contact_info.platform)
+          }}</label>
+          <div style="display: flex">
+            <input
+              v-show="getContactNickname(contact_info.platform)"
+              v-model="contact_info.nickname"
+              type="text"
+              placeholder="你的昵称"
+            />
+            <div
+              v-show="getContactNickname(contact_info.platform)"
+              v-if="form.contact_info.length != 1"
+              @click="del(index)"
+              :style="`
               margin-left: 15px;
               padding: 5px;
               display: flex;
               align-items: center;
             `"
-            class="ui red button"
-          >
-            <i style="margin-right: 0px" class="minus icon"></i>
+              class="ui red button"
+            >
+              <i
+                style="margin-right: 0px; margin-left: 0px"
+                class="minus icon"
+              ></i>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div @click="add" class="ui button">
-      <i style="margin-right: 0px" class="add icon"></i> 添加多一个
-    </div>
-    <div @click="submit" class="ui button blue" :class="{ loading: loading }">
-      保存配置
-    </div>
-  </form>
+      <div @click="add" class="ui button">
+        <i style="margin-right: 0px" class="add icon"></i> 添加多一个
+      </div>
+      <div
+        @click="submit"
+        style="margin-left: 10px"
+        class="ui button blue"
+        :class="{ loading: loading }"
+      >
+        保存配置
+      </div>
+    </form>
+  </div>
 </template>
 
 <script>
@@ -93,6 +111,11 @@ export default {
   data() {
     return {
       loading: false,
+      message: {
+        type: "", // message:success / negative / warning
+        title: "",
+        info: "",
+      },
       concact_options: [
         {
           label: "手机",
@@ -469,10 +492,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.form {
-  margin-bottom: 50px;
-  .header {
-    padding-top: 80px;
-  }
+.part {
+  padding: 50px;
 }
 </style>

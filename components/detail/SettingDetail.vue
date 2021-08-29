@@ -1,10 +1,14 @@
 <template>
-  <div class="setting-wrapper part">
-    <h1>设置</h1>
+  <div class="setting-wrapper">
+    <div style="padding-top: 0px;margin-top:0px" id="setting_menu" class="header"></div>
     <menu-set></menu-set>
+    <h2 id="setting_siteinfo" class="header"></h2>
     <site-info></site-info>
+    <h2 id="setting_master" class="header"></h2>
     <master> </master>
+    <h2 id="image_set" class="header"></h2>
     <image-set></image-set>
+    <h2 id="setting_contact" class="header"></h2>
     <contact></contact>
   </div>
 </template>
@@ -148,7 +152,9 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.setting-wrapper {
-  padding: 30px;
+.header {
+  padding-top: 60px;
+  margin-top: -52px;
 }
 </style>
+

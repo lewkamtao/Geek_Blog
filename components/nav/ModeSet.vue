@@ -128,23 +128,5 @@ export default {
     color: #000;
     background: rgba($color: #000000, $alpha: 0.05);
   }
-  .mode-setting-box:hover::before {
-    display: none;
-  }
-  .mode-setting-box:hover + .mode-setting-box::before {
-    display: none;
-  }
-  .mode-setting-box::before {
-    position: absolute;
-    left: 0px;
-    top: 0px;
-    content: "";
-    width: 100%;
-    height: 1px;
-    background: rgba($color: #000000, $alpha: 0.05);
-  }
-  .mode-setting-box:first-child::before {
-    display: none;
-  }
 }
 </style>

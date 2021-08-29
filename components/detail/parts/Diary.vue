@@ -1,43 +1,28 @@
 <template>
-  <div style="margin-bottom:14px" class="info part">
-    <div class="main-title" style="margin-bottom: 12px">
-      甜狗日记
-      <svg
-        @click="getContent"
-        viewBox="0 0 24 24"
-        width="16"
-        height="16"
-        stroke="currentColor"
-        stroke-width="2"
-        fill="none"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        class="css-i6dzq1 rotate-cw"
-      >
-        <polyline points="23 4 23 10 17 10" />
-        <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10" />
-      </svg>
+  <div style="margin-bottom: 8px" class="info part">
+    <div class="main-title" style="margin-bottom: 12px">ONE 一个</div>
+    <div v-if="one" class="diary">
+      <div class="tag">#{{ one.data.tag }}#</div>
+      <p>{{ one.data.content }}</p>
+      <div class="origin">来自 {{ one.data.origin }}</div>
     </div>
-    <div class="diary">{{ content }}</div>
   </div>
 </template>
 <script>
 export default {
   data() {
     return {
-      content: ""
+      one: "",
     };
   },
   methods: {
     async getContent() {
-      this.content = await this.$axios.get(
-        "https://api.ixiaowai.cn/tgrj/index.php"
-      );
-    }
+      this.one = await this.$axios.get("https://api.xygeng.cn/one");
+    },
   },
   created() {
     this.getContent();
-  }
+  },
 };
 </script>
 
@@ -49,12 +34,13 @@ export default {
   padding: 15px;
   border-radius: 7px;
 }
-.rotate-cw {
-  cursor: pointer;
-  color: #999;
-  margin-left: 5px;
+.tag {
+  font-weight: bold;
+  margin-bottom: 10px;
 }
-.rotate-cw:hover {
-  color: #000000;
+.origin {
+  color: #999;
+  text-align: right;
+  margin-top: 10px;
 }
 </style>

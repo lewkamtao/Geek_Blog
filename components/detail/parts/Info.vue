@@ -1,24 +1,8 @@
 <template>
   <div style="margin-bottom: 8px" class="info part">
-    <div class="main-title" style="margin-bottom: 12px">站点信息</div>
+    <div class="main-title" style="margin-bottom: 12px">博客信息</div>
     <div>
       <ul>
-        <li>
-          <div>
-            <span>DNS 查询耗时</span><span>{{ info.dnsTime + " ms" }}</span>
-          </div>
-        </li>
-        <li>
-          <div>
-            <span>TCP 链接耗时 </span><span>{{ info.TCPTime + " ms" }} </span>
-          </div>
-        </li>
-        <li>
-          <div>
-            <span>request 请求耗时 </span
-            ><span>{{ info.requestTime + " ms" }} </span>
-          </div>
-        </li>
         <li>
           <div>
             <span>Dom 渲染耗时</span><span>{{ info.domTime + " ms" }} </span>
@@ -99,13 +83,13 @@ ul {
   box-sizing: border-box;
   border-radius: 7px;
   width: 100%;
-  background: rgba($color: #000000, $alpha: 0.025);
+  background: #f5f7f9;
   li {
     position: relative;
     width: 100%;
     color: #333;
     div {
-      margin: 25px 0px;
+      margin: 20px 0px;
       font-size: 14px;
       width: 100%;
       display: flex;
@@ -118,7 +102,7 @@ ul {
     span:nth-child(2) {
       text-align: center;
       padding: 0px 6px;
-      border-radius:3px;
+      border-radius: 3px;
       background: #fff;
       box-shadow: 0px 0px 15px rgba($color: #000000, $alpha: 0.055);
       color: #000;

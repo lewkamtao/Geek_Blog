@@ -89,10 +89,7 @@ export default {
     img {
       width: 40px;
       height: auto;
-      border-bottom-left-radius: 0px;
-      border-bottom-right-radius: 0px;
-      border-top-left-radius: 0px;
-      border-top-right-radius: 0px;
+      border-radius: 5px;
     }
   }
   .user-info {
@@ -154,25 +151,6 @@ export default {
     }
   }
 }
-.user-item::before {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  height: 1px;
-  width: 100%;
-  background: rgba($color: #000000, $alpha: 0.05);
-  content: "";
-}
-.user-item:hover::before {
-  display: none;
-}
-.user-item:hover + .user-item::before {
-  display: none;
-}
-.user-item:first-child::before {
-  display: none;
-}
-
 .user-item:hover {
   background: rgba($color: #000000, $alpha: 0.05);
 }

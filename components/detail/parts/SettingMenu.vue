@@ -21,11 +21,11 @@ export default {
       setting_menu: [
         {
           id: "setting_menu",
-          name: "菜单",
+          name: "菜单配置",
         },
         {
           id: "setting_siteinfo",
-          name: "站点信息",
+          name: "站点配置",
         },
         {
           id: "setting_master",
@@ -37,7 +37,7 @@ export default {
         },
         {
           id: "setting_contact",
-          name: "联系方式板块",
+          name: "社交媒体配置",
         },
       ],
     };
@@ -77,27 +77,10 @@ ul {
       transform: translateY(-50%);
     }
   }
-  a::before {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    content: "";
-    width: 100%;
-    height: 1px;
-    background: rgba($color: #000000, $alpha: 0.05);
-  }
-  a:first-child::before {
-    display: none;
-  }
+
   a:hover {
     color: #000;
     background: rgba($color: #000, $alpha: 0.05);
-  }
-  a:hover::before {
-    display: none;
-  }
-  a:hover + a::before {
-    display: none;
   }
 }
 </style>

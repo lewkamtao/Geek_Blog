@@ -8,11 +8,7 @@
         v-show="item.isLogin ? (isLogin ? true : false) : true"
       >
         <nuxt-link :to="item.path" class="menu-child" v-if="!item.type">
-          <i
-            v-html="item.icon"
-            :style="'background:' + item.iconBg + ';color:' + item.iconColor"
-            class="icon"
-          ></i>
+          <i v-html="item.icon" class="icon"></i>
           <div class="title">
             {{ item.title }}
             <svg
@@ -37,11 +33,7 @@
           @click.stop="toFn(index, item.type)"
           v-if="item.type"
         >
-          <i
-            v-html="item.icon"
-            :style="'background:' + item.iconBg + ';color:' + item.iconColor"
-            class="icon"
-          ></i>
+          <i v-html="item.icon" class="icon"></i>
           <div class="title">
             {{ item.title }}
             <svg
@@ -263,7 +255,6 @@ export default {
         top: 50%;
         width: 24px;
         height: 24px;
-        border-radius: 5px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -284,37 +275,17 @@ export default {
           color: #d1d1d1;
         }
       }
-      .title::before {
-        position: absolute;
-        content: "";
-        top: 0px;
-        left: 0px;
-        width: 100%;
-        height: 1px;
-        background: rgba($color: #000000, $alpha: 0.05);
-      }
     }
   }
 
-  .nav-list-wrapper:first-child .title::before {
-    display: none !important;
-  }
   .nav-list-wrapper:hover {
     background: rgba($color: #000000, $alpha: 0.05);
     border-radius: 6px;
     .title {
-      color: #000;
-    }
-    .title::before {
-      display: none;
+      color: #333;
     }
     .icon {
-      border: 1px #d1d1d1 solid;
-    }
-  }
-  .nav-list-wrapper:hover + .nav-list-wrapper {
-    .title::before {
-      display: none;
+      color: #333;
     }
   }
 }

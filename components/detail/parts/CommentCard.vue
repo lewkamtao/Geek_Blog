@@ -77,7 +77,7 @@
                   {{ getBeautifyTime(son.create_time) }}</span
                 >
               </div>
-              <div  v-html="son.content" class="text"></div>
+              <div v-html="son.content" class="text"></div>
               <div class="actions">
                 <div class="btn-box">
                   <div
@@ -131,6 +131,10 @@ export default {
       type: Number,
       default: 0,
     },
+    isLogin: {
+      type: Boolean,
+      default: false,
+    },
     comment: {
       type: Object,
       default: {
@@ -156,9 +160,7 @@ export default {
     },
   },
   data() {
-    return {
-      isLogin: false,
-    };
+    return {};
   },
   watch: {},
   computed: {
@@ -253,21 +255,14 @@ export default {
     },
   },
   created() {},
-  mounted() {
-    var token = this.$cookies.get("token");
-    // 博主
-    if (token) {
-      this.isLogin = true;
-    }
-  },
+  mounted() {},
 };
 </script>
 <style lang="scss" scoped>
 .comment-wrapper {
-  background: rgba($color: #000, $alpha: 0.025);
+  position: relative;
+  z-index: 9;
   padding: 10px;
-  border-radius: 6px;
-  margin-bottom: 12px;
   .comments {
     margin-top: 0px;
   }

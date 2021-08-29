@@ -59,7 +59,7 @@ export default {
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 14px 0px;
+      padding: 20px 0px 14px 0px;
       background: #eee;
       border-radius: 7px;
       color: #666;

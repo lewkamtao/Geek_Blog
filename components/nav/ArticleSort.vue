@@ -74,7 +74,7 @@ ul {
     border-radius: 6px;
     line-height: 25px;
     min-height: 32px;
-    padding: 4px 15px;
+    padding: 4px 8px;
     color: #999;
     display: inline-block;
     box-sizing: border-box;
@@ -82,32 +82,16 @@ ul {
     cursor: pointer;
     .label {
       position: absolute;
-      right: 15px;
+      right: 6px;
       top: 50%;
       transform: translateY(-50%);
+      background: rgba($color: #000, $alpha: 0.05);
     }
   }
-  a::before {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    content: "";
-    width: 100%;
-    height: 1px;
-    background: rgba($color: #000000, $alpha: 0.05);
-  }
-  a:first-child::before {
-    display: none;
-  }
+
   a:hover {
     color: #000;
     background: rgba($color: #000, $alpha: 0.05);
-  }
-  a:hover::before {
-    display: none;
-  }
-  a:hover + a::before {
-    display: none;
   }
 }
 </style>
