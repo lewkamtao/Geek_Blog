@@ -17,60 +17,26 @@
     </div>
     <form class="ui form">
       <h4 class="ui dividing header">菜单配置</h4>
-      <div class="ui positive message" :class="status">
-        <i class="close icon"></i>
-        <div class="header">真棒！当前配置有效。</div>
-        <p>你可以随时修改这些信息</p>
-      </div>
-      <div class="ui segment">
+
+      <div
+        class="ui segment"
+        v-for="(menu, index) in form.menu_config"
+        :key="'menu' + index"
+        @click="menu.isShow = !menu.isShow"
+      >
         <div class="field">
           <div class="ui toggle checkbox">
-            <input type="checkbox" name="gift" tabindex="0" class="hidden" />
-            <label>关于</label>
+            <input
+              type="checkbox"
+              v-model="menu.isShow"
+              name="gift"
+              tabindex="0"
+              class="hidden"
+            />
+            <label>{{ menu.title }}</label>
           </div>
         </div>
       </div>
-      <div class="ui segment">
-        <div class="field">
-          <div class="ui toggle checkbox">
-            <input type="checkbox" name="gift" tabindex="0" class="hidden" />
-            <label>时光机</label>
-          </div>
-        </div>
-      </div>
-      <div class="ui segment">
-        <div class="field">
-          <div class="ui toggle checkbox">
-            <input type="checkbox" name="gift" tabindex="0" class="hidden" />
-            <label>音乐</label>
-          </div>
-        </div>
-      </div>
-      <div class="ui segment">
-        <div class="field">
-          <div class="ui toggle checkbox">
-            <input type="checkbox" name="gift" tabindex="0" class="hidden" />
-            <label>朋友</label>
-          </div>
-        </div>
-      </div>
-      <div class="ui segment">
-        <div class="field">
-          <div class="ui toggle checkbox">
-            <input type="checkbox" name="gift" tabindex="0" class="hidden" />
-            <label>留言板</label>
-          </div>
-        </div>
-      </div>
-      <div class="ui segment">
-        <div class="field">
-          <div class="ui toggle checkbox">
-            <input type="checkbox" name="gift" tabindex="0" class="hidden" />
-            <label>后台管理</label>
-          </div>
-        </div>
-      </div>
-      <div class="ui button blue" tabindex="0">保存配置</div>
     </form>
   </div>
 </template>
@@ -91,9 +57,71 @@ export default {
         { info: "你也可以自定义站点信息、个人信息。" },
         { info: "还可以添加你的社交媒体的信息" },
       ],
+      form: {
+        menu_config: [
+          {
+            value: "about",
+            title: "关于",
+            isShow: false,
+          },
+          // {
+          //   value: "photo",
+          //   title: "相册",
+          //   isShow: false,
+          // },
+          {
+            value: "time_line",
+            title: "时光机",
+            isShow: false,
+          },
+          {
+            value: "music_box",
+            title: "音乐",
+            isShow: false,
+          },
+          {
+            value: "links",
+            title: "朋友",
+            isShow: false,
+          },
+          {
+            value: "msg_wall",
+            title: "留言墙",
+            isShow: false,
+          },
+          {
+            value: "adm",
+            title: "后台",
+            isShow: false,
+          },
+        ],
+      },
     };
   },
-  watch: {},
+  watch: {
+    form: {
+      handler(newValue, oldValue) {
+        var data = {
+          "login-token": this.$cookies.get("token"),
+          keys: "geek_config",
+          opt: newValue,
+        };
+
+        this.$axios.post("/options", data).then((res) => {
+          if (res.code == 200) {
+            this.$notify({
+              type: "success",
+              title: "恭喜！",
+              message: "配置成功，刷新页面之后立即生效。",
+              duration: 5000,
+              offset: 65,
+            });
+          }
+        });
+      },
+      deep: true,
+    },
+  },
   computed: {},
   methods: {},
   created() {},

@@ -18,7 +18,7 @@ export default {
         setTimeout(function () {
           var geek_main = document.getElementById("geek_main");
           geek_main.classList.remove("isGeekMainLoading");
-        }, 500);
+        }, 100);
       }
     },
   },

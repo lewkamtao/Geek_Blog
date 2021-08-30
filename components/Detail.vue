@@ -259,6 +259,7 @@ export default {
     width: calc(100% - 350px);
     min-width: 500px;
     transition: opacity 0.25s;
+    overflow: hidden;
   }
 }
 .aside {

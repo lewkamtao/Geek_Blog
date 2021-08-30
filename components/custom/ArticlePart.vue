@@ -1,13 +1,16 @@
 <template>
-  <div class="article-box">
+  <div class="article-box part">
     <nuxt-link :to="'/Article?id=' + articleData.id">
-      <div class="cover">
-        <v-img v-if="articleData.img_src" :src="articleData.img_src"></v-img>
-        <v-img
-          v-if="!articleData.img_src"
-          :src="'https://api.kenvie.com/webp.php?' + articleData.id"
-        ></v-img>
-      </div>
+      <div
+        class="cover"
+        :style="
+          'background:url(' +
+          (articleData.img_src
+            ? articleData.img_src
+            : 'https://api.kenvie.com/webp.php?' + articleData.id) +
+          ')'
+        "
+      ></div>
 
       <div class="article-box-body">
         <div class="article-box-title">{{ articleData.title }}</div>
@@ -126,9 +129,9 @@ export default {
 <style lang="scss" scoped>
 .article-box {
   width: 100%;
-  height: 180px;
   overflow: hidden;
   cursor: pointer;
+
   a {
     background-image: none;
     display: flex;
@@ -147,14 +150,17 @@ export default {
   border-color: rgba($color: #000000, $alpha: 0.2);
 }
 .cover {
-  width: 320px;
-  position: relative;
+  width: 280px;
+  height: 150px;
+  background-size: cover !important;
+  background-position: center center !important;
+  border-radius: 8px;
 }
 
 .article-box-body {
   position: relative;
   width: calc(100% - 320px);
-  padding: 15px;
+  padding: 5px 15px;
 }
 .article-box-title {
   font-size: 18px;
@@ -162,7 +168,7 @@ export default {
   font-weight: bold;
 }
 .article-box-subtitle {
-  font-size: 14px;
+  font-size: 13px;
   color: #999;
   line-height: 22px;
   margin-top: 10px;
@@ -177,7 +183,7 @@ export default {
 }
 .article-box-footer {
   position: absolute;
-  bottom: 20px;
+  bottom: 0px;
   left: 15px;
   background: none;
   border: none;
@@ -201,21 +207,19 @@ export default {
 }
 
 // 移动端适配
-@media screen and (max-width: 1300px) {
+@media screen and (max-width: 1350px) {
   .index-wrapper-master {
     padding: 15px 25px 25px 25px;
   }
   .masonry .article-box {
     margin: 15px 0px 0px 0px 0px;
     height: auto;
-    a {
-      flex-direction: column;
-    }
+
     .cover {
-      width: 100%;
+      width: 240px;
     }
     .article-box-body {
-      width: 100%;
+      width: calc(100% - 260px);
       padding-bottom: 50px;
       .article-box-title {
         font-size: 18px;

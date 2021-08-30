@@ -13,7 +13,7 @@
           <a class="author" :href="comment.expand.url" target="_blank">
             {{ comment.nickname }} </a
           ><a
-            v-if="comment.id == 2"
+            v-if="comment.users_id == 2"
             style="margin-left: 5px"
             class="ui mini image label"
           >

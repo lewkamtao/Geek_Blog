@@ -6,6 +6,8 @@
         :key="index"
         class="nav-list-wrapper"
         v-show="item.isLogin ? (isLogin ? true : false) : true"
+        @click="active = item.path"
+        :class="{ active: active == item.path }"
       >
         <nuxt-link :to="item.path" class="menu-child" v-if="!item.type">
           <i v-html="item.icon" class="icon"></i>
@@ -167,9 +169,14 @@ export default {
         },
       ],
       isLogin: false,
+      active: "",
     };
   },
-  watch: {},
+  watch: {
+    $route: function () {
+      this.active = this.$route.path;
+    },
+  },
   computed: {},
   methods: {
     toFn(index, type) {
@@ -215,7 +222,9 @@ export default {
     }
     next();
   },
-  mounted() {},
+  mounted() {
+    this.active = this.$route.path;
+  },
 };
 </script>
 <style lang="scss" scoped>
@@ -286,6 +295,16 @@ export default {
     }
     .icon {
       color: #333;
+    }
+  }
+  .active {
+    background: rgba($color: #000000, $alpha: 0.1) !important;
+    border-radius: 6px;
+    .title {
+      color: #333;
+    }
+    .icon {
+      color: #333 !important;
     }
   }
 }
