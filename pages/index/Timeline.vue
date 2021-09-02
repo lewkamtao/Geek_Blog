@@ -4,7 +4,7 @@
     :timeline="timeline"
     @reloadComments="getComments"
     :options="{
-      type: 'timeline',
+      type: 'moving',
     }"
   />
 </template>

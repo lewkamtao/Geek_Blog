@@ -83,7 +83,7 @@ ul {
   box-sizing: border-box;
   border-radius: 7px;
   width: 100%;
-  background: #f5f7f9;
+    background: rgba(0, 0, 0, 0.025);
   li {
     position: relative;
     width: 100%;

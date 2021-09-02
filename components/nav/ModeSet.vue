@@ -61,7 +61,7 @@ export default {
       mode: {
         isDark: false,
         isSharp: false,
-        isBgMusic: true,
+        isBgMusic: false,
       },
     };
   },

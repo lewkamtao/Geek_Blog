@@ -268,6 +268,7 @@ export default {
       font-weight: bold;
       text-align: left;
       margin-bottom: 24px;
+      line-height: 35px;
     }
     .summary {
       display: flex;

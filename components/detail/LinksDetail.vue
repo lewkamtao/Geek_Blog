@@ -1,56 +1,41 @@
 <template>
   <div class="links-detail">
-    <header
-      class="ui dimmable dimmed border border-primary"
-      :style="'background:url(' + geek_config.site_info.links_bg + ')'"
-    >
-      <div
-        class="ui simple dimmer"
-        style="background-color: rgba(0, 0, 0, 0.65)"
-      ></div>
-      <div class="card-body">
-        <h1>朋友，你好!</h1>
-      </div>
-    </header>
-    <div class="ui two column stackable grid">
-      <div class="three column row">
-        <div
-          v-for="(item, index) in links.data"
-          :key="index"
-          style="margin-top: 30px"
-          class="column"
+    <page-header></page-header>
+
+    <div class="ui middle aligned selection list">
+      <a
+        class="item"
+        v-for="(item, index) in links.data"
+        :key="index"
+        :href="item.url"
+        target="_blank"
+      >
+        <v-img
+          style="border-radius: 4px"
+          class="ui image"
+          width="40px"
+          height="40px"
+          nullUrl="https://api.kamtao.com/storage/users/anime/4.jpg"
+          :url="item.head_img"
         >
-          <div class="ui card">
-            <div class="image">
-              <img :src="item.head_img" />
-            </div>
-            <div class="content">
-              <a :href="item.url" target="_blank" class="header">{{
-                item.name
-              }}</a>
-              <div class="meta">
-                <span class="date">
-                  {{ getBeautifyTime(item.create_time) }}</span
-                >
-              </div>
-              <div class="description">
-                {{ item.description }}
-              </div>
-            </div>
+        </v-img>
+        <div class="content">
+          <div class="header">{{ item.name }}</div>
+          <div class="description">
+            {{ item.description }}
           </div>
         </div>
-      </div>
+      </a>
     </div>
-
-    <div></div>
   </div>
 </template>
 
 <script>
+import PageHeader from "@/components/custom/PageHeader.vue";
 import util from "@/util/index";
 
 export default {
-  components: {},
+  components: { PageHeader },
   props: {
     geek_config: {
       type: Object,
@@ -83,30 +68,22 @@ export default {
 </script>
 <style lang="scss" scoped>
 .links-detail {
-  padding: 30px;
-  header {
-    width: 100%;
-    position: relative;
-    overflow: hidden;
-    padding: 50px 20px;
-    color: #fff;
-    text-align: center;
-    background-size: cover !important;
-    box-shadow: none;
-
-    .card-body {
-      position: relative;
-      z-index: 99;
-    }
+  padding: 0px;
+  .list {
+    padding: 30px 50px;
+  }
+  .item {
+    padding: 10px !important;
+    box-shadow: 0px 0px 5px rgba($color: #000000, $alpha: 0.15) !important;
+    margin-bottom: 15px !important;
+  }
+  .content {
+    width: calc(100% - 120px);
   }
   .description {
-    height: 40px;
+    margin-top: 5px;
     overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+    height: 16px;
   }
 }
 </style>

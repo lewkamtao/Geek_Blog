@@ -10,12 +10,13 @@
         class="top-nav-wrapper-master"
       />
       <LeftNav
+        ref="leftNav"
         :geek_config="geek_config"
         :article_sort="article_sort"
         class="left-nav"
       />
       <div id="geek_main" class="index-main">
-        <nuxt-child :geek_config="geek_config" />
+        <nuxt-child :geek_config="geek_config" @playSong="playSong" />
         <Footer :geek_config="geek_config" />
       </div>
     </div>
@@ -136,6 +137,9 @@ export default {
       }
       this.isShowAside = !this.isShowAside;
     },
+    playSong(song_id) {
+      this.$refs.leftNav.playSong(song_id);
+    },
   },
   created() {
     this.isShowOpenAsideBtn = true;
@@ -177,7 +181,7 @@ export default {
   }
   .left-nav {
     position: fixed;
-    width: 220px;
+    width: 240px;
     height: 100%;
     overflow-y: scroll;
     z-index: 99;
@@ -187,8 +191,8 @@ export default {
   }
 
   .index-main {
-    width: calc(100% - 220px);
-    margin-left: 220px;
+    width: calc(100% - 240px);
+    margin-left: 240px;
     margin-top: 55px;
     padding: 4px;
     height: auto;

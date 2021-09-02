@@ -4,7 +4,7 @@
       <div
         v-for="(articleData, index) in articleList.data"
         :key="index"
-        class="index-part part"
+        class="index-part"
       >
         <article-part :articleData="articleData"></article-part>
       </div>
@@ -108,8 +108,11 @@ export default {
   text-align: center;
   color: #000;
   opacity: 1;
-  transition: opacity 0.25s;
+  transition: all 0.25s;
   cursor: pointer;
+}
+.more-btn:hover {
+  background: #eee;
 }
 .loading {
   width: 100%;
@@ -121,9 +124,7 @@ export default {
     width: 400px;
   }
 }
-.more-btn:hover {
-  opacity: 0.8;
-}
+
 .masonry {
   width: 100%;
   .index-part {

@@ -3,6 +3,7 @@
     <div class="main-title">发布时光鸡</div>
     <div class="form">
       <comment-form
+        :isLogin="isLogin"
         type="moving"
         style="margin-bottom: 20px"
         @reloadComments="reloadComments"
@@ -18,7 +19,7 @@ export default {
   components: { CommentForm },
   props: {},
   data() {
-    return {};
+    return { isLogin: false };
   },
   watch: {},
   computed: {},
@@ -27,7 +28,13 @@ export default {
       this.$emit("reloadComments");
     },
   },
-  created() {},
+  created() {
+    var token = this.$cookies.get("token");
+    // 博主
+    if (token) {
+      this.isLogin = true;
+    }
+  },
   mounted() {},
 };
 </script>
