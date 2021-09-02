@@ -95,6 +95,11 @@ export default {
       if (mode.isSharp) {
         util.sharpHandle(mode.sharp);
       }
+      if (mode.isBgMusic) {
+        this.$emit("openMusicBox");
+      } else {
+        this.$emit("closeMusicBox");
+      }
     }
   },
   mounted() {},

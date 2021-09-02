@@ -60,7 +60,7 @@ export default {
   },
   data() {
     return {
-      musicBoxSwitch: true,
+      musicBoxSwitch: false,
     };
   },
   watch: {},
