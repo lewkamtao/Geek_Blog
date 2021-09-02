@@ -73,8 +73,11 @@ export default {
     closeMusicBox() {
       this.musicBoxSwitch = false;
     },
-    playSong(id) {
-      this.$refs.music_box.playSong(id);
+    playSong(song_id) {
+      this.musicBoxSwitch = true;
+      this.$nextTick(function () {
+        this.$refs.music_box.playSong(song_id);
+      });
     },
   },
   created() {},
