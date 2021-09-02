@@ -11,7 +11,11 @@
 <script>
 export default {
   components: {},
-  props: {},
+  props: {
+
+    
+
+  },
   data() {
     return {};
   },

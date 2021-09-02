@@ -75,7 +75,7 @@ export default {
             isShow: false,
           },
           {
-            value: "music_box",
+            value: "music",
             title: "音乐",
             isShow: false,
           },

@@ -7,18 +7,26 @@
     <div class="ui comments">
       <div class="comment">
         <a class="avatar" :href="comment.expand.url" target="_blank">
-          <img :src="comment.expand.head_img" />
+          <v-img
+            style="border-radius: 4px"
+            class="ui image"
+            width="35px"
+            height="35px"
+            nullUrl="https://api.kamtao.com/storage/users/anime/4.jpg"
+            :url="comment.expand.head_img"
+          >
+          </v-img>
         </a>
         <div class="content">
           <a class="author" :href="comment.expand.url" target="_blank">
-            {{ comment.nickname }} </a
-          ><a
+            {{ comment.nickname }}
+          </a>
+          <a
             v-if="comment.users_id == 2"
-            style="margin-left: 5px"
-            class="ui mini image label"
+            style="margin-left: 10px"
+            class="item"
           >
-            <img src="https://semantic-ui.com/images/avatar/small/joe.jpg" />
-            博主
+            <div class="ui horizontal label">作者</div>
           </a>
           <div class="metadata">
             <span class="date">
@@ -57,20 +65,26 @@
         <div v-for="(son, index) in comment.son" :key="index" class="comments">
           <div v-if="comment.son && comment.son.length != 0" class="comment">
             <a :href="son.expand.url" class="avatar" target="_blank">
-              <img :src="son.expand.head_img" />
+              <v-img
+                style="border-radius: 4px"
+                class="ui image"
+                width="35px"
+                height="35px"
+                nullUrl="https://api.kamtao.com/storage/users/anime/4.jpg"
+                :url="son.expand.head_img"
+              >
+              </v-img>
             </a>
             <div class="content">
               <a :href="son.expand.url" class="author" target="_blank">
                 {{ son.nickname }}</a
-              ><a
-                v-if="son.users_id == 2"
-                style="margin-left: 5px"
-                class="ui mini image label"
               >
-                <img
-                  src="https://semantic-ui.com/images/avatar/small/joe.jpg"
-                />
-                博主
+              <a
+                v-if="son.users_id == 2"
+                style="margin-left: 10px"
+                class="item"
+              >
+                <div class="ui horizontal label">作者</div>
               </a>
               <div class="metadata">
                 <span class="date">
@@ -246,7 +260,9 @@ export default {
             case "about":
               this.$router.push("/About");
               break;
-
+            case "music":
+              this.$router.push("/Music");
+              break;
             default:
               break;
           }
@@ -262,7 +278,7 @@ export default {
 .comment-wrapper {
   position: relative;
   z-index: 9;
-  padding: 10px;
+  padding: 14px 0px;
   .comments {
     margin-top: 0px;
   }
@@ -282,5 +298,9 @@ export default {
     display: none;
   }
   cursor: pointer;
+}
+.ui.comments .comment .comments {
+  margin-bottom: 0px !important;
+  padding-bottom: 0px !important;
 }
 </style>

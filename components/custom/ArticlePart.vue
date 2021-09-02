@@ -165,6 +165,7 @@ export default {
 .article-box-title {
   font-size: 18px;
   color: #000;
+  opacity: 0.7;
   font-weight: bold;
 }
 .article-box-subtitle {

@@ -1,5 +1,5 @@
 <template>
-  <div class="part setting-menu">
+  <div class="part">
     <ul>
       <a
         :href="'#' + item.id"
@@ -50,10 +50,10 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.setting-menu {
+.part {
+  padding: 10px;
   width: 100%;
 }
-
 ul {
   display: flex;
   flex-direction: column;

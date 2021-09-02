@@ -14,6 +14,7 @@
       <!-- 音乐盒 -->
       <music-box
         v-if="musicBoxSwitch && geek_config.menu_switch.music_box"
+        ref="music_box"
         :geek_config="geek_config"
       ></music-box>
 
@@ -71,6 +72,9 @@ export default {
     },
     closeMusicBox() {
       this.musicBoxSwitch = false;
+    },
+    playSong(id) {
+      this.$refs.music_box.playSong(id);
     },
   },
   created() {},

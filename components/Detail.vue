@@ -29,9 +29,16 @@
         @reloadComments="reloadComments"
       ></msg-wall-detail>
 
+      <!-- 音乐 -->
+      <music-detail
+        :songs="music.songs"
+        @playSong="playSong"
+        v-if="options.type == 'music'"
+      ></music-detail>
+
       <!-- 时光机 -->
       <timeline-detail
-        v-if="options.type == 'timeline'"
+        v-if="options.type == 'moving'"
         :geek_config="geek_config"
         class="part"
         :timeline="timeline"
@@ -70,6 +77,13 @@
         :geek_config="geek_config"
       ></contact>
 
+      <!-- 音乐歌单 -->
+      <music-list
+        @getSongs="getSongs"
+        v-if="['music'].indexOf(options.type) >= 0"
+        :music_list="music.music_list"
+      ></music-list>
+
       <!-- 评论板块 -->
       <comment
         @reloadComments="reloadComments"
@@ -94,11 +108,11 @@
       <!-- 发布时光机 -->
       <post-time-line
         @reloadComments="reloadComments"
-        v-if="options.type == 'timeline' && isLogin"
+        v-if="options.type == 'moving' && isLogin"
       ></post-time-line>
 
       <!-- 日记 -->
-      <diary v-if="['index', 'timeline'].indexOf(options.type) >= 0"></diary>
+      <diary v-if="['index', 'moving'].indexOf(options.type) >= 0"></diary>
 
       <!-- 博客信息 -->
       <info v-if="options.type == 'index'"></info>
@@ -119,6 +133,7 @@ import MsgWallDetail from "@/components/detail/MsgWallDetail";
 import TimelineDetail from "@/components/detail/TimelineDetail";
 import AboutDetail from "@/components/detail/AboutDetail";
 import SettingDetail from "@/components/detail/SettingDetail";
+import MusicDetail from "@/components/detail/MusicDetail";
 
 import Catalogue from "@/components/detail/parts/Catalogue";
 import Comment from "@/components/detail/parts/Comment";
@@ -131,6 +146,7 @@ import CommentRank from "@/components/detail/parts/CommentRank";
 import PostTimeLine from "@/components/detail/parts/PostTimeLine";
 import Diary from "@/components/detail/parts/Diary";
 import SettingMenu from "@/components/detail/parts/SettingMenu";
+import MusicList from "./detail/parts/musicList.vue";
 
 export default {
   components: {
@@ -141,6 +157,7 @@ export default {
     TimelineDetail,
     AboutDetail,
     SettingDetail,
+    MusicDetail,
 
     Diary,
     Catalogue,
@@ -153,6 +170,7 @@ export default {
     PostTimeLine,
     CommentRank,
     SettingMenu,
+    MusicList,
   },
   props: {
     geek_config: {
@@ -180,6 +198,12 @@ export default {
       },
     },
     msg_wall: {
+      type: Object,
+      default: function () {
+        return {};
+      },
+    },
+    music: {
       type: Object,
       default: function () {
         return {};
@@ -218,6 +242,12 @@ export default {
   methods: {
     reloadComments() {
       this.$emit("reloadComments");
+    },
+    getSongs(id) {
+      this.$emit("getSongs", id);
+    },
+    playSong(song_id) {
+      this.$emit("playSong", song_id);
     },
   },
   created() {

@@ -89,19 +89,8 @@ export default {
         case "article":
           this.form.article_id = this.articleId;
           break;
-        case "links":
-          this.form.type = "links";
-          break;
-        case "msg_wall":
-          this.form.type = "msg_wall";
-          break;
-        case "about":
-          this.form.type = "about";
-          break;
-        case "moving":
-          this.form.type = "moving";
-          break;
         default:
+          this.form.type = this.type;
           break;
       }
       var token = this.$cookies.get("token");
