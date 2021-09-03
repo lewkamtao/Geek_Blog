@@ -137,8 +137,8 @@ export default {
       }
       this.isShowAside = !this.isShowAside;
     },
-    playSong(song_id) {
-      this.$refs.leftNav.playSong(song_id);
+    playSong({ songs, index }) {
+      this.$refs.leftNav.playSong({ songs, index });
     },
   },
   created() {

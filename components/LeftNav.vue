@@ -2,7 +2,7 @@
   <div class="left-nav">
     <div>
       <!-- 个人信息 -->
-      <user-info class="user-info" :geek_config="geek_config"></user-info>
+      <user-info :geek_config="geek_config"></user-info>
 
       <!-- 菜单列表 -->
       <menu-list
@@ -73,10 +73,10 @@ export default {
     closeMusicBox() {
       this.musicBoxSwitch = false;
     },
-    playSong(song_id) {
+    playSong({ songs, index }) {
       this.musicBoxSwitch = true;
       this.$nextTick(function () {
-        this.$refs.music_box.playSong(song_id);
+        this.$refs.music_box.playSongs({ songs, index });
       });
     },
   },
@@ -89,9 +89,7 @@ export default {
   display: block;
   padding: 44px 4px 4px 4px;
   box-sizing: border-box;
-  .user-info {
-    margin-top: 15px;
-  }
+
   .permit-no {
     margin: 30px 0px 150px 0px;
   }

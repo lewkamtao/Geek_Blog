@@ -53,6 +53,13 @@ export default {
     },
     async getArticleList(type) {
       if (this.articleList.data.length == this.articleList.count) {
+        this.$notify({
+          type: "warning",
+          title: "注意",
+          message: "没有更多文章了",
+          duration: 5000,
+          offset: 65,
+        });
         return;
       }
 

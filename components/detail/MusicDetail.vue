@@ -15,7 +15,7 @@
         </div>
       </div>
     </h2>
-    <table style="margin-top:30px" class="ui red table">
+    <table style="margin-top: 30px" class="ui red table">
       <thead>
         <tr>
           <th></th>
@@ -26,7 +26,7 @@
       </thead>
       <tbody>
         <tr
-          @click="play(item.song_id)"
+          @click="play({ songs: songs.songs, index: index })"
           v-for="(item, index) in songs.songs"
           :key="index"
         >
@@ -76,8 +76,8 @@ export default {
   watch: {},
   computed: {},
   methods: {
-    play(song_id) {
-      this.$emit("playSong", song_id);
+    play({ songs, index }) {
+      this.$emit("playSong", { songs, index });
     },
   },
   created() {},

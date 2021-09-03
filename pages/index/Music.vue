@@ -84,8 +84,8 @@ export default {
       ).data;
       this.songs = songs;
     },
-    playSong(song_id) {
-      this.$emit("playSong", song_id);
+    playSong({ songs, index }) {
+      this.$emit("playSong", { songs, index });
     },
   },
 };

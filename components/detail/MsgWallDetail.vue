@@ -4,6 +4,7 @@
     <page-header></page-header>
     <div class="messgae-main">
       <comment
+        class="msg_wall"
         @reloadComments="reloadComments"
         :comments="msg_wall"
         type="msg_wall"
@@ -46,8 +47,10 @@ export default {
 
   .messgae-main {
     margin: 0 auto;
-    padding: 50px 0px;
-    max-width: 500px;
+    padding: 50px 30px;
+  }
+  .part.msg_wall {
+    box-shadow: 0px 0px 15px rgba($color: #000000, $alpha: 0.05);
   }
 }
 </style>

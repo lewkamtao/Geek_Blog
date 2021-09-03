@@ -1,5 +1,8 @@
 <template>
   <div class="part menu">
+    <div class="main-title" style="margin-left: 8px; margin-top: 10px">
+      菜单
+    </div>
     <div class="nav-list">
       <div
         v-for="(item, index) in menu"
@@ -247,11 +250,13 @@ export default {
   flex-wrap: wrap;
   .nav-list-wrapper {
     width: 100%;
+    
     .menu-child {
       position: relative;
       display: flex;
       width: 100%;
       padding: 0px 5px 0px 48px;
+      margin: 1px 0px;
       font-size: 16px;
       background-image: none;
       text-align: left;

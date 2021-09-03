@@ -18,20 +18,18 @@
           </v-img>
         </a>
         <div class="content">
-          <a class="author" :href="comment.expand.url" target="_blank">
-            {{ comment.nickname }}
-          </a>
-          <a
-            v-if="comment.users_id == 2"
-            style="margin-left: 10px"
-            class="item"
-          >
-            <div class="ui horizontal label">作者</div>
-          </a>
-          <div class="metadata">
-            <span class="date">
-              {{ getBeautifyTime(comment.create_time) }}</span
-            >
+          <div class="header">
+            <a class="author" :href="comment.expand.url" target="_blank">
+              {{ comment.nickname }}
+            </a>
+            <div v-if="comment.users_id == 2" class="ui horizontal label">
+              作者
+            </div>
+            <div class="metadata">
+              <span class="date">
+                {{ getBeautifyTime(comment.create_time) }}</span
+              >
+            </div>
           </div>
           <div class="text">
             <p v-html="comment.content"></p>
@@ -76,20 +74,19 @@
               </v-img>
             </a>
             <div class="content">
-              <a :href="son.expand.url" class="author" target="_blank">
-                {{ son.nickname }}</a
-              >
-              <a
-                v-if="son.users_id == 2"
-                style="margin-left: 10px"
-                class="item"
-              >
-                <div class="ui horizontal label">作者</div>
-              </a>
-              <div class="metadata">
-                <span class="date">
-                  {{ getBeautifyTime(son.create_time) }}</span
+              <div class="header">
+                <a :href="son.expand.url" class="author" target="_blank">
+                  {{ son.nickname }}</a
                 >
+
+                <div v-if="son.users_id == 2" class="ui horizontal label">
+                  作者
+                </div>
+                <div class="metadata">
+                  <span class="date">
+                    {{ getBeautifyTime(son.create_time) }}</span
+                  >
+                </div>
               </div>
               <div v-html="son.content" class="text"></div>
               <div class="actions">
@@ -278,7 +275,7 @@ export default {
 .comment-wrapper {
   position: relative;
   z-index: 9;
-  padding: 14px 0px;
+  padding: 10px 0px;
   .comments {
     margin-top: 0px;
   }
@@ -293,11 +290,26 @@ export default {
     align-items: center;
   }
 }
+.content {
+  .header {
+    display: flex;
+    align-items: center;
+    .author {
+      margin-right: 8px;
+    }
+  }
+}
 .lately {
   .btn-box {
     display: none;
   }
   cursor: pointer;
+}
+.ui.horizontal.label {
+  height: 18px;
+  overflow: hidden;
+  margin: 0px;
+  padding: 2px 3px;
 }
 .ui.comments .comment .comments {
   margin-bottom: 0px !important;

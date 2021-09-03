@@ -246,8 +246,8 @@ export default {
     getSongs(id) {
       this.$emit("getSongs", id);
     },
-    playSong(song_id) {
-      this.$emit("playSong", song_id);
+    playSong({ songs, index }) {
+      this.$emit("playSong", { songs, index });
     },
   },
   created() {

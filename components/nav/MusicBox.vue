@@ -350,6 +350,11 @@ export default {
         this.error_tips = "歌单ID已失效，请检查歌单ID";
       }
     },
+    playSongs({ songs, index }) {
+      this.songs = songs;
+      this.getMusicDetail(index);
+    },
+
     async getMusicDetail(index) {
       var that = this;
       const data = (
@@ -364,25 +369,6 @@ export default {
         setTimeout(function () {
           that.getMusicDetail(index + 1, this.songs[index + 1].song_id);
         });
-      } else {
-        this.error_tips = "";
-      }
-      if (!this.isLock) {
-        setTimeout(function () {
-          that.play();
-        }, 200);
-      } else {
-        this.isLock = false; // 解锁
-      }
-    },
-    async playSong(song_id) {
-      var that = this;
-      const data = (
-        await this.$axios.get("/music?id=" + song_id + "&mode=song&cache=false")
-      ).data;
-      this.music.song = data;
-      if (this.music.song.url == "") {
-        this.error_tips = "歌曲地址已失效，请切换下一首。";
       } else {
         this.error_tips = "";
       }
