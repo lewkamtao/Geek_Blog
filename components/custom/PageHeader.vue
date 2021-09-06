@@ -1,20 +1,17 @@
 <template>
-  <header
-    :style="
-      'background:url(' +
-      'https://img.keai.cool/2021/08/09/a11d5c69b9894.webp' +
-      ');'
-    "
-  ></header>
+  <header :style="'background:url(' + bgUrl + ');'"></header>
 </template>
 
 <script>
 export default {
   components: {},
   props: {
-
-    
-
+    bgUrl: {
+      type: String,
+      default: function () {
+        return "";
+      },
+    },
   },
   data() {
     return {};

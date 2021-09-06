@@ -9,7 +9,7 @@ export default ({ $axios, $cookies }) => {
       $cookies.remove("token");
     }
 
-    if (res.data.code && res.data.code != 200) {
+    if (res.data.code && res.data.code != 200 && res.data.code != 204) {
       Vue.prototype.$notify({
         type: "error",
         title: "发送错误",

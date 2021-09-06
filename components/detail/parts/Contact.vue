@@ -3,6 +3,7 @@
     <div class="main-title" style="margin-bottom: 18px">社交媒体</div>
     <div v-if="contact_config.length != 0">
       <a
+        v-show="item.platform != ''"
         :href="checkStr(item.value, 'URL') ? item.value : '#'"
         v-for="(item, index) in contact_config"
         :key="index"

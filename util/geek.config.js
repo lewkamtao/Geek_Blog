@@ -3,7 +3,7 @@
 export default {
   geek_config: {
     site_config: {
-      title: "Geek(请用inis账号登录后前往通用设置配置初始信息)", // 站点标题
+      title: "Geek", // 站点标题
       keywords: "Geek,博客,个人博客", // 关键词
       description: "一个前端写的一个博客", // 描述
       permit_no: `<div class="permit-no-text"  style="">粤ICP备18056223号</div>
@@ -24,16 +24,17 @@ export default {
     },
 
     master_config: {
-      nickname: "",
-      description: "",
-      email: "",
-      phone: "",
-      head_img: ""
+      nickname: "小卢乱撞",
+      description: "一个前端",
+      email: "div@kamtao.com",
+      phone: "15818934279",
+      head_img: "https://api.kamtao.com/storage/users/anime/8.jpg"
     },
     images_config: {
       bg_about: "",
       bg_timeline: "",
-      bg_msgwall: ""
+      bg_msgwall: "",
+      bg_links: ""
     },
 
     contact_config: [],
@@ -41,7 +42,7 @@ export default {
       {
         value: "about",
         title: "关于",
-        isShow: false
+        isShow: true
       },
       // {
       //   value: "photo",
@@ -51,27 +52,27 @@ export default {
       {
         value: "time_line",
         title: "时光机",
-        isShow: false
+        isShow: true
       },
       {
         value: "music",
         title: "音乐",
-        isShow: false
+        isShow: true
       },
       {
         value: "links",
         title: "朋友",
-        isShow: false
+        isShow: true
       },
       {
         value: "msg_wall",
         title: "留言墙",
-        isShow: false
+        isShow: true
       },
       {
         value: "adm",
         title: "后台",
-        isShow: false
+        isShow: true
       }
     ]
   }

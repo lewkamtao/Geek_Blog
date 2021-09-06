@@ -77,8 +77,8 @@ export default {
     };
   },
   async asyncData({ $axios }) {
-    var geek_config = {};
-
+    var geek_config = false;
+    var noSet = false;
     try {
       const res_geek_config = await $axios.get(
         "/options?key=geek_config&cache=false"
@@ -87,14 +87,14 @@ export default {
         geek_config = res_geek_config.data.opt;
       } else {
         geek_config = first_geek_config.geek_config;
+        noSet = true;
       }
-    } catch {
+    } catch (err) {
       geek_config = first_geek_config.geek_config;
+      noSet = true;
     }
-
     const article_sort = (await $axios.get("/article-sort?limit=1000")).data;
-
-    return { article_sort, geek_config };
+    return { article_sort, geek_config, noSet };
   },
   props: {},
   data() {
@@ -104,6 +104,7 @@ export default {
       isShowOpenAsideBtn: false,
       backUpTopScroll: 0,
       isShowModeSet: false,
+      noSet: false,
     };
   },
   watch: {},
@@ -143,6 +144,9 @@ export default {
   },
   created() {
     this.isShowOpenAsideBtn = true;
+    if (this.noSet) {
+      this.$router.push("/getStart");
+    }
   },
   beforeRouteUpdate(to, from, next) {
     if (process.browser) {

@@ -27,6 +27,14 @@
           placeholder="图片链接"
         />
       </div>
+      <div class="field">
+        <label>友情链接背景图链接</label>
+        <input
+          v-model="form.images_config.bg_links"
+          type="text"
+          placeholder="图片链接"
+        />
+      </div>
       <div
         class="ui button blue"
         :class="{ loading: loading }"

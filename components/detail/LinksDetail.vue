@@ -1,6 +1,6 @@
 <template>
   <div class="links-detail">
-    <page-header></page-header>
+    <page-header :bgUrl="geek_config.images_config.bg_links"></page-header>
 
     <div class="ui middle aligned selection list">
       <a

@@ -10,14 +10,18 @@ export default {
     start() {
       if (process.browser) {
         var geek_main = document.getElementById("geek_main");
-        geek_main.classList.add("isGeekMainLoading");
+        if (geek_main) {
+          geek_main.classList.add("isGeekMainLoading");
+        }
       }
     },
     finish() {
       if (process.browser) {
         setTimeout(function () {
           var geek_main = document.getElementById("geek_main");
-          geek_main.classList.remove("isGeekMainLoading");
+          if (geek_main) {
+            geek_main.classList.remove("isGeekMainLoading");
+          }
         }, 100);
       }
     },
