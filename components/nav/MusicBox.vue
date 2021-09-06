@@ -114,6 +114,7 @@
       <!-- 音量调节 -->
       <div class="line-box">
         <svg
+          @click="reduceVolume"
           viewBox="0 0 24 24"
           width="18"
           height="18"
@@ -122,7 +123,7 @@
           fill="none"
           stroke-linecap="round"
           stroke-linejoin="round"
-          class="css-i6dzq1"
+          class="icon-volume icon-reduceVolume"
         >
           <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
         </svg>
@@ -142,6 +143,7 @@
           </div>
         </div>
         <svg
+          @click="increaseVolume"
           viewBox="0 0 24 24"
           width="18"
           height="18"
@@ -150,7 +152,7 @@
           fill="none"
           stroke-linecap="round"
           stroke-linejoin="round"
-          class="css-i6dzq1"
+          class="icon-volume icon-increaseVolume"
         >
           <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
           <path
@@ -245,7 +247,25 @@ export default {
       var volume = this.volumeLine.isOpenWidth / this.volumeLine.width;
       this.$refs.audioRef.volume = volume;
     },
+    // 降低调节音量
+    reduceVolume() {
+      var volume = this.$refs.audioRef.volume - 0.1;
+      if (volume <= 0) {
+        volume = 0;
+      }
+      this.$refs.audioRef.volume = volume;
 
+      this.volumeLine.isOpenWidth = this.volumeLine.width * volume;
+    },
+    // 增加调节音量
+    increaseVolume() {
+      var volume = this.$refs.audioRef.volume + 0.1;
+      if (volume >= 0.9) {
+        volume = 0.9;
+      }
+      this.$refs.audioRef.volume = volume;
+      this.volumeLine.isOpenWidth = this.volumeLine.width * volume;
+    },
     // 拖动调节进度
     changeTimeMousemove(de) {
       var that = this;
@@ -643,9 +663,19 @@ export default {
       }
     }
   }
-
+  .icon-volume {
+    cursor: pointer;
+    transition: all 0.25s;
+  }
+  .icon-volume:hover {
+    transform: scale(1.05);
+  }
+  .icon-volume:active {
+    transform: scale(0.95);
+  }
   .volume-line {
     position: relative;
+
     width: 100%;
     margin: 0px 8px 0px 4px;
     height: 3px;
@@ -655,6 +685,7 @@ export default {
     .line {
       position: absolute;
       left: 0px;
+      transition: all 0.25s;
       top: 0px;
       border-radius: 3px;
       height: 3px;

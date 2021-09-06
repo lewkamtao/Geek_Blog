@@ -1,37 +1,18 @@
 <template>
   <div class="part">
-    <div class="user-info">
-      <div class="avatar">
-        <img :src="geek_config.master_info.head_img" alt srcset />
-      </div>
-      <div class="info">
-        <div class="nickname">{{ geek_config.master_info.nickname }}</div>
-        <div class="description">
-          {{ geek_config.master_info.description }}
+    <nuxt-link to="/about">
+      <div class="user-info">
+        <div class="avatar">
+          <img :src="geek_config.master_info.head_img" alt srcset />
+        </div>
+        <div class="info">
+          <div class="nickname">{{ geek_config.master_info.nickname }}</div>
+          <div class="description">
+            {{ geek_config.master_info.description }}
+          </div>
         </div>
       </div>
-    </div>
-    <div class="user-intro">
-      <div style="margin-left: 8px; margin-top: 10px" class="main-title">
-        介绍
-      </div>
-      <div class="ui list intro">
-        <div class="item">
-          <i class="mail icon"></i>
-          <div class="content">前端工程师 在 广州</div>
-        </div>
-
-        <div class="item">
-          <i class="marker icon"></i>
-          <div class="content">住在 <span class="tag">广州 白云</span></div>
-        </div>
-
-        <div class="item">
-          <i class="linkify icon"></i>
-          <div class="content">喜欢 <span class="tag">唱 跳 rap</span></div>
-        </div>
-      </div>
-    </div>
+    </nuxt-link>
   </div>
 </template>
 
@@ -59,7 +40,9 @@ export default {
 <style lang="scss" scoped>
 .part {
   display: flex;
+  margin-top: 15px;
   flex-direction: column;
+  padding:5px;
 }
 .user-info {
   position: relative;
@@ -107,13 +90,6 @@ export default {
       white-space: nowrap; /*不换行*/
       text-overflow: ellipsis; /*超出部分文字以...显示*/
     }
-  }
-  .intro {
-    margin-top: -5px;
-    padding: 10px;
-  }
-  .tag {
-    color: #0e6eb8;
   }
 }
 </style>

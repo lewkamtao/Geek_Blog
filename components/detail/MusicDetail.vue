@@ -9,7 +9,7 @@
         nullUrl="https://api.kamtao.com/storage/users/anime/1.jpg?&1630570087077"
       ></v-img>
       <div class="content">
-        {{ songs.info.title }}
+        <div style="margin-bottom: 12px">{{ songs.info.title }}</div>
         <div class="sub header">
           {{ songs.info.description || "这个歌单的介绍空空如也~" }}
         </div>

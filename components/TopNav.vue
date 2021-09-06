@@ -51,15 +51,28 @@
       </div>
       <div class="right">
         <div class="right-links">
-          <nuxt-link class="nickname" v-if="isLogin" to="/about">{{
-            user.nickname
-          }}</nuxt-link>
-          <nuxt-link to="/login">
-            <i class="edit icon"></i>
-          </nuxt-link>
-          <nuxt-link v-if="!isLogin" to="/login">
+          <div
+            @click="toLink({ isLogin: false, path: '/Timeline' })"
+            class="child"
+          >
+            <i class="bell outline icon"></i>
+          </div>
+          <div
+            @click="toLink({ isLogin: false, path: '/MsgWall' })"
+            class="child"
+          >
+            <i class="clock outline icon"></i>
+          </div>
+
+          <div
+            @click="toLink({ isLogin: true, path: '/Timeline' })"
+            class="child"
+          >
+            <i class="edit outline icon"></i>
+          </div>
+          <div @click="toLink({ isLogin: true, path: '/About' })" class="child">
             <i class="user outline icon"></i>
-          </nuxt-link>
+          </div>
         </div>
       </div>
     </div>
@@ -100,6 +113,20 @@ export default {
       this.searchArticle = (
         await this.$axios.get("/search?value=" + this.searchValue + "&limit=10")
       ).data.data;
+    },
+    toLink({ isLogin, path }) {
+      if (isLogin && !this.isLogin) {
+        this.$notify({
+          type: "warning",
+          title: "注意",
+          message: "请先登录！",
+          duration: 5000,
+          offset: 65,
+        });
+        this.$router.push("/login");
+        return;
+      }
+      this.$router.push(path);
     },
     hidResBox() {
       var that = this;
@@ -182,16 +209,18 @@ export default {
     .right-links {
       display: flex;
       align-items: center;
-      a {
+      .child {
+        cursor: pointer;
         white-space: nowrap;
         font-size: 22px;
         margin-right: 30px;
         transition: all 0.25s;
       }
-      a:hover {
-        transform: scale(1.05);
+
+      .child:hover {
+        transform: scale(1.1);
       }
-      a:active {
+      .child:active {
         transform: scale(0.9);
       }
       .nickname {

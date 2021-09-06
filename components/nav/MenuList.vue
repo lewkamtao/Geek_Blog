@@ -1,6 +1,6 @@
 <template>
   <div class="part menu">
-    <div class="main-title" style="margin-left: 8px; margin-top: 10px">
+    <div class="main-title" style="margin-left: 6px; margin-top: 5px">
       菜单
     </div>
     <div class="nav-list">
@@ -234,7 +234,7 @@ export default {
 .menu {
   width: 100%;
   margin-top: 8px;
-  padding: 8px;
+  padding: 10px;
 }
 
 .list {
@@ -256,7 +256,7 @@ export default {
       display: flex;
       width: 100%;
       padding: 0px 5px 0px 48px;
-      margin: 1px 0px;
+      margin:  0px;
       font-size: 16px;
       background-image: none;
       text-align: left;

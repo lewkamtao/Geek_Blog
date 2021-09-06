@@ -107,7 +107,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .mode-setting {
-  padding: 8px;
+  padding: 10px;
   margin-top: 8px;
   display: flex;
   align-items: center;

@@ -238,7 +238,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .article-wrapper {
-  padding: 30px;
+  padding: 0px;
   display: flex;
   flex-direction: column;
 
@@ -249,7 +249,7 @@ export default {
     color: #000;
     text-align: center;
     background-size: cover !important;
-
+    border-radius: 8px 8px 0px 0px;
     .mask {
       position: absolute;
       top: -5%;
@@ -290,8 +290,9 @@ export default {
   }
 
   main {
-    margin-top: 30px;
+    margin-top: 0px;
     margin-bottom: 0px;
+    padding: 30px;
   }
 
   .section:after {
