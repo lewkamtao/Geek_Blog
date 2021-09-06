@@ -4,8 +4,8 @@
       <div class="left">
         <nuxt-link class="pc-logo" to="/">
           <div class="logo">
-            <img width="26" :src="geek_config.site_info.logo_url" alt srcset />
-            <div class="title">{{ geek_config.site_info.title }}</div>
+            <img width="26" :src="geek_config.site_config.logo_url" alt srcset />
+            <div class="title">{{ geek_config.site_config.title }}</div>
           </div>
         </nuxt-link>
         <div @click="showNav()" class="logo mobile-logo">

@@ -25,6 +25,7 @@
       <!-- 留言板 -->
       <msg-wall-detail
         v-if="options.type == 'msg_wall'"
+        :geek_config="geek_config"
         :msg_wall="msg_wall"
         @reloadComments="reloadComments"
       ></msg-wall-detail>
@@ -73,7 +74,7 @@
 
       <!-- 社交媒体 -->
       <contact
-        v-if="options.type == 'about' && geek_config.master_info.concact_switch"
+        v-if="options.type == 'about'"
         :geek_config="geek_config"
       ></contact>
 

@@ -1,6 +1,7 @@
 <template>
   <Detail
     @reloadComments="getComments"
+    :geek_config="geek_config"
     :msg_wall="msg_wall"
     :options="{
       type: 'msg_wall',
@@ -19,7 +20,7 @@ export default {
   components: {},
   head() {
     return {
-      title: "留言墙 - " + this.geek_config.site_info.title,
+      title: "留言墙 - " + this.geek_config.site_config.title,
     };
   },
   async asyncData({ $axios }) {

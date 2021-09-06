@@ -32,7 +32,7 @@ export default {
           name: "个人信息",
         },
         {
-          id: "image_set",
+          id: "setting_image",
           name: "图片设置",
         },
         {

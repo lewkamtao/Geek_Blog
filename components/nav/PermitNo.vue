@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <div v-html="geek_config.site_info.permit_no"></div>
+    <div v-html="geek_config.site_config.permit_no"></div>
   </div>
 </template>
 

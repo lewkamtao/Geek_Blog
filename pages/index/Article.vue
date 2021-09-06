@@ -15,7 +15,7 @@ export default {
   components: {},
   head() {
     return {
-      title: this.article.title + " - " + this.geek_config.site_info.title,
+      title: this.article.title + " - " + this.geek_config.site_config.title,
     };
   },
   async asyncData({ $axios, route }) {

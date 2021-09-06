@@ -1,8 +1,6 @@
 <template>
   <div class="part menu">
-    <div class="main-title" style="margin-left: 6px; margin-top: 5px">
-      菜单
-    </div>
+    <div class="main-title" style="margin-left: 6px; margin-top: 5px">菜单</div>
     <div class="nav-list">
       <div
         v-for="(item, index) in menu"
@@ -77,7 +75,7 @@ export default {
       menu: [
         // icon 配置 https://feathericons.com/  调整svg内的width和height:  width="16" height= "16"
         {
-          key: "home",
+          value: "home",
 
           path: "/",
           title: "首页",
@@ -86,7 +84,7 @@ export default {
           icon: `<svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>`,
         },
         {
-          key: "about",
+          value: "about",
 
           path: "/About",
           title: "关于",
@@ -94,17 +92,9 @@ export default {
           iconColor: "#999",
           icon: `<svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>`,
         },
-        {
-          key: "photo",
 
-          path: "/Photo",
-          title: "相册",
-          iconBg: "#fff",
-          iconColor: "#999",
-          icon: `<svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>`,
-        },
         {
-          key: "time_line",
+          value: "time_line",
 
           path: "/Timeline",
           title: "时光机",
@@ -113,7 +103,7 @@ export default {
           icon: `<svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><path d="M21 2H3v16h5v4l4-4h5l4-4V2zm-10 9V7m5 4V7"></path></svg>`,
         },
         {
-          key: "music",
+          value: "music",
           path: "/Music",
           title: "音乐",
           iconBg: "#fff",
@@ -121,7 +111,7 @@ export default {
           icon: `<svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg>`,
         },
         {
-          key: "links",
+          value: "links",
           path: "/Links",
           title: "朋友",
           iconBg: "#fff",
@@ -129,7 +119,7 @@ export default {
           icon: `<svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>`,
         },
         {
-          key: "msg_wall",
+          value: "msg_wall",
 
           path: "/MsgWall",
           title: "留言墙",
@@ -138,10 +128,10 @@ export default {
           icon: `<svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"></path><line x1="16" y1="8" x2="2" y2="22"></line><line x1="17.5" y1="15" x2="9" y2="15"></line></svg>`,
         },
         {
-          key: "adm",
+          value: "adm",
 
           path: "#",
-          title: "后台管理",
+          title: "后台",
           type: "back",
           isLogin: false,
           iconBg: "#fff",
@@ -150,7 +140,7 @@ export default {
         },
 
         {
-          key: "setting",
+          value: "setting",
 
           path: "/Setting",
           isLogin: true,
@@ -160,7 +150,7 @@ export default {
           icon: `<svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>`,
         },
         {
-          key: "admin_login_out",
+          value: "admin_login_out",
 
           path: "#",
           type: "loginOut",
@@ -174,6 +164,16 @@ export default {
       isLogin: false,
       active: "",
     };
+
+    // {
+    //       value: "photo",
+
+    //       path: "/Photo",
+    //       title: "相册",
+    //       iconBg: "#fff",
+    //       iconColor: "#999",
+    //       icon: `<svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>`,
+    //     },
   },
   watch: {
     $route: function () {
@@ -188,7 +188,7 @@ export default {
           this.loginOut();
           break;
         case "back":
-          window.open(this.geek_config.site_info.adm_site_url, "_blank");
+          window.open(this.geek_config.site_config.adm_site_url, "_blank");
           break;
         default:
           break;
@@ -209,10 +209,10 @@ export default {
       this.user = this.$cookies.get("user");
     }
     var _menu = JSON.parse(JSON.stringify(this.menu));
-    for (let key in this.geek_config.menu_switch) {
+    for (let i = 0; i <= this.geek_config.menu_config.length - 1; i++) {
       _menu.forEach((menu) => {
-        if (menu.key == key) {
-          menu.isShow = this.geek_config.menu_switch[key];
+        if (menu.value == this.geek_config.menu_config[i].value) {
+          menu.isShow = this.geek_config.menu_config[i].isShow;
         }
       });
     }
@@ -250,13 +250,13 @@ export default {
   flex-wrap: wrap;
   .nav-list-wrapper {
     width: 100%;
-    
+
     .menu-child {
       position: relative;
       display: flex;
       width: 100%;
       padding: 0px 5px 0px 48px;
-      margin:  0px;
+      margin: 0px;
       font-size: 16px;
       background-image: none;
       text-align: left;

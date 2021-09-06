@@ -91,68 +91,68 @@
       <div class="subTitle">站点设置</div>
       <div class="form-group">
         <label>博客标题</label>
-        <input type="text" v-model="geek_config_form.site_info.title" />
+        <input type="text" v-model="geek_config_form.site_config.title" />
       </div>
       <div class="form-group">
         <label>关键字（SEO）</label>
-        <input v-model="geek_config_form.site_info.keywords" type="text" />
+        <input v-model="geek_config_form.site_config.keywords" type="text" />
       </div>
       <div class="form-group">
         <label>站点描述（SEO）</label>
         <textarea
-          v-model="geek_config_form.site_info.description"
+          v-model="geek_config_form.site_config.description"
           id="footer"
         ></textarea>
       </div>
       <div class="form-group">
         <label>备案信息 (支持html)</label>
         <textarea
-          v-model="geek_config_form.site_info.permit_no"
+          v-model="geek_config_form.site_config.permit_no"
           type="text"
           id="footer"
         ></textarea>
       </div>
       <div class="form-group">
         <label>站点 favicon 图标</label>
-        <input v-model="geek_config_form.site_info.favicon_url" type="text" />
+        <input v-model="geek_config_form.site_config.favicon_url" type="text" />
       </div>
       <div class="form-group">
         <label>站点 Logo 链接</label>
-        <input v-model="geek_config_form.site_info.logo_url" type="text" />
+        <input v-model="geek_config_form.site_config.logo_url" type="text" />
       </div>
       <div class="form-group">
         <label>时光机头部背景图链接</label>
-        <input v-model="geek_config_form.site_info.timeline_bg" type="text" />
+        <input v-model="geek_config_form.site_config.timeline_bg" type="text" />
       </div>
       <div class="form-group">
         <label>关于头部背景图链接</label>
-        <input v-model="geek_config_form.site_info.about_bg" type="text" />
+        <input v-model="geek_config_form.site_config.about_bg" type="text" />
       </div>
       <div class="form-group">
         <label>朋友头部背景图链接</label>
-        <input v-model="geek_config_form.site_info.links_bg" type="text" />
+        <input v-model="geek_config_form.site_config.links_bg" type="text" />
       </div>
 
       <div class="form-group">
         <label>站点地址</label>
-        <input v-model="geek_config_form.site_info.blog_site_url" type="text" />
+        <input v-model="geek_config_form.site_config.blog_site_url" type="text" />
       </div>
       <div class="form-group">
         <label>后台地址</label>
-        <input v-model="geek_config_form.site_info.adm_site_url" type="text" />
+        <input v-model="geek_config_form.site_config.adm_site_url" type="text" />
       </div>
       <div class="form-group">
         <label>歌单ID</label>
-        <input v-model="geek_config_form.site_info.song_list_id" type="text" />
+        <input v-model="geek_config_form.site_config.song_list_id" type="text" />
       </div>
       <!-- <div class="form-group">
         <label>建站日期（用于运行天数）</label>
-        <input v-model="geek_config_form.site_info.adm_site_url" type="date" />
+        <input v-model="geek_config_form.site_config.adm_site_url" type="date" />
       </div>-->
       <div class="form-group">
         <label for="footer">页面脚部 (支持html)</label>
         <textarea
-          v-model="geek_config_form.site_info.footer_html"
+          v-model="geek_config_form.site_config.footer_html"
           id="footer"
         ></textarea>
       </div>
@@ -160,27 +160,27 @@
       <div class="subTitle">博主信息</div>
       <div class="form-group">
         <label>博主名</label>
-        <input v-model="geek_config_form.master_info.nickname" type="text" />
+        <input v-model="geek_config_form.master_config.nickname" type="text" />
       </div>
       <div class="form-group">
         <label>简介</label>
         <textarea
-          v-model="geek_config_form.master_info.description"
+          v-model="geek_config_form.master_config.description"
           id="footer"
         ></textarea>
       </div>
       <div class="form-group">
         <label>手机</label>
-        <input v-model="geek_config_form.master_info.phone" type="text" />
+        <input v-model="geek_config_form.master_config.phone" type="text" />
       </div>
       <div class="form-group">
         <label>邮箱</label>
-        <input v-model="geek_config_form.master_info.email" type="text" />
+        <input v-model="geek_config_form.master_config.email" type="text" />
       </div>
 
       <div class="form-group">
         <label>头像</label>
-        <input v-model="geek_config_form.master_info.head_img" type="text" />
+        <input v-model="geek_config_form.master_config.head_img" type="text" />
       </div>
 
       <div class="form-subTitle"># 关于 - 右侧模块显示设置</div>
@@ -190,14 +190,14 @@
           <input
             type="checkbox"
             checked
-            v-model="geek_config_form.master_info.concact_switch"
+            v-model="geek_config_form.master_config.contact_switch"
           />
           <span class="paper-switch-slider"></span>
         </label>
       </fieldset>
       <div
         class="contact"
-        v-for="(item, index) in geek_config_form.master_info.concact_array"
+        v-for="(item, index) in geek_config_form.master_config.contact_array"
         :key="index"
       >
         <div class="left">
@@ -205,7 +205,7 @@
             <label>平台</label>
             <select v-model="item.key">
               <option
-                v-for="(op_item, index) in concact_options"
+                v-for="(op_item, index) in contact_options"
                 :key="index"
                 :value="op_item.value"
               >
@@ -222,9 +222,9 @@
         </div>
         <button
           class="add-btn"
-          @click="addConcactItem"
+          @click="addcontactItem"
           v-show="
-            index == geek_config_form.master_info.concact_array.length - 1
+            index == geek_config_form.master_config.contact_array.length - 1
           "
         >
           添加
@@ -250,7 +250,7 @@ export default {
     return {
       geek_config_form: false,
       checkSubmit: 0,
-      concact_options: [
+      contact_options: [
         {
           label: "手机",
           value: "Phone",
@@ -298,8 +298,8 @@ export default {
   watch: {},
   computed: {},
   methods: {
-    addConcactItem() {
-      this.geek_config_form.master_info.concact_array.push({
+    addcontactItem() {
+      this.geek_config_form.master_config.contact_array.push({
         key: "",
         value: "",
       });
@@ -310,8 +310,8 @@ export default {
       );
       if (res_geek_config.code == 200 && res_geek_config.data.opt) {
         this.geek_config_form = res_geek_config.data.opt;
-        if (this.geek_config_form.master_info.concact_array.length == 0) {
-          this.geek_config_form.master_info.concact_array[0] = {
+        if (this.geek_config_form.master_config.contact_array.length == 0) {
+          this.geek_config_form.master_config.contact_array[0] = {
             key: "",
             value: "",
           };
@@ -324,7 +324,7 @@ export default {
       if (this.$cookies.get("token")) {
         var form = JSON.parse(JSON.stringify(this.geek_config_form));
 
-        form.master_info.concact_array = form.master_info.concact_array.filter(
+        form.master_config.contact_array = form.master_config.contact_array.filter(
           (item) => {
             return item.key != "" && item.value != "";
           }
@@ -346,11 +346,11 @@ export default {
         var userdata = {
           "login-token": this.$cookies.get("token"),
           id: this.$cookies.get("user").id,
-          nickname: this.geek_config_form.master_info.nickname,
-          description: this.geek_config_form.master_info.description,
-          email: this.geek_config_form.master_info.email,
-          phone: this.geek_config_form.master_info.phone,
-          head_img: this.geek_config_form.master_info.head_img,
+          nickname: this.geek_config_form.master_config.nickname,
+          description: this.geek_config_form.master_config.description,
+          email: this.geek_config_form.master_config.email,
+          phone: this.geek_config_form.master_config.phone,
+          head_img: this.geek_config_form.master_config.head_img,
         };
 
         this.$axios.post("/users", userdata).then((res) => {

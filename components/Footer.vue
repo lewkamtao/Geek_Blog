@@ -1,6 +1,6 @@
 <template>
   <div class="footer-wrapper">
-    <div v-html="geek_config.site_info.footer_html"></div>
+    <div v-html="geek_config.site_config.footer_html"></div>
   </div>
 </template>
 

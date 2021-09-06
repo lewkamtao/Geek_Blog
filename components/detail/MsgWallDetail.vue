@@ -1,7 +1,7 @@
 <template>
   <div class="messgae-wrapper part">
     <!-- 评论板块 -->
-    <page-header></page-header>
+    <page-header :bgUrl="geek_config.images_config.bg_msgwall"></page-header>
     <div class="messgae-main">
       <comment
         class="msg_wall"
@@ -20,6 +20,12 @@ import Comment from "@/components/detail/parts/Comment.vue";
 export default {
   components: { Comment, PageHeader },
   props: {
+    geek_config: {
+      type: Object,
+      default: function () {
+        return {};
+      },
+    },
     msg_wall: {
       type: Object,
       default: {},

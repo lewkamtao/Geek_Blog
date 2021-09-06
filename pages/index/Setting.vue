@@ -18,7 +18,7 @@ export default {
   components: {},
   head() {
     return {
-      title: "设置 - " + this.geek_config.site_info.title,
+      title: "设置 - " + this.geek_config.site_config.title,
     };
   },
   props: {

@@ -2,15 +2,6 @@
   <div class="part">
     <form class="ui form">
       <h4 class="ui dividing header">图片设置</h4>
-      <div
-        v-if="message.type"
-        class="ui positive message"
-        :class="message.type"
-      >
-        <i @click="message.type = ''" class="close icon"></i>
-        <div class="header">真棒！当前配置有效。</div>
-        <p>你可以随时修改这些信息</p>
-      </div>
 
       <div class="field">
         <label>关于背景图链接</label>
@@ -23,7 +14,7 @@
       <div class="field">
         <label>时光机背景图链接</label>
         <input
-          v-model="form.images_config.timeline_about"
+          v-model="form.images_config.bg_timeline"
           type="text"
           placeholder="图片链接"
         />
@@ -36,7 +27,14 @@
           placeholder="图片链接"
         />
       </div>
-      <div class="ui button blue" tabindex="0">保存配置</div>
+      <div
+        class="ui button blue"
+        :class="{ loading: loading }"
+        @click="submit"
+        tabindex="0"
+      >
+        保存配置
+      </div>
     </form>
   </div>
 </template>
@@ -44,27 +42,53 @@
 <script>
 export default {
   components: {},
-  props: {},
+  props: {
+    images_config: {
+      type: Object,
+      default: function () {
+        return {};
+      },
+    },
+  },
   data() {
     return {
-      message: {
-        type: "negative", // message:success / negative
-        title: "",
-        info: "",
-      },
+      loading: false,
       form: {
         images_config: {
-          bg_about: "1",
-          timeline_about: "2",
-          bg_msgwall: "3",
+          bg_about: "",
+          bg_timeline: "",
+          bg_msgwall: "",
         },
       },
     };
   },
   watch: {},
   computed: {},
-  methods: {},
-  created() {},
+  methods: {
+    submit() {
+      this.loading = true;
+      var data = {
+        "login-token": this.$cookies.get("token"),
+        keys: "geek_config",
+        opt: this.form,
+      };
+      this.$axios.post("/options", data).then((res) => {
+        this.loading = false;
+        if (res.code == 200) {
+          this.$notify({
+            type: "success",
+            title: "恭喜！",
+            message: "配置成功，刷新页面之后立即生效。",
+            duration: 5000,
+            offset: 65,
+          });
+        }
+      });
+    },
+  },
+  created() {
+    this.form.images_config = this.images_config;
+  },
   mounted() {},
 };
 </script>

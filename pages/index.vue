@@ -54,24 +54,24 @@ export default {
   components: {},
   head() {
     return {
-      title: this.geek_config.site_info.title,
+      title: this.geek_config.site_config.title,
       meta: [
         {
           hid: "keywords",
           name: "keywords",
-          content: this.geek_config.site_info.keywords,
+          content: this.geek_config.site_config.keywords,
         },
         {
           hid: "description",
           name: "description",
-          content: this.geek_config.site_info.description,
+          content: this.geek_config.site_config.description,
         },
       ],
       link: [
         {
           rel: "icon",
           type: "image/x-icon",
-          href: this.geek_config.site_info.favicon_url,
+          href: this.geek_config.site_config.favicon_url,
         },
       ],
     };

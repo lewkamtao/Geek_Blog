@@ -2,15 +2,7 @@
   <div class="part">
     <form class="ui form">
       <h4 class="ui dividing header">站点配置</h4>
-      <div
-        v-if="message.type"
-        class="ui positive message"
-        :class="message.type"
-      >
-        <i @click="message.type = ''" class="close icon"></i>
-        <div class="header">真棒！当前配置有效。</div>
-        <p>你可以随时修改这些信息</p>
-      </div>
+
       <div class="field">
         <div class="two fields">
           <div class="field">
@@ -80,7 +72,14 @@
           placeholder="支持HTML文本"
         ></textarea>
       </div>
-      <div class="ui button blue" tabindex="0">保存配置</div>
+      <div
+        class="ui button blue"
+        :class="{ loading: loading }"
+        @click="submit"
+        tabindex="0"
+      >
+        保存配置
+      </div>
     </form>
   </div>
 </template>
@@ -88,42 +87,60 @@
 <script>
 export default {
   components: {},
-  props: {},
+  props: {
+    site_config: {
+      type: Object,
+      default: function () {
+        return {};
+      },
+    },
+  },
   data() {
     return {
-      message: {
-        type: "negative", // message:success / negative
-        title: "",
-        info: "",
-      },
+      loading: false,
+
       form: {
         site_config: {
-          title: "Geek(请用inis账号登录后前往设置配置初始信息)", // 站点标题
-          keywords: "Geek,博客,个人博客", // 关键词
-          description: "一个前端写的一个博客", // 描述
-          permit_no: `<div class="permit-no-text"  style="">粤ICP备18056223号</div>
-            <style>
-            .permit-no-text{
-             line-height: 24px;text-align:center; color:#999
-            }
-            </style>`, // 备案号
-          favicon_url: "https://tngeek.com/favicon.ico", // 站点ico
-          logo_url: "https://cos.tngeek.com/logo.png", // 站点logo
-          blog_site_url: "https://blog.kamtao.com/", // 博客地址
-          adm_site_url: "https://api.kamtao.com/", // 运营地址
-          footer_html: `<div style=" line-height: 24px; color:#999">
-            Powered by
-            <a href="https://inis.cc/" >inis</a> | 本站自豪使用了全世界最好的Vue框架
-            <br>Copyright (c) 2021-present, Kamtao (To) Lew
-          </div>`,
+          title: "", // 站点标题
+          keywords: "", // 关键词
+          description: "", // 描述
+          permit_no: ``, // 备案号
+          favicon_url: "", // 站点ico
+          logo_url: "", // 站点logo
+          blog_site_url: "", // 博客地址
+          adm_site_url: "", // 运营地址
+          footer_html: ``,
         },
       },
     };
   },
   watch: {},
   computed: {},
-  methods: {},
-  created() {},
+  methods: {
+    submit() {
+      this.loading = true;
+      var data = {
+        "login-token": this.$cookies.get("token"),
+        keys: "geek_config",
+        opt: this.form,
+      };
+      this.$axios.post("/options", data).then((res) => {
+        this.loading = false;
+        if (res.code == 200) {
+          this.$notify({
+            type: "success",
+            title: "恭喜！",
+            message: "配置成功，刷新页面之后立即生效。",
+            duration: 5000,
+            offset: 65,
+          });
+        }
+      });
+    },
+  },
+  created() {
+    this.form.site_config = this.site_config;
+  },
   mounted() {},
 };
 </script>

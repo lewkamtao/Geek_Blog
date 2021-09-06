@@ -22,7 +22,7 @@
         class="ui segment"
         v-for="(menu, index) in form.menu_config"
         :key="'menu' + index"
-        @click="menu.isShow = !menu.isShow"
+        @click="change(index)"
       >
         <div class="field">
           <div class="ui toggle checkbox">
@@ -44,7 +44,14 @@
 <script>
 export default {
   components: {},
-  props: {},
+  props: {
+    menu_config: {
+      type: Array,
+      default: function () {
+        return [];
+      },
+    },
+  },
   data() {
     return {
       tips: {
@@ -98,33 +105,34 @@ export default {
       },
     };
   },
-  watch: {
-    form: {
-      handler(newValue, oldValue) {
-        var data = {
-          "login-token": this.$cookies.get("token"),
-          keys: "geek_config",
-          opt: newValue,
-        };
+  watch: {},
+  computed: {},
+  methods: {
+    change(index) {
+      this.form.menu_config[index].isShow =
+        !this.form.menu_config[index].isShow;
+      var data = {
+        "login-token": this.$cookies.get("token"),
+        keys: "geek_config",
+        opt: this.form,
+      };
 
-        this.$axios.post("/options", data).then((res) => {
-          if (res.code == 200) {
-            this.$notify({
-              type: "success",
-              title: "恭喜！",
-              message: "配置成功，刷新页面之后立即生效。",
-              duration: 5000,
-              offset: 65,
-            });
-          }
-        });
-      },
-      deep: true,
+      this.$axios.post("/options", data).then((res) => {
+        if (res.code == 200) {
+          this.$notify({
+            type: "success",
+            title: "恭喜！",
+            message: "配置成功，刷新页面之后立即生效。",
+            duration: 5000,
+            offset: 65,
+          });
+        }
+      });
     },
   },
-  computed: {},
-  methods: {},
-  created() {},
+  created() {
+    this.form.menu_config = this.menu_config;
+  },
   mounted() {},
 };
 </script>

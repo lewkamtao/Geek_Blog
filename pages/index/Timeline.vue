@@ -14,7 +14,7 @@ export default {
   components: {},
   head() {
     return {
-      title: "时光机 - " + this.geek_config.site_info.title,
+      title: "时光机 - " + this.geek_config.site_config.title,
     };
   },
   async asyncData({ $axios, route }) {

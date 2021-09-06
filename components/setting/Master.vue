@@ -3,27 +3,22 @@
     <form class="ui form">
       <h4 class="ui dividing header">个人信息</h4>
 
-      <div
-        v-if="message.type"
-        class="ui positive message"
-        :class="message.type"
-      >
-        <i @click="message.type = ''" class="close icon"></i>
-        <div class="header">真棒！当前配置有效。</div>
-        <p>你可以随时修改这些信息</p>
-      </div>
       <div class="field">
         <label>昵称</label>
         <input
           v-model="form.master_config.nickname"
           type="text"
-          placeholder="中间名"
+          placeholder="昵称"
         />
       </div>
 
       <div class="field">
         <label>简介</label>
-        <textarea v-model="form.master_config.description" rows="2"></textarea>
+        <textarea
+          v-model="form.master_config.description"
+          rows="2"
+          placeholder="简介"
+        ></textarea>
       </div>
       <div class="two fields">
         <div class="field">
@@ -31,8 +26,7 @@
           <input
             v-model="form.master_config.phone"
             type="text"
-            name="shipping[first-name]"
-            placeholder="First Name"
+            placeholder="手机号"
           />
         </div>
         <div class="field">
@@ -40,8 +34,7 @@
           <input
             v-model="form.master_config.email"
             type="text"
-            name="shipping[last-name]"
-            placeholder="Last Name"
+            placeholder="邮箱"
           />
         </div>
       </div>
@@ -50,10 +43,17 @@
         <input
           v-model="form.master_config.head_img"
           type="text"
-          placeholder="中间名"
+          placeholder="头像链接"
         />
       </div>
-      <div class="ui button blue" tabindex="0">保存配置</div>
+      <div
+        class="ui button blue"
+        :class="{ loading: loading }"
+        @click="submit"
+        tabindex="0"
+      >
+        保存配置
+      </div>
     </form>
   </div>
 </template>
@@ -61,21 +61,25 @@
 <script>
 export default {
   components: {},
-  props: {},
+  props: {
+    master_config: {
+      type: Object,
+      default: function () {
+        return {};
+      },
+    },
+  },
   data() {
     return {
-      message: {
-        type: "negative", // message:success / negative
-        title: "",
-        info: "",
-      },
+      loading: false,
+      checkI: 0,
       form: {
         master_config: {
-          nickname: "小卢他人不错",
-          description: "98年前端工程师，做一个很酷的人。",
-          email: "div@kamtao.com",
-          phone: "15818934279",
-          head_img: "https://q2.qlogo.cn/g?b=qq&nk=1057072668&s=100",
+          nickname: "",
+          description: "",
+          email: "",
+          phone: "",
+          head_img: "",
         },
       },
     };
@@ -84,25 +88,58 @@ export default {
   computed: {},
   methods: {
     submit() {
+      this.loading = true;
+      var data = {
+        "login-token": this.$cookies.get("token"),
+        keys: "geek_config",
+        opt: this.form,
+      };
+      this.$axios.post("/options", data).then((res) => {
+        this.loading = false;
+        if (res.code == 200) {
+          this.checkI += 1;
+
+          if (this.checkI == 2) {
+            this.successSubmit();
+          }
+        }
+      });
+
       var userdata = {
         "login-token": this.$cookies.get("token"),
         id: this.$cookies.get("user").id,
-        nickname: this.geek_config_form.master_info.nickname,
-        description: this.geek_config_form.master_info.description,
-        email: this.geek_config_form.master_info.email,
-        phone: this.geek_config_form.master_info.phone,
-        head_img: this.geek_config_form.master_info.head_img,
+        nickname: this.form.master_config.nickname,
+        account: "kamtao",
+        description: this.form.master_config.description,
+        email: this.form.master_config.email,
+        phone: this.form.master_config.phone,
+        head_img: this.form.master_config.head_img,
       };
 
       this.$axios.post("/users", userdata).then((res) => {
+        this.loading = false;
         if (res.code == 200) {
-          this.checkSubmit += 1;
-          this.reload();
+          this.checkI += 1;
+
+          if (this.checkI == 2) {
+            this.successSubmit();
+          }
         }
       });
     },
+    successSubmit() {
+      this.$notify({
+        type: "success",
+        title: "恭喜！",
+        message: "信息更新成功，刷新页面之后立即生效。",
+        duration: 5000,
+        offset: 65,
+      });
+    },
   },
-  created() {},
+  created() {
+    this.form.master_config = this.master_config;
+  },
   mounted() {},
 };
 </script>

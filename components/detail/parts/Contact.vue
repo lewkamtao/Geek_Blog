@@ -1,24 +1,24 @@
 <template>
-  <div style="margin-bottom: 8px" class="concact-wrapper part">
+  <div style="margin-bottom: 8px" class="contact-wrapper part">
     <div class="main-title" style="margin-bottom: 18px">社交媒体</div>
-    <div v-if="concact_array.length != 0">
+    <div v-if="contact_config.length != 0">
       <a
         :href="checkStr(item.value, 'URL') ? item.value : '#'"
-        v-for="(item, index) in concact_array"
+        v-for="(item, index) in contact_config"
         :key="index"
         :target="checkStr(item.value, 'URL') ? '_blank' : ''"
         class="item"
-        ref="concactItem"
+        ref="contactItem"
         @mouseenter="addHover(index)"
         @mouseleave="removeHover(index)"
       >
         <svg class="icon icon-play" aria-hidden="true">
-          <use :xlink:href="'#icon-' + item.key" />
+          <use :xlink:href="'#icon-' + item.platform" />
         </svg>
-        <div class="concact-value">{{ item.nickname || item.value }}</div>
+        <div class="contact-value">{{ item.nickname || item.value }}</div>
       </a>
     </div>
-    <div v-if="concact_array.length == 0">未设置</div>
+    <div v-if="contact_config.length == 0">未设置</div>
   </div>
 </template>
 <script>
@@ -33,60 +33,37 @@ export default {
   },
   data() {
     return {
-      concact_array: [],
+      contact_config: [],
     };
   },
   created() {
-    this.concact_array = this.geek_config.master_info.concact_array;
-    this.formatConcactUrl();
+    this.contact_config = this.geek_config.contact_config;
   },
   methods: {
     checkStr,
     addHover(index) {
-      this.$refs.concactItem[index].classList.add("isHover");
+      this.$refs.contactItem[index].classList.add("isHover");
       if (index != 0) {
-        this.$refs.concactItem[index - 1].classList.add("isHoverPrve");
+        this.$refs.contactItem[index - 1].classList.add("isHoverPrve");
       }
-      if (index != this.concact_array.length - 1) {
-        this.$refs.concactItem[index + 1].classList.add("isHoverNext");
+      if (index != this.contact_config.length - 1) {
+        this.$refs.contactItem[index + 1].classList.add("isHoverNext");
       }
     },
     removeHover(index) {
-      this.$refs.concactItem[index].classList.remove("isHover");
+      this.$refs.contactItem[index].classList.remove("isHover");
       if (index != 0) {
-        this.$refs.concactItem[index - 1].classList.remove("isHoverPrve");
+        this.$refs.contactItem[index - 1].classList.remove("isHoverPrve");
       }
-      if (index != this.concact_array.length - 1) {
-        this.$refs.concactItem[index + 1].classList.remove("isHoverNext");
+      if (index != this.contact_config.length - 1) {
+        this.$refs.contactItem[index + 1].classList.remove("isHoverNext");
       }
-    },
-    formatConcactUrl() {
-      this.concact_array.forEach((concact_array) => {
-        if (checkStr(concact_array.value, "URL")) {
-          concact_array.nickname = this.getQueryVariable(
-            concact_array.value,
-            "nickname"
-          );
-        }
-      });
-    },
-    // 获取url参数
-    getQueryVariable(url, variable) {
-      var query = url.split("?")[1];
-      var vars = query.split("&");
-      for (var i = 0; i < vars.length; i++) {
-        var pair = vars[i].split("=");
-        if (pair[0] == variable) {
-          return pair[1];
-        }
-      }
-      return false;
     },
   },
 };
 </script>
 <style lang="scss" scoped>
-.concact-wrapper {
+.contact-wrapper {
   a {
     background-image: none;
   }
@@ -95,7 +72,7 @@ export default {
     align-items: center;
     padding: 8px 0px;
     transition: all 0.15s;
-    .concact-value {
+    .contact-value {
       width: calc(100% - 80px);
       font-size: 14px;
       height: 30px;
@@ -124,7 +101,7 @@ export default {
   }
   .isHover {
     transform: translateX(18px);
-    .concact-value {
+    .contact-value {
       color: #000;
       margin-left: 14px;
     }
@@ -134,7 +111,7 @@ export default {
   }
   .isHoverPrve {
     transform: translateX(6px);
-    .concact-value {
+    .contact-value {
       color: #666;
       margin-left: 7px;
     }
@@ -144,7 +121,7 @@ export default {
   }
   .isHoverNext {
     transform: translateX(6px);
-    .concact-value {
+    .contact-value {
       color: #666;
       margin-left: 7px;
     }

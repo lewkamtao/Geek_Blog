@@ -1,7 +1,7 @@
 <template>
   <div class="part">
     <form class="ui form">
-      <h2 class="ui dividing header">社交媒体配置</h2>
+      <h4 class="ui dividing header">社交媒体配置</h4>
       <div
         v-if="message.type"
         class="ui positive message"
@@ -12,20 +12,20 @@
         <p>你可以随时修改这些信息</p>
       </div>
       <div
-        v-for="(contact_info, index) in form.contact_info"
-        :key="'contact_info' + index"
+        v-for="(contact_config, index) in form.contact_config"
+        :key="'contact_config' + index"
         class="fields"
       >
         <div class="four wide field">
           <label>社交平台</label>
           <select
             class="ui fluid search dropdown"
-            v-model="contact_info.platform"
+            v-model="contact_config.platform"
             placeholder="请选择"
           >
             <option
-              v-for="(option, index) in concact_options"
-              :key="'concact_options' + index"
+              v-for="(option, index) in contact_options"
+              :key="'contact_options' + index"
               :value="option.value"
             >
               {{ option.label }}
@@ -34,16 +34,16 @@
         </div>
 
         <div class="six wide field">
-          <label>{{ getContactLabel(contact_info.platform) }}</label>
+          <label>{{ getContactLabel(contact_config.platform) }}</label>
           <div style="display: flex">
             <input
-              v-model="contact_info.value"
+              v-model="contact_config.value"
               type="text"
               placeholder="你的社交媒体链接"
             />
             <div
-              v-show="!getContactNickname(contact_info.platform)"
-              v-if="form.contact_info.length != 1"
+              v-show="!getContactNickname(contact_config.platform)"
+              v-if="form.contact_config.length != 1"
               @click="del(index)"
               :style="`
               margin-left: 15px;
@@ -59,19 +59,19 @@
         </div>
 
         <div class="eight wide field">
-          <label v-show="getContactNickname(contact_info.platform)">{{
-            getContactNickname(contact_info.platform)
+          <label v-show="getContactNickname(contact_config.platform)">{{
+            getContactNickname(contact_config.platform)
           }}</label>
           <div style="display: flex">
             <input
-              v-show="getContactNickname(contact_info.platform)"
-              v-model="contact_info.nickname"
+              v-show="getContactNickname(contact_config.platform)"
+              v-model="contact_config.nickname"
               type="text"
               placeholder="你的昵称"
             />
             <div
-              v-show="getContactNickname(contact_info.platform)"
-              v-if="form.contact_info.length != 1"
+              v-show="getContactNickname(contact_config.platform)"
+              v-if="form.contact_config.length != 1"
               @click="del(index)"
               :style="`
               margin-left: 15px;
@@ -107,7 +107,14 @@
 <script>
 export default {
   components: {},
-  props: {},
+  props: {
+    contact_config: {
+      type: Array,
+      default: function () {
+        return [];
+      },
+    },
+  },
   data() {
     return {
       loading: false,
@@ -116,7 +123,7 @@ export default {
         title: "",
         info: "",
       },
-      concact_options: [
+      contact_options: [
         {
           label: "手机",
           value: "Phone",
@@ -160,7 +167,7 @@ export default {
         },
       ],
       form: {
-        contact_info: [],
+        contact_config: [],
       },
     };
   },
@@ -248,22 +255,22 @@ export default {
   },
   methods: {
     add() {
-      this.form.contact_info.push({
+      this.form.contact_config.push({
         platform: "",
         value: "",
         nickname: "",
       });
     },
     del(index) {
-      if (this.form.contact_info.length == 1) {
+      if (this.form.contact_config.length == 1) {
         return;
       } else {
-        this.form.contact_info.splice(index, 1);
+        this.form.contact_config.splice(index, 1);
       }
     },
     checkForm(form) {
-      for (let i = 0; i <= form.contact_info.length - 1; i++) {
-        if (form.contact_info[i].platform == "") {
+      for (let i = 0; i <= form.contact_config.length - 1; i++) {
+        if (form.contact_config[i].platform == "") {
           this.$notify({
             type: "warning",
             title: "请补充完整信息",
@@ -274,9 +281,9 @@ export default {
           return false;
         }
 
-        switch (form.contact_info[i].platform) {
+        switch (form.contact_config[i].platform) {
           case "Phone": {
-            if (form.contact_info[i].value == "") {
+            if (form.contact_config[i].value == "") {
               this.$notify({
                 type: "warning",
                 title: "请补充完整信息",
@@ -289,7 +296,7 @@ export default {
             break;
           }
           case "QQ": {
-            if (form.contact_info[i].value == "") {
+            if (form.contact_config[i].value == "") {
               this.$notify({
                 type: "warning",
                 title: "请补充完整信息",
@@ -302,7 +309,7 @@ export default {
             break;
           }
           case "Wechat": {
-            if (form.contact_info[i].value == "") {
+            if (form.contact_config[i].value == "") {
               this.$notify({
                 type: "warning",
                 title: "请补充完整信息",
@@ -315,7 +322,7 @@ export default {
             break;
           }
           case "Weibo": {
-            if (form.contact_info[i].value == "") {
+            if (form.contact_config[i].value == "") {
               this.$notify({
                 type: "warning",
                 title: "请补充完整信息",
@@ -325,7 +332,7 @@ export default {
               });
               return false;
             }
-            if (form.contact_info[i].nickname == "") {
+            if (form.contact_config[i].nickname == "") {
               this.$notify({
                 type: "warning",
                 title: "请补充完整信息",
@@ -338,7 +345,7 @@ export default {
             break;
           }
           case "Mail": {
-            if (form.contact_info[i].value == "") {
+            if (form.contact_config[i].value == "") {
               this.$notify({
                 type: "warning",
                 title: "请补充完整信息",
@@ -351,7 +358,7 @@ export default {
             break;
           }
           case "Github": {
-            if (form.contact_info[i].value == "") {
+            if (form.contact_config[i].value == "") {
               this.$notify({
                 type: "warning",
                 title: "请补充完整信息",
@@ -361,7 +368,7 @@ export default {
               });
               return false;
             }
-            if (form.contact_info[i].nickname == "") {
+            if (form.contact_config[i].nickname == "") {
               this.$notify({
                 type: "warning",
                 title: "请补充完整信息",
@@ -374,7 +381,7 @@ export default {
             break;
           }
           case "Instagram": {
-            if (form.contact_info[i].value == "") {
+            if (form.contact_config[i].value == "") {
               this.$notify({
                 type: "warning",
                 title: "请补充完整信息",
@@ -384,7 +391,7 @@ export default {
               });
               return false;
             }
-            if (form.contact_info[i].nickname == "") {
+            if (form.contact_config[i].nickname == "") {
               this.$notify({
                 type: "warning",
                 title: "请补充完整信息",
@@ -397,7 +404,7 @@ export default {
             break;
           }
           case "Twitter": {
-            if (form.contact_info[i].value == "") {
+            if (form.contact_config[i].value == "") {
               this.$notify({
                 type: "warning",
                 title: "请补充完整信息",
@@ -407,7 +414,7 @@ export default {
               });
               return false;
             }
-            if (form.contact_info[i].nickname == "") {
+            if (form.contact_config[i].nickname == "") {
               this.$notify({
                 type: "warning",
                 title: "请补充完整信息",
@@ -420,7 +427,7 @@ export default {
             break;
           }
           case "Wordpress": {
-            if (form.contact_info[i].value == "") {
+            if (form.contact_config[i].value == "") {
               this.$notify({
                 type: "warning",
                 title: "请补充完整信息",
@@ -430,7 +437,7 @@ export default {
               });
               return false;
             }
-            if (form.contact_info[i].nickname == "") {
+            if (form.contact_config[i].nickname == "") {
               this.$notify({
                 type: "warning",
                 title: "请补充完整信息",
@@ -443,7 +450,7 @@ export default {
             break;
           }
           case "Youtube": {
-            if (form.contact_info[i].value == "") {
+            if (form.contact_config[i].value == "") {
               this.$notify({
                 type: "warning",
                 title: "请补充完整信息",
@@ -453,7 +460,7 @@ export default {
               });
               return false;
             }
-            if (form.contact_info[i].nickname == "") {
+            if (form.contact_config[i].nickname == "") {
               this.$notify({
                 type: "warning",
                 title: "请补充完整信息",
@@ -477,14 +484,31 @@ export default {
       this.loading = true;
       var form = JSON.parse(JSON.stringify(this.form));
       if (this.checkForm(form)) {
-        this.loading = true;
+        var data = {
+          "login-token": this.$cookies.get("token"),
+          keys: "geek_config",
+          opt: this.form,
+        };
+        this.$axios.post("/options", data).then((res) => {
+          this.loading = false;
+          if (res.code == 200) {
+            this.$notify({
+              type: "success",
+              title: "恭喜！",
+              message: "配置成功，刷新页面之后立即生效。",
+              duration: 5000,
+              offset: 65,
+            });
+          }
+        });
       } else {
         this.loading = false;
       }
     },
   },
   created() {
-    if (this.form.contact_info.length == 0) {
+    this.form.contact_config = this.contact_config;
+    if (this.form.contact_config.length == 0) {
       this.add();
     }
   },

@@ -1,16 +1,16 @@
 <template>
   <div class="timeline-wrapper">
     <header
-      :style="'background:url(' + geek_config.site_info.timeline_bg + ')'"
+      :style="'background:url(' + geek_config.images_config.bg_timeline + ')'"
     ></header>
     <div class="user-info">
       <div class="user-box">
-        <div class="nickname">{{ geek_config.master_info.nickname }}</div>
+        <div class="nickname">{{ geek_config.master_config.nickname }}</div>
         <div class="avatar">
-          <img :src="geek_config.master_info.head_img" alt="" />
+          <img :src="geek_config.master_config.head_img" alt="" />
         </div>
       </div>
-      <div class="direction">{{ geek_config.master_info.description }}</div>
+      <div class="direction">{{ geek_config.master_config.description }}</div>
     </div>
 
     <div class="timeline">

@@ -21,7 +21,7 @@ export default {
   components: {},
   head() {
     return {
-      title: "音乐 - " + this.geek_config.site_info.title,
+      title: "音乐 - " + this.geek_config.site_config.title,
     };
   },
   async asyncData({ $axios }) {

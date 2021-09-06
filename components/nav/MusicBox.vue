@@ -357,7 +357,7 @@ export default {
       this.music.duration = res.target.duration;
     },
     async getMusicList() {
-      var list_id = this.geek_config.site_info.song_list_id || 1;
+      var list_id = this.geek_config.site_config.song_list_id || 1;
       try {
         const data = (
           await this.$axios.get(

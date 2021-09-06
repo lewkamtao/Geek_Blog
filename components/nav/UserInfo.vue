@@ -3,12 +3,12 @@
     <nuxt-link to="/about">
       <div class="user-info">
         <div class="avatar">
-          <img :src="geek_config.master_info.head_img" alt srcset />
+          <img :src="geek_config.master_config.head_img" alt srcset />
         </div>
         <div class="info">
-          <div class="nickname">{{ geek_config.master_info.nickname }}</div>
+          <div class="nickname">{{ geek_config.master_config.nickname }}</div>
           <div class="description">
-            {{ geek_config.master_info.description }}
+            {{ geek_config.master_config.description }}
           </div>
         </div>
       </div>
@@ -23,7 +23,13 @@ export default {
     geek_config: {
       type: Object,
       default: function () {
-        return {};
+        return {
+          master_config: {
+            head_img: "",
+            nickname: "Geek_Username",
+            description: "description",
+          },
+        };
       },
     },
   },
@@ -42,7 +48,7 @@ export default {
   display: flex;
   margin-top: 15px;
   flex-direction: column;
-  padding:5px;
+  padding: 5px;
 }
 .user-info {
   position: relative;
