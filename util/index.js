@@ -18,6 +18,7 @@ function getBeautifyTime(date) {
       if (i == 6) {
         return "刚刚";
       }
+      
       return inm + " " + arrr[i] + postfix;
     }
   }
