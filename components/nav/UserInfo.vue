@@ -3,7 +3,14 @@
     <nuxt-link to="/about">
       <div class="user-info">
         <div class="avatar">
-          <img :src="geek_config.master_config.head_img" alt srcset />
+          <v-img
+            style="border-radius: 4px"
+            class="ui image"
+            width="50px"
+            height="50px"
+            :url="geek_config.master_config.head_img"
+          >
+          </v-img>
         </div>
         <div class="info">
           <div class="nickname">{{ geek_config.master_config.nickname }}</div>

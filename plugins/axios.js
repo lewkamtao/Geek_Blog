@@ -11,8 +11,8 @@ export default ({ $axios, $cookies }) => {
 
     if (res.data.code && res.data.code != 200 && res.data.code != 204) {
       Vue.prototype.$notify({
-        type: "error",
-        title: "发送错误",
+        type: "warning",
+        title: "注意",
         message: res.data.msg || res.data.code + "：未知错误原因",
         duration: 5000,
         offset: 65

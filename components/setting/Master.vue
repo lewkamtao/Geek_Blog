@@ -20,32 +20,45 @@
           placeholder="简介"
         ></textarea>
       </div>
+      <div class="field">
+        <label>手机号</label>
+        <input
+          v-model="form.master_config.phone"
+          type="text"
+          placeholder="手机号"
+        />
+      </div>
       <div class="two fields">
-        <div class="field">
-          <label>手机号</label>
-          <input
-            v-model="form.master_config.phone"
-            type="text"
-            placeholder="手机号"
-          />
-        </div>
         <div class="field">
           <label>邮箱</label>
           <input
             v-model="form.master_config.email"
             type="text"
-            placeholder="邮箱"
+            placeholder="手机号"
           />
         </div>
+        <div class="field">
+          <label>邮箱验证码</label>
+          <div class="ui right action input">
+            <input
+              type="text"
+              v-model="form.master_config.code"
+              placeholder="验证码"
+            />
+            <div @click="getCode" class="ui teal button">获取验证码</div>
+          </div>
+        </div>
       </div>
+
       <div class="field">
-        <label>头像链接</label>
+        <label>头像</label>
         <input
           v-model="form.master_config.head_img"
           type="text"
           placeholder="头像链接"
         />
       </div>
+
       <div
         class="ui button blue"
         :class="{ loading: loading }"
@@ -80,6 +93,7 @@ export default {
           email: "",
           phone: "",
           head_img: "",
+          code: "",
         },
       },
     };
@@ -94,22 +108,12 @@ export default {
         keys: "geek_config",
         opt: this.form,
       };
-      this.$axios.post("/options", data).then((res) => {
-        this.loading = false;
-        if (res.code == 200) {
-          this.checkI += 1;
-
-          if (this.checkI == 2) {
-            this.successSubmit();
-          }
-        }
-      });
 
       var userdata = {
         "login-token": this.$cookies.get("token"),
         id: this.$cookies.get("user").id,
         nickname: this.form.master_config.nickname,
-        account: "kamtao",
+        account: this.form.master_config.email,
         description: this.form.master_config.description,
         email: this.form.master_config.email,
         phone: this.form.master_config.phone,
@@ -119,13 +123,22 @@ export default {
       this.$axios.post("/users", userdata).then((res) => {
         this.loading = false;
         if (res.code == 200) {
-          this.checkI += 1;
-
-          if (this.checkI == 2) {
-            this.successSubmit();
-          }
+          this.$axios.post("/options", data).then((res) => {
+            if (res.code == 200) {
+              this.successSubmit();
+            }
+          });
         }
       });
+    },
+    getCode() {
+      var userdata = {
+        "login-token": this.$cookies.get("token"),
+        id: this.$cookies.get("user").id,
+        account: this.form.master_config.email,
+        email: this.form.master_config.email,
+      };
+      this.$axios.post("/users", userdata);
     },
     successSubmit() {
       this.$notify({

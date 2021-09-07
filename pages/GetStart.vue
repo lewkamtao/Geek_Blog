@@ -61,6 +61,7 @@ export default {
   data() {
     return {
       token: "",
+      geek_config: {},
       form: {
         account: "",
         password: "",
