@@ -27,16 +27,15 @@ export default {
       nickname: "小卢乱撞",
       description: "一个前端",
       email: "div@kamtao.com",
-      phone: "15818934279",
-      head_img: "https://api.kamtao.com/storage/users/anime/8.jpg"
+      phone: "1588888888",
+      head_img: "https://api.kamtao.com/storage/users/anime/9.jpg"
     },
     images_config: {
-      bg_about: "",
-      bg_timeline: "",
-      bg_msgwall: "",
-      bg_links: ""
+      bg_about: "https://img.keai.cool/2021/08/09/317925aefec4b.webp",
+      bg_links: "https://img.keai.cool/2021/08/09/9b328ede4b74c.webp",
+      bg_msgwall: "https://img.keai.cool/2021/08/09/352c4682bfc83.webp",
+      bg_timeline: "https://img.keai.cool/2021/08/09/456778ab7ef4e.webp"
     },
-
     contact_config: [],
     menu_config: [
       {

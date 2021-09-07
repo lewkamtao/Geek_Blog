@@ -69,8 +69,11 @@ export default {
   proxy: {
     "/api/": {
       // 请填写你的后台接口地址
-      // target: "https://api.inis.cn/api",
-      target: "https://api.kamtao.com/api",
+      target: "https://api.inis.cn/api",
+      // target: "https://api.admin.yyxy.top/api",
+
+      
+      // target: "https://api.kamtao.com/api",
 
       pathRewrite: {
         "^/api/": "/",

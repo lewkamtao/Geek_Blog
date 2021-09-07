@@ -66,6 +66,7 @@ export default {
           bg_about: "",
           bg_timeline: "",
           bg_msgwall: "",
+          bg_links: "",
         },
       },
     };
