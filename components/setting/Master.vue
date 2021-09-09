@@ -21,13 +21,14 @@
         ></textarea>
       </div>
       <div class="field">
-        <label>头像链接</label>
+        <label>头像</label>
         <input
           v-model="form.master_config.head_img"
           type="text"
           placeholder="头像链接"
         />
       </div>
+
       <div
         class="ui button blue"
         :class="{ loading: loading }"
@@ -60,6 +61,7 @@ export default {
           nickname: "",
           description: "",
           head_img: "",
+          code: "",
         },
       },
     };
@@ -74,22 +76,11 @@ export default {
         keys: "geek_config",
         opt: this.form,
       };
-      this.$axios.post("/options", data).then((res) => {
-        this.loading = false;
-        if (res.code == 200) {
-          this.checkI += 1;
-
-          if (this.checkI == 2) {
-            this.successSubmit();
-          }
-        }
-      });
 
       var userdata = {
         "login-token": this.$cookies.get("token"),
         id: this.$cookies.get("user").id,
         nickname: this.form.master_config.nickname,
-        account: "kamtao",
         description: this.form.master_config.description,
         head_img: this.form.master_config.head_img,
       };
@@ -97,11 +88,11 @@ export default {
       this.$axios.post("/users", userdata).then((res) => {
         this.loading = false;
         if (res.code == 200) {
-          this.checkI += 1;
-
-          if (this.checkI == 2) {
-            this.successSubmit();
-          }
+          this.$axios.post("/options", data).then((res) => {
+            if (res.code == 200) {
+              this.successSubmit();
+            }
+          });
         }
       });
     },

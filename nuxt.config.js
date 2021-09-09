@@ -30,7 +30,7 @@ export default {
     "@/plugins/axios",
     "@/plugins/route",
     "@/plugins/v-img",
-    "@/plugins/element-ui",
+    "@/plugins/element-ui"
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -70,6 +70,7 @@ export default {
     "/api/": {
       // 请填写你的后台接口地址
       // target: "https://api.inis.cn/api",
+      // target: "https://api.starssr.com/api",
       target: "https://api.kamtao.com/api",
 
       pathRewrite: {

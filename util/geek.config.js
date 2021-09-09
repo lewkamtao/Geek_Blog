@@ -29,12 +29,11 @@ export default {
       head_img: "https://api.kamtao.com/storage/users/anime/8.jpg"
     },
     images_config: {
-      bg_about: "",
-      bg_timeline: "",
-      bg_msgwall: "",
-      bg_links: ""
+      bg_about: "https://img.keai.cool/2021/08/09/317925aefec4b.webp",
+      bg_links: "https://img.keai.cool/2021/08/09/9b328ede4b74c.webp",
+      bg_msgwall: "https://img.keai.cool/2021/08/09/352c4682bfc83.webp",
+      bg_timeline: "https://img.keai.cool/2021/08/09/456778ab7ef4e.webp"
     },
-
     contact_config: [],
     menu_config: [
       {
