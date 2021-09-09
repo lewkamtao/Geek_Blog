@@ -10,8 +10,8 @@ export default {
   props: {
     geek_config: {
       type: Object,
-      default: {}
-    }
+      default: {},
+    },
   },
   data() {
     return {};
@@ -20,7 +20,7 @@ export default {
   computed: {},
   methods: {},
   created() {},
-  mounted() {}
+  mounted() {},
 };
 </script>
 <style lang="scss" scoped>
@@ -29,10 +29,5 @@ export default {
   height: 100px;
   display: flex;
   align-items: center;
-}
-.isShowAside {
-  .footer-wrapper {
-    display: none;
-  }
 }
 </style>

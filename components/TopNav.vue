@@ -215,6 +215,8 @@ export default {
       display: flex;
       align-items: center;
       .child {
+        display: flex;
+        align-items: center;
         cursor: pointer;
         white-space: nowrap;
         font-size: 22px;
@@ -361,7 +363,8 @@ export default {
           margin-right: 10px;
         }
         .logo {
-          display: inline-block;
+          display: flex;
+          align-items: center;
           .title {
             display: none;
           }

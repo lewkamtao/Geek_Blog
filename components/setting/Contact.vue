@@ -14,7 +14,7 @@
       <div
         v-for="(contact_config, index) in form.contact_config"
         :key="'contact_config' + index"
-        class="fields"
+        class="fields contact-box"
       >
         <div class="four wide field">
           <label>社交平台</label>
@@ -518,5 +518,12 @@ export default {
 <style lang="scss" scoped>
 .part {
   padding: 50px;
+}
+.contact-box {
+  border-bottom: 1px #eee solid;
+  padding: 15px 0px 0px 0px;
+}
+.contact-box:first-child {
+  border-bottom: none;
 }
 </style>

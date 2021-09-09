@@ -1,7 +1,7 @@
 <template>
   <form class="ui reply form">
     <div class="field">
-      <div class="field">
+      <div class="field nickname-mail">
         <div v-if="!isLogin" class="two fields">
           <div class="field">
             <input v-model="form.nickname" type="text" placeholder="昵称" />
@@ -170,5 +170,10 @@ export default {
 <style>
 .form {
   margin-top: 20px;
+}
+@media screen and (max-width: 1025px) {
+  .ui.form .nickname-mail {
+    margin-bottom: 0px;
+  }
 }
 </style>

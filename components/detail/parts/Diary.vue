@@ -1,5 +1,5 @@
 <template>
-  <div style="margin-bottom: 8px" class="info part">
+  <div  class="info part">
     <div class="main-title" style="margin-bottom: 12px">ONE 一个</div>
     <div v-if="one" class="diary">
       <div class="tag">#{{ one.data.tag }}#</div>

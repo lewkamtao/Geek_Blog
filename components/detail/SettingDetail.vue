@@ -44,6 +44,21 @@ export default {
   mounted() {},
 };
 </script>
+<style lang="scss" >
+@media screen and (max-width: 1025px) {
+  .setting-wrapper {
+    padding: 0px;
+    .part {
+      padding: 15px;
+      .fields {
+        .field {
+          margin-bottom: 20px;
+        }
+      }
+    }
+  }
+}
+</style>
 <style lang="scss" scoped>
 .header {
   padding-top: 60px;

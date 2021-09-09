@@ -149,6 +149,11 @@ export default {
 @media screen and (max-width: 1025px) {
   .article-wrapper {
     padding: 0px;
+    main {
+      margin-top: 0px;
+      margin-bottom: 0px;
+      padding: 0px 15px 50px 15px;
+    }
   }
 }
 </style>
