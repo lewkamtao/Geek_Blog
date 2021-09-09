@@ -249,6 +249,22 @@ export default {
   .index-wrapper-master {
     padding: 0px 15px 15px 15px;
   }
+  .masonry {
+    .article-box {
+      padding: 10px;
+
+      a {
+        flex-direction: column;
+        .cover {
+          width: 100%;
+          margin-bottom: 20px;
+        }
+        .article-box-body {
+          width: 100%;
+        }
+      }
+    }
+  }
 }
 </style>
 

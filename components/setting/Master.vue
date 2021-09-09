@@ -20,24 +20,6 @@
           placeholder="简介"
         ></textarea>
       </div>
-      <div class="two fields">
-        <div class="field">
-          <label>手机号</label>
-          <input
-            v-model="form.master_config.phone"
-            type="text"
-            placeholder="手机号"
-          />
-        </div>
-        <div class="field">
-          <label>邮箱</label>
-          <input
-            v-model="form.master_config.email"
-            type="text"
-            placeholder="邮箱"
-          />
-        </div>
-      </div>
       <div class="field">
         <label>头像链接</label>
         <input
@@ -77,8 +59,6 @@ export default {
         master_config: {
           nickname: "",
           description: "",
-          email: "",
-          phone: "",
           head_img: "",
         },
       },
@@ -111,8 +91,6 @@ export default {
         nickname: this.form.master_config.nickname,
         account: "kamtao",
         description: this.form.master_config.description,
-        email: this.form.master_config.email,
-        phone: this.form.master_config.phone,
         head_img: this.form.master_config.head_img,
       };
 

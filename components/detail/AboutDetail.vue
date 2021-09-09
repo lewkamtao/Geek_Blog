@@ -122,7 +122,7 @@ export default {
     }
     .direction {
       text-align: right;
-      margin: 20px 10px;
+      margin: 15px 20px;
       color: #666;
     }
   }
@@ -148,7 +148,7 @@ export default {
 // 移动端适配
 @media screen and (max-width: 1025px) {
   .article-wrapper {
-    padding: 20px;
+    padding: 0px;
   }
 }
 </style>

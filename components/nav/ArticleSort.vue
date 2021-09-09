@@ -59,7 +59,6 @@ export default {
 <style lang="scss" scoped>
 .article-sort {
   width: 100%;
-  margin-top: 8px;
 }
 .article-title-divst {
   line-height: 30px;

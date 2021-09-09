@@ -46,7 +46,6 @@ export default {
 <style lang="scss" scoped>
 .part {
   display: flex;
-  margin-top: 15px;
   flex-direction: column;
   padding: 5px;
 }
