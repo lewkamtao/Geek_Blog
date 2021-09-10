@@ -108,7 +108,6 @@ export default {
 <style lang="scss" scoped>
 .mode-setting {
   padding: 10px;
-  margin-top: 8px;
   display: flex;
   align-items: center;
   flex-direction: column;

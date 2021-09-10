@@ -213,7 +213,6 @@ export default {
     padding: 15px 25px 25px 25px;
   }
   .masonry .article-box {
-    margin: 15px 0px 0px 0px 0px;
     height: auto;
 
     .cover {
@@ -248,6 +247,22 @@ export default {
 @media screen and (max-width: 1024px) {
   .index-wrapper-master {
     padding: 0px 15px 15px 15px;
+  }
+  .masonry {
+    .article-box {
+      padding: 10px;
+
+      a {
+        flex-direction: column;
+        .cover {
+          width: 100%;
+          margin-bottom: 20px;
+        }
+        .article-box-body {
+          width: 100%;
+        }
+      }
+    }
   }
 }
 </style>

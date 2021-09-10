@@ -21,36 +21,6 @@
         ></textarea>
       </div>
       <div class="field">
-        <label>手机号</label>
-        <input
-          v-model="form.master_config.phone"
-          type="text"
-          placeholder="手机号"
-        />
-      </div>
-      <div class="two fields">
-        <div class="field">
-          <label>邮箱</label>
-          <input
-            v-model="form.master_config.email"
-            type="text"
-            placeholder="手机号"
-          />
-        </div>
-        <div class="field">
-          <label>邮箱验证码</label>
-          <div class="ui right action input">
-            <input
-              type="text"
-              v-model="form.master_config.code"
-              placeholder="验证码"
-            />
-            <div @click="getCode" class="ui teal button">获取验证码</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="field">
         <label>头像</label>
         <input
           v-model="form.master_config.head_img"
@@ -90,8 +60,6 @@ export default {
         master_config: {
           nickname: "",
           description: "",
-          email: "",
-          phone: "",
           head_img: "",
           code: "",
         },
@@ -113,10 +81,7 @@ export default {
         "login-token": this.$cookies.get("token"),
         id: this.$cookies.get("user").id,
         nickname: this.form.master_config.nickname,
-        account: this.form.master_config.email,
         description: this.form.master_config.description,
-        email: this.form.master_config.email,
-        phone: this.form.master_config.phone,
         head_img: this.form.master_config.head_img,
       };
 
@@ -130,15 +95,6 @@ export default {
           });
         }
       });
-    },
-    getCode() {
-      var userdata = {
-        "login-token": this.$cookies.get("token"),
-        id: this.$cookies.get("user").id,
-        account: this.form.master_config.email,
-        email: this.form.master_config.email,
-      };
-      this.$axios.post("/users", userdata);
     },
     successSubmit() {
       this.$notify({

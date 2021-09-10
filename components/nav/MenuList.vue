@@ -233,7 +233,6 @@ export default {
 <style lang="scss" scoped>
 .menu {
   width: 100%;
-  margin-top: 8px;
   padding: 10px;
 }
 

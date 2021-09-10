@@ -86,4 +86,12 @@ export default {
     height: 16px;
   }
 }
+@media screen and (max-width: 1024px) {
+  .links-detail {
+    padding: 0px;
+    .list {
+      padding: 15px;
+    }
+  }
+}
 </style>

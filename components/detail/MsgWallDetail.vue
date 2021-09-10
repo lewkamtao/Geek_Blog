@@ -59,4 +59,15 @@ export default {
     box-shadow: 0px 0px 15px rgba($color: #000000, $alpha: 0.05);
   }
 }
+@media screen and (max-width: 1024px) {
+  .messgae-wrapper {
+    padding: 0px;
+    .messgae-main {
+      padding: 10px;
+    }
+    .part.msg_wall {
+      box-shadow: none;
+    }
+  }
+}
 </style>

@@ -140,4 +140,9 @@ export default {
 .part {
   padding: 50px;
 }
+@media screen and (max-width: 1025px) {
+  .part .field {
+    margin-bottom: 0px !important;
+  }
+}
 </style>

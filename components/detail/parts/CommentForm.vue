@@ -1,33 +1,18 @@
 <template>
   <form class="ui reply form">
     <div class="field">
-      <div class="field">
-        <div class="two fields">
+      <div class="field nickname-mail">
+        <div v-if="!isLogin" class="two fields">
           <div class="field">
-            <input
-              v-if="!isLogin"
-              v-model="form.nickname"
-              type="text"
-              placeholder="昵称"
-            />
+            <input v-model="form.nickname" type="text" placeholder="昵称" />
           </div>
           <div class="field">
-            <input
-              v-if="!isLogin"
-              v-model="form.email"
-              type="text"
-              placeholder="邮箱"
-            />
+            <input v-model="form.email" type="text" placeholder="邮箱" />
           </div>
         </div>
       </div>
-      <div class="field">
-        <input
-          v-if="!isLogin"
-          v-model="form.url"
-          type="text"
-          placeholder="站点"
-        />
+      <div v-if="!isLogin" class="field">
+        <input v-model="form.url" type="text" placeholder="站点" />
       </div>
       <div class="field">
         <textarea
@@ -183,4 +168,12 @@ export default {
 </script>
 
 <style>
+.form {
+  margin-top: 20px;
+}
+@media screen and (max-width: 1025px) {
+  .ui.form .nickname-mail {
+    margin-bottom: 0px;
+  }
+}
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div style="margin-bottom: 8px" class="contact-wrapper part">
+  <div  class="contact-wrapper part">
     <div class="main-title" style="margin-bottom: 18px">社交媒体</div>
     <div v-if="contact_config.length != 0">
       <a

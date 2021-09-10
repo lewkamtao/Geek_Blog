@@ -1,38 +1,36 @@
 <template>
   <div class="left-nav">
-    <div>
-      <!-- 个人信息 -->
-      <user-info :geek_config="geek_config"></user-info>
+    <!-- 个人信息 -->
+    <user-info :geek_config="geek_config"></user-info>
 
-      <!-- 菜单列表 -->
-      <menu-list
-        :geek_config="geek_config"
-        @openMusicBox="openMusicBox"
-        @closeMusicBox="closeMusicBox"
-      ></menu-list>
+    <!-- 菜单列表 -->
+    <menu-list
+      :geek_config="geek_config"
+      @openMusicBox="openMusicBox"
+      @closeMusicBox="closeMusicBox"
+    ></menu-list>
 
-      <!-- 音乐盒 -->
-      <music-box
-        v-if="musicBoxSwitch"
-        ref="music_box"
-        :geek_config="geek_config"
-      ></music-box>
+    <!-- 音乐盒 -->
+    <music-box
+      v-if="musicBoxSwitch"
+      ref="music_box"
+      :geek_config="geek_config"
+    ></music-box>
 
-      <!-- 归档 -->
-      <article-sort
-        class="article-sort"
-        :article_sort="article_sort"
-      ></article-sort>
+    <!-- 归档 -->
+    <article-sort
+      class="article-sort"
+      :article_sort="article_sort"
+    ></article-sort>
 
-      <!-- 设置 -->
-      <mode-set
-        @openMusicBox="openMusicBox"
-        @closeMusicBox="closeMusicBox"
-      ></mode-set>
+    <!-- 设置 -->
+    <mode-set
+      @openMusicBox="openMusicBox"
+      @closeMusicBox="closeMusicBox"
+    ></mode-set>
 
-      <!-- 备案号 -->
-      <permit-no :geek_config="geek_config"></permit-no>
-    </div>
+    <!-- 备案号 -->
+    <permit-no :geek_config="geek_config"></permit-no>
   </div>
 </template>
 
@@ -87,17 +85,35 @@ export default {
 <style lang="scss" scoped>
 .left-nav {
   display: block;
-  padding: 44px 4px 4px 4px;
+  padding: 51px 4px 4px 4px;
   box-sizing: border-box;
 
   .permit-no {
     margin: 30px 0px 150px 0px;
   }
 }
+.left-nav > div {
+  margin-bottom: 8px;
+}
+.left-nav > div:first-child {
+  margin-top: 8px;
+}
+.left-nav > div:last-child {
+  margin-bottom: 50px;
+}
 // 移动端适配
 @media screen and (max-width: 1025px) {
   .left-nav {
-    padding: 56px 5px 5px 5px;
+    padding: 51px 14px 14px 14px;
+  }
+  .left-nav > div {
+    margin-bottom: 14px;
+  }
+  .left-nav > div:first-child {
+    margin-top: 18px;
+  }
+  .left-nav > div:last-child {
+    margin-bottom: 50px;
   }
 }
 </style>

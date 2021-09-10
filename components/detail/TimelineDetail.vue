@@ -168,7 +168,7 @@ export default {
     }
     .direction {
       text-align: right;
-      margin: 20px 10px;
+          margin: 15px 20px;
       color: #666;
     }
   }

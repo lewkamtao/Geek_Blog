@@ -4,7 +4,12 @@
       <div class="left">
         <nuxt-link class="pc-logo" to="/">
           <div class="logo">
-            <img width="26" :src="geek_config.site_config.logo_url" alt srcset />
+            <img
+              width="26"
+              :src="geek_config.site_config.logo_url"
+              alt
+              srcset
+            />
             <div class="title">{{ geek_config.site_config.title }}</div>
           </div>
         </nuxt-link>
@@ -210,13 +215,17 @@ export default {
       display: flex;
       align-items: center;
       .child {
+        display: flex;
+        align-items: center;
         cursor: pointer;
         white-space: nowrap;
         font-size: 22px;
         margin-right: 30px;
         transition: all 0.25s;
       }
-
+      .child:last-child {
+        margin-right: 0px;
+      }
       .child:hover {
         transform: scale(1.1);
       }
@@ -326,7 +335,7 @@ export default {
 
 @media screen and (max-width: 1300px) {
   .top-nav-wrapper {
-    width: calc(100% - 14px);
+    width: calc(100% - 8px);
   }
 }
 
@@ -354,7 +363,8 @@ export default {
           margin-right: 10px;
         }
         .logo {
-          display: inline-block;
+          display: flex;
+          align-items: center;
           .title {
             display: none;
           }
@@ -364,12 +374,11 @@ export default {
           }
         }
       }
-      .right {
-        width: calc(100% - 40px);
-      }
+
       .search {
         margin-right: 10px;
         width: calc(100% - 40px);
+        display: none;
         input {
           height: 30px;
           width: 100%;

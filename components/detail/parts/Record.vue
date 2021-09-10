@@ -1,5 +1,5 @@
 <template>
-  <div style="margin-bottom: 8px" class="record-wrapper part">
+  <div class="record-wrapper part">
     <div v-if="record" class="record">
       <div class="box">
         <div class="count">{{ record.article.count }}</div>

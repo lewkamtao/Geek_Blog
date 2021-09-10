@@ -265,7 +265,7 @@ export default {
         that.$refs.articleMain.getBoundingClientRect().left +
         that.$refs.articleMain.clientWidth +
         4;
-      that.setAsideLeft = "left:" + articleMainWidth + "px;position: fixed;";
+      that.setAsideLeft = "left:" + articleMainWidth + "px;";
     });
     window.onresize = function () {
       that.$nextTick(function () {
@@ -273,7 +273,7 @@ export default {
           that.$refs.articleMain.offsetLeft +
           that.$refs.articleMain.clientWidth +
           4;
-        that.setAsideLeft = "left:" + articleMainWidth + "px;position: fixed;";
+        that.setAsideLeft = "left:" + articleMainWidth + "px;";
       });
     };
   },
@@ -294,6 +294,7 @@ export default {
   }
 }
 .aside {
+  position: fixed;
   top: 0px;
   padding: 59px 4px 110px 4px;
   box-sizing: border-box;
@@ -321,28 +322,23 @@ export default {
 // 移动端适配
 @media screen and (max-width: 1025px) {
   .article-wrapper-master {
+    flex-direction: column;
     .main {
       min-width: 100%;
       width: 100%;
       transition: all 0.25s;
     }
     .aside {
-      width: calc(100% - 14px);
-      opacity: 0;
+      position: static;
+      padding: 0px;
+      margin-top: 14px;
+      margin-bottom: 0px;
+      width: 100%;
+      opacity: 1;
       transition: all 0.5s;
     }
-  }
-  .isShowAside {
-    .aside {
-      left: 4px !important;
-      opacity: 1;
-      padding: 75px 4px 55px 4px;
-    }
-    .main {
-      opacity: 0;
-      overflow: hidden;
-      height: 0px;
-      padding: 0px;
+    .aside > div {
+      margin-bottom: 14px;
     }
   }
 }

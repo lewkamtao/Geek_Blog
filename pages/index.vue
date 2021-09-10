@@ -1,9 +1,6 @@
 <template>
   <div class="wrap">
-    <div
-      class="wrapper"
-      :class="{ isShowNav: isShowNav, isShowAside: isShowAside }"
-    >
+    <div class="wrapper" :class="{ isShowNav: isShowNav }">
       <TopNav
         @showNav="showNav()"
         :geek_config="geek_config"
@@ -15,7 +12,7 @@
         :article_sort="article_sort"
         class="left-nav"
       />
-      <div id="geek_main" class="index-main">
+      <div id="geek_main" v-show="!isShowNav" class="index-main">
         <nuxt-child :geek_config="geek_config" @playSong="playSong" />
         <Footer :geek_config="geek_config" />
       </div>
@@ -100,10 +97,7 @@ export default {
   data() {
     return {
       isShowNav: false,
-      isShowAside: false,
-      isShowOpenAsideBtn: false,
       backUpTopScroll: 0,
-      isShowModeSet: false,
       noSet: false,
     };
   },
@@ -111,7 +105,7 @@ export default {
   computed: {},
   methods: {
     showNav() {
-      if (process.browser && !this.isShowAside) {
+      if (process.browser) {
         if (!this.isShowNav && this.backUpTopScroll == 0) {
           this.backUpTopScroll = document.documentElement.scrollTop;
         } else {
@@ -124,20 +118,7 @@ export default {
       }
       this.isShowNav = !this.isShowNav;
     },
-    showAside() {
-      if (process.browser && !this.isShowNav) {
-        if (!this.isShowNav && this.backUpTopScroll == 0) {
-          this.backUpTopScroll = document.documentElement.scrollTop;
-        } else {
-          var top = JSON.parse(JSON.stringify(this.backUpTopScroll));
-          setTimeout(function () {
-            document.documentElement.scrollTop = top;
-          }, 10);
-          this.backUpTopScroll = 0;
-        }
-      }
-      this.isShowAside = !this.isShowAside;
-    },
+
     playSong({ songs, index }) {
       this.$refs.leftNav.playSong({ songs, index });
     },
@@ -152,7 +133,6 @@ export default {
     if (process.browser) {
       //  隐藏遮罩 优先级
       this.isShowNav = false;
-      this.isShowAside = false;
       this.isShowOpenAsideBtn = true;
       next();
     }
@@ -273,7 +253,7 @@ export default {
     max-width: 100%;
     min-width: 100%;
     width: 100%;
-    padding: 0px 7px;
+    padding: 0px 10px;
     .top-nav-wrapper-master {
       margin-top: 15px;
       padding: 0px 14px;
@@ -287,7 +267,7 @@ export default {
     .index-main {
       width: 100%;
       margin-left: 0px;
-      margin-top: 65px;
+      margin-top: 70px;
       transition: opacity 0.25s;
     }
     .left-nav {
