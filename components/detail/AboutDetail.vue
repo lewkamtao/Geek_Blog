@@ -12,7 +12,7 @@
       </div>
       <div class="direction">{{ geek_config.master_config.description }}</div>
     </div>
-    <div v-show="article_tips">{{ article_tips }}</div>
+    <div class="tips" v-show="article_tips">{{ article_tips }}</div>
     <main class="section">
       <div class="vditor-reset" id="preview"></div>
     </main>
@@ -83,7 +83,7 @@ export default {
         this.renderMarkdown(this.article.content);
       });
     } else {
-      this.article_tips = "请在后台添加页面，别名必须为：about，否则不生效。";
+      this.article_tips = "注意：请在inis后台添加页面，别名必须为：about，否则不生效。";
     }
   },
   mounted() {},
@@ -122,7 +122,7 @@ export default {
     }
     .direction {
       text-align: right;
-      margin: 20px 10px;
+      margin: 10px 25px;
       color: #666;
     }
   }
@@ -142,6 +142,11 @@ export default {
   .section:after {
     margin-top: 150px;
   }
+}
+.tips {
+  height: 500px;
+  line-height: 500px;
+  text-align: center;
 }
 @media screen and (max-width: 1440px) {
 }
