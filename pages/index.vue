@@ -81,6 +81,7 @@ export default {
   async asyncData({ $axios }) {
     var geek_config = false;
     var noSet = false;
+
     try {
       const res_geek_config = await $axios.get(
         "/options?key=geek_config&cache=false"
@@ -95,7 +96,6 @@ export default {
       geek_config = first_geek_config.geek_config;
       noSet = true;
     }
-
     const userId = (await $axios.get("/options?key=webmaster")).data.opt
       .users_id;
     const user = (await $axios.get("/users?id=" + userId)).data;
