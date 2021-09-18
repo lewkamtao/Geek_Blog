@@ -34,7 +34,9 @@ export default {
   props: {
     type: {
       type: String,
-      default: {},
+      default: function () {
+        return {};
+      }
     },
     pid: {
       type: Number,

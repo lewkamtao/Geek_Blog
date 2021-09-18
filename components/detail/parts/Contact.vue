@@ -29,7 +29,9 @@ export default {
   props: {
     geek_config: {
       type: Object,
-      default: {},
+      default: function () {
+        return {};
+      }
     },
   },
   data() {

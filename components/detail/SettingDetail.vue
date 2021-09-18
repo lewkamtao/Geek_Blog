@@ -8,8 +8,7 @@
     <menu-set :menu_config="geek_config.menu_config"></menu-set>
     <h2 id="setting_siteinfo" class="header"></h2>
     <site-info :site_config="geek_config.site_config"></site-info>
-    <h2 id="setting_master" class="header"></h2>
-    <master :master_config="geek_config.master_config"> </master>
+
     <h2 id="setting_image" class="header"></h2>
     <image-set :images_config="geek_config.images_config"></image-set>
     <h2 id="setting_contact" class="header"></h2>
@@ -20,12 +19,11 @@
 <script>
 import Contact from "../../components/setting/Contact.vue";
 import MenuSet from "../../components/setting/MenuSet.vue";
-import Master from "../../components/setting/Master.vue";
 import SiteInfo from "../../components/setting/SiteInfo.vue";
 import ImageSet from "../../components/setting/ImageSet.vue";
 
 export default {
-  components: { Contact, MenuSet, Master, SiteInfo, ImageSet },
+  components: { Contact, MenuSet, SiteInfo, ImageSet },
   props: {
     geek_config: {
       type: Object,

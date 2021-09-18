@@ -8,14 +8,14 @@
             class="ui image"
             width="50px"
             height="50px"
-            :url="geek_config.master_config.head_img"
+            :url="user.head_img"
           >
           </v-img>
         </div>
         <div class="info">
-          <div class="nickname">{{ geek_config.master_config.nickname }}</div>
+          <div class="nickname">{{ user.nickname }}</div>
           <div class="description">
-            {{ geek_config.master_config.description }}
+            {{ user.description }}
           </div>
         </div>
       </div>
@@ -27,15 +27,13 @@
 export default {
   components: {},
   props: {
-    geek_config: {
+    user: {
       type: Object,
       default: function () {
         return {
-          master_config: {
-            head_img: "",
-            nickname: "Geek_Username",
-            description: "description",
-          },
+          head_img: "",
+          nickname: "Geek_Username",
+          description: "description",
         };
       },
     },

@@ -69,7 +69,6 @@ export default {
         this.loading = false;
         if (res.code == "200") {
           this.$cookies.set("token", res.data["login-token"]);
-          this.$cookies.set("user", res.data.user);
           location.reload();
         }
       });

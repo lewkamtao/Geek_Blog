@@ -28,7 +28,9 @@ export default {
   props: {
     music_list: {
       type: Object,
-      default: {},
+      default: function () {
+        return {};
+      }
     },
   },
   data() {

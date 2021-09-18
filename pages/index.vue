@@ -8,12 +8,17 @@
       />
       <LeftNav
         ref="leftNav"
+        :user="user"
         :geek_config="geek_config"
         :article_sort="article_sort"
         class="left-nav"
       />
       <div id="geek_main" v-show="!isShowNav" class="index-main">
-        <nuxt-child :geek_config="geek_config" @playSong="playSong" />
+        <nuxt-child
+          :user="user"
+          :geek_config="geek_config"
+          @playSong="playSong"
+        />
         <Footer :geek_config="geek_config" />
       </div>
     </div>
@@ -90,8 +95,12 @@ export default {
       geek_config = first_geek_config.geek_config;
       noSet = true;
     }
+
+    const userId = (await $axios.get("/options?key=webmaster")).data.opt
+      .users_id;
+    const user = (await $axios.get("/users?id=" + userId)).data;
     const article_sort = (await $axios.get("/article-sort?limit=1000")).data;
-    return { article_sort, geek_config, noSet };
+    return { user, article_sort, geek_config, noSet };
   },
   props: {},
   data() {

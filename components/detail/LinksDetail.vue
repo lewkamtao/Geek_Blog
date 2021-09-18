@@ -45,7 +45,9 @@ export default {
     },
     links: {
       type: Object,
-      default: {},
+      default: function () {
+        return {};
+      }
     },
   },
   data() {

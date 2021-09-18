@@ -1,6 +1,7 @@
 <template>
   <Detail
     :geek_config="geek_config"
+    :user="user"
     :timeline="timeline"
     @reloadComments="getComments"
     :options="{
@@ -33,7 +34,15 @@ export default {
   props: {
     geek_config: {
       type: Object,
-      default: {},
+      default: function () {
+        return {};
+      }
+    },
+    user: {
+      type: Object,
+      default: function () {
+        return {};
+      }
     },
   },
   data() {

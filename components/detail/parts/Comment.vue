@@ -44,11 +44,15 @@ export default {
   props: {
     type: {
       type: String,
-      default: {},
+      default: function () {
+        return {};
+      }
     },
     comments: {
       type: Object,
-      default: {},
+      default: function () {
+        return {};
+      }
     },
     articleId: {
       type: Number,

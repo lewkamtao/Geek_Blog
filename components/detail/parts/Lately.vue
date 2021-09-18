@@ -22,7 +22,9 @@ export default {
   props: {
     newComments: {
       type: Object,
-      default: {},
+      default: function () {
+        return {};
+      }
     },
   },
 };

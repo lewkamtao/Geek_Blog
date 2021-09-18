@@ -120,7 +120,9 @@ export default {
   props: {
     article: {
       type: Object,
-      default: {},
+      default: function () {
+        return {};
+      }
     },
   },
   data() {

@@ -5,12 +5,12 @@
     ></header>
     <div class="user-info">
       <div class="user-box">
-        <div class="nickname">{{ geek_config.master_config.nickname }}</div>
+        <div class="nickname">{{ user.nickname }}</div>
         <div class="avatar">
-          <img :src="geek_config.master_config.head_img" alt="" />
+          <img :src="user.head_img" alt="" />
         </div>
       </div>
-      <div class="direction">{{ geek_config.master_config.description }}</div>
+      <div class="direction">{{ user.description }}</div>
     </div>
 
     <div class="timeline">
@@ -50,6 +50,12 @@ export default {
   components: {},
   props: {
     geek_config: {
+      type: Object,
+      default: function () {
+        return {};
+      },
+    },
+    user: {
       type: Object,
       default: function () {
         return {};
@@ -168,7 +174,7 @@ export default {
     }
     .direction {
       text-align: right;
-          margin: 15px 20px;
+      margin: 15px 20px;
       color: #666;
     }
   }

@@ -113,7 +113,9 @@ export default {
   props: {
     articleData: {
       type: Object,
-      default: {},
+      default: function () {
+        return {};
+      }
     },
   },
   computed: {

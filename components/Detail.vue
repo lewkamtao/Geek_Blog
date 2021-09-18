@@ -41,6 +41,7 @@
       <timeline-detail
         v-if="options.type == 'moving'"
         :geek_config="geek_config"
+        :user="user"
         class="part"
         :timeline="timeline"
       ></timeline-detail>
@@ -49,6 +50,7 @@
       <about-detail
         v-if="options.type == 'about'"
         :geek_config="geek_config"
+        :user="user"
         :article="about"
         class="part"
       ></about-detail>
@@ -175,6 +177,12 @@ export default {
   },
   props: {
     geek_config: {
+      type: Object,
+      default: function () {
+        return {};
+      },
+    },
+    user: {
       type: Object,
       default: function () {
         return {};

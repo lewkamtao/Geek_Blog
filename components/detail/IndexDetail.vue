@@ -28,7 +28,9 @@ export default {
   props: {
     articleList: {
       type: Object,
-      default: {},
+      default: function () {
+        return {};
+      }
     },
   },
   data() {

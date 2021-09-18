@@ -2,6 +2,7 @@
   <Detail
     @reloadComments="getComments"
     :about="about"
+    :user="user"
     :geek_config="geek_config"
     :options="{
       type: 'about',
@@ -44,7 +45,15 @@ export default {
   props: {
     geek_config: {
       type: Object,
-      default: {},
+      default: function () {
+        return {};
+      }
+    },
+    user: {
+      type: Object,
+      default: function () {
+        return {};
+      }
     },
   },
   data() {
@@ -52,9 +61,7 @@ export default {
   },
 
   watch: {},
-  computed: {
-
-  },
+  computed: {},
   methods: {
     // 获取评论
     async getComments() {

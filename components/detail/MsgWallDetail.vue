@@ -28,7 +28,9 @@ export default {
     },
     msg_wall: {
       type: Object,
-      default: {},
+      default: function () {
+        return {};
+      }
     },
   },
   data() {

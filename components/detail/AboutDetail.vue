@@ -5,12 +5,12 @@
     ></header>
     <div class="user-info">
       <div class="user-box">
-        <div class="nickname">{{ geek_config.master_config.nickname }}</div>
+        <div class="nickname">{{ user.nickname }}</div>
         <div class="avatar">
-          <img :src="geek_config.master_config.head_img" alt="" />
+          <img :src="user.head_img" alt="" />
         </div>
       </div>
-      <div class="direction">{{ geek_config.master_config.description }}</div>
+      <div class="direction">{{ user.description }}</div>
     </div>
     <div class="tips" v-show="article_tips">{{ article_tips }}</div>
     <main class="section">
@@ -43,6 +43,12 @@ export default {
   },
   components: {},
   props: {
+    user: {
+      type: Object,
+      default: function () {
+        return {};
+      },
+    },
     geek_config: {
       type: Object,
       default: function () {
@@ -51,7 +57,9 @@ export default {
     },
     article: {
       type: Object,
-      default: {},
+      default: function () {
+        return {};
+      }
     },
   },
   data() {
@@ -83,7 +91,8 @@ export default {
         this.renderMarkdown(this.article.content);
       });
     } else {
-      this.article_tips = "注意：请在inis后台添加页面，别名必须为：about，否则不生效。";
+      this.article_tips =
+        "注意：请在inis后台添加页面，别名必须为：about，否则不生效。";
     }
   },
   mounted() {},

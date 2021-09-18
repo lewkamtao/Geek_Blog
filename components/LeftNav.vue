@@ -1,7 +1,7 @@
 <template>
   <div class="left-nav">
     <!-- 个人信息 -->
-    <user-info :geek_config="geek_config"></user-info>
+    <user-info :user="user"></user-info>
 
     <!-- 菜单列表 -->
     <menu-list
@@ -51,10 +51,17 @@ export default {
         return {};
       },
     },
-
+    user: {
+      type: Object,
+      default: function () {
+        return {};
+      }
+    },
     article_sort: {
       type: Object,
-      default: {},
+      default: function () {
+        return {};
+      }
     },
   },
   data() {

@@ -23,11 +23,6 @@ export default {
     </div>` // 脚部html
     },
 
-    master_config: {
-      nickname: "小卢乱撞",
-      description: "一个前端",
-      head_img: "https://api.kamtao.com/storage/users/anime/8.jpg"
-    },
     images_config: {
       bg_about: "https://img.keai.cool/2021/08/09/317925aefec4b.webp",
       bg_links: "https://img.keai.cool/2021/08/09/9b328ede4b74c.webp",
