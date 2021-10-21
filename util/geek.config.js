@@ -36,11 +36,11 @@ export default {
         title: "关于",
         isShow: true
       },
-      // {
-      //   value: "photo",
-      //   title: "相册",
-      //   isShow: false,
-      // },
+      {
+        value: "photo",
+        title: "相册",
+        isShow: true,
+      },
       {
         value: "time_line",
         title: "时光机",

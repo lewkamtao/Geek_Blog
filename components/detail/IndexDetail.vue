@@ -9,12 +9,16 @@
         <article-part :articleData="articleData"></article-part>
       </div>
     </div>
-    <div @click="getArticleList()" class="more-btn part">
-      {{
-        articleList.data.length != articleList.count
-          ? "点击加载更多"
-          : "没有更多了"
-      }}
+
+    <div @click="getArticleList()" class="more-btn">
+      <button
+        v-if="articleList.data.length != articleList.count"
+        class="ui primary button"
+        :class="{ loading: loading }"
+      >
+        点击加载更多
+      </button>
+      {{ articleList.data.length == articleList.count ? "没有更多文章了" : "" }}
     </div>
   </div>
 </template>
@@ -28,24 +32,25 @@ export default {
   props: {
     articleList: {
       type: Object,
-      default: function () {
+      default: function() {
         return {};
       }
-    },
+    }
   },
   data() {
     return {
       page: 1,
       limit: 10,
+      loading: false
     };
   },
   watch: {},
   computed: {
     getBeautifyTime() {
-      return function (time) {
+      return function(time) {
         return util.getBeautifyTime(time);
       };
-    },
+    }
   },
   methods: {
     getTagColor() {
@@ -54,13 +59,14 @@ export default {
       return tag_options[index];
     },
     async getArticleList(type) {
+      this.loading = true;
       if (this.articleList.data.length == this.articleList.count) {
         this.$notify({
           type: "warning",
           title: "注意",
           message: "没有更多文章了",
           duration: 5000,
-          offset: 65,
+          offset: 65
         });
         return;
       }
@@ -76,12 +82,12 @@ export default {
         params = {
           id: this.isSelect_article_id,
           limit: this.limit,
-          page: this.page,
+          page: this.page
         };
         this.articleList.data = this.articleList.concat(
           (
             await this.$axios.get("/article-sort", {
-              params,
+              params
             })
           ).data.expand.data
         );
@@ -90,15 +96,16 @@ export default {
         this.articleList.data = this.articleList.data.concat(
           (
             await this.$axios.get("/article", {
-              params,
+              params
             })
           ).data.data
         );
       }
-    },
+      this.loading = false;
+    }
   },
   created() {},
-  mounted() {},
+  mounted() {}
 };
 </script>
 <style lang="scss" scoped>
@@ -107,31 +114,17 @@ export default {
 }
 
 .more-btn {
-  margin-top: 5px;
+  margin-top: 15px;
   padding: 0px;
   width: 100%;
   height: 45px;
   line-height: 45px;
-  background: #fff;
   font-size: 16px;
   text-align: center;
   color: #000;
   opacity: 1;
   transition: all 0.25s;
   cursor: pointer;
-}
-.more-btn:hover {
-  background: #eee;
-}
-.loading {
-  width: 100%;
-  height: 80vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  img {
-    width: 400px;
-  }
 }
 
 .masonry {

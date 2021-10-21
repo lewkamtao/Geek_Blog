@@ -19,7 +19,7 @@ export default {
     const articleList = (await $axios.get("/article?limit=10")).data;
     return { articleList };
   },
-  props: {}, 
+  props: {},
   data() {
     return {
       newComments: {},

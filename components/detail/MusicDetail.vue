@@ -15,7 +15,7 @@
         </div>
       </div>
     </h2>
-    <table style="margin-top: 30px" class="ui red table">
+    <table style="margin-top: 30px" class="table ui red">
       <thead>
         <tr>
           <th></th>
@@ -30,7 +30,7 @@
           v-for="(item, index) in songs.songs"
           :key="index"
         >
-          <td class="center aligned">
+          <td>
             {{ index + 1 }}
           </td>
           <td>
@@ -58,16 +58,16 @@ export default {
   props: {
     geek_config: {
       type: Object,
-      default: function () {
+      default: function() {
         return {};
-      },
+      }
     },
     songs: {
       type: Object,
-      default: function () {
+      default: function() {
         return {};
-      },
-    },
+      }
+    }
   },
   data() {
     return {};
@@ -78,16 +78,16 @@ export default {
   methods: {
     play({ songs, index }) {
       this.$emit("playSong", { songs, index });
-    },
+    }
   },
   created() {},
   mounted() {},
-  beforeDestroy() {},
+  beforeDestroy() {}
 };
 </script>
 <style lang="scss" scoped>
 .part {
-  padding: 30px;
+  padding: 15px;
 }
 td {
   cursor: pointer;

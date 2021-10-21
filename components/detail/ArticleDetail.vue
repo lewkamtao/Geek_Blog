@@ -106,41 +106,42 @@ export default {
         {
           rel: "stylesheet",
           type: "text/css",
-          href: "https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.3/css/all.css",
+          href:
+            "https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.3/css/all.css"
         },
         {
           rel: "stylesheet",
           type: "text/css",
-          href: "https://cdn.jsdelivr.net/npm/vditor/dist/index.css",
-        },
-      ],
+          href: "https://cdn.jsdelivr.net/npm/vditor/dist/index.css"
+        }
+      ]
     };
   },
   components: {},
   props: {
     article: {
       type: Object,
-      default: function () {
+      default: function() {
         return {};
       }
-    },
+    }
   },
   data() {
     return {
-      article_title_list: [],
+      article_title_list: []
     };
   },
   watch: {
-    article: function () {
+    article: function() {
       this.renderMarkdown(this.article.content);
-    },
+    }
   },
   computed: {
     getBeautifyTime() {
-      return function (time) {
+      return function(time) {
         return util.getBeautifyTime(time);
       };
-    },
+    }
   },
   methods: {
     renderMarkdown(md) {
@@ -161,7 +162,7 @@ export default {
                 dom: item,
                 id: item.id,
                 title: item.innerText,
-                offsetTop: item.offsetTop,
+                offsetTop: item.offsetTop
               });
             }
           }
@@ -175,7 +176,7 @@ export default {
           );
         });
 
-        let toc = this.article_title_list.map((item) => {
+        let toc = this.article_title_list.map(item => {
           return item.dom;
         });
         window.addEventListener("scroll", () => {
@@ -205,7 +206,7 @@ export default {
       };
       Vditor.preview(document.querySelector("#preview"), md, {
         speech: {
-          enable: true,
+          enable: true
         },
         anchor: 1,
         after() {
@@ -217,25 +218,25 @@ export default {
 
           if (outlineElement.innerText.trim() !== "") {
             outlineElement.style.display = "block";
-            that.$nextTick(function () {
+            that.$nextTick(function() {
               initOutline();
             });
           } else {
             outlineElement.style.display = "block";
             outlineElement.innerHTML = "暂无目录";
           }
-        },
+        }
       });
-    },
+    }
   },
   created() {
     if (process.browser) {
-      this.$nextTick(function () {
+      this.$nextTick(function() {
         this.renderMarkdown(this.article.content);
       });
     }
   },
-  mounted() {},
+  mounted() {}
 };
 </script>
 <style lang="scss" scoped>

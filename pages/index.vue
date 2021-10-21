@@ -61,21 +61,21 @@ export default {
         {
           hid: "keywords",
           name: "keywords",
-          content: this.geek_config.site_config.keywords,
+          content: this.geek_config.site_config.keywords
         },
         {
           hid: "description",
           name: "description",
-          content: this.geek_config.site_config.description,
-        },
+          content: this.geek_config.site_config.description
+        }
       ],
       link: [
         {
           rel: "icon",
           type: "image/x-icon",
-          href: this.geek_config.site_config.favicon_url,
-        },
-      ],
+          href: this.geek_config.site_config.favicon_url
+        }
+      ]
     };
   },
   async asyncData({ $axios }) {
@@ -107,7 +107,7 @@ export default {
     return {
       isShowNav: false,
       backUpTopScroll: 0,
-      noSet: false,
+      noSet: false
     };
   },
   watch: {},
@@ -119,7 +119,7 @@ export default {
           this.backUpTopScroll = document.documentElement.scrollTop;
         } else {
           var top = JSON.parse(JSON.stringify(this.backUpTopScroll));
-          setTimeout(function () {
+          setTimeout(function() {
             document.documentElement.scrollTop = top;
           }, 10);
           this.backUpTopScroll = 0;
@@ -130,7 +130,7 @@ export default {
 
     playSong({ songs, index }) {
       this.$refs.leftNav.playSong({ songs, index });
-    },
+    }
   },
   created() {
     this.isShowOpenAsideBtn = true;
@@ -144,12 +144,21 @@ export default {
       this.isShowNav = false;
       this.isShowOpenAsideBtn = true;
       next();
+      setTimeout(() => {
+        var objs = document.getElementsByTagName("img");
+        for (var i = 0; i < objs.length; i++) {
+          objs[i].onclick = function() {
+            window.open(this.src);
+          };
+          objs[i].style.cursor = "pointer";
+        }
+      }, 1000);
     }
   },
-  mounted() {},
+  mounted() {}
 };
 </script>
-<style scoped  lang="scss">
+<style scoped lang="scss">
 .wrapper {
   max-width: 1351px;
   min-width: 1180px;

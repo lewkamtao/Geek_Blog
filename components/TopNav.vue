@@ -56,6 +56,9 @@
       </div>
       <div class="right">
         <div class="right-links">
+          <div @click="toLink({ isLogin: false, path: '/' })" class="child">
+            <i class="home icon"></i>
+          </div>
           <div
             @click="toLink({ isLogin: false, path: '/Timeline' })"
             class="child"
@@ -90,10 +93,10 @@ export default {
   props: {
     geek_config: {
       type: Object,
-      default: function () {
+      default: function() {
         return {};
       }
-    },
+    }
   },
   data() {
     return {
@@ -102,17 +105,17 @@ export default {
       searchValue: "",
       timer: "",
       searchArticle: [],
-      isShowResBox: false,
+      isShowResBox: false
     };
   },
   watch: {
-    searchValue: function (val) {
+    searchValue: function(val) {
       var that = this;
       clearTimeout(this.timer);
-      this.timer = setTimeout(async function () {
+      this.timer = setTimeout(async function() {
         that.searchArticleFn();
       }, 250);
-    },
+    }
   },
   computed: {},
   methods: {
@@ -128,7 +131,7 @@ export default {
           title: "注意",
           message: "请先登录！",
           duration: 5000,
-          offset: 65,
+          offset: 65
         });
         this.$router.push("/login");
         return;
@@ -137,13 +140,13 @@ export default {
     },
     hidResBox() {
       var that = this;
-      setTimeout(function () {
+      setTimeout(function() {
         that.isShowResBox = false;
       }, 500);
     },
     showNav() {
       this.$emit("showNav");
-    },
+    }
   },
   created() {
     if (this.$cookies.get("token")) {
@@ -159,7 +162,7 @@ export default {
     }
     next();
   },
-  mounted() {},
+  mounted() {}
 };
 </script>
 <style lang="scss" scoped>
@@ -194,7 +197,6 @@ export default {
           font-size: 22px;
           font-weight: 700;
           margin-right: 10px;
-          font-style: italic;
         }
         img {
           transition: all 0.25s;

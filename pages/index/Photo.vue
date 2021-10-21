@@ -2,7 +2,8 @@
   <div class="index-wrapper-master part">
     <div class="more-btn" style="margin-bottom: 50px">
       相册功能
-      尚未完善，图库来源：https://www.kancloud.cn/lizhixuan/free_api/1165107 和 https://api.ixiaowai.cn/api/api.php
+      尚未完善，图库来源：https://www.kancloud.cn/lizhixuan/free_api/1165107 和
+      https://api.ixiaowai.cn/api/api.php
     </div>
     <div ref="masonry" class="masonry">
       <div class="img-box" :key="index" v-for="(item, index) in imgData">
@@ -19,7 +20,7 @@ import qs from "qs";
 
 export default {
   components: {
-    AutoImgList,
+    AutoImgList
   },
   props: {},
   async asyncData({ $axios }) {
@@ -27,7 +28,7 @@ export default {
       await $axios.post(
         "https://api.apiopen.top/getImages",
         qs.stringify({
-          count: "10000",
+          count: "10"
         })
       )
     ).result;
@@ -40,7 +41,7 @@ export default {
       hidMasonry: true,
       imgList: [],
       imgData: [],
-      masonryWidth: 0,
+      masonryWidth: 0
     };
   },
   watch: {},
@@ -51,15 +52,15 @@ export default {
         await this.$axios.post(
           "https://api.apiopen.top/getImages",
           qs.stringify({
-            count: "100",
+            count: "10"
           })
         )
       ).result;
-      this.$nextTick(function () {
+      this.$nextTick(function() {
         this.masonryWidth = this.$refs.masonry.clientWidth;
       });
       this.imgList = imgList;
-      this.imgList = this.imgList.map((img) => {
+      this.imgList = this.imgList.map(img => {
         return img.img;
       });
       this.formatImgData();
@@ -70,7 +71,7 @@ export default {
         this.imgData.push(this.imgList.slice(0, rnum));
         this.imgList = this.imgList.splice(rnum);
         if (this.imgList.length != 0) {
-          this.formatImgData(); 
+          this.formatImgData();
         }
       } else if (this.imgList.length != 0) {
         this.imgData.push(this.imgList);
@@ -86,14 +87,14 @@ export default {
         default:
           return 0;
       }
-    },
+    }
   },
   created() {
     this.getImgList();
   },
-  mounted() {},
+  mounted() {}
 };
-</script> 
+</script>
 <style lang="scss" scoped>
 .index-wrapper-master {
   width: 100%;
@@ -121,7 +122,6 @@ export default {
   justify-content: center;
   img {
     width: 400px;
- 
   }
 }
 .more-btn:hover {

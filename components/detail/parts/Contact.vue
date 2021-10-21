@@ -1,5 +1,5 @@
 <template>
-  <div  class="contact-wrapper part">
+  <div class="contact-wrapper part">
     <div class="main-title" style="margin-bottom: 18px">社交媒体</div>
     <div v-if="contact_config.length != 0">
       <a
@@ -19,7 +19,9 @@
         <div class="contact-value">{{ item.nickname || item.value }}</div>
       </a>
     </div>
-    <div v-if="contact_config.length == 0">未设置</div>
+    <div v-if="contact_config.length == 0 || !contact_config.platform">
+      未设置
+    </div>
   </div>
 </template>
 <script>
@@ -29,14 +31,14 @@ export default {
   props: {
     geek_config: {
       type: Object,
-      default: function () {
+      default: function() {
         return {};
       }
-    },
+    }
   },
   data() {
     return {
-      contact_config: [],
+      contact_config: []
     };
   },
   created() {
@@ -61,8 +63,8 @@ export default {
       if (index != this.contact_config.length - 1) {
         this.$refs.contactItem[index + 1].classList.remove("isHoverNext");
       }
-    },
-  },
+    }
+  }
 };
 </script>
 <style lang="scss" scoped>
@@ -134,4 +136,3 @@ export default {
   }
 }
 </style>
-
