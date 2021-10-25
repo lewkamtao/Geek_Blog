@@ -22,7 +22,7 @@
             <a class="author" :href="comment.expand.url" target="_blank">
               {{ comment.nickname }}
             </a>
-            <div v-if="comment.users_id == 2" class="ui horizontal label">
+            <div v-if="comment.users_id == 1" class="ui horizontal label">
               作者
             </div>
             <div class="metadata">
@@ -79,7 +79,7 @@
                   {{ son.nickname }}</a
                 >
 
-                <div v-if="son.users_id == 2" class="ui horizontal label">
+                <div v-if="son.users_id == 1" class="ui horizontal label">
                   作者
                 </div>
                 <div class="metadata">
@@ -132,19 +132,19 @@ export default {
   props: {
     type: {
       type: String,
-      default: "",
+      default: ""
     },
     curId: {
       type: Number,
-      default: 0,
+      default: 0
     },
     articleId: {
       type: Number,
-      default: 0,
+      default: 0
     },
     isLogin: {
       type: Boolean,
-      default: false,
+      default: false
     },
     comment: {
       type: Object,
@@ -166,9 +166,9 @@ export default {
         opt: null,
         create_time: "2021-03-22 17:45:09",
         create_time: "2021-03-23 18:36:31",
-        son: [],
-      },
-    },
+        son: []
+      }
+    }
   },
   data() {
     return {};
@@ -176,13 +176,13 @@ export default {
   watch: {},
   computed: {
     getBeautifyTime() {
-      return function (time) {
+      return function(time) {
         return util.getBeautifyTime(time);
       };
     },
 
     getUA() {
-      return function (agent) {
+      return function(agent) {
         return (
           "来自 " +
           (agent.os.system +
@@ -192,7 +192,7 @@ export default {
             agent.browser.kernel)
         );
       };
-    },
+    }
   },
   methods: {
     reply(id) {
@@ -205,7 +205,7 @@ export default {
       this.$confirm("此操作将永久删除该信息, 是否继续?", "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
-        type: "warning",
+        type: "warning"
       })
         .then(() => {
           this.del(id);
@@ -213,7 +213,7 @@ export default {
         .catch(() => {
           this.$message({
             type: "info",
-            message: "已取消删除",
+            message: "已取消删除"
           });
         });
     },
@@ -222,10 +222,10 @@ export default {
         var data = {
           "login-token": this.$cookies.get("token"),
           mode: "remove",
-          id: JSON.stringify(id),
+          id: JSON.stringify(id)
         };
 
-        this.$axios.post("/comments", data).then((res) => {
+        this.$axios.post("/comments", data).then(res => {
           if (res.code == 200) {
             this.$emit("reloadComments");
             this.$notify({
@@ -233,7 +233,7 @@ export default {
               title: "恭喜！",
               message: "成功删除了一条评论",
               duration: 5000,
-              offset: 65,
+              offset: 65
             });
           }
         });
@@ -265,10 +265,10 @@ export default {
           }
         }
       }
-    },
+    }
   },
   created() {},
-  mounted() {},
+  mounted() {}
 };
 </script>
 <style lang="scss" scoped>
