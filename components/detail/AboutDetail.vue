@@ -31,63 +31,64 @@ export default {
         {
           rel: "stylesheet",
           type: "text/css",
-          href: "https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.3/css/all.css",
+          href:
+            "https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.3/css/all.css"
         },
         {
           rel: "stylesheet",
           type: "text/css",
-          href: "https://cdn.jsdelivr.net/npm/vditor/dist/index.css",
-        },
-      ],
+          href: "https://cdn.jsdelivr.net/npm/vditor/dist/index.css"
+        }
+      ]
     };
   },
   components: {},
   props: {
     user: {
       type: Object,
-      default: function () {
-        return {};
-      },
-    },
-    geek_config: {
-      type: Object,
-      default: function () {
-        return {};
-      },
-    },
-    article: {
-      type: Object,
-      default: function () {
+      default: function() {
         return {};
       }
     },
+    geek_config: {
+      type: Object,
+      default: function() {
+        return {};
+      }
+    },
+    article: {
+      type: Object,
+      default: function() {
+        return {};
+      }
+    }
   },
   data() {
     return {
-      article_tips: false,
+      article_tips: false
     };
   },
   watch: {},
   computed: {
     getBeautifyTime() {
-      return function (time) {
+      return function(time) {
         return util.getBeautifyTime(time);
       };
-    },
+    }
   },
   methods: {
     renderMarkdown(md) {
       Vditor.preview(document.querySelector("#preview"), md, {
         speech: {
-          enable: true,
+          enable: true
         },
-        anchor: 1,
+        anchor: 1
       });
-    },
+    }
   },
   created() {
     if (process.browser && JSON.stringify(this.article) != "{}") {
-      this.$nextTick(function () {
+      this.$nextTick(function() {
         this.renderMarkdown(this.article.content);
       });
     } else {
@@ -95,7 +96,7 @@ export default {
         "注意：请在inis后台添加页面，别名必须为：about，否则不生效。";
     }
   },
-  mounted() {},
+  mounted() {}
 };
 </script>
 <style lang="scss" scoped>

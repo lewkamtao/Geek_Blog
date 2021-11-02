@@ -3,17 +3,16 @@
     <div class="main-title">归档</div>
     <div class="article-title-list">
       <ul>
-        <a
-          href="#"
+        <nuxt-link
+          :to="'ArticleBySort?sort_id=' + item.id"
           v-for="(item, index) in article_sort.data"
           :key="index"
-          @click="getArticleBySort(item.id)"
         >
           {{ item.name }}
           <span style="margin-left: 10px" class="ui mini label">{{
             item.expand.count
           }}</span>
-        </a>
+        </nuxt-link>
       </ul>
     </div>
   </div>
@@ -25,35 +24,19 @@ export default {
   props: {
     article_sort: {
       type: Object,
-      default: function () {
+      default: function() {
         return {};
-      },
-    },
+      }
+    }
   },
   data() {
-    return {
-      tagsClass: [],
-    };
+    return {};
   },
   watch: {},
   computed: {},
-  methods: {
-    getTagColor() {
-      if (this.article_sort.data && this.article_sort.data.length > 0) {
-        this.article_sort.data.forEach((tag, index) => {
-          var options = ["", "secondary", "success", "warning", "danger"];
-          var i = Math.floor(Math.random() * options.length);
-          this.tagsClass[index] = options[i];
-        });
-        this.$forceUpdate();
-      }
-    },
-    getArticleBySort(id) {},
-  },
-  created() {
-    this.getTagColor();
-  },
-  mounted() {},
+  methods: {},
+  created() {},
+  mounted() {}
 };
 </script>
 <style lang="scss" scoped>

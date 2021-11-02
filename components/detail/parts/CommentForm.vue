@@ -16,6 +16,7 @@
       </div>
       <div class="field">
         <textarea
+          style="height:40px"
           v-model="form.content"
           placeholder="这一刻的想法..."
         ></textarea>
@@ -34,22 +35,22 @@ export default {
   props: {
     type: {
       type: String,
-      default: function () {
+      default: function() {
         return {};
       }
     },
     pid: {
       type: Number,
-      default: 0,
+      default: 0
     },
     articleId: {
       type: Number,
-      default: 0,
+      default: 0
     },
     isLogin: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
   data() {
     return {
@@ -57,8 +58,8 @@ export default {
         email: "",
         nickname: "",
         url: "",
-        content: "",
-      },
+        content: ""
+      }
     };
   },
   mounted() {
@@ -70,7 +71,7 @@ export default {
         email: "",
         nickname: "",
         url: "",
-        content: "",
+        content: ""
       };
       switch (this.type) {
         case "article":
@@ -100,7 +101,7 @@ export default {
             title: "请补充完整信息",
             message: "昵称未填写",
             duration: 5000,
-            offset: 65,
+            offset: 65
           });
           return;
         }
@@ -111,7 +112,7 @@ export default {
             title: "请补充完整信息",
             message: "邮箱未填写",
             duration: 5000,
-            offset: 65,
+            offset: 65
           });
           return;
         }
@@ -122,7 +123,7 @@ export default {
             title: "格式错误",
             message: "邮箱格式错误",
             duration: 5000,
-            offset: 65,
+            offset: 65
           });
           return;
         }
@@ -133,7 +134,7 @@ export default {
             title: "格式错误",
             message: "URL格式错误",
             duration: 5000,
-            offset: 65,
+            offset: 65
           });
           return;
         }
@@ -145,12 +146,12 @@ export default {
           title: "请补充完整信息",
           message: "内容未填写",
           duration: 5000,
-          offset: 65,
+          offset: 65
         });
         return;
       }
 
-      this.$axios.post("/comments", _form).then((res) => {
+      this.$axios.post("/comments", _form).then(res => {
         if (res.code == 200) {
           this.$emit("reloadComments");
           this.setForm();
@@ -160,12 +161,12 @@ export default {
             title: "发送错误",
             message: "错误代码：" + res.code,
             duration: 5000,
-            offset: 65,
+            offset: 65
           });
         }
       });
-    },
-  },
+    }
+  }
 };
 </script>
 

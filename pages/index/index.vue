@@ -7,7 +7,7 @@
       tag: false,
       article: false,
       articleList: articleList,
-      newComments: newComments,
+      newComments: newComments
     }"
   />
 </template>
@@ -23,16 +23,17 @@ export default {
   data() {
     return {
       newComments: {},
+      sort_id: ""
     };
   },
   methods: {
     async getNewComments() {
       const newComments = (await this.$axios.get("/comments?limit=5")).data;
       this.newComments = newComments;
-    },
+    }
   },
   created() {
     this.getNewComments();
-  },
+  }
 };
 </script>

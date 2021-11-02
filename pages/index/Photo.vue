@@ -1,13 +1,13 @@
 <template>
   <div class="index-wrapper-master part">
-    <div style="margin-bottom:20px" v-show="this.imgData.length==0">
+    <div style="margin-bottom:20px" v-show="this.imgData.length == 0">
       <form class="ui reply form">
         <div class="field">
           <div class="field">
             <textarea
               style="height:100px"
               v-model="imgUrl"
-              placeholder="输入爬取图片网站..."
+              placeholder="输入爬取图片URL..."
             ></textarea>
           </div>
         </div>
@@ -15,7 +15,7 @@
           @click="getImgList('new')"
           class="ui blue labeled submit icon button"
         >
-          <i class="icon edit"></i> 发表评论
+          <i class="icon edit"></i> 立即获取
         </div>
       </form>
     </div>

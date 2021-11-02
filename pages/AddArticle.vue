@@ -1,15 +1,43 @@
 <template>
   <div class="mavonEditor">
     <no-ssr placeholder="loading...">
-      <div v-if="error" class="ui message error">
-        <i class="close icon"></i>
-        <div class="header">发布错误！</div>
-        <p>
-          {{ error }}
-        </p>
-      </div>
-      <div style="margin-bottom:20px" class="top-bar">
-        <input v-model="title" type="text" placeholder="文章标题" />
+      <mavon-editor
+        ref="md"
+        placeholder="请输入文档内容..."
+        :boxShadow="false"
+        style="z-index:1;border: 1px solid #d9d9d9;height:100%; width:calc(100vw - 450px)"
+        v-model="form.content"
+        :toolbars="toolbars"
+      />
+      <div style="width:350px;margin-left:30px" class="ui form">
+        <div class="field">
+          <label>标题</label>
+          <input type="text" v-model="form.title" placeholder="输入文章标题" />
+        </div>
+        <div class="field">
+          <label>分类</label>
+          <select v-model="form.sord_id" class="ui search dropdown">
+            <option
+              v-for="(item, index) in article_sort.data"
+              :value="item.id"
+              :key="'sort' + index"
+              >{{ item.name }}</option
+            >
+          </select>
+        </div>
+        <div class="field">
+          <label>封面URL</label>
+          <input v-model="form.img_src" type="text" placeholder="URL格式" />
+        </div>
+        <div class="field">
+          <label>描述</label>
+          <textarea
+            v-model="form.description"
+            type="text"
+            style="height:30px"
+            placeholder="文章描述"
+          />
+        </div>
         <div
           @click="add"
           class="ui fluid large teal submit button"
@@ -18,16 +46,8 @@
         >
           发布
         </div>
-      </div>
-
-      <mavon-editor
-        ref="md"
-        placeholder="请输入文档内容..."
-        :boxShadow="false"
-        style="z-index:1;border: 1px solid #d9d9d9;height:100%;"
-        v-model="content"
-        :toolbars="toolbars"
-    /></no-ssr>
+      </div></no-ssr
+    >
   </div>
 </template>
 
@@ -39,11 +59,26 @@ export default {
       title: "添加文章"
     };
   },
+  async asyncData({ $axios, route }) {
+    var articleForm = false;
+    if (route.query.id) {
+      articleForm = (await $axios.get("/article?mode=md&id=" + route.query.id)).data;
+    }
+
+    const article_sort = (await $axios.get("/article-sort?limit=1000")).data;
+    return { article_sort, articleForm };
+  },
   props: {},
   data() {
     return {
       token: "",
-      error: "",
+      form: {
+        title: "",
+        content: "",
+        description: "",
+        sort_id: "",
+        img_src: ""
+      },
       title: "",
       content: "",
       loading: false,
@@ -91,11 +126,8 @@ export default {
       console.log(pos, $file);
     },
     add() {
-      var data = {
-        "login-token": this.token,
-        title: this.title,
-        content: this.content
-      };
+      var data = JSON.parse(JSON.stringify(this.form));
+      data["login-token"] = this.token;
       this.loading = true;
       this.$axios.post("/article", data).then(res => {
         this.loading = false;
@@ -112,38 +144,52 @@ export default {
           });
         }
       });
+    },
+    checkLogin() {
+      var data = {
+        "login-token": this.token
+      };
+      this.$axios.get("/users", data).then(res => {
+        this.loading = false;
+        if (res.code != "200") {
+          this.$message({
+            type: "waining",
+            message: res.tips
+          });
+        }
+      });
     }
   },
   mounted() {},
   created: function() {
     this.token = this.$cookies.get("token");
+    this.checkLogin();
+  },
+  mounted() {
+    if (this.articleForm) {
+      this.form = {
+        id: this.articleForm.id,
+        title: this.articleForm.title,
+        content: this.articleForm.content,
+        description: this.articleForm.description,
+        sort_id: this.articleForm.sort_id,
+        img_src: this.articleForm.img_src
+      };
+    }
   }
 };
 </script>
 <style lang="scss" scoped>
 .mavonEditor {
   width: 100%;
-  height: 95vh;
-  padding: 100px;
+  display: flex;
+  height: 100vh;
+  padding: 80px;
   .error {
     position: fixed;
     top: 10px;
     left: 50%;
     transform: translateX(-50%);
-  }
-  .top-bar {
-    display: flex;
-    justify-content: space-between;
-    input {
-      width: calc(100% - 150px);
-      border: none;
-      outline: none;
-      padding: 10px;
-      font-size: 20px;
-    }
-    input:focus {
-      outline: none;
-    }
   }
 }
 </style>

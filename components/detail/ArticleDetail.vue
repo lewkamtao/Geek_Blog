@@ -90,6 +90,23 @@
 
     <main class="section">
       <div class="vditor-reset" id="preview"></div>
+      <nuxt-link
+        :to="'/AddArticle?id=' + article.id"
+        style="margin-top:50px;margin-right:20px"
+        class="ui blue labeled submit
+        icon button"
+      >
+        <i class="icon edit outline"></i>
+        编辑文章
+      </nuxt-link>
+      <div
+        @click="delConfirm"
+        style="margin-top:50px"
+        class="ui red labeled submit icon button"
+      >
+        <i class="icon trash alternate outline"></i>
+        删除文章
+      </div>
     </main>
   </div>
 </template>
@@ -227,6 +244,44 @@ export default {
           }
         }
       });
+    },
+    delConfirm() {
+      this.$confirm("此操作将永久删除该文章, 是否继续?", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning"
+      })
+        .then(() => {
+          this.del(this.article.id);
+        })
+        .catch(() => {
+          this.$message({
+            type: "info",
+            message: "已取消删除"
+          });
+        });
+    },
+    del(id) {
+      if (this.$cookies.get("token")) {
+        var data = {
+          "login-token": this.$cookies.get("token"),
+          mode: "remove",
+          id: JSON.stringify(id)
+        };
+
+        this.$axios.post("/article", data).then(res => {
+          if (res.code == 200) {
+            this.$notify({
+              type: "success",
+              title: "恭喜！",
+              message: "成功删除了一篇文章",
+              duration: 5000,
+              offset: 65
+            });
+            this.$router.push("/");
+          }
+        });
+      }
     }
   },
   created() {
