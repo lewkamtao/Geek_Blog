@@ -30,7 +30,8 @@ export default {
     "@/plugins/axios",
     "@/plugins/route",
     "@/plugins/v-img",
-    "@/plugins/element-ui"
+    "@/plugins/element-ui",
+    "@/plugins//vueMarkdown.js"
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

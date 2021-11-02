@@ -38,7 +38,7 @@ export default {
       },
       {
         value: "photo",
-        title: "相册",
+        title: "图库",
         isShow: true,
       },
       {

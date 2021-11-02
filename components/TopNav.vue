@@ -73,7 +73,7 @@
           </div>
 
           <div
-            @click="toLink({ isLogin: true, path: '/Timeline' })"
+            @click="toLink({ isLogin: true, path: '/AddArticle' })"
             class="child"
           >
             <i class="edit outline icon"></i>

@@ -1,44 +1,49 @@
 <template>
   <div class="index-wrapper-master part">
-    <div class="more-btn" style="margin-bottom: 50px">
-      相册功能
-      尚未完善，图库来源：https://www.kancloud.cn/lizhixuan/free_api/1165107 和
-      https://api.ixiaowai.cn/api/api.php
+    <div style="margin-bottom:20px" v-show="this.imgData.length==0">
+      <form class="ui reply form">
+        <div class="field">
+          <div class="field">
+            <textarea
+              style="height:100px"
+              v-model="imgUrl"
+              placeholder="输入爬取图片网站..."
+            ></textarea>
+          </div>
+        </div>
+        <div
+          @click="getImgList('new')"
+          class="ui blue labeled submit icon button"
+        >
+          <i class="icon edit"></i> 发表评论
+        </div>
+      </form>
     </div>
     <div ref="masonry" class="masonry">
       <div class="img-box" :key="index" v-for="(item, index) in imgData">
         <auto-img-list :width="masonryWidth" :imgData="item"></auto-img-list>
       </div>
     </div>
-    <div @click="getImgList()" class="more-btn">点击加载更多</div>
+    <div v-show="imgList.length != 0" @click="getImgList()" class="more-btn">
+      点击加载更多
+    </div>
   </div>
 </template>
 
 <script>
 import AutoImgList from "@/components/custom/AutoImgList";
-import qs from "qs";
 
 export default {
   components: {
     AutoImgList
   },
   props: {},
-  async asyncData({ $axios }) {
-    const imgList = (
-      await $axios.post(
-        "https://api.apiopen.top/getImages",
-        qs.stringify({
-          count: "10"
-        })
-      )
-    ).result;
-    return { imgList };
-  },
   data() {
     return {
       page: 1,
       limit: 10,
       hidMasonry: true,
+      imgUrl: "",
       imgList: [],
       imgData: [],
       masonryWidth: 0
@@ -47,26 +52,21 @@ export default {
   watch: {},
   computed: {},
   methods: {
-    async getImgList() {
-      const imgList = (
-        await this.$axios.post(
-          "https://api.apiopen.top/getImages",
-          qs.stringify({
-            count: "10"
-          })
-        )
-      ).result;
-      this.$nextTick(function() {
-        this.masonryWidth = this.$refs.masonry.clientWidth;
-      });
-      this.imgList = imgList;
-      this.imgList = this.imgList.map(img => {
-        return img.img;
-      });
+    getImgList(type) {
+      if (type == "new") {
+        this.imgList = [];
+        this.imgData = [];
+      }
+      for (var i = 0; i <= this.limit; i++) {
+        this.imgList.push(this.imgUrl + "?" + new Date().getTime() + i);
+      }
       this.formatImgData();
     },
     formatImgData() {
       var rnum = this.randomNum(3, 5);
+      this.$nextTick(function() {
+        this.masonryWidth = this.$refs.masonry.clientWidth;
+      });
       if (this.imgList.length > rnum) {
         this.imgData.push(this.imgList.slice(0, rnum));
         this.imgList = this.imgList.splice(rnum);
@@ -89,9 +89,7 @@ export default {
       }
     }
   },
-  created() {
-    this.getImgList();
-  },
+  created() {},
   mounted() {}
 };
 </script>
@@ -108,7 +106,7 @@ export default {
   background: #eee;
   font-size: 16px;
   text-align: center;
-  opacity: 0.4;
+  opacity: 0.7;
   color: #000;
   border-radius: 15px;
   transition: opacity 0.25s;
