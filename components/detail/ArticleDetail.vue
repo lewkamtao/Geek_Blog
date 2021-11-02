@@ -91,6 +91,7 @@
     <main class="section">
       <div class="vditor-reset" id="preview"></div>
       <nuxt-link
+        v-if="token"
         :to="'/AddArticle?id=' + article.id"
         style="margin-top:50px;margin-right:20px"
         class="ui blue labeled submit
@@ -100,6 +101,7 @@
         编辑文章
       </nuxt-link>
       <div
+        v-if="token"
         @click="delConfirm"
         style="margin-top:50px"
         class="ui red labeled submit icon button"
@@ -145,7 +147,8 @@ export default {
   },
   data() {
     return {
-      article_title_list: []
+      article_title_list: [],
+      token: ""
     };
   },
   watch: {
@@ -262,9 +265,9 @@ export default {
         });
     },
     del(id) {
-      if (this.$cookies.get("token")) {
+      if (this.token) {
         var data = {
-          "login-token": this.$cookies.get("token"),
+          "login-token": this.token,
           mode: "remove",
           id: JSON.stringify(id)
         };
@@ -285,6 +288,7 @@ export default {
     }
   },
   created() {
+    this.token = this.$cookies.get("token");
     if (process.browser) {
       this.$nextTick(function() {
         this.renderMarkdown(this.article.content);
