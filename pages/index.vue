@@ -22,29 +22,12 @@
         <Footer :geek_config="geek_config" />
       </div>
     </div>
-    <div class="to-top" v-if="false">
-      <div
-        @click="showAside()"
-        class="show-aside-btn"
-        :class="{ isShowOpenAsideBtn: isShowOpenAsideBtn }"
+    <div class="to-top">
+      <el-backtop>
+        <div class="icon">
+          UP
+        </div></el-backtop
       >
-        <div style="margin-top: -5px">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20px"
-            height="20px"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="feather feather-twitch"
-          >
-            <path d="M21 2H3v16h5v4l4-4h5l4-4V2zm-10 9V7m5 4V7" />
-          </svg>
-        </div>
-      </div>
     </div>
   </div>
 </template>
@@ -99,7 +82,7 @@ export default {
     const userId = (await $axios.get("/options?key=webmaster")).data.opt
       .users_id;
     const user = (await $axios.get("/users?id=" + userId)).data;
-    const article_sort = (await $axios.get("/article-sort?limit=1000")).data;
+    const article_sort = (await $axios.get("/article-sort?limit=1000&cache=false")).data;
     return { user, article_sort, geek_config, noSet };
   },
   props: {},
@@ -133,7 +116,6 @@ export default {
     }
   },
   created() {
-    this.isShowOpenAsideBtn = true;
     if (this.noSet) {
       this.$router.push("/getStart");
     }
@@ -142,10 +124,11 @@ export default {
     if (process.browser) {
       //  隐藏遮罩 优先级
       this.isShowNav = false;
-      this.isShowOpenAsideBtn = true;
       next();
       setTimeout(() => {
-        var objs = document.getElementsByTagName("img");
+        var objs = document
+          .getElementById("preview")
+          .getElementsByTagName("img");
         for (var i = 0; i < objs.length; i++) {
           objs[i].onclick = function() {
             window.open(this.src);
@@ -201,30 +184,15 @@ export default {
   }
 
   .to-top {
-    position: fixed;
-    bottom: 50px;
-    right: 50px;
-    display: flex;
-    flex-direction: column;
-    margin: 10px;
-    z-index: 999999;
-    transition: all 0.25s;
-    width: 50px;
-    height: 50px;
-    .show-aside-btn {
-      display: none;
-      font-size: 30px;
-      width: 45px;
-      height: 45px;
-      align-items: center;
-      justify-content: center;
-      border-top-left-radius: 185px 160px;
-      border-top-right-radius: 200px 195px;
-      border-bottom-right-radius: 160px 195px;
-      border-bottom-left-radius: 185px 190px;
-      background: #fff;
-      border: #000 solid 2px;
-      margin-bottom: 20px;
+    .icon {
+      height: 100%;
+      width: 100%;
+      background-color: #f2f5f6;
+      box-shadow: 0 0 6px rgba(0, 0, 0, 0.12);
+      text-align: center;
+      line-height: 40px;
+      color: #000;
+      font-weight: bolder;
     }
   }
 }
@@ -300,9 +268,6 @@ export default {
       position: fixed;
       bottom: 20px;
       right: 10px;
-      .isShowOpenAsideBtn {
-        display: flex;
-      }
     }
   }
   .isShowNav {

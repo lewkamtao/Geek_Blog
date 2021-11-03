@@ -18,7 +18,7 @@ export default {
   async asyncData({ $axios, route }) {
     var sort_id = parseInt(route.query.sort_id);
     const articleListBySort = (
-      await $axios.get("/article-sort?limit=100000&id=" + sort_id)
+      await $axios.get("/article-sort?limit=100000&cache=false&id=" + sort_id)
     ).data;
     return { articleListBySort };
   },
@@ -36,7 +36,9 @@ export default {
   methods: {
     async upDated(sort_id) {
       const articleListBySort = (
-        await this.$axios.get("/article-sort?limit=10000&id=" + sort_id)
+        await this.$axios.get(
+          "/article-sort?limit=10000&cache=false&id=" + sort_id
+        )
       ).data;
       this.articleListBySort = articleListBySort;
     }

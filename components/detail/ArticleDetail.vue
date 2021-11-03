@@ -89,11 +89,10 @@
     </header>
 
     <main class="section">
-      <div class="vditor-reset" id="preview"></div>
       <nuxt-link
         v-if="token"
         :to="'/AddArticle?id=' + article.id"
-        style="margin-top:50px;margin-right:20px"
+        style="margin-bottom:50px;margin-right:20px"
         class="ui blue labeled submit
         icon button"
       >
@@ -103,12 +102,13 @@
       <div
         v-if="token"
         @click="delConfirm"
-        style="margin-top:50px"
+        style="margin-bottom:50px"
         class="ui red labeled submit icon button"
       >
         <i class="icon trash alternate outline"></i>
         删除文章
       </div>
+      <div class="vditor-reset" id="preview"></div>
     </main>
   </div>
 </template>

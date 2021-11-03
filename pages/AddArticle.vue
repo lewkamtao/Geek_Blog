@@ -9,14 +9,21 @@
         v-model="form.content"
         :toolbars="toolbars"
       />
-      <div style="width:350px;margin-left:30px" class="ui form">
+      <div style="width:350px;margin-left:30px;margin-top:0px" class="ui form">
+        <div
+          @click="back"
+          class="ui fluid large red submit button"
+          style="width:120px; margin-bottom:20px"
+        >
+          返回
+        </div>
         <div class="field">
           <label>标题</label>
           <input type="text" v-model="form.title" placeholder="输入文章标题" />
         </div>
         <div class="field">
           <label>分类</label>
-          <select v-model="form.sord_id" class="ui search dropdown">
+          <select v-model="form.sort_id" class="ui search dropdown">
             <option
               v-for="(item, index) in article_sort.data"
               :value="item.id"
@@ -62,7 +69,8 @@ export default {
   async asyncData({ $axios, route }) {
     var articleForm = false;
     if (route.query.id) {
-      articleForm = (await $axios.get("/article?mode=md&id=" + route.query.id)).data;
+      articleForm = (await $axios.get("/article?mode=md&id=" + route.query.id))
+        .data;
     }
 
     const article_sort = (await $axios.get("/article-sort?limit=1000")).data;
@@ -128,6 +136,7 @@ export default {
     add() {
       var data = JSON.parse(JSON.stringify(this.form));
       data["login-token"] = this.token;
+      data.sort_id = String(data.sort_id);
       this.loading = true;
       this.$axios.post("/article", data).then(res => {
         this.loading = false;
@@ -158,6 +167,9 @@ export default {
           });
         }
       });
+    },
+    back() {
+      this.$router.push("/article?id=" + this.form.id);
     }
   },
   mounted() {},
@@ -172,7 +184,9 @@ export default {
         title: this.articleForm.title,
         content: this.articleForm.content,
         description: this.articleForm.description,
-        sort_id: this.articleForm.sort_id,
+        sort_id: this.articleForm.sort_id
+          ? this.articleForm.sort_id.replace(/[^0-9]/gi, "")
+          : "",
         img_src: this.articleForm.img_src
       };
     }
