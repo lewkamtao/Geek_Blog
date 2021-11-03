@@ -5,10 +5,11 @@
         class="cover"
         :style="
           'background:url(' +
-          (articleData.img_src
-            ? articleData.img_src
-            : 'https://api.kenvie.com/webp.php?' + articleData.id) +
-          ')'
+            (articleData.img_src
+              ? articleData.img_src
+              : 'https://source.unsplash.com/random/400x300?' +
+                articleData.id) +
+            ')'
         "
       ></div>
 
@@ -108,23 +109,23 @@ import TagList from "./TagList.vue";
 
 export default {
   components: {
-    TagList,
+    TagList
   },
   props: {
     articleData: {
       type: Object,
-      default: function () {
+      default: function() {
         return {};
       }
-    },
+    }
   },
   computed: {
     getBeautifyTime() {
-      return function (time) {
+      return function(time) {
         return util.getBeautifyTime(time);
       };
-    },
-  },
+    }
+  }
 };
 </script>
 
@@ -268,4 +269,3 @@ export default {
   }
 }
 </style>
-
