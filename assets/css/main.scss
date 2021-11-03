@@ -59,20 +59,6 @@ html {
     border-radius: 0px !important;
 }
 
-// .isGeekMainLoading {
-//   position: relative;
-// }
-// .isGeekMainLoading::before {
-//   position: absolute;
-//   z-index: 9999;
-//   left: 7px;
-//   top: 7px;
-//   width: 100%;
-//   border-radius: 12px;
-//   height: calc(100vh - 120px);
-//   content: "";
-//   background: #fff;
-// }
 .index-main .part>* {
     transition: opacity 0.25s !important;
 }
@@ -96,72 +82,6 @@ html {
     a {
         background-image: none !important;
     }
-}
-
-.vditor-reset img {
-    border-radius: 0px;
-}
-
-.vditor-reset {
-    a {
-        background-image: none;
-    }
-    p,
-    li {
-        font-size: 14px;
-    }
-    p {
-        margin-bottom: 5px;
-    }
-    pre {
-        overflow: hidden;
-        border: none;
-        border-radius: 12px;
-        font-size: 14px;
-        background: rgba($color: #000, $alpha: 0.025);
-        .hljs {
-            font-size: 100%;
-            font-family: "Lucida Console", Monaco, monospace;
-            padding: 15px;
-            background: none;
-            background-color: none;
-        }
-        .hljs-comment,
-        .hljs-quote {
-            font-style: normal;
-        }
-        .hljs::-webkit-scrollbar {
-            width: 0px;
-            height: 0px;
-            display: none;
-            scrollbar-width: none;
-            -ms-overflow-style: none;
-            overflow: -moz-scrollbars-none;
-            scrollbar-color: transparent transparent;
-        }
-    }
-}
-
-.vditor-reset .alert {
-    border-radius: 0px;
-    background-color: #eee;
-}
-
-.vditor-reset li::before {
-    content: "";
-}
-
-.vditor-reset li {
-    text-indent: 0em;
-}
-
-.vditor-reset h1,
-.vditor-reset h2,
-.vditor-reset h3,
-.vditor-reset h4,
-.vditor-reset h5,
-.vditor-reset h6 {
-    padding-top: 20px;
 }
 
 .article-list li span span {
@@ -236,9 +156,9 @@ html::-webkit-scrollbar-track {
 /* 滚动条滑块 */
 
 ::-webkit-scrollbar {
-    width: 0px;
-    height: 0px;
-    display: none;
+    // width: 0px;
+    // height: 0px;
+    // display: none;
     scrollbar-width: none;
     -ms-overflow-style: none;
     overflow: -moz-scrollbars-none;
@@ -322,6 +242,11 @@ html::-webkit-scrollbar-thumb:hover {
     color: #fff;
 }
 
+.v-note-img-wrapper img {
+    max-width: 90vw;
+    max-height: 90vh;
+}
+
 // 移动端适配
 @media screen and (max-width: 1025px) {
     .main-title {
@@ -340,9 +265,6 @@ html::-webkit-scrollbar-thumb:hover {
         font-family: "Source Sans Pro", "Hiragino Sans GB", "Microsoft Yahei", SimSun, Helvetica, Arial, Sans-serif, monospace;
     }
     * {
-        font-family: "Source Sans Pro", "Hiragino Sans GB", "Microsoft Yahei", SimSun, Helvetica, Arial, Sans-serif, monospace;
-    }
-    .vditor-reset * {
         font-family: "Source Sans Pro", "Hiragino Sans GB", "Microsoft Yahei", SimSun, Helvetica, Arial, Sans-serif, monospace;
     }
     .isShowModal {

@@ -1,18 +1,17 @@
 <template>
   <div class="article-box part">
     <nuxt-link :to="'/Article?id=' + articleData.id">
+      <div class="cover cover-bg"></div>
       <div
         class="cover"
         :style="
           'background:url(' +
-            (articleData.img_src
-              ? articleData.img_src
-              : 'https://source.unsplash.com/random/400x300?' +
-                articleData.id) +
-            ')'
+          (articleData.img_src
+            ? articleData.img_src
+            : 'https://source.unsplash.com/random/400x300?' + articleData.id) +
+          ')'
         "
       ></div>
-
       <div class="article-box-body">
         <div class="article-box-title">{{ articleData.title }}</div>
         <div class="article-box-subtitle">{{ articleData.description }}</div>
@@ -109,23 +108,23 @@ import TagList from "./TagList.vue";
 
 export default {
   components: {
-    TagList
+    TagList,
   },
   props: {
     articleData: {
       type: Object,
-      default: function() {
+      default: function () {
         return {};
-      }
-    }
+      },
+    },
   },
   computed: {
     getBeautifyTime() {
-      return function(time) {
+      return function (time) {
         return util.getBeautifyTime(time);
       };
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -153,10 +152,21 @@ export default {
   border-color: rgba($color: #000000, $alpha: 0.2);
 }
 .cover {
+  position: relative;
+  z-index: 99;
   width: 280px;
   height: 150px;
   background-size: cover !important;
   background-position: center center !important;
+  border-radius: 8px;
+}
+.cover-bg {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 280px;
+  height: 150px;
+  background: #eee;
   border-radius: 8px;
 }
 

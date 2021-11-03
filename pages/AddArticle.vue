@@ -5,15 +5,23 @@
         ref="md"
         placeholder="请输入文档内容..."
         :boxShadow="false"
-        style="z-index:1;border: 1px solid #d9d9d9;height:100%; width:calc(100vw - 450px)"
+        style="
+          z-index: 1;
+          border: 1px solid #d9d9d9;
+          height: 100%;
+          width: calc(100vw - 450px);
+        "
         v-model="form.content"
         :toolbars="toolbars"
       />
-      <div style="width:350px;margin-left:30px;margin-top:0px" class="ui form">
+      <div
+        style="width: 350px; margin-left: 30px; margin-top: 0px"
+        class="ui form"
+      >
         <div
           @click="back"
           class="ui fluid large red submit button"
-          style="width:120px; margin-bottom:20px"
+          style="width: 120px; margin-bottom: 20px"
         >
           返回
         </div>
@@ -28,8 +36,9 @@
               v-for="(item, index) in article_sort.data"
               :value="item.id"
               :key="'sort' + index"
-              >{{ item.name }}</option
             >
+              {{ item.name }}
+            </option>
           </select>
         </div>
         <div class="field">
@@ -41,14 +50,14 @@
           <textarea
             v-model="form.description"
             type="text"
-            style="height:30px"
+            style="height: 30px"
             placeholder="文章描述"
           />
         </div>
         <div
           @click="add"
           class="ui fluid large teal submit button"
-          style="width:120px"
+          style="width: 120px"
           :class="{ loading: loading }"
         >
           发布
@@ -63,7 +72,7 @@ export default {
   components: {},
   head() {
     return {
-      title: "添加文章"
+      title: "添加文章",
     };
   },
   async asyncData({ $axios, route }) {
@@ -85,7 +94,7 @@ export default {
         content: "",
         description: "",
         sort_id: "",
-        img_src: ""
+        img_src: "",
       },
       title: "",
       content: "",
@@ -123,8 +132,8 @@ export default {
         alignright: true, // 右对齐
         /* 2.2.1 */
         subfield: true, // 单双栏模式
-        preview: true // 预览
-      }
+        preview: true, // 预览
+      },
     };
   },
   watch: {},
@@ -138,42 +147,42 @@ export default {
       data["login-token"] = this.token;
       data.sort_id = String(data.sort_id);
       this.loading = true;
-      this.$axios.post("/article", data).then(res => {
+      this.$axios.post("/article", data).then((res) => {
         this.loading = false;
         if (res.code == "200") {
           this.$message({
             type: "success",
-            message: "发布成功"
+            message: "发布成功",
           });
           this.$router.push("/");
         } else {
           this.$message({
             type: "waining",
-            message: res.tips
+            message: res.tips,
           });
         }
       });
     },
     checkLogin() {
       var data = {
-        "login-token": this.token
+        "login-token": this.token,
       };
-      this.$axios.get("/users", data).then(res => {
+      this.$axios.get("/users", data).then((res) => {
         this.loading = false;
         if (res.code != "200") {
           this.$message({
             type: "waining",
-            message: res.tips
+            message: res.tips,
           });
         }
       });
     },
     back() {
       this.$router.go(-1);
-    }
+    },
   },
   mounted() {},
-  created: function() {
+  created: function () {
     this.token = this.$cookies.get("token");
     this.checkLogin();
   },
@@ -187,10 +196,10 @@ export default {
         sort_id: this.articleForm.sort_id
           ? this.articleForm.sort_id.replace(/[^0-9]/gi, "")
           : "",
-        img_src: this.articleForm.img_src
+        img_src: this.articleForm.img_src,
       };
     }
-  }
+  },
 };
 </script>
 <style lang="scss" scoped>

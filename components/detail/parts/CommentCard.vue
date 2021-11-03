@@ -22,7 +22,7 @@
             <a class="author" :href="comment.expand.url" target="_blank">
               {{ comment.nickname }}
             </a>
-            <div v-if="comment.users_id == 1" class="ui horizontal label">
+            <div v-if="comment.users_id == 1" class="ui horizontal label" style="line-height:15px">
               作者
             </div>
             <div class="metadata">

@@ -79,8 +79,8 @@ table caption {
 }
 
 hr {
-    border-bottom: 1px solid #FFFFFF;
-    border-top: 1px solid #E4E4E4;
+    border-bottom: 1px solid #ffffff;
+    border-top: 1px solid #e4e4e4;
     border-width: 1px 0;
     clear: both;
     height: 2px;
@@ -90,9 +90,7 @@ hr {
 
 ol,
 ul {
-    list-style-image: none;
     list-style-position: outside;
-    list-style-type: none;
 }
 
 caption,
@@ -111,4 +109,12 @@ a {
     color: #000;
     text-decoration: none;
     position: relative;
+}
+
+p {
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -pre-wrap;
+    white-space: -o-pre-wrap;
+    word-wrap: break-word;
 }

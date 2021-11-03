@@ -23,10 +23,8 @@
       </div>
     </div>
     <div class="to-top">
-      <el-backtop>
-        <div class="icon">
-          UP
-        </div></el-backtop
+      <el-backtop style="z-index: 99999">
+        <div class="icon">UP</div></el-backtop
       >
     </div>
   </div>
@@ -44,21 +42,21 @@ export default {
         {
           hid: "keywords",
           name: "keywords",
-          content: this.geek_config.site_config.keywords
+          content: this.geek_config.site_config.keywords,
         },
         {
           hid: "description",
           name: "description",
-          content: this.geek_config.site_config.description
-        }
+          content: this.geek_config.site_config.description,
+        },
       ],
       link: [
         {
           rel: "icon",
           type: "image/x-icon",
-          href: this.geek_config.site_config.favicon_url
-        }
-      ]
+          href: this.geek_config.site_config.favicon_url,
+        },
+      ],
     };
   },
   async asyncData({ $axios }) {
@@ -82,7 +80,9 @@ export default {
     const userId = (await $axios.get("/options?key=webmaster")).data.opt
       .users_id;
     const user = (await $axios.get("/users?id=" + userId)).data;
-    const article_sort = (await $axios.get("/article-sort?limit=1000&cache=false")).data;
+    const article_sort = (
+      await $axios.get("/article-sort?limit=1000&cache=false")
+    ).data;
     return { user, article_sort, geek_config, noSet };
   },
   props: {},
@@ -90,7 +90,7 @@ export default {
     return {
       isShowNav: false,
       backUpTopScroll: 0,
-      noSet: false
+      noSet: false,
     };
   },
   watch: {},
@@ -102,7 +102,7 @@ export default {
           this.backUpTopScroll = document.documentElement.scrollTop;
         } else {
           var top = JSON.parse(JSON.stringify(this.backUpTopScroll));
-          setTimeout(function() {
+          setTimeout(function () {
             document.documentElement.scrollTop = top;
           }, 10);
           this.backUpTopScroll = 0;
@@ -113,7 +113,7 @@ export default {
 
     playSong({ songs, index }) {
       this.$refs.leftNav.playSong({ songs, index });
-    }
+    },
   },
   created() {
     if (this.noSet) {
@@ -127,18 +127,32 @@ export default {
       next();
       setTimeout(() => {
         var objs = document
-          .getElementById("preview")
+          .getElementById("article-editor")
           .getElementsByTagName("img");
         for (var i = 0; i < objs.length; i++) {
-          objs[i].onclick = function() {
+          objs[i].onclick = function () {
             window.open(this.src);
           };
           objs[i].style.cursor = "pointer";
         }
-      }, 1000);
+      }, 500);
     }
   },
-  mounted() {}
+  mounted() {
+    if (process.browser) {
+      setTimeout(() => {
+        var objs = document
+          .getElementById("article-editor")
+          .getElementsByTagName("img");
+        for (var i = 0; i < objs.length; i++) {
+          objs[i].onclick = function () {
+            window.open(this.src);
+          };
+          objs[i].style.cursor = "pointer";
+        }
+      }, 500);
+    }
+  },
 };
 </script>
 <style scoped lang="scss">
@@ -266,6 +280,7 @@ export default {
     }
     .to-top {
       position: fixed;
+      z-index: 999999;
       bottom: 20px;
       right: 10px;
     }

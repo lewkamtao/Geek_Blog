@@ -254,8 +254,8 @@ export default {
       input {
         position: relative;
         z-index: 99;
-        width: 250px;
-        height: 35px;
+        width: 272px;
+        height: 30px;
         padding-left: 20px;
         font-size: 14px;
         border-radius: 7px;
