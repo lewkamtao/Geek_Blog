@@ -169,7 +169,7 @@ export default {
       });
     },
     back() {
-      this.$router.push("/article?id=" + this.form.id);
+      this.$router.go(-1);
     }
   },
   mounted() {},
