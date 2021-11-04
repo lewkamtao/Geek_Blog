@@ -125,36 +125,9 @@ export default {
       //  隐藏遮罩 优先级
       this.isShowNav = false;
       next();
-      setTimeout(() => {
-        var objs = document
-          .getElementById("article-editor")
-          .getElementsByTagName("img");
-        for (var i = 0; i < objs.length; i++) {
-          objs[i].onclick = function() {
-            window.open(this.src);
-          };
-          objs[i].style.cursor = "pointer";
-        }
-      }, 500);
     }
   },
-  mounted() {
-    if (process.browser) {
-      try {
-        setTimeout(() => {
-          var objs = document
-            .getElementById("article-editor")
-            .getElementsByTagName("img");
-          for (var i = 0; i < objs.length; i++) {
-            objs[i].onclick = function() {
-              window.open(this.src);
-            };
-            objs[i].style.cursor = "pointer";
-          }
-        }, 500);
-      } catch {}
-    }
-  }
+  mounted() {}
 };
 </script>
 <style scoped lang="scss">

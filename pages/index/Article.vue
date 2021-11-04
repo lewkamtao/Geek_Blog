@@ -5,7 +5,7 @@
     :options="{
       type: 'article',
       catalogue: true,
-      comments: comments,
+      comments: comments
     }"
   />
 </template>
@@ -15,7 +15,7 @@ export default {
   components: {},
   head() {
     return {
-      title: this.article.title + " - " + this.geek_config.site_config.title,
+      title: this.article.title + " - " + this.geek_config.site_config.title
     };
   },
   async asyncData({ $axios, route }) {
@@ -23,8 +23,8 @@ export default {
       await $axios.get("/article", {
         params: {
           id: parseInt(route.query.id),
-          model: "md",
-        },
+          model: "md"
+        }
       })
     ).data;
     const comments = (
@@ -32,8 +32,8 @@ export default {
         params: {
           article_id: parseInt(route.query.id),
           tree: false,
-          limit: 10000,
-        },
+          limit: 10000
+        }
       })
     ).data;
     return { article, comments };
@@ -41,14 +41,14 @@ export default {
   props: {
     geek_config: {
       type: Object,
-      default: function () {
+      default: function() {
         return {};
       }
-    },
+    }
   },
   data() {
     return {
-      id: "",
+      id: ""
     };
   },
   beforeRouteUpdate(to, from, next) {
@@ -65,8 +65,8 @@ export default {
           params: {
             article_id: this.id,
             tree: false,
-            limit: 10000,
-          },
+            limit: 10000
+          }
         })
       ).data;
       this.comments = comments;
@@ -77,15 +77,15 @@ export default {
         await this.$axios.get("/article", {
           params: {
             id: this.id,
-            model: "md",
-          },
+            model: "md"
+          }
         })
       ).data;
       this.article = article;
-    },
+    }
   },
   mounted() {
     this.id = parseInt($nuxt.$route.query.id);
-  },
+  }
 };
 </script>

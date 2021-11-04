@@ -131,46 +131,47 @@ export default {
         {
           rel: "stylesheet",
           type: "text/css",
-          href: "https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.3/css/all.css",
+          href:
+            "https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.3/css/all.css"
         },
         {
           rel: "stylesheet",
           type: "text/css",
-          href: "https://cdn.jsdelivr.net/npm/vditor/dist/index.css",
-        },
-      ],
+          href: "https://cdn.jsdelivr.net/npm/vditor/dist/index.css"
+        }
+      ]
     };
   },
   components: {},
   props: {
     article: {
       type: Object,
-      default: function () {
+      default: function() {
         return {};
-      },
-    },
+      }
+    }
   },
   data() {
     return {
       article_title_list: [],
       token: "",
-      blog: "",
+      blog: ""
     };
   },
   watch: {},
   computed: {
     getBeautifyTime() {
-      return function (time) {
+      return function(time) {
         return util.getBeautifyTime(time);
       };
-    },
+    }
   },
   methods: {
     delConfirm() {
       this.$confirm("此操作将永久删除该文章, 是否继续?", "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
-        type: "warning",
+        type: "warning"
       })
         .then(() => {
           this.del(this.article.id);
@@ -178,7 +179,7 @@ export default {
         .catch(() => {
           this.$message({
             type: "info",
-            message: "已取消删除",
+            message: "已取消删除"
           });
         });
     },
@@ -187,28 +188,61 @@ export default {
         var data = {
           "login-token": this.token,
           mode: "remove",
-          id: JSON.stringify(id),
+          id: JSON.stringify(id)
         };
 
-        this.$axios.post("/article", data).then((res) => {
+        this.$axios.post("/article", data).then(res => {
           if (res.code == 200) {
             this.$notify({
               type: "success",
               title: "恭喜！",
               message: "成功删除了一篇文章",
               duration: 5000,
-              offset: 65,
+              offset: 65
             });
             this.$router.push("/");
           }
         });
       }
-    },
+    }
   },
   created() {
     this.token = this.$cookies.get("token");
   },
-  mounted() {},
+  beforeRouteUpdate(to, from, next) {
+    if (process.browser) {
+      //  隐藏遮罩 优先级
+      next();
+      setTimeout(() => {
+        var objs = document
+          .getElementById("article-editor")
+          .getElementsByTagName("img");
+        for (var i = 0; i < objs.length; i++) {
+          objs[i].onclick = function() {
+            window.open(this.src);
+          };
+          objs[i].style.cursor = "pointer";
+        }
+      }, 300);
+    }
+  },
+  mounted() {
+    if (process.browser) {
+      try {
+        setTimeout(() => {
+          var objs = document
+            .getElementById("article-editor")
+            .getElementsByTagName("img");
+          for (var i = 0; i < objs.length; i++) {
+            objs[i].onclick = function() {
+              window.open(this.src);
+            };
+            objs[i].style.cursor = "pointer";
+          }
+        }, 300);
+      } catch {}
+    }
+  }
 };
 </script>
 <style lang="scss" scoped>
