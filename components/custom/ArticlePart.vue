@@ -6,10 +6,11 @@
         class="cover"
         :style="
           'background:url(' +
-          (articleData.img_src
-            ? articleData.img_src
-            : 'https://source.unsplash.com/random/400x300?' + articleData.id) +
-          ')'
+            (articleData.img_src
+              ? articleData.img_src
+              : 'https://tngeek-mall-1255310647.cos.ap-guangzhou.myqcloud.com/public/images/pexels/' +
+                articleData.id +
+                '.jpg!blog_mainPic)')
         "
       ></div>
       <div class="article-box-body">
@@ -108,23 +109,23 @@ import TagList from "./TagList.vue";
 
 export default {
   components: {
-    TagList,
+    TagList
   },
   props: {
     articleData: {
       type: Object,
-      default: function () {
+      default: function() {
         return {};
-      },
-    },
+      }
+    }
   },
   computed: {
     getBeautifyTime() {
-      return function (time) {
+      return function(time) {
         return util.getBeautifyTime(time);
       };
-    },
-  },
+    }
+  }
 };
 </script>
 
