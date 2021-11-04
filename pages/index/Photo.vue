@@ -1,6 +1,6 @@
 <template>
   <div class="index-wrapper-master part">
-    <div style="margin-bottom:20px" v-show="this.imgData.length == 0">
+    <div style="margin-bottom:20px" v-show="false">
       <form class="ui reply form">
         <div class="field">
           <div class="field">
@@ -24,7 +24,7 @@
         <auto-img-list :width="masonryWidth" :imgData="item"></auto-img-list>
       </div>
     </div>
-    <div v-show="imgList.length != 0" @click="getImgList()" class="more-btn">
+    <div @click="getImgList()" class="more-btn">
       点击加载更多
     </div>
   </div>
@@ -42,6 +42,7 @@ export default {
     return {
       page: 1,
       limit: 10,
+      index: 1,
       hidMasonry: true,
       imgUrl: "",
       imgList: [],
@@ -57,13 +58,21 @@ export default {
         this.imgList = [];
         this.imgData = [];
       }
-      for (var i = 0; i <= this.limit; i++) {
-        this.imgList.push(this.imgUrl + "?" + new Date().getTime() + i);
+      if (this.index <= 1600) {
+        this.index += 1;
+        for (var i = 1; i <= 100; i++) {
+          this.index += 1;
+          this.imgList.push(
+            "https://tngeek-mall-1255310647.cos.ap-guangzhou.myqcloud.com/public/images/pexels/" +
+              this.index +
+              ".jpg!blog_mainPic"
+          );
+        }
       }
       this.formatImgData();
     },
     formatImgData() {
-      var rnum = this.randomNum(3, 5);
+      var rnum = this.randomNum(3, 6);
       this.$nextTick(function() {
         this.masonryWidth = this.$refs.masonry.clientWidth;
       });
@@ -90,7 +99,9 @@ export default {
     }
   },
   created() {},
-  mounted() {}
+  mounted() {
+    this.getImgList();
+  }
 };
 </script>
 <style lang="scss" scoped>
