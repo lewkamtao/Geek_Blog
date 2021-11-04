@@ -1,5 +1,13 @@
 <template>
   <div class="index-wrapper-master">
+    <div class="index-banner part">
+      <div class="banner-bg">
+        <h1 class="slogan">
+          Coding changes the world !
+        </h1>
+      </div>
+    </div>
+
     <div class="masonry">
       <div
         v-for="(articleData, index) in articleList.data"
@@ -111,6 +119,29 @@ export default {
 <style lang="scss" scoped>
 .index-wrapper-master {
   width: 100%;
+}
+
+.index-banner {
+  width: 100%;
+  height: 200px;
+  padding: 0px;
+  margin-bottom: 7px;
+  background: #333;
+  .banner-bg {
+    width: 100%;
+    height: 200px;
+    background: url("https://tngeek-mall-1255310647.cos.ap-guangzhou.myqcloud.com/public/bg.svg");
+    background-size: 60%;
+    background-position: center right;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    h1 {
+      font-size: 40px;
+      color: #fff;
+    }
+  }
 }
 
 .more-btn {

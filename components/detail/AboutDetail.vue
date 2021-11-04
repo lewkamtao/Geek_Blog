@@ -14,35 +14,18 @@
     </div>
     <div class="tips" v-show="article_tips">{{ article_tips }}</div>
     <main class="section">
-      <div class="vditor-reset" id="preview"></div>
+      <article-editor :content="article.content" :article_id="article.id">
+      </article-editor>
     </main>
   </div>
 </template>
 
 <script>
 import util from "@/util/index";
-import Vditor from "vditor";
-import "vditor/src/assets/scss/index.scss";
+import ArticleEditor from "../custom/ArticleEditor";
 
 export default {
-  head() {
-    return {
-      link: [
-        {
-          rel: "stylesheet",
-          type: "text/css",
-          href:
-            "https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.3/css/all.css"
-        },
-        {
-          rel: "stylesheet",
-          type: "text/css",
-          href: "https://cdn.jsdelivr.net/npm/vditor/dist/index.css"
-        }
-      ]
-    };
-  },
-  components: {},
+  components: { ArticleEditor },
   props: {
     user: {
       type: Object,
@@ -76,22 +59,9 @@ export default {
       };
     }
   },
-  methods: {
-    renderMarkdown(md) {
-      Vditor.preview(document.querySelector("#preview"), md, {
-        speech: {
-          enable: true
-        },
-        anchor: 1
-      });
-    }
-  },
+  methods: {},
   created() {
-    if (process.browser && JSON.stringify(this.article) != "{}") {
-      this.$nextTick(function() {
-        this.renderMarkdown(this.article.content);
-      });
-    } else {
+    if (process.browser && JSON.stringify(this.article) == "{}") {
       this.article_tips =
         "注意：请在inis后台添加页面，别名必须为：about，否则不生效。";
     }

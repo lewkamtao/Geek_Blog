@@ -28,7 +28,7 @@ export default {
 <style lang="scss" scoped>
 .footer-wrapper {
   width: 100%;
-  height: 100px;
+  height:60px;
   display: flex;
   align-items: center;
 }

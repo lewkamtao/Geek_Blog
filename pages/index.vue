@@ -139,6 +139,7 @@ export default {
   margin: 0px auto;
   box-sizing: content-box;
   padding: 0px 7px 10px 7px;
+
   .top-nav-wrapper-master {
     position: fixed;
     max-width: 100%;

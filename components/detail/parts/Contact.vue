@@ -19,7 +19,7 @@
         <div class="contact-value">{{ item.nickname || item.value }}</div>
       </a>
     </div>
-    <div v-if="contact_config.length == 0 || !contact_config.platform">
+    <div v-if="contact_config.length == 0 || !contact_config[0].platform">
       未设置
     </div>
   </div>

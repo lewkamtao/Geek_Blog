@@ -30,6 +30,7 @@
 
 <script>
 import checkStr from "@/util/checkStr";
+import util from "@/util/index";
 
 export default {
   props: {
@@ -154,6 +155,7 @@ export default {
       this.$axios.post("/comments", _form).then(res => {
         if (res.code == 200) {
           this.$emit("reloadComments");
+          util.showContentFn(this.articleId, this);
           this.setForm();
         } else {
           this.$notify({

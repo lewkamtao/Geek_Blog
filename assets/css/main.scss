@@ -125,11 +125,18 @@ textarea::-webkit-scrollbar {
 
 body {
     font-size: 14px;
-    background-color: #eee;
+    background-color: #f1f3f4;
 }
 
 .modal {
     z-index: 9999999;
+}
+
+.hide-description {
+    .badge {
+        padding: 5px;
+        height: 25px;
+    }
 }
 
 // 禁止文字选择

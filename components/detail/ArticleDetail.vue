@@ -1,148 +1,125 @@
 <template>
   <div class="article-wrapper">
-    <no-ssr placeholder="loading...">
-      <header
-        class="border border-primary"
-        :style="'background:url(https://api.kenvie.com/webp.php)'"
-      >
-        <div class="mask"></div>
-        <div class="content">
-          <div class="title">{{ article.title }}</div>
-          <div class="summary">
-            <div>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="18px"
-                height="18px"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="feather feather-user"
-              >
-                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                <circle cx="12" cy="7" r="4" />
-              </svg>
-              <polyline points="12 6 12 12 16 14"></polyline>
-              {{ article.expand ? article.expand.author.nickname : "" }}
-            </div>
-            <div>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16px"
-                height="16px"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="feather feather-eye"
-              >
-                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
-                <circle cx="12" cy="12" r="3" />
-              </svg>
-              <polyline points="12 6 12 12 16 14"></polyline>
-              {{ article.views || 1 }}
-            </div>
+    <header
+      class="border border-primary"
+      :style="'background:url(https://api.kenvie.com/webp.php)'"
+    >
+      <div class="mask"></div>
+      <div class="content">
+        <div class="title">{{ article.title }}</div>
+        <div class="summary">
+          <div>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="18px"
+              height="18px"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="feather feather-user"
+            >
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+              <circle cx="12" cy="7" r="4" />
+            </svg>
+            <polyline points="12 6 12 12 16 14"></polyline>
+            {{ article.expand ? article.expand.author.nickname : "" }}
+          </div>
+          <div>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16px"
+              height="16px"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="feather feather-eye"
+            >
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+              <circle cx="12" cy="12" r="3" />
+            </svg>
+            <polyline points="12 6 12 12 16 14"></polyline>
+            {{ article.views || 1 }}
+          </div>
 
-            <div>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="18px"
-                height="18px"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="feather feather-message-square"
-              >
-                <path
-                  d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
-                />
-              </svg>
-              {{ article.expand.comments || "暂无评论" }}
-            </div>
-            <div>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="18px"
-                height="18px"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="feather feather-clock"
-              >
-                <circle cx="12" cy="12" r="10" />
-                <polyline points="12 6 12 12 16 14" />
-              </svg>
-              {{ article.create_time }} /
-              {{ getBeautifyTime(article.create_time) }}
-            </div>
+          <div>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="18px"
+              height="18px"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="feather feather-message-square"
+            >
+              <path
+                d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+              />
+            </svg>
+            {{ article.expand.comments || "暂无评论" }}
+          </div>
+          <div>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="18px"
+              height="18px"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="feather feather-clock"
+            >
+              <circle cx="12" cy="12" r="10" />
+              <polyline points="12 6 12 12 16 14" />
+            </svg>
+            {{ article.create_time }} /
+            {{ getBeautifyTime(article.create_time) }}
           </div>
         </div>
-      </header>
+      </div>
+    </header>
 
-      <main class="section">
-        <nuxt-link
-          v-if="token"
-          :to="'/AddArticle?id=' + article.id"
-          style="margin-bottom: 50px; margin-right: 20px"
-          class="ui blue labeled submit icon button"
-        >
-          <i class="icon edit outline"></i>
-          编辑文章
-        </nuxt-link>
-        <div
-          v-if="token"
-          @click="delConfirm"
-          style="margin-bottom: 50px"
-          class="ui red labeled submit icon button"
-        >
-          <i class="icon trash alternate outline"></i>
-          删除文章
-        </div>
-        <mavon-editor
-          id="article-editor"
-          v-html="article.content"
-          style="box-shadow: none;z-index:0"
-        >
-        </mavon-editor></main
-    ></no-ssr>
+    <main class="section">
+      <nuxt-link
+        v-if="token"
+        :to="'/AddArticle?id=' + article.id"
+        style="margin-bottom: 50px; margin-right: 20px"
+        class="ui blue labeled submit icon button"
+      >
+        <i class="icon edit outline"></i>
+        编辑文章
+      </nuxt-link>
+      <div
+        v-if="token"
+        @click="delConfirm"
+        style="margin-bottom: 50px"
+        class="ui red labeled submit icon button"
+      >
+        <i class="icon trash alternate outline"></i>
+        删除文章
+      </div>
+      <article-editor :content="article.content" :article_id="article.id">
+      </article-editor>
+    </main>
   </div>
 </template>
 
 <script>
 import util from "@/util/index";
-import { mavonEditor } from "mavon-editor";
-import "mavon-editor/dist/css/index.css";
+import ArticleEditor from "../custom/ArticleEditor";
 
 export default {
-  head() {
-    return {
-      link: [
-        {
-          rel: "stylesheet",
-          type: "text/css",
-          href:
-            "https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.3/css/all.css"
-        },
-        {
-          rel: "stylesheet",
-          type: "text/css",
-          href: "https://cdn.jsdelivr.net/npm/vditor/dist/index.css"
-        }
-      ]
-    };
-  },
-  components: {},
+  components: { ArticleEditor },
   props: {
     article: {
       type: Object,
@@ -209,40 +186,8 @@ export default {
   created() {
     this.token = this.$cookies.get("token");
   },
-  beforeRouteUpdate(to, from, next) {
-    if (process.browser) {
-      //  隐藏遮罩 优先级
-      next();
-      setTimeout(() => {
-        var objs = document
-          .getElementById("article-editor")
-          .getElementsByTagName("img");
-        for (var i = 0; i < objs.length; i++) {
-          objs[i].onclick = function() {
-            window.open(this.src);
-          };
-          objs[i].style.cursor = "pointer";
-        }
-      }, 300);
-    }
-  },
-  mounted() {
-    if (process.browser) {
-      try {
-        setTimeout(() => {
-          var objs = document
-            .getElementById("article-editor")
-            .getElementsByTagName("img");
-          for (var i = 0; i < objs.length; i++) {
-            objs[i].onclick = function() {
-              window.open(this.src);
-            };
-            objs[i].style.cursor = "pointer";
-          }
-        }, 300);
-      } catch {}
-    }
-  }
+
+  mounted() {}
 };
 </script>
 <style lang="scss" scoped>

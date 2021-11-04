@@ -18,7 +18,7 @@ function getBeautifyTime(date) {
       if (i == 6) {
         return "刚刚";
       }
-      
+
       return inm + " " + arrr[i] + postfix;
     }
   }
@@ -49,8 +49,63 @@ function sharpHandle(status) {
     }
   }
 }
+
+function getByClass(clsName, parent) {
+  //定义函数getByClass()实现获取document或指定父元素下所有class为on的元素
+  var oParent = parent ? document.getElementById(parent) : document,
+    arr = new Array(),
+    cls = oParent.getElementsByTagName("*");
+  for (var i = 0; i < cls.length; i++) {
+    if (cls[i].className === clsName) {
+      /*其实用这种写法更优,应为一个元素可能有多个className,采用===判断符号无法解决这种情况,采用indexOf()可以判断出stringObject是否存在以及索引位置,如果是返回-1表示不存在.//cls[i].className.indexOf(clsName)!=-1*/
+      arr.push(cls[i]);
+    }
+  }
+  return arr;
+}
+
+function checkHidContentFn(id, _this) {
+  var hided = getByClass("hide-description text-center", "article-editor");
+  var hidec = getByClass("hide-content", "article-editor");
+  var hideContent = _this.$cookies.get("hideContent");
+
+  if (hideContent && hideContent.indexOf(id) >= 0) {
+    hided.forEach(dom => {
+      dom.style.display = "none";
+    });
+    hidec.forEach(dom => {
+      dom.style.display = "block";
+    });
+  } else {
+    hided.forEach(dom => {
+      dom.style.display = "block";
+    });
+    hidec.forEach(dom => {
+      dom.style.display = "none";
+    });
+  }
+}
+
+function showContentFn(id, _this) {
+  var hideContent = _this.$cookies.get("hideContent");
+  if (hideContent && hideContent.indexOf(this.id) < 0) {
+    hideContent.push(id);
+    _this.$cookies.set("hideContent", hideContent);
+  }
+  if (!hideContent) {
+    hideContent = [];
+    hideContent.push(id);
+    _this.$cookies.set("hideContent", hideContent);
+  }
+  console.log(hideContent);
+  checkHidContentFn(id,_this);
+}
+
 export default {
   getBeautifyTime,
   darkHandle,
-  sharpHandle
+  sharpHandle,
+  getByClass,
+  checkHidContentFn,
+  showContentFn
 };
