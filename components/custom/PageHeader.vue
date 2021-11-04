@@ -8,10 +8,10 @@ export default {
   props: {
     bgUrl: {
       type: String,
-      default: function () {
+      default: function() {
         return "";
-      },
-    },
+      }
+    }
   },
   data() {
     return {};
@@ -20,7 +20,7 @@ export default {
   computed: {},
   methods: {},
   created() {},
-  mounted() {},
+  mounted() {}
 };
 </script>
 <style lang="scss" scoped>
@@ -29,6 +29,7 @@ header {
   height: 300px;
   background: #eee;
   background-size: cover !important;
+  background-position: center !important;
   border-radius: 8px 8px 0px 0px;
 }
 </style>
