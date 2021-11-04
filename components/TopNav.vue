@@ -254,7 +254,7 @@ export default {
       input {
         position: relative;
         z-index: 99;
-        width: 272px;
+        width: 250px;
         height: 30px;
         padding-left: 20px;
         font-size: 14px;
@@ -350,7 +350,9 @@ export default {
     -webkit-backdrop-filter: none;
     box-shadow: none;
     backdrop-filter: none;
-
+    .search {
+      display: none;
+    }
     .top-nav {
       height: 45px;
       padding: 0px 10px;
@@ -379,23 +381,6 @@ export default {
         }
       }
 
-      .search {
-        margin-right: 10px;
-        width: calc(100% - 40px);
-        display: none;
-        input {
-          height: 30px;
-          width: 100%;
-          font-size: 14px;
-          border-radius: 7px;
-          padding-left: 10px;
-        }
-
-        .res-box {
-          border-radius: 7px;
-          width: 100%;
-        }
-      }
       .right-links {
         a {
           font-weight: bold;
