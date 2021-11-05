@@ -168,6 +168,7 @@ export default {
 @media screen and (max-width: 1024px) {
   .index-banner {
     height: 130px;
+    margin-bottom: 14px;
     .banner-bg {
       height: 130px;
       h1 {

@@ -1,35 +1,35 @@
 <template>
-  <div  class="info part">
+  <div class="info part">
     <div class="main-title" style="margin-bottom: 12px">博客信息</div>
     <div>
       <ul>
-        <li>
+        <div class="item">
           <div>
             <span>Dom 渲染耗时</span><span>{{ info.domTime + " ms" }} </span>
           </div>
-        </li>
-        <li>
+        </div>
+        <div class="item">
           <div>
             <span>白屏时间</span><span>{{ info.blankTime + " ms" }} </span>
           </div>
-        </li>
-        <li>
+        </div>
+        <div class="item">
           <div>
             <span>内存使用占比</span>
             <span>{{ info.memoryPercent + " %" }} </span>
           </div>
-        </li>
-        <li>
+        </div>
+        <div class="item">
           <div>
             <span>Dom Ready时间</span>
             <span>{{ info.domreadyTime + " ms" }} </span>
           </div>
-        </li>
-        <li>
+        </div>
+        <div class="item">
           <div>
             <span>onload 时间 </span><span>{{ info.onloadTime + " ms" }} </span>
           </div>
-        </li>
+        </div>
       </ul>
     </div>
   </div>
@@ -38,7 +38,7 @@
 export default {
   data() {
     return {
-      info: false,
+      info: false
     };
   },
   created() {
@@ -49,9 +49,9 @@ export default {
   mounted() {
     if (process.browser) {
       var that = this;
-      window.onload = function () {
+      window.onload = function() {
         let t = performance.timing;
-        setTimeout(function () {
+        setTimeout(function() {
           that.info = {
             dnsTime: t.domainLookupEnd - t.domainLookupStart, // DNS查询耗时
             TCPTime: (t.connectEnd - t.connectStart).toFixed(0), // 链接耗时
@@ -61,7 +61,7 @@ export default {
             domreadyTime: (
               t.domContentLoadedEventEnd - t.navigationStart
             ).toFixed(0), // domready时间
-            onloadTime: (t.loadEventEnd - t.navigationStart).toFixed(0), // onload时间
+            onloadTime: (t.loadEventEnd - t.navigationStart).toFixed(0) // onload时间
           };
           if ((t = performance.memory)) {
             that.info.memoryPercent = (
@@ -73,7 +73,7 @@ export default {
         });
       };
     }
-  },
+  }
 };
 </script>
 
@@ -83,8 +83,8 @@ ul {
   box-sizing: border-box;
   border-radius: 7px;
   width: 100%;
-    background: rgba(0, 0, 0, 0.025);
-  li {
+  background: rgba(0, 0, 0, 0.025);
+  .item {
     position: relative;
     width: 100%;
     color: #333;
@@ -109,7 +109,7 @@ ul {
       font-size: 12px;
     }
   }
-  li::before {
+  div::before {
     display: none !important;
   }
 }
