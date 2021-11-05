@@ -23,11 +23,11 @@ $ npm run generate
 
 项目中整合 vue + nuxt + axios + vuex + vue-router (nuxt 自带 vuex 和 vue-router)，一个基于 Nuxt 的服务器端渲染的博客
 
-- 本主题基于 inis 开发的（https://inis.cc/）
+- 本主题基于 inis 开发的 https://inis.cc 
 - 免费开源
 - 目前不支持过多的魔改，后续也不会支持
 - 文章页富文本仅支持 md，因为自用，不喜欢过多样式，如果需要，可自行二次开发。
-- api 文档（https://docs.inis.cc/）
+- api 文档 https://docs.inis.cc 
 
 ### [线上预览地址](https://blog.kamtao.com)
 
