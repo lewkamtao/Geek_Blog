@@ -139,4 +139,10 @@ export default {
 .masonry {
   width: 100%;
 }
+@media screen and (max-width: 1024px) {
+  .part {
+    padding: 5px;
+  }
+
+}
 </style>
