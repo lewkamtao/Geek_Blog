@@ -50,19 +50,23 @@ export default {
       this.$nextTick(function() {
         try {
           setTimeout(() => {
-            var objs = document
+            var imgdom = "";
+            var imgs = document
               .getElementById("article-editor")
               .getElementsByTagName("img");
-            for (var i = 0; i < objs.length; i++) {
-              objs[i].onclick = function() {
-                window.open(this.src);
-              };
-              objs[i].style.cursor = "pointer";
-            }
+
+            imgs.forEach(function(img, index) {
+              var elem = document.createElement("a");
+              elem.setAttribute("data-fancybox", "gallery");
+              imgdom = img.cloneNode(true);
+              elem["href"] = imgdom.src;
+              elem.appendChild(imgdom);
+              console.log(elem);
+              img.parentNode.replaceChild(elem, img);
+            });
           }, 300);
         } catch {}
-
-        util.checkHidContentFn(this.article_id,this);
+        util.checkHidContentFn(this.article_id, this);
       });
     }
   }

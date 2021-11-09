@@ -4,9 +4,7 @@ export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: "Geek",
-    htmlAttrs: {
-      lang: "en"
-    },
+
     meta: [
       { charset: "utf-8" },
       {
@@ -16,11 +14,19 @@ export default {
       }
     ],
     link: [],
-    script: [{ src: "//at.alicdn.com/t/font_2717088_fiq9yisuhzq.js" }]
+    script: [
+      { src: "//at.alicdn.com/t/font_2717088_fiq9yisuhzq.js" },
+      { src: "https://cdn.bootcdn.net/ajax/libs/jquery/3.3.1/jquery.min.js" },
+      {
+        src:
+          "https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"
+      }
+    ]
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
+    "@/assets/css/fancybox.css",
     "@/assets/css/reset.css",
     { src: "@/assets/css/main.scss", lang: "scss" }
   ],
