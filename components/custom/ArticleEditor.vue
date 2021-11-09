@@ -64,7 +64,7 @@ export default {
               console.log(elem);
               img.parentNode.replaceChild(elem, img);
             });
-          }, 300);
+          }, 500);
         } catch {}
         util.checkHidContentFn(this.article_id, this);
       });
