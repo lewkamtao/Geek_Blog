@@ -1,13 +1,17 @@
 <template>
   <div class="wrapper">
     <div class="ui message success">
-      <i class="close icon"></i>
-      <div class="header">恭喜！站点部署成功！</div>
-      <p>
-        项目初始化成功！你可以在设置页面配置你的个人信息！
-      </p>
+      <div v-if="!token" class="header">恭喜！站点部署成功！</div>
+      <div v-if="token" class="header">恭喜！博客初始化成功！</div>
+
+      <div style="margin-top:20px">
+        <div v-if="!token">博客部署成功！首次进入博客需要先用inis登录。</div>
+        <div v-if="token">
+          博客初始化成功！你可以在设置页面配置你的个人信息！
+        </div>
+      </div>
     </div>
-    <nuxt-link to="/Setting">
+    <nuxt-link v-if="token" to="/Setting">
       <div style="width:150px" class="ui fluid large teal submit button">
         前往设置
       </div>
