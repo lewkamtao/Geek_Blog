@@ -22,6 +22,7 @@
       <comment-card
         v-for="(item, index) in comments.data"
         :key="index"
+        :masterId="masterId"
         @setCurId="setCurId"
         :type="type"
         :isLogin="isLogin"
@@ -44,25 +45,26 @@ export default {
   props: {
     type: {
       type: String,
-      default: function () {
+      default: function() {
         return {};
       }
     },
     comments: {
       type: Object,
-      default: function () {
+      default: function() {
         return {};
       }
     },
     articleId: {
       type: Number,
-      default: 0,
-    },
+      default: 0
+    }
   },
   data() {
     return {
       curId: 0,
       isLogin: false,
+      masterId: ""
     };
   },
   watch: {},
@@ -75,6 +77,12 @@ export default {
       this.curId = 0;
       this.$emit("reloadComments");
     },
+
+    async getMasterId() {
+      this.masterId = (
+        await this.$axios.get("/options?key=webmaster")
+      ).data.opt.users_id;
+    }
   },
   created() {
     var token = this.$cookies.get("token");
@@ -83,7 +91,9 @@ export default {
       this.isLogin = true;
     }
   },
-  mounted() {},
+  mounted() {
+    this.getMasterId();
+  }
 };
 </script>
 <style lang="scss" scoped>

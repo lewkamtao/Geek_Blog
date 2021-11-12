@@ -1,11 +1,12 @@
 <template>
-  <div  class="info part">
+  <div class="info part">
     <div class="main-title" style="margin-bottom: 12px">动态</div>
 
     <comment-card
       v-for="(item, index) in newComments.data"
       :key="index"
       type="lately"
+      :masterId="masterId"
       :comment="item"
       class="comment-card"
     ></comment-card>
@@ -17,16 +18,31 @@ import CommentCard from "./CommentCard.vue";
 
 export default {
   components: {
-    CommentCard,
+    CommentCard
   },
   props: {
     newComments: {
       type: Object,
-      default: function () {
+      default: function() {
         return {};
       }
-    },
+    }
   },
+  data() {
+    return {
+      masterId: ""
+    };
+  },
+  methods: {
+    async getMasterId() {
+      this.masterId = (
+        await this.$axios.get("/options?key=webmaster")
+      ).data.opt.users_id;
+    }
+  },
+  mounted() {
+    this.getMasterId();
+  }
 };
 </script>
 

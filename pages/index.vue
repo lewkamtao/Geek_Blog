@@ -79,6 +79,7 @@ export default {
 
     const userId = (await $axios.get("/options?key=webmaster")).data.opt
       .users_id;
+
     const user = (await $axios.get("/users?id=" + userId)).data;
     const article_sort = (
       await $axios.get("/article-sort?limit=1000&cache=false")

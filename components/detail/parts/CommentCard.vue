@@ -22,7 +22,11 @@
             <a class="author" :href="comment.expand.url" target="_blank">
               {{ comment.nickname }}
             </a>
-            <div v-if="comment.users_id == 1" class="ui horizontal label" style="line-height:15px">
+            <div
+              v-if="comment.users_id == masterId"
+              class="ui horizontal label"
+              style="line-height:15px"
+            >
               作者
             </div>
             <div class="metadata">
@@ -79,7 +83,11 @@
                   {{ son.nickname }}</a
                 >
 
-                <div v-if="son.users_id == 1" class="ui horizontal label" style="line-height:15px">
+                <div
+                  v-if="son.users_id == masterId"
+                  class="ui horizontal label"
+                  style="line-height:15px"
+                >
                   作者
                 </div>
                 <div class="metadata">
@@ -131,6 +139,10 @@ export default {
   components: { CommentCard, CommentForm },
   props: {
     type: {
+      type: String,
+      default: ""
+    },
+    masterId: {
       type: String,
       default: ""
     },
@@ -309,6 +321,8 @@ export default {
   height: 18px;
   overflow: hidden;
   margin: 0px;
+  font-weight: normal;
+  color: #000;
   padding: 2px 3px;
 }
 .ui.comments .comment .comments {
