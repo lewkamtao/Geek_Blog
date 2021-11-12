@@ -4,16 +4,14 @@
       <i class="close icon"></i>
       <div class="header">恭喜！站点部署成功！</div>
       <p>
-        接下来你需要用inis后台账号登录后完成以下一些配置才能进入主页 <br />
-        你以后你还可以登录账号之后在设置中配置这些信息。
-      </p>
-      <p v-if="token">
-        <nuxt-link to="/">
-          <b>跳过此步骤</b>
-        </nuxt-link>
+        项目初始化成功！你可以在设置页面配置你的个人信息！
       </p>
     </div>
-
+    <nuxt-link to="/Setting">
+      <div style="width:150px" class="ui fluid large teal submit button">
+        前往设置
+      </div>
+    </nuxt-link>
     <div v-if="!token" class="login">
       <form class="ui large form">
         <div class="ui stacked segment">
@@ -40,8 +38,6 @@
         <div class="ui error message"></div>
       </form>
     </div>
-
-    <setting-detail v-if="token" :geek_config="geek_config"></setting-detail>
   </div>
 </template>
 
@@ -54,7 +50,7 @@ export default {
   components: { SettingDetail },
   head() {
     return {
-      title: "起步",
+      title: "起步"
     };
   },
   props: {},
@@ -64,8 +60,8 @@ export default {
       geek_config: {},
       form: {
         account: "",
-        password: "",
-      },
+        password: ""
+      }
     };
   },
   watch: {},
@@ -81,7 +77,7 @@ export default {
         var data = {
           "login-token": this.$cookies.get("token"),
           keys: "geek_config",
-          opt: first_geek_config.geek_config,
+          opt: first_geek_config.geek_config
         };
         this.$axios.post("/options", data);
         this.geek_config = first_geek_config.geek_config;
@@ -91,21 +87,21 @@ export default {
       var data = this.form;
       data.mode = "login";
       this.loading = true;
-      this.$axios.post("/users", data).then((res) => {
+      this.$axios.post("/users", data).then(res => {
         this.loading = false;
         if (res.code == "200") {
           this.$cookies.set("token", res.data["login-token"]);
           location.reload();
         }
       });
-    },
+    }
   },
-  created: function () {
+  created: function() {
     this.token = this.$cookies.get("token");
     if (this.token) {
       this.getConfig();
     }
-  },
+  }
 };
 </script>
 <style lang="scss" scoped>

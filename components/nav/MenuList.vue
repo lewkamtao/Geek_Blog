@@ -186,7 +186,18 @@ export default {
           this.loginOut();
           break;
         case "back":
-          window.open(this.geek_config.site_config.adm_site_url, "_blank");
+          if (this.geek_config.site_config.adm_site_url == "") {
+            this.$notify({
+              type: "warning",
+              title: "错误",
+              message: "请前往设置，配置后台地址",
+              duration: 5000,
+              offset: 65
+            });
+          } else {
+            window.open(this.geek_config.site_config.adm_site_url, "_blank");
+          }
+
           break;
         default:
           break;

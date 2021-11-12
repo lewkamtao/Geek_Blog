@@ -15,10 +15,10 @@ export default {
       favicon_url: "https://tngeek.com/favicon.ico", // 站点ico
       logo_url: "https://cos.tngeek.com/logo.png", // 站点logo
       blog_site_url: "https://blog.kamtao.com/", // 博客地址
-      adm_site_url: "https://api.kamtao.com/", // 运营地址
+      adm_site_url: "", // 运营地址
       footer_html: `<div style=" line-height: 24px; color:#999">
       Powered by
-      <a href="https://inis.cc/" >inis</a> | 本站自豪使用了全世界最好的Vue框架
+      <a href="https://inis.cc/" >inis</a> | 本站自豪使用了全世界最好的 Vue 框架
       <br>Copyright (c) 2021-present, Kamtao (To) Lew
     </div>` // 脚部html
     },
@@ -39,7 +39,7 @@ export default {
       {
         value: "photo",
         title: "图库",
-        isShow: true,
+        isShow: true
       },
       {
         value: "time_line",
