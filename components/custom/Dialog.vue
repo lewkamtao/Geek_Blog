@@ -36,6 +36,4 @@ export default {
   background: rgba($color: #000000, $alpha: 0.5);
   z-index: 999;
 }
- 
-
 </style>

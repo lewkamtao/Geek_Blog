@@ -64,7 +64,7 @@ export default {
     return {
       curId: 0,
       isLogin: false,
-      masterId: ""
+      masterId: 1
     };
   },
   watch: {},

@@ -28,6 +28,8 @@ export default {
   css: [
     "@/assets/css/fancybox.css",
     "@/assets/css/reset.css",
+    "@/assets/css/github-markdown.min.css",
+    "@/assets/css/github.min.css",
     { src: "@/assets/css/main.scss", lang: "scss" }
   ],
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins

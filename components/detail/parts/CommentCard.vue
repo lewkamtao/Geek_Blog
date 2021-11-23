@@ -143,8 +143,8 @@ export default {
       default: ""
     },
     masterId: {
-      type: String,
-      default: ""
+      type: Number,
+      default: 1
     },
     curId: {
       type: Number,

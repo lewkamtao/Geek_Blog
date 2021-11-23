@@ -30,7 +30,7 @@ export default {
   },
   data() {
     return {
-      masterId: ""
+      masterId: 1
     };
   },
   methods: {

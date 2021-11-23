@@ -3,6 +3,7 @@
     <mavon-editor
       id="article-editor"
       v-html="content"
+      :ishljs="true"
       style="box-shadow: none;z-index:0"
     >
     </mavon-editor
@@ -11,6 +12,8 @@
 
 <script>
 import util from "@/util/index";
+import "highlight.js/styles/googlecode.css";
+import hljs from "highlight.js"; //导入代码高亮文件
 
 export default {
   components: {},
@@ -30,9 +33,8 @@ export default {
   },
   beforeRouteUpdate(to, from, next) {
     if (process.browser) {
-      //  隐藏遮罩 优先级
       next();
-      setTimeout(() => {
+      setTimeout(async () => {
         var objs = document
           .getElementById("article-editor")
           .getElementsByTagName("img");
@@ -42,14 +44,20 @@ export default {
           };
           objs[i].style.cursor = "pointer";
         }
-      }, 300);
+
+        await hljs;
+        let highlight = document.querySelectorAll("code,pre");
+        highlight.forEach(block => {
+          hljs.highlightBlock(block);
+        });
+      }, 100);
     }
   },
   mounted() {
     if (process.browser) {
       this.$nextTick(function() {
         try {
-          setTimeout(() => {
+          setTimeout(async () => {
             var imgdom = "";
             var imgs = document
               .getElementById("article-editor")
@@ -61,10 +69,14 @@ export default {
               imgdom = img.cloneNode(true);
               elem["href"] = imgdom.src;
               elem.appendChild(imgdom);
-              console.log(elem);
               img.parentNode.replaceChild(elem, img);
             });
-          }, 500);
+            await hljs;
+            let highlight = document.querySelectorAll("code,pre");
+            highlight.forEach(block => {
+              hljs.highlightBlock(block);
+            });
+          }, 100);
         } catch {}
         util.checkHidContentFn(this.article_id, this);
       });
