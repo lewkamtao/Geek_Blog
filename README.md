@@ -6,7 +6,7 @@
 
 - 👥 演示站：[https://blog.kamtao.com](https://blog.kamtao.com)
 
-- 📘inis 接口文档： [https://inis.cc](https://inis.cc)
+- 📘 inis 接口文档： [https://inis.cc](https://inis.cc)
 
 ## 特征
 
