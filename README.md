@@ -1,16 +1,12 @@
 # Geek Blog
 
-> 新一代  Vue2 + Nuxt.js + Semantic UI 搭建的个人博客，支持服务端渲染。
-
-
+> 新一代 Vue2 + Nuxt.js + Semantic UI 搭建的个人博客，支持服务端渲染。
 
 ## 链接
 
-- 👥演示站：[https://blog.kamtao.com](https://blog.kamtao.com)
+- 👥 演示站：[https://blog.kamtao.com](https://blog.kamtao.com)
 
-- 📘inis接口文档： [https://inis.cc](https://inis.cc)
-
-  
+- 📘inis 接口文档： [https://inis.cc](https://inis.cc)
 
 ## 特征
 
@@ -20,23 +16,19 @@
 
 - 支持暗黑模式、圆滑和锐利模式。
 
-- 代码拆分每一个page
+- 代码拆分每一个 page
 
-- 仅加载关键css（页面级）
+- 仅加载关键 css（页面级）
 
 - 自定义底部等
 
 - 路由平滑切换处理
 
-  
-
 ## 安装
 
-项目基于inis开发，相关API需要inis加持。
+项目基于 inis 开发，相关 API 需要 inis 加持。
 
-如未部署inis博客系统，请移步：https://inis.cn/#/article/1
-
-
+如未部署 inis 博客系统，请移步：https://inis.cn/#/article/1
 
 #### 前期准备
 
@@ -45,8 +37,6 @@
 - 一个可以连接你的服务器的 shh 工具
 
 - 一颗坚持不懈的心（重要）
-
-  
 
 #### 第一步
 
@@ -120,17 +110,11 @@ $ pm2 restart all
 
 enjoy it!
 
-
-
-
-
 ## 反馈
 
 安装和使用过程中，如果遇到问题，请给作者提 [Issue](https://github.com/lewkamtao/geek-blog/issues) 。
-
-
+qq 交流群：632274746
 
 ## 贡献
 
 欢迎小伙伴以各种形式的贡献，包括但不限于：界面、功能、改进、 修复 Bug 等。
-
