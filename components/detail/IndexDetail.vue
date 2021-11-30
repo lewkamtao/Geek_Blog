@@ -21,7 +21,7 @@
     <div @click="getArticleList()" class="more-btn">
       <button
         v-if="articleList.data.length != articleList.count"
-        class="ui primary button"
+        class="ui primary button "
         :class="{ loading: loading }"
       >
         点击加载更多

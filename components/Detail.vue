@@ -83,7 +83,7 @@
 
       <!-- 社交媒体 -->
       <contact
-        v-if="options.type == 'about'"
+        v-if="['about', 'moving'].indexOf(options.type) >= 0"
         :geek_config="geek_config"
       ></contact>
 
@@ -122,7 +122,7 @@
       ></post-time-line>
 
       <!-- 日记 -->
-      <diary v-if="['index', 'articleBySort', 'moving'].indexOf(options.type) >= 0"></diary>
+      <!-- <diary v-if="['index', 'articleBySort', 'moving'].indexOf(options.type) >= 0"></diary> -->
 
       <!-- 博客信息 -->
       <info v-if="options.type == 'index'"></info>

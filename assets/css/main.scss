@@ -29,6 +29,9 @@ body {
     img,
     #owl-login,
     .logo,
+    .slogan,
+    .button,
+    .label,
     .cover,
     .links-detail header,
     .contact-wrapper .icon,
@@ -58,6 +61,10 @@ body {
     body {
         background: #fff !important;
     }
+}
+
+.v-note-wrapper {
+    background: none !important;
 }
 
 .geek-isSharp * {
@@ -125,7 +132,7 @@ textarea::-webkit-scrollbar {
 
 body {
     font-size: 14px;
-    background-color: #f1f3f4;
+    background-color: #f0f2f7;
 }
 
 .modal {
@@ -191,10 +198,10 @@ html::-webkit-scrollbar-thumb:hover {
     width: 100%;
     height: auto;
     padding: 15px;
-    background: #fff;
     border-radius: 8px;
     transition: all 0.25s;
     box-sizing: border-box;
+    background-color: #ffffff;
 }
 
 .main-title {

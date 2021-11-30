@@ -171,7 +171,7 @@ export default {
   height: 100%;
 
   .top-nav {
-    max-width: calc(1351px - 14px);
+    max-width: calc(1200px - 14px);
     margin: 0 auto;
     width: 100%;
     height: 50px;
@@ -344,7 +344,7 @@ export default {
 }
 
 // 移动端适配
-@media screen and (max-width: 1025px) {
+@media screen and (max-width: 800px) {
   .top-nav-wrapper {
     background: none;
     -webkit-backdrop-filter: none;
@@ -356,7 +356,7 @@ export default {
     .top-nav {
       height: 45px;
       padding: 0px 10px;
-      background: rgba(255, 255, 255, 0.8);
+      background: none;
       -webkit-backdrop-filter: saturate(200%) blur(20px);
       box-shadow: none;
       backdrop-filter: saturate(200%) blur(20px);
@@ -384,9 +384,11 @@ export default {
       .right-links {
         a {
           font-weight: bold;
-          margin-right: 5px;
           font-size: 14px;
-          margin-left: 5px;
+          margin: 0px 0px;
+        }
+        .child {
+          margin-right: 15px;
         }
       }
     }

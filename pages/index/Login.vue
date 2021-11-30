@@ -32,7 +32,7 @@
           <button
             @click="login"
             style="width: 100%"
-            class="ui primary button"
+            class="ui primary button "
             :class="{ loading: loading }"
           >
             登录

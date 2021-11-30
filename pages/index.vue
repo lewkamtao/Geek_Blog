@@ -133,8 +133,8 @@ export default {
 </script>
 <style scoped lang="scss">
 .wrapper {
-  max-width: 1351px;
-  min-width: 1180px;
+  max-width: 1200px;
+  min-width: 1000px;
   display: flex;
   justify-content: space-between;
   margin: 0px auto;
@@ -147,7 +147,7 @@ export default {
     width: 100%;
     background: rgba(255, 255, 255, 0.8);
     -webkit-backdrop-filter: saturate(200%) blur(20px);
-    box-shadow: 0px 0px 15px -5px rgb(0 0 0 / 15%);
+    // box-shadow: 0px 0px 15px -5px rgb(0 0 0 / 15%);
     backdrop-filter: saturate(200%) blur(20px);
     height: 50px;
     left: 50%;

@@ -1,6 +1,6 @@
 <template>
   <div class="part menu">
-    <div class="main-title" style="margin-left: 6px; margin-top: 5px">菜单</div>
+    <div class="main-title" style="margin-left: 6px; margin-top: 5px">导航栏</div>
     <div class="nav-list">
       <div
         v-for="(item, index) in menu"
@@ -14,19 +14,6 @@
           <i v-html="item.icon" class="icon"></i>
           <div class="title">
             {{ item.title }}
-            <svg
-              viewBox="0 0 24 24"
-              width="18"
-              height="18"
-              stroke="currentColor"
-              stroke-width="1.2"
-              fill="none"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="feather feather-chevron-right"
-            >
-              <polyline points="9 18 15 12 9 6" />
-            </svg>
           </div>
         </nuxt-link>
 
@@ -39,19 +26,6 @@
           <i v-html="item.icon" class="icon"></i>
           <div class="title">
             {{ item.title }}
-            <svg
-              viewBox="0 0 24 24"
-              width="18"
-              height="18"
-              stroke="currentColor"
-              stroke-width="1.2"
-              fill="none"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="feather feather-chevron-right"
-            >
-              <polyline points="9 18 15 12 9 6" />
-            </svg>
           </div>
         </div>
       </div>
@@ -269,7 +243,7 @@ export default {
       background-image: none;
       text-align: left;
       height: 35px;
-      color: #666;
+      color: #999;
       cursor: pointer;
       .icon {
         position: absolute;
@@ -302,7 +276,7 @@ export default {
 
   .nav-list-wrapper:hover {
     background: rgba($color: #000000, $alpha: 0.05);
-    border-radius: 6px;
+    border-radius: 5px;
     .title {
       color: #333;
     }
@@ -312,7 +286,7 @@ export default {
   }
   .active {
     background: rgba($color: #000000, $alpha: 0.1) !important;
-    border-radius: 6px;
+    border-radius: 5px;
     .title {
       color: #333;
     }

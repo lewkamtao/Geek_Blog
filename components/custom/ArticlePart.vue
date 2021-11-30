@@ -1,5 +1,5 @@
 <template>
-  <div class="article-box part">
+  <div class="part article-box ">
     <nuxt-link :to="'/Article?id=' + articleData.id">
       <div class="cover cover-bg"></div>
       <div
@@ -134,6 +134,7 @@ export default {
   width: 100%;
   overflow: hidden;
   cursor: pointer;
+  padding: 0px;
 
   a {
     background-image: none;
@@ -148,10 +149,6 @@ export default {
     padding: 1px 2px;
   }
 }
-.article-box:hover {
-  transform: none;
-  border-color: rgba($color: #000000, $alpha: 0.2);
-}
 .cover {
   position: relative;
   z-index: 99;
@@ -159,7 +156,6 @@ export default {
   height: 150px;
   background-size: cover !important;
   background-position: center center !important;
-  border-radius: 8px;
 }
 .cover-bg {
   position: absolute;
@@ -168,18 +164,16 @@ export default {
   width: 280px;
   height: 150px;
   background: #eee;
-  border-radius: 8px;
 }
 
 .article-box-body {
   position: relative;
   width: calc(100% - 320px);
-  padding: 5px 15px;
+  padding: 15px;
 }
 .article-box-title {
   font-size: 18px;
   color: #000;
-  opacity: 0.7;
   font-weight: bold;
 }
 .article-box-subtitle {
@@ -198,7 +192,7 @@ export default {
 }
 .article-box-footer {
   position: absolute;
-  bottom: 0px;
+  bottom: 10px;
   left: 15px;
   background: none;
   border: none;

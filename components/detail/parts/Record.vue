@@ -1,6 +1,6 @@
 <template>
   <div class="record-wrapper part">
-    <div v-if="record" class="record">
+    <div class="record">
       <div class="box">
         <div class="count">{{ record.article.count }}</div>
         <div class="tag">文章</div>
@@ -27,7 +27,17 @@ export default {
   props: {},
   data() {
     return {
-      record: false,
+      record: {
+        article: {
+          count: 0
+        },
+        links: {
+          count: 0
+        },
+        comments: {
+          count: 0
+        }
+      }
     };
   },
   watch: {},
@@ -38,12 +48,12 @@ export default {
         await this.$axios.get("/group?field=links,article,comments")
       ).data;
       this.record = data;
-    },
+    }
   },
   created() {},
   mounted() {
     this.getData();
-  },
+  }
 };
 </script>
 
@@ -53,6 +63,7 @@ export default {
   .record {
     display: flex;
     justify-content: space-between;
+
     .box {
       width: calc(100% / 3 - 8px);
       display: flex;

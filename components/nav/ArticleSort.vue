@@ -53,7 +53,7 @@ ul {
     position: relative;
     width: 100%;
     background-image: none;
-    border-radius: 6px;
+    border-radius: 5px;
     line-height: 25px;
     min-height: 32px;
     padding: 4px 8px;
@@ -67,7 +67,7 @@ ul {
       right: 6px;
       top: 50%;
       transform: translateY(-50%);
-      background: rgba($color: #000, $alpha: 0.05);
+      background: rgba($color: #000, $alpha: 0);
     }
   }
 

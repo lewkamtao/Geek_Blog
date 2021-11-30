@@ -22,7 +22,7 @@
         ></textarea>
       </div>
     </div>
-    <div @click="submit" class="ui blue labeled submit icon button">
+    <div @click="submit" class="ui blue labeled submit icon button ">
       <i class="icon edit"></i> 发表评论
     </div>
   </form>
