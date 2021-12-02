@@ -153,7 +153,7 @@ export default {
   position: relative;
   z-index: 99;
   width: 280px;
-  height: 180px;
+  height: 190px;
   background-size: cover !important;
   background-position: center center !important;
 }
@@ -162,7 +162,7 @@ export default {
   left: 0px;
   top: 0px;
   width: 280px;
-  height: 180px;
+  height: 190px;
   background: #eee;
 }
 
@@ -172,6 +172,12 @@ export default {
   padding: 15px;
 }
 .article-box-title {
+  line-height: normal;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  line-clamp: 2;
+  -webkit-line-clamp: 2;
   font-size: 18px;
   color: #000;
   font-weight: bold;
