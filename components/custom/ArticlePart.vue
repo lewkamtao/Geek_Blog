@@ -153,7 +153,7 @@ export default {
   position: relative;
   z-index: 99;
   width: 280px;
-  height: 150px;
+  height: 180px;
   background-size: cover !important;
   background-position: center center !important;
 }
@@ -162,7 +162,7 @@ export default {
   left: 0px;
   top: 0px;
   width: 280px;
-  height: 150px;
+  height: 180px;
   background: #eee;
 }
 
