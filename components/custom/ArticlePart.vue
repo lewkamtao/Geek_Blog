@@ -172,10 +172,12 @@ export default {
   padding: 15px;
 }
 .article-box-title {
-  line-height: normal;
+  margin-top: -2px;
+  line-height: 24px;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  text-overflow: ellipsis;
   line-clamp: 2;
   -webkit-line-clamp: 2;
   font-size: 18px;
