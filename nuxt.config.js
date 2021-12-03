@@ -78,7 +78,7 @@ export default {
     "/api/": {
       // 请填写你的后台接口地址
 
-      target: "https://blog-api.hasaik.com/api",
+      target: "https://api.kamtao.com/api",
 
       pathRewrite: {
         "^/api/": "/",
