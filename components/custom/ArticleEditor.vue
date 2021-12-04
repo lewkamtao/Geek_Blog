@@ -74,10 +74,10 @@ export default {
             });
 
             // 处理文章a标签跳转到新窗口
-            var a = document.getElementById("article-editor").getElementsByTagName("a");
-            a.forEach(function (a){
-              a.setAttribute("target","_blank");
-              a.setAttribute("rel","external nofollow noopener noreferrer");
+            var aTags = document.getElementById("article-editor").getElementsByTagName("a");
+            aTags.forEach(function (aTag){
+              aTag.setAttribute("target","_blank");
+              aTag.setAttribute("rel","external nofollow noopener noreferrer");
             })
 
             // 处理代码块高亮
