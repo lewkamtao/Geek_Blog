@@ -58,6 +58,7 @@ export default {
       this.$nextTick(function() {
         try {
           setTimeout(async () => {
+            // 处理文章图片fancybox
             var imgdom = "";
             var imgs = document
               .getElementById("article-editor")
@@ -71,6 +72,15 @@ export default {
               elem.appendChild(imgdom);
               img.parentNode.replaceChild(elem, img);
             });
+
+            // 处理文章a标签跳转到新窗口
+            var a = document.getElementById("article-editor").getElementsByTagName("a");
+            a.forEach(function (a){
+              a.setAttribute("target","_blank");
+              a.setAttribute("rel","external nofollow noopener noreferrer");
+            })
+
+            // 处理代码块高亮
             await hljs;
             let highlight = document.querySelectorAll("pre");
             highlight.forEach(block => {
