@@ -46,7 +46,7 @@ export default {
         }
 
         await hljs;
-        let highlight = document.querySelectorAll("code,pre");
+        let highlight = document.querySelectorAll("pre");
         highlight.forEach(block => {
           hljs.highlightBlock(block);
         });
@@ -72,7 +72,7 @@ export default {
               img.parentNode.replaceChild(elem, img);
             });
             await hljs;
-            let highlight = document.querySelectorAll("code,pre");
+            let highlight = document.querySelectorAll("pre");
             highlight.forEach(block => {
               hljs.highlightBlock(block);
             });
