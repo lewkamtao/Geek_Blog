@@ -13,7 +13,6 @@
 <script>
 import util from "@/util/index";
 import "highlight.js/styles/googlecode.css";
-import hljs from "highlight.js"; //导入代码高亮文件
 
 export default {
   components: {},
@@ -45,11 +44,8 @@ export default {
           objs[i].style.cursor = "pointer";
         }
 
-        await hljs;
-        let highlight = document.querySelectorAll("pre");
-        highlight.forEach(block => {
-          hljs.highlightBlock(block);
-        });
+        // 代码块高亮及复制功能
+        util.addCodeCopyBtn()
       }, 100);
     }
   },
@@ -80,12 +76,8 @@ export default {
               aTag.setAttribute("rel","external nofollow noopener noreferrer");
             })
 
-            // 处理代码块高亮
-            await hljs;
-            let highlight = document.querySelectorAll("pre");
-            highlight.forEach(block => {
-              hljs.highlightBlock(block);
-            });
+            // 代码块高亮及复制功能
+            util.addCodeCopyBtn()
           }, 100);
         } catch {}
         util.checkHidContentFn(this.article_id, this);
