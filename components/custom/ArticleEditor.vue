@@ -55,8 +55,8 @@ export default {
         try {
           setTimeout(async () => {
             // 处理文章图片fancybox
-            var imgdom = "";
-            var imgs = document
+            let imgdom = "";
+            let imgs = document
               .getElementById("article-editor")
               .getElementsByTagName("img");
 
@@ -75,7 +75,7 @@ export default {
             }
 
             // 处理文章a标签跳转到新窗口
-            var aTags = document.getElementById("article-editor").getElementsByTagName("a");
+            let aTags = document.getElementById("article-editor").getElementsByTagName("a");
             aTags.forEach(function (aTag){
               aTag.setAttribute("target","_blank");
               aTag.setAttribute("rel","external nofollow noopener noreferrer");
