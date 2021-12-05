@@ -60,14 +60,19 @@ export default {
               .getElementById("article-editor")
               .getElementsByTagName("img");
 
-            imgs.forEach(function(img, index) {
-              var elem = document.createElement("a");
+            for (let i = 0; i < imgs.length; i++) {
+              // 如果img标签的父级是a标签，不增加fancybox
+              let node= imgs[i].parentNode.localName;
+              if (node === "a"){
+                continue;
+              }
+              let elem = document.createElement("a");
               elem.setAttribute("data-fancybox", "gallery");
-              imgdom = img.cloneNode(true);
+              imgdom = imgs[i].cloneNode(true);
               elem["href"] = imgdom.src;
               elem.appendChild(imgdom);
-              img.parentNode.replaceChild(elem, img);
-            });
+              imgs[i].parentNode.replaceChild(elem, imgs[i]);
+            }
 
             // 处理文章a标签跳转到新窗口
             var aTags = document.getElementById("article-editor").getElementsByTagName("a");
