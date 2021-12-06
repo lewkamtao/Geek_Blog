@@ -75,8 +75,7 @@ export default {
             }
 
             // 处理文章a标签跳转到新窗口
-            let aTags = document.getElementById("article-editor").getElementsByTagName("a");
-            aTags.forEach(function (aTag){
+            Array.from(document.getElementById("article-editor").getElementsByTagName("a")).forEach(function (aTag){
               aTag.setAttribute("target","_blank");
               aTag.setAttribute("rel","external nofollow noopener noreferrer");
             })

@@ -99,7 +99,11 @@
           </div>
         </div>
       </div>
-      <span v-show="articleData.is_top && articleData.is_show" class="badge">置顶</span>
+      <span
+        v-show="articleData.is_top && articleData.is_show"
+        class="ui tag label red isTop"
+        >置顶</span
+      >
     </nuxt-link>
   </div>
 </template>
@@ -141,11 +145,10 @@ export default {
     background-image: none;
     display: flex;
   }
-  .badge {
-    background-color: #fa5c7c;
-    margin-top: 16px;
-    height: 20px;
-    padding: 2px 4px;
+  .isTop {
+    position: absolute;
+    right: 10px;
+    top: 10px;
   }
 }
 .cover {
