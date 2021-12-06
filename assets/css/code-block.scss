@@ -1,4 +1,4 @@
-pre.code {
+pre {
   position: relative;
   border-radius: 3px;
   border: 1px solid #C3CCD0;
@@ -7,6 +7,10 @@ pre.code {
 
   code {
     line-height: 30px !important;
+  }
+
+  code.hljs {
+    padding: 0 !important;
   }
 
   ol.pre-numbering {

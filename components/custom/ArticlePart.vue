@@ -101,7 +101,7 @@
       </div>
       <span
         v-show="articleData.is_top && articleData.is_show"
-        class="ui tag label red isTop"
+        class="ui tag label red isTop mini"
         >置顶</span
       >
     </nuxt-link>
