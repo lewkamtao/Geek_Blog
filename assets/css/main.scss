@@ -266,6 +266,10 @@ html::-webkit-scrollbar-thumb:hover {
     max-height: 90vh;
 }
 
+.content-input-wrapper {
+    min-height: 100%;
+}
+
 // 移动端适配
 @media screen and (max-width: 1025px) {
     .main-title {
