@@ -13,7 +13,6 @@
 <script>
 import util from "@/util/index";
 import "highlight.js/styles/googlecode.css";
-import hljs from "highlight.js"; //导入代码高亮文件
 
 export default {
   components: {},
@@ -45,11 +44,8 @@ export default {
           objs[i].style.cursor = "pointer";
         }
 
-        await hljs;
-        let highlight = document.querySelectorAll("pre");
-        highlight.forEach(block => {
-          hljs.highlightBlock(block);
-        });
+        // 代码块高亮及复制功能
+        util.addCodeCopyBtn()
       }, 100);
     }
   },
@@ -58,24 +54,35 @@ export default {
       this.$nextTick(function() {
         try {
           setTimeout(async () => {
-            var imgdom = "";
-            var imgs = document
+            // 处理文章图片fancybox
+            let imgdom = "";
+            let imgs = document
               .getElementById("article-editor")
               .getElementsByTagName("img");
 
-            imgs.forEach(function(img, index) {
-              var elem = document.createElement("a");
+            for (let i = 0; i < imgs.length; i++) {
+              // 如果img标签的父级是a标签，不增加fancybox
+              let node= imgs[i].parentNode.localName;
+              if (node === "a"){
+                continue;
+              }
+              let elem = document.createElement("a");
               elem.setAttribute("data-fancybox", "gallery");
-              imgdom = img.cloneNode(true);
+              imgdom = imgs[i].cloneNode(true);
               elem["href"] = imgdom.src;
               elem.appendChild(imgdom);
-              img.parentNode.replaceChild(elem, img);
-            });
-            await hljs;
-            let highlight = document.querySelectorAll("pre");
-            highlight.forEach(block => {
-              hljs.highlightBlock(block);
-            });
+              imgs[i].parentNode.replaceChild(elem, imgs[i]);
+            }
+
+            // 处理文章a标签跳转到新窗口
+            let aTags = document.getElementById("article-editor").getElementsByTagName("a");
+            aTags.forEach(function (aTag){
+              aTag.setAttribute("target","_blank");
+              aTag.setAttribute("rel","external nofollow noopener noreferrer");
+            })
+
+            // 代码块高亮及复制功能
+            util.addCodeCopyBtn()
           }, 100);
         } catch {}
         util.checkHidContentFn(this.article_id, this);

@@ -99,6 +99,7 @@
           </div>
         </div>
       </div>
+      <span v-show="articleData.is_top && articleData.is_show" class="badge">置顶</span>
     </nuxt-link>
   </div>
 </template>
@@ -141,12 +142,10 @@ export default {
     display: flex;
   }
   .badge {
-    cursor: pointer;
-    margin-bottom: 7px;
-    font-weight: 400;
-    font-size: 12px;
-    margin-right: 7px;
-    padding: 1px 2px;
+    background-color: #fa5c7c;
+    margin-top: 16px;
+    height: 20px;
+    padding: 2px 4px;
   }
 }
 .cover {
