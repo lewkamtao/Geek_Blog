@@ -3,7 +3,7 @@
     <div class="main-title" style="margin-bottom: 12px">ONE 一个</div>
     <div v-if="one" class="diary">
       <!-- <div class="tag">#{{ one.data.tag }}#</div> -->
-      <p>{{ one.data }}</p>
+      <p>{{ one.hitokoto }}</p>
       <!-- <div class="origin">来自 {{ one.data.origin }}</div> -->
     </div>
   </div>
@@ -17,7 +17,13 @@ export default {
   },
   methods: {
     async getContent() {
-      this.one = await this.$axios.get("/api/file/words");
+      // 太快了，延迟一下
+      setTimeout(() => {
+        this.$axios.get("https://v1.hitokoto.cn").then(res => {
+          this.one = res
+        });
+      }, 500)
+      // this.one = await this.$axios.get("/api/file/words");
     },
   },
   created() {
@@ -34,10 +40,12 @@ export default {
   padding: 15px;
   border-radius: 7px;
 }
+
 .tag {
   font-weight: bold;
   margin-bottom: 10px;
 }
+
 .origin {
   color: #999;
   text-align: right;
