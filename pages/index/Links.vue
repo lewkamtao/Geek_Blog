@@ -19,9 +19,9 @@ export default {
     };
   },
   async asyncData({ $axios, route }) {
-    const links = (await $axios.get("/links?limit=100000")).data;
+    const links = (await $axios.get("/api/links?limit=100000")).data;
     const comments = (
-      await $axios.get("/comments", {
+      await $axios.get("/api/comments", {
         params: {
           mode: "type",
           type: "links",
@@ -50,7 +50,7 @@ export default {
     // 获取评论
     async getComments() {
       const comments = (
-        await this.$axios.get("/comments", {
+        await this.$axios.get("/api/comments", {
           params: {
             mode: "type",
             type: "links",

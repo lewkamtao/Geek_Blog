@@ -67,7 +67,6 @@ export default {
    */
   axios: {
     proxy: true,
-    prefix: "/api/",
     credentials: true,
     // See https://github.com/nuxt-community/axios-module#options
   },
@@ -79,12 +78,16 @@ export default {
   proxy: {
     "/api/": {
       // 请填写你的后台接口地址
-
       target: "https://api.kamtao.com/api",
-
       pathRewrite: {
-        "^/api/": "/",
-        changeOrigin: true,
+        "^/api/": "",
+      },
+    },
+    "/sogou/": {
+      // 请填写你的后台接口地址
+      target: "https://pic.sogou.com",
+      pathRewrite: {
+        "^/sogou/": "",
       },
     },
   },

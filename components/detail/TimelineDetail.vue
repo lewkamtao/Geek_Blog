@@ -113,7 +113,7 @@ export default {
           id: JSON.stringify(id),
         };
 
-        this.$axios.post("/comments", data).then((res) => {
+        this.$axios.post("/api/comments", data).then((res) => {
           if (res.code == 200) {
             this.timelineData.data.splice(index, 1);
             this.$notify({

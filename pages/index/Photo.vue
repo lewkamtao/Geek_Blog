@@ -2,93 +2,87 @@
   <div class="index-wrapper-master part">
     <div class="search-box">
       <div class="ui big icon input">
-        <input type="text" placeholder="搜索图片" />
+        <input type="text" placeholder="搜索图片" v-model="keyword" />
         <i class="search icon"></i>
       </div>
     </div>
-    <div ref="masonry" class="masonry">
-      <div class="img-box" :key="index" v-for="(item, index) in imgData">
-        <auto-img-list :width="masonryWidth" :imgData="item"></auto-img-list>
-      </div>
+    <div class="masonry">
+      <a
+        data-fancybox="gallery"
+        :key="index"
+        v-for="(item, index) in imgList"
+        :href="item.oriPicUrl"
+      >
+        <img :src="item.thumbUrl" alt="" srcset=""
+      /></a>
     </div>
-    <div @click="getImgList()" class="more-btn">点击加载更多</div>
+    <div class="more-box">
+      <button
+        v-if="isMore"
+        @click="getImgList"
+        class="ui primary button"
+        :class="{ loading: loading }"
+      >
+        点击加载更多
+      </button>
+    </div>
   </div>
 </template>
 
 <script>
-import AutoImgList from "@/components/custom/AutoImgList";
-
 export default {
-  components: {
-    AutoImgList,
-  },
+  components: {},
   props: {},
   data() {
     return {
-      page: 1,
-      limit: 10,
+      pageNum: 1,
       index: 1,
       hidMasonry: true,
       imgUrl: "",
       imgList: [],
-      imgData: [],
       masonryWidth: 0,
+      keyword: "",
+      keytimer: "",
+      isMore: false,
+      loading: false,
     };
   },
-  watch: {},
+  watch: {
+    keyword: function () {
+      clearTimeout(this.keytimer);
+      this.keytimer = setTimeout(() => {
+        this.getImgList("new");
+      }, 350);
+    },
+  },
   computed: {},
   methods: {
     async getImgList(type) {
-      var res = await this.$axios.get(
-        "https://pic.sogou.com/napi/pc/searchList?mode=13&dm=4&cwidth=2560&cheight=1440&start=0&xml_len=48&query=%E9%BB%91%E4%B8%9D%E7%BE%8E%E8%85%BF%E7%BE%8E%E5%A5%B3%E6%A8%A1%E7%89%B9%E5%88%B6%E6%9C%8D%E8%AF%B1%E6%83%91%E5%86%99%E7%9C%9F%E5%A3%81%E7%BA%B8"
-      );
-      console.log(res)
+      this.pageNum += 1;
       if (type == "new") {
+        this.pageNum = 0;
         this.imgList = [];
-        this.imgData = [];
       }
-      if (this.index <= 1600) {
-        this.index += 1;
-        for (var i = 1; i <= 100; i++) {
-          this.index += 1;
-          this.imgList.push(
-            "https://tngeek-mall-1255310647.cos.ap-guangzhou.myqcloud.com/public/images/pexels/" +
-              this.index +
-              ".jpg!blog_mainPic"
-          );
-        }
+      var keyword = "";
+      keyword = this.keyword ? this.keyword : "风景高清壁纸";
+      this.loading = true;
+      var res = await this.$axios.get(
+        `sogou/napi/pc/searchList?mode=13&dm=4&cwidth=2560&cheight=1440&start=${this.pageNum}&query=${keyword}`
+      );
+      this.loading = false;
+
+      var imgs = res.data.items;
+      if (imgs.length < 48) {
+        this.isMore = false;
+      } else {
+        this.isMore = true;
       }
-      this.formatImgData();
-    },
-    formatImgData() {
-      var rnum = this.randomNum(3, 4);
-      this.$nextTick(function () {
-        this.masonryWidth = this.$refs.masonry.clientWidth;
-      });
-      if (this.imgList.length > rnum) {
-        this.imgData.push(this.imgList.slice(0, rnum));
-        this.imgList = this.imgList.splice(rnum);
-        if (this.imgList.length != 0) {
-          this.formatImgData();
-        }
-      } else if (this.imgList.length != 0) {
-        this.imgData.push(this.imgList);
-      }
-    },
-    //生成从minNum到maxNum的随机数
-    randomNum(minNum, maxNum) {
-      switch (arguments.length) {
-        case 1:
-          return parseInt(Math.random() * minNum + 1, 10);
-        case 2:
-          return parseInt(Math.random() * (maxNum - minNum + 1) + minNum, 10);
-        default:
-          return 0;
-      }
+      this.imgList = this.imgList.concat(imgs);
     },
   },
   created() {},
   mounted() {
+
     this.getImgList();
   },
 };
@@ -96,37 +90,36 @@ export default {
 <style lang="scss" scoped>
 .index-wrapper-master {
   width: 100%;
+  min-height: 100vh;
 }
 
-.more-btn {
-  margin-top: 20px;
+.more-box {
   width: 100%;
-  height: 45px;
-  line-height: 45px;
-  background: #eee;
-  font-size: 16px;
-  text-align: center;
-  opacity: 0.7;
-  color: #000;
-  border-radius: 15px;
-  transition: opacity 0.25s;
-  cursor: pointer;
-}
-.loading {
-  width: 100%;
-  height: 80vh;
   display: flex;
-  align-items: center;
   justify-content: center;
-  img {
-    width: 400px;
-  }
+  align-items: center;
+  margin: 30px 0px;
 }
-.more-btn:hover {
-  opacity: 1;
-}
+
 .masonry {
   width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  /*等同于1fr 1fr 1fr,此为重复的合并写法*/
+  grid-template-rows: repeat(4, 1fr);
+  border: 1px #eee solid;
+  /*等同于1fr 1fr 1fr,此为重复的合并写法*/
+  a {
+    font-size: 0px;
+    width: 100%;
+    height: 240px;
+  }
+  img {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+    border: 1px #eee solid;
+  }
 }
 
 .search-box {

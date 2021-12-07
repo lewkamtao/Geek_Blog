@@ -78,7 +78,7 @@ export default {
         };
         this.articleListBySort.data = this.articleListBySort.concat(
           (
-            await this.$axios.get("/article-sort", {
+            await this.$axios.get("/api/article-sort", {
               params
             })
           ).data.expand.data
@@ -87,7 +87,7 @@ export default {
         params = { limit: this.limit, page: this.page };
         this.articleListBySort.data = this.articleListBySort.data.concat(
           (
-            await this.$axios.get("/article", {
+            await this.$axios.get("/api/article", {
               params
             })
           ).data.data

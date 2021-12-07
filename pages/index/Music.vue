@@ -26,7 +26,7 @@ export default {
   },
   async asyncData({ $axios }) {
     const music_list = (
-      await $axios.get("/music", {
+      await $axios.get("/api/music", {
         params: {
           limit: 10000,
         },
@@ -40,7 +40,7 @@ export default {
     ).data;
 
     const comments = (
-      await $axios.get("/comments", {
+      await $axios.get("/api/comments", {
         params: {
           mode: "type",
           type: "music",
@@ -68,7 +68,7 @@ export default {
     // 获取评论
     async getComments() {
       const comments = (
-        await this.$axios.get("/comments", {
+        await this.$axios.get("/api/comments", {
           params: {
             mode: "type",
             type: "music",
@@ -82,7 +82,7 @@ export default {
     // 获取歌曲
     async getSongs(id) {
       const songs = (
-        await this.$axios.get("/music?id=" + id + "&mode=list&cache=false")
+        await this.$axios.get("/api/music?id=" + id + "&mode=list&cache=false")
       ).data;
       this.songs = songs;
     },

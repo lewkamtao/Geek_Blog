@@ -489,7 +489,7 @@ export default {
           keys: "geek_config",
           opt: this.form,
         };
-        this.$axios.post("/options", data).then((res) => {
+        this.$axios.post("/api/options", data).then((res) => {
           this.loading = false;
           if (res.code == 200) {
             this.$notify({

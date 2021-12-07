@@ -45,7 +45,7 @@ export default {
   methods: {
     async getData() {
       const data = (
-        await this.$axios.get("/group?field=links,article,comments")
+        await this.$axios.get("/api/group?field=links,article,comments")
       ).data;
       this.record = data;
     }

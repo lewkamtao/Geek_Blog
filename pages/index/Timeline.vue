@@ -20,7 +20,7 @@ export default {
   },
   async asyncData({ $axios, route }) {
     const timeline = (
-      await $axios.get("/comments", {
+      await $axios.get("/api/comments", {
         params: {
           mode: "type",
           type: "moving",
@@ -55,7 +55,7 @@ export default {
     // 获取评论
     async getComments() {
       const comments = (
-        await this.$axios.get("/comments", {
+        await this.$axios.get("/api/comments", {
           params: {
             mode: "type",
             type: "moving",

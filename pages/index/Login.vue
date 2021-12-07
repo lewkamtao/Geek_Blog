@@ -65,7 +65,7 @@ export default {
       var data = this.form;
       data.mode = "login";
       this.loading = true;
-      this.$axios.post("/users", data).then((res) => {
+      this.$axios.post("/api/users", data).then((res) => {
         this.loading = false;
         if (res.code == "200") {
           this.$cookies.set("token", res.data["login-token"]);

@@ -25,7 +25,7 @@ export default {
   },
   async asyncData({ $axios }) {
     const msg_wall = (
-      await $axios.get("/comments", {
+      await $axios.get("/api/comments", {
         params: {
           mode: "type",
           type: "msg_wall",
@@ -35,7 +35,7 @@ export default {
       })
     ).data;
     const commentsGroup = (
-      await $axios.get("/comments", {
+      await $axios.get("/api/comments", {
         params: {
           mode: "group",
           type: "msg_wall",
@@ -64,7 +64,7 @@ export default {
     // 获取评论
     async getComments() {
       const msg_wall = (
-        await this.$axios.get("/comments", {
+        await this.$axios.get("/api/comments", {
           params: {
             mode: "type",
             type: "msg_wall",

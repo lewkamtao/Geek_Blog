@@ -20,7 +20,7 @@ export default {
   },
   async asyncData({ $axios, route }) {
     const article = (
-      await $axios.get("/article", {
+      await $axios.get("/api/article", {
         params: {
           id: parseInt(route.query.id),
           model: "md"
@@ -28,7 +28,7 @@ export default {
       })
     ).data;
     const comments = (
-      await $axios.get("/comments", {
+      await $axios.get("/api/comments", {
         params: {
           article_id: parseInt(route.query.id),
           tree: false,
@@ -61,7 +61,7 @@ export default {
     // 获取评论
     async getComments() {
       const comments = (
-        await this.$axios.get("/comments", {
+        await this.$axios.get("/api/comments", {
           params: {
             article_id: this.id,
             tree: false,
@@ -74,7 +74,7 @@ export default {
     // 获取文章
     async getArticle() {
       const article = (
-        await this.$axios.get("/article", {
+        await this.$axios.get("/api/article", {
           params: {
             id: this.id,
             model: "md"

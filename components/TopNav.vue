@@ -121,7 +121,7 @@ export default {
   methods: {
     async searchArticleFn() {
       this.searchArticle = (
-        await this.$axios.get("/search?value=" + this.searchValue + "&limit=10")
+        await this.$axios.get("/api/search?value=" + this.searchValue + "&limit=10")
       ).data.data;
     },
     toLink({ isLogin, path }) {

@@ -80,7 +80,7 @@ export default {
 
     async getMasterId() {
       this.masterId = (
-        await this.$axios.get("/options?key=webmaster")
+        await this.$axios.get("/api/options?key=webmaster")
       ).data.opt.users_id;
     }
   },

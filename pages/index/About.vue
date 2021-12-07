@@ -21,7 +21,7 @@ export default {
   },
   async asyncData({ $axios, route }) {
     const comments = (
-      await $axios.get("/comments", {
+      await $axios.get("/api/comments", {
         params: {
           mode: "type",
           type: "about",
@@ -32,7 +32,7 @@ export default {
     ).data;
     var about = {};
     try {
-      const aboutRes = await $axios.get("/page?alias=about&cache=false");
+      const aboutRes = await $axios.get("/api/page?alias=about&cache=false");
       if (aboutRes.code == 200) {
         about = aboutRes.data;
       }
@@ -66,7 +66,7 @@ export default {
     // 获取评论
     async getComments() {
       const comments = (
-        await this.$axios.get("/comments", {
+        await this.$axios.get("/api/comments", {
           params: {
             mode: "type",
             type: "about",

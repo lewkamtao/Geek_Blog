@@ -29,7 +29,7 @@ export default {
   methods: {
     async openpages(id) {
       const data = (
-        await this.$axios.get("/page", {
+        await this.$axios.get("/api/page", {
           params: { id: id }
         })
       ).data;

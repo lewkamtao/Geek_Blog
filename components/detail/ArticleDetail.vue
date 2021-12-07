@@ -168,7 +168,7 @@ export default {
           id: JSON.stringify(id)
         };
 
-        this.$axios.post("/article", data).then(res => {
+        this.$axios.post("/api/article", data).then(res => {
           if (res.code == 200) {
             this.$notify({
               type: "success",

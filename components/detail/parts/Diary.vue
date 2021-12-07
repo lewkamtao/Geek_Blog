@@ -1,10 +1,10 @@
 <template>
-  <div  class="info part">
+  <div class="info part">
     <div class="main-title" style="margin-bottom: 12px">ONE 一个</div>
     <div v-if="one" class="diary">
-      <div class="tag">#{{ one.data.tag }}#</div>
-      <p>{{ one.data.content }}</p>
-      <div class="origin">来自 {{ one.data.origin }}</div>
+      <!-- <div class="tag">#{{ one.data.tag }}#</div> -->
+      <p>{{ one.data }}</p>
+      <!-- <div class="origin">来自 {{ one.data.origin }}</div> -->
     </div>
   </div>
 </template>
@@ -17,7 +17,7 @@ export default {
   },
   methods: {
     async getContent() {
-      this.one = await this.$axios.get("https://api.xygeng.cn/one");
+      this.one = await this.$axios.get("/api/file/words");
     },
   },
   created() {

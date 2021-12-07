@@ -78,11 +78,11 @@ export default {
   async asyncData({ $axios, route }) {
     var articleForm = false;
     if (route.query.id) {
-      articleForm = (await $axios.get("/article?mode=md&id=" + route.query.id))
+      articleForm = (await $axios.get("/api/article?mode=md&id=" + route.query.id))
         .data;
     }
 
-    const article_sort = (await $axios.get("/article-sort?limit=1000")).data;
+    const article_sort = (await $axios.get("/api/article-sort?limit=1000")).data;
     return { article_sort, articleForm };
   },
   props: {},
@@ -147,7 +147,7 @@ export default {
       data["login-token"] = this.token;
       data.sort_id = String(data.sort_id);
       this.loading = true;
-      this.$axios.post("/article", data).then((res) => {
+      this.$axios.post("/api/article", data).then((res) => {
         this.loading = false;
         if (res.code == "200") {
           this.$message({
@@ -167,7 +167,7 @@ export default {
       var data = {
         "login-token": this.token,
       };
-      this.$axios.get("/users", data).then((res) => {
+      this.$axios.get("/api/users", data).then((res) => {
         this.loading = false;
         if (res.code != "200") {
           this.$message({

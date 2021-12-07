@@ -4,7 +4,7 @@
       <div v-if="!token" class="header">恭喜！站点部署成功！</div>
       <div v-if="token" class="header">恭喜！博客初始化成功！</div>
 
-      <div style="margin-top:20px">
+      <div style="margin-top: 20px">
         <div v-if="!token">博客部署成功！首次进入博客需要先用inis登录。</div>
         <div v-if="token">
           博客初始化成功！你可以在设置页面配置你的个人信息！
@@ -12,7 +12,7 @@
       </div>
     </div>
     <nuxt-link v-if="token" to="/Setting">
-      <div style="width:150px" class="ui fluid large teal submit button">
+      <div style="width: 150px" class="ui fluid large teal submit button">
         前往设置
       </div>
     </nuxt-link>
@@ -54,7 +54,7 @@ export default {
   components: { SettingDetail },
   head() {
     return {
-      title: "起步"
+      title: "起步",
     };
   },
   props: {},
@@ -64,8 +64,8 @@ export default {
       geek_config: {},
       form: {
         account: "",
-        password: ""
-      }
+        password: "",
+      },
     };
   },
   watch: {},
@@ -73,7 +73,7 @@ export default {
   methods: {
     async getConfig() {
       const res_geek_config = await this.$axios.get(
-        "/options?key=geek_config&cache=false"
+        "/api/options?key=geek_config&cache=false"
       );
       if (res_geek_config.code == 200 && res_geek_config.data.opt) {
         this.geek_config = res_geek_config.data.opt;
@@ -81,9 +81,9 @@ export default {
         var data = {
           "login-token": this.$cookies.get("token"),
           keys: "geek_config",
-          opt: first_geek_config.geek_config
+          opt: first_geek_config.geek_config,
         };
-        this.$axios.post("/options", data);
+        this.$axios.post("/api/options", data);
         this.geek_config = first_geek_config.geek_config;
       }
     },
@@ -91,21 +91,21 @@ export default {
       var data = this.form;
       data.mode = "login";
       this.loading = true;
-      this.$axios.post("/users", data).then(res => {
+      this.$axios.post("/api/users", data).then((res) => {
         this.loading = false;
         if (res.code == "200") {
           this.$cookies.set("token", res.data["login-token"]);
           location.reload();
         }
       });
-    }
+    },
   },
-  created: function() {
+  created: function () {
     this.token = this.$cookies.get("token");
     if (this.token) {
       this.getConfig();
     }
-  }
+  },
 };
 </script>
 <style lang="scss" scoped>

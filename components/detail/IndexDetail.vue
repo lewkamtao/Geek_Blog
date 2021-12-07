@@ -94,7 +94,7 @@ export default {
         };
         this.articleList.data = this.articleList.concat(
           (
-            await this.$axios.get("/article-sort", {
+            await this.$axios.get("/api/article-sort", {
               params
             })
           ).data.expand.data
@@ -103,7 +103,7 @@ export default {
         params = { limit: this.limit, page: this.page };
         this.articleList.data = this.articleList.data.concat(
           (
-            await this.$axios.get("/article", {
+            await this.$axios.get("/api/article", {
               params
             })
           ).data.data

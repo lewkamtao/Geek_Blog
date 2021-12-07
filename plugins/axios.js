@@ -1,9 +1,9 @@
 import Vue from "vue";
 
 export default ({ $axios, $cookies }) => {
-  $axios.onRequest(config => {});
+  $axios.onRequest((config) => {});
 
-  $axios.onResponse(res => {
+  $axios.onResponse((res) => {
     if (res.data.code == 403) {
       window.location.replace("/login?token_status=403");
       $cookies.remove("token");
@@ -15,7 +15,7 @@ export default ({ $axios, $cookies }) => {
         title: "注意",
         message: res.data.msg || res.data.code + "：未知错误原因",
         duration: 5000,
-        offset: 65
+        offset: 65,
       });
     }
     return res.data;

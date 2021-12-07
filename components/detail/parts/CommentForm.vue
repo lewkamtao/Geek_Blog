@@ -152,7 +152,7 @@ export default {
         return;
       }
 
-      this.$axios.post("/comments", _form).then(res => {
+      this.$axios.post("/api/comments", _form).then(res => {
         if (res.code == 200) {
           this.$emit("reloadComments");
           util.showContentFn(this.articleId, this);

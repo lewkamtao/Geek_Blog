@@ -64,7 +64,7 @@ export default {
     var noSet = false;
     try {
       const res_geek_config = await $axios.get(
-        "/options?key=geek_config&cache=false"
+        "/api/options?key=geek_config&cache=false"
       );
       if (res_geek_config.code == 200 && res_geek_config.data.opt) {
         geek_config = res_geek_config.data.opt;
@@ -77,12 +77,12 @@ export default {
       noSet = true;
     }
 
-    const userId = (await $axios.get("/options?key=webmaster")).data.opt
+    const userId = (await $axios.get("/api/options?key=webmaster")).data.opt
       .users_id;
 
-    const user = (await $axios.get("/users?id=" + userId)).data;
+    const user = (await $axios.get("/api/users?id=" + userId)).data;
     const article_sort = (
-      await $axios.get("/article-sort?limit=1000&cache=false")
+      await $axios.get("/api/article-sort?limit=1000&cache=false")
     ).data;
     return { user, article_sort, geek_config, noSet };
   },

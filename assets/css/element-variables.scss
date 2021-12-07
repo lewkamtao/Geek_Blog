@@ -5,4 +5,16 @@ $--color-primary: #000;
 /* 改变 icon 字体路径变量，必需 */
 
 $--font-path: '~element-ui/lib/theme-chalk/fonts';
-@import "~element-ui/packages/theme-chalk/src/index"; // 这个地方后面要 改成 样式按需引入，请继续看下文
+@import "~element-ui/packages/theme-chalk/src/backtop";
+@import "~element-ui/packages/theme-chalk/src/radio-button.scss";
+@import "~element-ui/packages/theme-chalk/src/checkbox.scss";
+@import "~element-ui/packages/theme-chalk/src/checkbox-button.scss";
+@import "~element-ui/packages/theme-chalk/src/checkbox-group.scss";
+@import "~element-ui/packages/theme-chalk/src/switch.scss";
+@import "~element-ui/packages/theme-chalk/src/select.scss";
+@import "~element-ui/packages/theme-chalk/src/button.scss";
+@import "~element-ui/packages/theme-chalk/src/message-box.scss";
+@import "~element-ui/packages/theme-chalk/src/message.scss";
+@import "~element-ui/packages/theme-chalk/src/notification.scss";
+@import "~element-ui/packages/theme-chalk/src/button-group.scss";
+@import "~element-ui/packages/theme-chalk/src/icon.scss";
