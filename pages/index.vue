@@ -133,7 +133,7 @@ export default {
 </script>
 <style scoped lang="scss">
 .wrapper {
-  max-width: 1300px;
+  max-width: 1250px;
   min-width: 1000px;
   display: flex;
   justify-content: space-between;

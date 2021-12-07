@@ -8,10 +8,8 @@
           v-for="(item, index) in article_sort.data"
           :key="index"
         >
-          {{ item.name }}
-          <span style="margin-left: 10px" class="ui mini label">{{
-            item.expand.count
-          }}</span>
+          <span> {{ item.name }}</span>
+          <span style="margin-right: 10px">{{ item.expand.count }}</span>
         </nuxt-link>
       </ul>
     </div>
@@ -24,10 +22,10 @@ export default {
   props: {
     article_sort: {
       type: Object,
-      default: function() {
+      default: function () {
         return {};
-      }
-    }
+      },
+    },
   },
   data() {
     return {};
@@ -36,12 +34,17 @@ export default {
   computed: {},
   methods: {},
   created() {},
-  mounted() {}
+  mounted() {},
 };
 </script>
 <style lang="scss" scoped>
 .article-sort {
   width: 100%;
+  padding: 10px;
+  .main-title {
+    margin-left: 6px;
+    margin-top: 5px;
+  }
 }
 .article-title-divst {
   line-height: 30px;
@@ -56,9 +59,10 @@ ul {
     border-radius: 5px;
     line-height: 25px;
     min-height: 32px;
-    padding: 4px 8px;
+    padding: 4px 8px 4px 18px;
     color: #999;
-    display: inline-block;
+    display: flex;
+    justify-content: space-between;
     box-sizing: border-box;
     font-size: 14px;
     cursor: pointer;

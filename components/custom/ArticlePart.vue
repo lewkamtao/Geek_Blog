@@ -1,16 +1,16 @@
 <template>
-  <div class="part article-box ">
+  <div class="part article-box">
     <nuxt-link :to="'/Article?id=' + articleData.id">
       <div class="cover cover-bg"></div>
       <div
         class="cover"
         :style="
           'background:url(' +
-            (articleData.img_src
-              ? articleData.img_src
-              : 'https://tngeek-mall-1255310647.cos.ap-guangzhou.myqcloud.com/public/images/pexels/' +
-                articleData.id +
-                '.jpg!blog_mainPic)')
+          (articleData.img_src
+            ? articleData.img_src
+            : 'https://tngeek-mall-1255310647.cos.ap-guangzhou.myqcloud.com/public/images/pexels/' +
+              articleData.id +
+              '.jpg!blog_mainPic)')
         "
       ></div>
       <div class="article-box-body">
@@ -101,7 +101,7 @@
       </div>
       <span
         v-show="articleData.is_top && articleData.is_show"
-        class="ui tag label red isTop"
+        class="ui horizontal label red mini isTop"
         >置顶</span
       >
     </nuxt-link>
@@ -114,23 +114,23 @@ import TagList from "./TagList.vue";
 
 export default {
   components: {
-    TagList
+    TagList,
   },
   props: {
     articleData: {
       type: Object,
-      default: function() {
+      default: function () {
         return {};
-      }
-    }
+      },
+    },
   },
   computed: {
     getBeautifyTime() {
-      return function(time) {
+      return function (time) {
         return util.getBeautifyTime(time);
       };
-    }
-  }
+    },
+  },
 };
 </script>
 

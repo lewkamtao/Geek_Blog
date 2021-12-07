@@ -97,17 +97,7 @@ export default {
       // ...
     },
     extractCSS: { allChunks: true },
-    babel: {
-      plugins: [
-        [
-          "component",
-          {
-            libraryName: "element-ui",
-            styleLibraryName: "theme-chalk",
-          },
-        ],
-      ],
-    },
+    vendor: ["element-ui"],
   },
   loading: "~/components/custom/Loading.vue",
 };
