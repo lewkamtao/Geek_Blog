@@ -361,7 +361,7 @@ export default {
       try {
         const data = (
           await this.$axios.get(
-            "/music?id=" + list_id + "&mode=list&cache=false"
+            "/api/music?id=" + list_id + "&mode=list&cache=false"
           )
         ).data;
         this.songs = data.songs;
@@ -379,7 +379,7 @@ export default {
       var that = this;
       const data = (
         await this.$axios.get(
-          "/music?id=" + this.songs[index].song_id + "&mode=song&cache=false"
+          "/api/music?id=" + this.songs[index].song_id + "&mode=song&cache=false"
         )
       ).data;
       data.index = index;

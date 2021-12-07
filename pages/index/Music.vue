@@ -35,7 +35,7 @@ export default {
 
     const songs = (
       await $axios.get(
-        "/music?id=" + music_list.data[0].id + "&mode=list&cache=false"
+        "/api/music?id=" + music_list.data[0].id + "&mode=list&cache=false"
       )
     ).data;
 
@@ -56,7 +56,7 @@ export default {
       type: Object,
       default: function () {
         return {};
-      }
+      },
     },
   },
   data() {
