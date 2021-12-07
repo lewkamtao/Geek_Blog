@@ -41,7 +41,7 @@ export default {
       imgUrl: "",
       imgList: [],
       masonryWidth: 0,
-      keyword: "郑秀晶 Ins",
+      keyword: "郑秀晶",
       keytimer: "",
       isMore: false,
       loading: false,
