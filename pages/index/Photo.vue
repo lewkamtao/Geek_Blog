@@ -6,7 +6,7 @@
         <i class="search icon"></i>
       </div>
     </div>
-    <div class="masonry">
+    <div v-if="keyword" class="masonry">
       <a
         data-fancybox="gallery"
         :key="index"
@@ -18,13 +18,14 @@
     </div>
     <div class="more-box">
       <button
-        v-if="isMore"
+        v-if="keyword && isMore"
         @click="getImgList"
         class="ui primary button"
         :class="{ loading: loading }"
       >
         点击加载更多
       </button>
+      <span v-if="!keyword" style="color: #999">暂无结果</span>
     </div>
   </div>
 </template>
@@ -65,7 +66,7 @@ export default {
       }
       this.loading = true;
       var res = await this.$axios.get(
-        `sogou/napi/pc/searchList?mode=13&dm=4&cwidth=2560&cheight=1440&start=${this.pageNum}&query=${this.keyword}`
+        `geek/napi/pc/searchList?mode=13&dm=4&cwidth=2560&cheight=1440&start=${this.pageNum}&query=${this.keyword}`
       );
       this.loading = false;
 
@@ -87,7 +88,8 @@ export default {
 <style lang="scss" scoped>
 .index-wrapper-master {
   width: 100%;
-  min-height: 100vh;
+  min-height: 80vh;
+  padding: 10px 0px 10px 0px;
 }
 
 .more-box {
@@ -104,7 +106,6 @@ export default {
   grid-template-columns: repeat(4, 1fr);
   /*等同于1fr 1fr 1fr,此为重复的合并写法*/
   grid-template-rows: repeat(4, 1fr);
-  border: 1px #eee solid;
   /*等同于1fr 1fr 1fr,此为重复的合并写法*/
   a {
     font-size: 0px;

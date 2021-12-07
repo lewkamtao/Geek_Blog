@@ -83,11 +83,11 @@ export default {
         "^/api/": "",
       },
     },
-    "/sogou/": {
+    "/geek/": {
       // 请填写你的后台接口地址
       target: "https://pic.sogou.com",
       pathRewrite: {
-        "^/sogou/": "",
+        "^/geek/": "",
       },
     },
   },
