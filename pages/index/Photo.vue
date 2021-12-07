@@ -41,7 +41,7 @@ export default {
       imgUrl: "",
       imgList: [],
       masonryWidth: 0,
-      keyword: "",
+      keyword: "郑秀晶 Ins",
       keytimer: "",
       isMore: false,
       loading: false,
@@ -52,7 +52,7 @@ export default {
       clearTimeout(this.keytimer);
       this.keytimer = setTimeout(() => {
         this.getImgList("new");
-      }, 350);
+      }, 200);
     },
   },
   computed: {},
@@ -63,11 +63,9 @@ export default {
         this.pageNum = 0;
         this.imgList = [];
       }
-      var keyword = "";
-      keyword = this.keyword ? this.keyword : "风景高清壁纸";
       this.loading = true;
       var res = await this.$axios.get(
-        `sogou/napi/pc/searchList?mode=13&dm=4&cwidth=2560&cheight=1440&start=${this.pageNum}&query=${keyword}`
+        `sogou/napi/pc/searchList?mode=13&dm=4&cwidth=2560&cheight=1440&start=${this.pageNum}&query=${this.keyword}`
       );
       this.loading = false;
 
@@ -138,13 +136,12 @@ export default {
     }
     input:focus {
       border: #000 solid 2px;
-      background: rgba($color: #000000, $alpha: 0);
     }
   }
 }
 @media screen and (max-width: 1024px) {
   .index-wrapper-master {
-    padding:20px 0px 10px 0px;
+    padding: 20px 0px 10px 0px;
   }
   .search-box {
     .input {
