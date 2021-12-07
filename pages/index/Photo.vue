@@ -1,32 +1,17 @@
 <template>
   <div class="index-wrapper-master part">
-    <div style="margin-bottom:20px" v-show="false">
-      <form class="ui reply form">
-        <div class="field">
-          <div class="field">
-            <textarea
-              style="height:100px"
-              v-model="imgUrl"
-              placeholder="输入爬取图片URL..."
-            ></textarea>
-          </div>
-        </div>
-        <div
-          @click="getImgList('new')"
-          class="ui blue labeled submit icon button"
-        >
-          <i class="icon edit"></i> 立即获取
-        </div>
-      </form>
+    <div class="search-box">
+      <div class="ui big icon input">
+        <input type="text" placeholder="搜索图片" />
+        <i class="search icon"></i>
+      </div>
     </div>
     <div ref="masonry" class="masonry">
       <div class="img-box" :key="index" v-for="(item, index) in imgData">
         <auto-img-list :width="masonryWidth" :imgData="item"></auto-img-list>
       </div>
     </div>
-    <div @click="getImgList()" class="more-btn">
-      点击加载更多
-    </div>
+    <div @click="getImgList()" class="more-btn">点击加载更多</div>
   </div>
 </template>
 
@@ -35,7 +20,7 @@ import AutoImgList from "@/components/custom/AutoImgList";
 
 export default {
   components: {
-    AutoImgList
+    AutoImgList,
   },
   props: {},
   data() {
@@ -47,13 +32,17 @@ export default {
       imgUrl: "",
       imgList: [],
       imgData: [],
-      masonryWidth: 0
+      masonryWidth: 0,
     };
   },
   watch: {},
   computed: {},
   methods: {
-    getImgList(type) {
+    async getImgList(type) {
+      var res = await this.$axios.get(
+        "http://pic.sogou.com/napi/pc/searchList?mode=13&dm=4&cwidth=2560&cheight=1440&start=0&xml_len=48&query=%E9%BB%91%E4%B8%9D%E7%BE%8E%E8%85%BF%E7%BE%8E%E5%A5%B3%E6%A8%A1%E7%89%B9%E5%88%B6%E6%9C%8D%E8%AF%B1%E6%83%91%E5%86%99%E7%9C%9F%E5%A3%81%E7%BA%B8"
+      );
+      console.log(res)
       if (type == "new") {
         this.imgList = [];
         this.imgData = [];
@@ -72,8 +61,8 @@ export default {
       this.formatImgData();
     },
     formatImgData() {
-      var rnum = this.randomNum(3, 6);
-      this.$nextTick(function() {
+      var rnum = this.randomNum(3, 4);
+      this.$nextTick(function () {
         this.masonryWidth = this.$refs.masonry.clientWidth;
       });
       if (this.imgList.length > rnum) {
@@ -96,12 +85,12 @@ export default {
         default:
           return 0;
       }
-    }
+    },
   },
   created() {},
   mounted() {
     this.getImgList();
-  }
+  },
 };
 </script>
 <style lang="scss" scoped>
@@ -139,10 +128,31 @@ export default {
 .masonry {
   width: 100%;
 }
+
+.search-box {
+  margin: 20px;
+  display: flex;
+  justify-content: center;
+  .input {
+    input {
+      width: 400px;
+      border-radius: 50px;
+      border: rgba($color: #000000, $alpha: 0.025) solid 2px;
+      background: rgba($color: #000000, $alpha: 0.025);
+      outline: none;
+    }
+    input:hover {
+      background: rgba($color: #000000, $alpha: 0.045);
+    }
+    input:focus {
+      border: #000 solid 2px;
+      background: rgba($color: #000000, $alpha: 0);
+    }
+  }
+}
 @media screen and (max-width: 1024px) {
   .part {
     padding: 5px;
   }
-
 }
 </style>

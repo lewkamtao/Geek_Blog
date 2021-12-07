@@ -98,7 +98,7 @@ export default {
   font-size: 0px;
 }
 img {
-  padding: 6px;
+  padding: 1px;
   opacity: 1;
   border-radius: 0px;
   transition: opacity 0.25s;
