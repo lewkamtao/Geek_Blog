@@ -17,7 +17,7 @@ export default {
   },
   methods: {
     async getContent() {
-      // 太快了，延迟一下
+      // 太快了,延迟一下
       setTimeout(() => {
         this.$axios.get("https://v1.hitokoto.cn").then(res => {
           this.one = res
