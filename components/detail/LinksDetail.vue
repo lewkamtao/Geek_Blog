@@ -27,15 +27,20 @@
         </div>
       </a>
     </div>
+    <main class="section" v-show="article.content !== ''">
+      <article-editor :content="article.content" :article_id="article.id">
+      </article-editor>
+    </main>
   </div>
 </template>
 
 <script>
 import PageHeader from "@/components/custom/PageHeader.vue";
 import util from "@/util/index";
+import ArticleEditor from "../custom/ArticleEditor";
 
 export default {
-  components: { PageHeader },
+  components: {PageHeader, ArticleEditor},
   props: {
     geek_config: {
       type: Object,
@@ -49,6 +54,12 @@ export default {
         return {};
       }
     },
+    article: {
+      type: Object,
+      default: function () {
+        return {};
+      }
+    }
   },
   data() {
     return {};
@@ -71,26 +82,61 @@ export default {
 <style lang="scss" scoped>
 .links-detail {
   padding: 0px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
   .list {
     padding: 30px 50px;
   }
+
   .item {
     padding: 10px !important;
     box-shadow: 0px 0px 5px rgba($color: #000000, $alpha: 0.15) !important;
     margin-bottom: 15px !important;
   }
+
   .content {
     width: calc(100% - 120px);
   }
+
   .description {
     margin-top: 5px;
     overflow: hidden;
     height: 16px;
   }
+
+  main {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding: 30px;
+  }
+
+  .section:after {
+    margin-top: 150px;
+  }
 }
+
+@media screen and (max-width: 1440px) {
+}
+
+// 移动端适配
+@media screen and (max-width: 1025px) {
+  .article-wrapper {
+    padding: 0px;
+
+    main {
+      margin-top: 0px;
+      margin-bottom: 0px;
+      padding: 0px 15px 50px 15px;
+    }
+  }
+}
+
 @media screen and (max-width: 1024px) {
   .links-detail {
     padding: 0px;
+
     .list {
       padding: 15px;
     }

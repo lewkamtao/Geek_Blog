@@ -1,6 +1,7 @@
 <template>
   <Detail
     @reloadComments="getComments"
+    :link="link"
     :geek_config="geek_config"
     :options="{
       type: 'links',
@@ -18,7 +19,7 @@ export default {
       title: "朋友 - " + this.geek_config.site_config.title,
     };
   },
-  async asyncData({ $axios, route }) {
+  async asyncData({$axios, route}) {
     const links = (await $axios.get("/api/links?limit=100000")).data;
     const comments = (
       await $axios.get("/api/comments", {
@@ -30,7 +31,17 @@ export default {
         },
       })
     ).data;
-    return { comments, links };
+    // 友链页内容
+    var link = {};
+    try {
+      const linkRes = await $axios.get("/api/page?alias=links&cache=false");
+      if (linkRes.code == 200) {
+        link = linkRes.data;
+      }
+    } catch {
+      link = {};
+    }
+    return {comments, links, link};
   },
   props: {
     geek_config: {
