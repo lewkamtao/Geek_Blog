@@ -1,7 +1,7 @@
 <template>
   <div class="index-wrapper-master part">
     <div class="search-box">
-      <div class="ui big icon input">
+      <div class="ui icon input">
         <input type="text" placeholder="搜索图片" v-model="keyword" />
         <i class="search icon"></i>
       </div>
@@ -82,7 +82,6 @@ export default {
   },
   created() {},
   mounted() {
-
     this.getImgList();
   },
 };
@@ -144,8 +143,31 @@ export default {
   }
 }
 @media screen and (max-width: 1024px) {
-  .part {
-    padding: 5px;
+  .index-wrapper-master {
+    padding:20px 0px 10px 0px;
+  }
+  .search-box {
+    .input {
+      input {
+        width: 270px;
+      }
+    }
+  }
+  .masonry {
+    grid-template-columns: repeat(2, 1fr);
+    /*等同于1fr 1fr 1fr,此为重复的合并写法*/
+    grid-template-rows: repeat(2, 1fr);
+    a {
+      font-size: 0px;
+      width: 100%;
+      height: 140px;
+    }
+    img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      border: 1px #eee solid;
+    }
   }
 }
 </style>
