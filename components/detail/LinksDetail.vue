@@ -81,7 +81,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .links-detail {
-  padding: 0px;
+  padding: 0;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -92,7 +92,7 @@ export default {
 
   .item {
     padding: 10px !important;
-    box-shadow: 0px 0px 5px rgba($color: #000000, $alpha: 0.15) !important;
+    box-shadow: 0 0 5px rgba($color: #000000, $alpha: 0.15) !important;
     margin-bottom: 15px !important;
   }
 
@@ -107,9 +107,9 @@ export default {
   }
 
   main {
-    margin-top: 0px;
-    margin-bottom: 0px;
-    padding: 30px;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 0 30px 30px 30px;
   }
 
   .section:after {
@@ -123,12 +123,12 @@ export default {
 // 移动端适配
 @media screen and (max-width: 1025px) {
   .article-wrapper {
-    padding: 0px;
+    padding: 0;
 
     main {
-      margin-top: 0px;
-      margin-bottom: 0px;
-      padding: 0px 15px 50px 15px;
+      margin-top: 0;
+      margin-bottom: 0;
+      padding: 0 15px 50px 15px;
     }
   }
 }
