@@ -40,7 +40,7 @@ export default {
   methods: {
     async getImgList(type) {
       var res = await this.$axios.get(
-        "http://pic.sogou.com/napi/pc/searchList?mode=13&dm=4&cwidth=2560&cheight=1440&start=0&xml_len=48&query=%E9%BB%91%E4%B8%9D%E7%BE%8E%E8%85%BF%E7%BE%8E%E5%A5%B3%E6%A8%A1%E7%89%B9%E5%88%B6%E6%9C%8D%E8%AF%B1%E6%83%91%E5%86%99%E7%9C%9F%E5%A3%81%E7%BA%B8"
+        "https://pic.sogou.com/napi/pc/searchList?mode=13&dm=4&cwidth=2560&cheight=1440&start=0&xml_len=48&query=%E9%BB%91%E4%B8%9D%E7%BE%8E%E8%85%BF%E7%BE%8E%E5%A5%B3%E6%A8%A1%E7%89%B9%E5%88%B6%E6%9C%8D%E8%AF%B1%E6%83%91%E5%86%99%E7%9C%9F%E5%A3%81%E7%BA%B8"
       );
       console.log(res)
       if (type == "new") {
