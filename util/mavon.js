@@ -1,51 +1,72 @@
-import JQ from 'jquery'
 import Vue from 'vue'
-import hljs from "highlight.js";
+import Highlight from "highlight.js";
+import Clipboard from 'clipboard'
 
 export const addCodeCopyBtn = () => {
 
-  let blocks = document.querySelectorAll("pre");
-  blocks.forEach(block => {
-    let lines = block.innerText.split('\n').length - 1
+  const content = document.getElementById('article-editor')
+  const arr = Array.from(content.getElementsByTagName('pre'))
+
+  arr.forEach((element, index) => {
+    let lines = element.innerText.split('\n').length - 1
     // 添加有序列表
     let numbering = document.createElement("ol");
     numbering.setAttribute("class", "pre-numbering")
-
-    // 添加复制按钮，此处使用的是element-ui icon 图标
-    let copy = document.createElement('i');
-    copy.setAttribute("title", "copy")
-    copy.setAttribute("class", "el-icon-document-copy code-copy")
-
-    block.setAttribute("class", "code")
-    block.appendChild(numbering)
-    block.appendChild(copy)
-
+    element.appendChild(numbering)
     for (let i = 0; i <= lines; i++) {
       let li = document.createElement("li")
       numbering.appendChild(li)
     }
-  })
 
-  // 设置代码块高亮
-  blocks.forEach(block => {
-    hljs.highlightBlock(block);
+    // 添加复制按钮，此处使用的是element-ui icon 图标
+    let copyBtn = document.createElement('i');
+    copyBtn.setAttribute("title", "copy")
+    copyBtn.setAttribute("class", "el-icon-document-copy code-copy")
+
+    copyBtn.addEventListener('click', function (e) {
+      // code标签
+      const code = e.target.parentElement.children[0]
+      const codeText = code.innerText
+      copyContent('code-copy', codeText)
+    })
+    element.appendChild(copyBtn)
   });
 
-  // 监听复制按钮点击事件
-  JQ('pre.code i.code-copy').click(e => {
-    let text = JQ(e.target).siblings('code').text()
-    let element = JQ('<textarea>' + text + '</textarea>')
-    JQ('body').append(element)
-    element[0].select()
-    document.execCommand('Copy')
-    element.remove()
+  // 设置高亮
+  let highlight = document.querySelectorAll('pre code');
+  highlight.forEach((block)=>{
+    Highlight.highlightBlock(block);
+  })
+}
+
+/**
+ * className 是点击的元素的class，content是复制的内容
+ * @param className
+ * @param content
+ */
+export default function copyContent(className, content) {
+  let clipboard = new Clipboard('.' + className, {
+    text: function () {
+      return content
+    }
+  })
+  clipboard.on('success', e => {
     // 复制成功消息通知
     Vue.prototype.$notify({
       title: '成功',
-      message: '代码复制成功',
+      message: '复制成功, Ctrl+V 粘贴',
       type: 'success'
     });
+    // 释放内存
+    clipboard.destroy()
   })
-
+  clipboard.on('error', e => {
+    // 复制失败消息通知
+    Vue.prototype.$notify({
+      title: '失败',
+      message: '复制失败,需手动复制文本内容',
+      type: 'error'
+    });
+    clipboard.destroy()
+  })
 }
-
