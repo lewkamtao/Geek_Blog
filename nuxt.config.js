@@ -32,6 +32,7 @@ export default {
     "@/assets/css/github.min.css",
     "@/assets/css/tag-plugins.scss",
     "@/assets/css/code-block.scss",
+    "@/assets/css/article-footer.scss",
     { src: "@/assets/css/main.scss", lang: "scss" },
   ],
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins

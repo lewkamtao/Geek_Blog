@@ -1,0 +1,111 @@
+
+.article-footer {
+  margin-top: 3rem;
+  padding: 1rem;
+  background: #f2f2f2;
+  border-radius: 6px;
+  border: 1px solid #e5e5e5;
+
+  .header {
+    font-weight: 500;
+    color: #5a5a5a;
+    font-size: 1.2rem;
+  }
+
+  .body {
+    color: #5a5a5a;
+    margin: .5em 0;
+
+    p a {
+      color: #0366d6;
+      text-decoration: none;
+    }
+
+    p a:hover {
+      text-decoration: underline;
+      color: #ff5722;
+    }
+
+    input.copy-area {
+      background: 0 0;
+      border: none;
+      margin: .75rem 0;
+      padding: 0;
+      width: 100%;
+      display: block;
+      font-family: Menlo,Monaco,Consolas,system-ui,"Courier New",monospace,sans-serif;
+      font-weight: 600;
+      color: #818181;
+    }
+  }
+
+  img {
+    max-width: 100%;
+  }
+
+  section {
+    margin-top: 1rem;
+  }
+
+  section + section {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #e5e5e5;
+  }
+
+  .social-wrap {
+    grid-gap: 0.5rem 1rem;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 32px);
+  }
+
+  .social-wrap a.social {
+    cursor: pointer;
+    line-height: 0;
+    display: inline-block;
+    padding: 6px;
+    border-radius: 4px;
+    filter: grayscale(100%);
+    overflow: hidden;
+    background: 0 0;
+    transition: box-shadow .2s ease-out, background .2s ease-out, transform .2s ease-out;
+    -moz-transition: box-shadow .2s ease-out, background .2s ease-out, transform .2s ease-out;
+    -webkit-transition: box-shadow .2s ease-out, background .2s ease-out, transform .2s ease-out;
+    -o-transition: box-shadow .2s ease-out, background .2s ease-out, transform .2s ease-out;
+  }
+
+  .social-wrap a.social:hover {
+    color: #ff5722;
+    z-index: 1;
+    filter: unset;
+    transform: translateY(-1px);
+    background: linear-gradient(
+        145deg, #ddd, #fff);
+    box-shadow: 2px 4px 8px #ddd, -2px -4px 8px #fff;
+  }
+
+  .qrcode {
+    width: 128px;
+    padding: 4px;
+    background: #fff;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 10%), 0 0 32px 0 rgb(0 0 0 / 10%);
+    overflow: hidden;
+    transition: height .2s ease-out;
+    -moz-transition: height .2s ease-out;
+    -webkit-transition: height .2s ease-out;
+    -o-transition: height .2s ease-out;
+  }
+
+  .qrcode.display {
+    margin: 2rem auto 1rem;
+    height: 128px !important;
+    visibility: visible !important;
+  }
+}
+
+input::selection, textarea::selection {
+  background-color: #cce2ff;
+  color: rgba(0, 0, 0, .87);
+}
