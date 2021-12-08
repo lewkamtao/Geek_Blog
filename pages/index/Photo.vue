@@ -42,7 +42,7 @@ export default {
       imgUrl: "",
       imgList: [],
       masonryWidth: 0,
-      keyword: "郑秀晶",
+      keyword: "迈克尔杰克逊",
       keytimer: "",
       isMore: false,
       loading: false,
@@ -59,15 +59,17 @@ export default {
   computed: {},
   methods: {
     async getImgList(type) {
-      this.pageNum += 1;
       if (type == "new") {
         this.pageNum = 0;
         this.imgList = [];
       }
       this.loading = true;
       var res = await this.$axios.get(
-        `geek/napi/pc/searchList?mode=13&dm=4&cwidth=2560&cheight=1440&start=${this.pageNum}&query=${this.keyword}`
+        `geek/napi/pc/searchList?mode=13&dm=4&cwidth=2560&cheight=1440&start=${
+          this.pageNum * 48
+        }&query=${this.keyword}`
       );
+      this.pageNum += 1;
       this.loading = false;
 
       var imgs = res.data.items;

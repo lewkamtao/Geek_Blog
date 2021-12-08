@@ -1,10 +1,10 @@
 <template>
   <div class="info part">
-    <div class="main-title" style="margin-bottom: 12px">ONE 一个</div>
+    <div class="main-title" style="margin-bottom: 12px">一言</div>
     <div v-if="one" class="diary">
-      <!-- <div class="tag">#{{ one.data.tag }}#</div> -->
-      <p>{{ one.data }}</p>
-      <!-- <div class="origin">来自 {{ one.data.origin }}</div> -->
+      <div class="tag">#{{ one.from }}#</div>
+      <p>{{ one.hitokoto }}</p>
+      <div class="origin">来自 {{ one.from_who }}</div>
     </div>
   </div>
 </template>
@@ -17,7 +17,7 @@ export default {
   },
   methods: {
     async getContent() {
-      this.one = await this.$axios.get("/api/file/words");
+      this.one = await this.$axios.get("https://v1.hitokoto.cn/");
     },
   },
   created() {
