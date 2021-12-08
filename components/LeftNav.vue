@@ -55,13 +55,13 @@ export default {
       type: Object,
       default: function () {
         return {};
-      }
+      },
     },
     article_sort: {
       type: Object,
       default: function () {
         return {};
-      }
+      },
     },
   },
   data() {

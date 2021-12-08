@@ -4,7 +4,7 @@
     <div v-if="one" class="diary">
       <div class="tag">#{{ one.from }}#</div>
       <p>{{ one.hitokoto }}</p>
-      <div class="origin">来自 {{ one.from_who }}</div>
+      <div class="origin">来自 {{ one.from_who || one.creator }}</div>
     </div>
   </div>
 </template>
