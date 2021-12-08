@@ -37,7 +37,7 @@ export default {
     async upDated(sort_id) {
       const articleListBySort = (
         await this.$axios.get(
-          "/article-sort?limit=10000&cache=false&id=" + sort_id
+          "/api/article-sort?limit=10000&cache=false&id=" + sort_id
         )
       ).data;
       this.articleListBySort = articleListBySort;

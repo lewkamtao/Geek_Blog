@@ -34,10 +34,12 @@ export default {
   padding: 15px;
   border-radius: 7px;
 }
+
 .tag {
   font-weight: bold;
   margin-bottom: 10px;
 }
+
 .origin {
   color: #999;
   text-align: right;

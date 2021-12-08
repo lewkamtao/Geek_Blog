@@ -13,6 +13,7 @@
         :geek_config="geek_config"
         v-if="options.links && options.type == 'links'"
         :links="options.links"
+        :article="link"
         class="part"
       ></links-detail>
 
@@ -210,6 +211,12 @@ export default {
       }
     },
     about: {
+      type: Object,
+      default: function() {
+        return {};
+      }
+    },
+    link: {
       type: Object,
       default: function() {
         return {};
