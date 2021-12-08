@@ -35,9 +35,9 @@ export default {
   },
   methods: {
     async getMasterId() {
-      this.masterId = (
+      this.masterId = Number((
         await this.$axios.get("/api/options?key=webmaster")
-      ).data.opt.users_id;
+      ).data.opt.users_id);
     }
   },
   mounted() {
