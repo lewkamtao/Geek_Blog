@@ -68,7 +68,7 @@
         :geek_config="geek_config"
       ></setting-detail>
     </div>
-    <div ref="aside" :style="setAsideLeft" class="aside">
+    <div ref="aside" :style="setAsideLeft" class="aside" v-if="setAsideLeft">
       <!-- 标签云 -->
       <tag-cloud
         v-if="options.type == 'article' && article.expand.tag"
@@ -123,7 +123,9 @@
       ></post-time-line>
 
       <!-- 日记 -->
-      <diary v-if="['index', 'articleBySort', 'moving'].indexOf(options.type) >= 0"></diary>
+      <diary
+        v-if="['index', 'articleBySort', 'moving'].indexOf(options.type) >= 0"
+      ></diary>
 
       <!-- 博客信息 -->
       <info v-if="options.type == 'index'"></info>
@@ -183,56 +185,56 @@ export default {
     PostTimeLine,
     CommentRank,
     SettingMenu,
-    MusicList
+    MusicList,
   },
   props: {
     geek_config: {
       type: Object,
-      default: function() {
+      default: function () {
         return {};
-      }
+      },
     },
     user: {
       type: Object,
-      default: function() {
+      default: function () {
         return {};
-      }
+      },
     },
     timeline: {
       type: Object,
-      default: function() {
+      default: function () {
         return {};
-      }
+      },
     },
     article: {
       type: Object,
-      default: function() {
+      default: function () {
         return {};
-      }
+      },
     },
     about: {
       type: Object,
-      default: function() {
+      default: function () {
         return {};
-      }
+      },
     },
     link: {
       type: Object,
-      default: function() {
+      default: function () {
         return {};
-      }
+      },
     },
     msg_wall: {
       type: Object,
-      default: function() {
+      default: function () {
         return {};
-      }
+      },
     },
     music: {
       type: Object,
-      default: function() {
+      default: function () {
         return {};
-      }
+      },
     },
     options: {
       type: Object,
@@ -245,15 +247,15 @@ export default {
         article: false,
         articleList: false,
         commentsGroup: false,
-        newComments: false // 最新评论
-      }
-    }
+        newComments: false, // 最新评论
+      },
+    },
   },
   data() {
     return {
       isLogin: false,
       setAsideLeft: "", // 用于计算侧边栏
-      id: ""
+      id: "",
     };
   },
   beforeRouteUpdate(to, from, next) {
@@ -273,7 +275,7 @@ export default {
     },
     playSong({ songs, index }) {
       this.$emit("playSong", { songs, index });
-    }
+    },
   },
   created() {
     if (this.$cookies.get("token")) {
@@ -284,15 +286,13 @@ export default {
     var that = this;
     this.id = parseInt($nuxt.$route.query.id);
     var articleMainWidth = "";
-    that.$nextTick(function() {
-      articleMainWidth =
-        that.$refs.articleMain.getBoundingClientRect().left +
-        that.$refs.articleMain.clientWidth +
-        4;
-      that.setAsideLeft = "left:" + articleMainWidth + "px;";
-    });
-    window.onresize = function() {
-      that.$nextTick(function() {
+    articleMainWidth =
+      that.$refs.articleMain.getBoundingClientRect().left +
+      that.$refs.articleMain.clientWidth +
+      4;
+    that.setAsideLeft = "left:" + articleMainWidth + "px;";
+    window.onresize = function () {
+      that.$nextTick(function () {
         articleMainWidth =
           that.$refs.articleMain.offsetLeft +
           that.$refs.articleMain.clientWidth +
@@ -303,7 +303,7 @@ export default {
   },
   beforeDestroy() {
     window.onresize = null;
-  }
+  },
 };
 </script>
 <style lang="scss" scoped>

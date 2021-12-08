@@ -139,7 +139,10 @@ export default {
   width: 100%;
   overflow: hidden;
   cursor: pointer;
-  padding: 0px;
+  padding: 7px;
+  box-sizing: border-box;
+  opacity: 0.9;
+  transition: all 0.1s;
 
   a {
     background-image: none;
@@ -151,12 +154,17 @@ export default {
     top: 10px;
   }
 }
+.article-box:hover {
+  opacity: 1;
+}
 .cover {
   position: relative;
   z-index: 99;
   width: 280px;
-  height: 190px;
+  height: 180px;
+  box-sizing: border-box;
   background-size: cover !important;
+  border-radius: 7px;
   background-position: center center !important;
 }
 .cover-bg {
@@ -164,7 +172,7 @@ export default {
   left: 0px;
   top: 0px;
   width: 280px;
-  height: 190px;
+  height: 180px;
   background: #eee;
 }
 

@@ -2,7 +2,7 @@
   <div class="article-wrapper">
     <header
       class="border border-primary"
-      :style="'background:url(https://api.kenvie.com/webp.php)'"
+      :style="`background:url(https://tngeek-mall-1255310647.cos.ap-guangzhou.myqcloud.com/public/images/pexels/${article.id}.jpg!blog_header)`"
     >
       <div class="mask"></div>
       <div class="content">
@@ -123,32 +123,32 @@ export default {
   props: {
     article: {
       type: Object,
-      default: function() {
+      default: function () {
         return {};
-      }
-    }
+      },
+    },
   },
   data() {
     return {
       article_title_list: [],
       token: "",
-      blog: ""
+      blog: "",
     };
   },
   watch: {},
   computed: {
     getBeautifyTime() {
-      return function(time) {
+      return function (time) {
         return util.getBeautifyTime(time);
       };
-    }
+    },
   },
   methods: {
     delConfirm() {
       this.$confirm("此操作将永久删除该文章, 是否继续?", "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
-        type: "warning"
+        type: "warning",
       })
         .then(() => {
           this.del(this.article.id);
@@ -156,7 +156,7 @@ export default {
         .catch(() => {
           this.$message({
             type: "info",
-            message: "已取消删除"
+            message: "已取消删除",
           });
         });
     },
@@ -165,29 +165,29 @@ export default {
         var data = {
           "login-token": this.token,
           mode: "remove",
-          id: JSON.stringify(id)
+          id: JSON.stringify(id),
         };
 
-        this.$axios.post("/api/article", data).then(res => {
+        this.$axios.post("/api/article", data).then((res) => {
           if (res.code == 200) {
             this.$notify({
               type: "success",
               title: "恭喜！",
               message: "成功删除了一篇文章",
               duration: 5000,
-              offset: 65
+              offset: 65,
             });
             this.$router.push("/");
           }
         });
       }
-    }
+    },
   },
   created() {
     this.token = this.$cookies.get("token");
   },
 
-  mounted() {}
+  mounted() {},
 };
 </script>
 <style lang="scss" scoped>
@@ -203,6 +203,7 @@ export default {
     color: #000;
     text-align: center;
     background-size: cover !important;
+    background-position: center !important;
     border-radius: 8px 8px 0px 0px;
     .mask {
       position: absolute;

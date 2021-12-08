@@ -100,6 +100,8 @@ export default {
       } else {
         this.$emit("closeMusicBox");
       }
+    } else {
+      this.mode.isBgMusic = true;
     }
   },
   mounted() {},
