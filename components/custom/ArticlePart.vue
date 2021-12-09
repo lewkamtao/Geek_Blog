@@ -17,7 +17,7 @@
         <div class="article-box-title">{{ articleData.title }}</div>
         <div class="article-box-subtitle">{{ articleData.description }}</div>
         <tag-list
-          style="margin-top: 10px; margin-bottom: 10px"
+          style="margin-top: 5px; margin-bottom: 10px"
           v-if="articleData.expand.tag"
           :tags="articleData.expand.tag"
         ></tag-list>
