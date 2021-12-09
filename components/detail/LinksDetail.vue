@@ -1,10 +1,6 @@
 <template>
   <div class="links-detail">
     <page-header :bgUrl="geek_config.images_config.bg_links"></page-header>
-    <main class="section" style="padding: 30px" v-show="article.content !== ''">
-      <article-editor :content="article.content" :article_id="article.id">
-      </article-editor>
-    </main>
     <div class="ui middle aligned selection list">
       <a
         class="item"
@@ -30,6 +26,10 @@
         </div>
       </a>
     </div>
+    <main class="section" style="padding: 30px" v-show="article.content !== ''">
+      <article-editor :content="article.content" :article_id="article.id">
+      </article-editor>
+    </main>
   </div>
 </template>
 
@@ -86,7 +86,7 @@ export default {
   overflow: hidden;
 
   .list {
-    padding: 30px 50px;
+    padding: 30px 50px 0 50px;
   }
 
   .item {

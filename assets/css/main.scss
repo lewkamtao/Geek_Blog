@@ -46,6 +46,19 @@ html {
     body {
         background: #fff !important;
     }
+    // 分享
+    .social-wrap a.social:hover {
+      background: #000;
+      box-shadow: none;
+    }
+    input::selection, textarea::selection {
+      background-color: #0079ff;;
+      color: #000;
+    }
+    ::selection {
+      background-color: #0079ff;
+      color: #000;
+    }
 }
 
 .v-note-wrapper {

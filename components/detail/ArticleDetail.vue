@@ -140,7 +140,7 @@
                 src="https://cdn.jsdelivr.net/gh/cdn-x/placeholder@1.0.1/social/8411ed322ced6.svg"></a>
             </div>
             <div class="qrcode" id="qrcode-wechat" style="visibility:hidden;height:0"><img
-              src="https://api.qrserver.com/v1/create-qr-code/?size=256x256&amp;data=https://hasaik.com/posts/3fe685e0.html"
+              :src="'https://api.qrserver.com/v1/create-qr-code/?size=256x256&amp;data=' + articleUrl"
               alt=""></div>
           </div>
         </section>
