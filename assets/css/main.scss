@@ -8,22 +8,6 @@ html {
     overflow: inherit;
 }
 
-@font-face {
-    font-family: HarmonyOS_Sans_SC_Medium;
-    font-style: normal;
-    font-display: swap;
-    src: url('https://cdn.jsdelivr.net/gh/irozhi/HarmonyOS-Sans/HarmonyOS_Sans_SC/HarmonyOS_Sans_SC_Medium.woff2') format('woff2'), url('https://cdn.jsdelivr.net/gh/irozhi/HarmonyOS-Sans/HarmonyOS_Sans_SC/HarmonyOS_Sans_SC_Medium.woff') format('woff');
-}
-
-div,
-a,
-p,
-li,
-ul,
-body {
-    font-family: HarmonyOS_Sans_SC_Medium;
-}
-
 .geek-isDark {
     filter: invert(1) hue-rotate(180deg) !important;
     img,
@@ -297,12 +281,6 @@ html::-webkit-scrollbar-thumb:hover {
         .top-nav-wrapper {
             background: none !important;
         }
-    }
-    html {
-        font-family: "Source Sans Pro", "Hiragino Sans GB", "Microsoft Yahei", SimSun, Helvetica, Arial, Sans-serif, monospace;
-    }
-    * {
-        font-family: "Source Sans Pro", "Hiragino Sans GB", "Microsoft Yahei", SimSun, Helvetica, Arial, Sans-serif, monospace;
     }
     .isShowModal {
         .top-nav-wrapper {
