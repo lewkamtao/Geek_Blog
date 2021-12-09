@@ -1,7 +1,10 @@
 <template>
   <div class="links-detail">
     <page-header :bgUrl="geek_config.images_config.bg_links"></page-header>
-
+    <main class="section" style="padding: 30px" v-show="article.content !== ''">
+      <article-editor :content="article.content" :article_id="article.id">
+      </article-editor>
+    </main>
     <div class="ui middle aligned selection list">
       <a
         class="item"
@@ -27,10 +30,6 @@
         </div>
       </a>
     </div>
-    <main class="section" v-show="article.content !== ''">
-      <article-editor :content="article.content" :article_id="article.id">
-      </article-editor>
-    </main>
   </div>
 </template>
 
@@ -40,7 +39,7 @@ import util from "@/util/index";
 import ArticleEditor from "../custom/ArticleEditor";
 
 export default {
-  components: {PageHeader, ArticleEditor},
+  components: { PageHeader, ArticleEditor },
   props: {
     geek_config: {
       type: Object,
@@ -52,14 +51,14 @@ export default {
       type: Object,
       default: function () {
         return {};
-      }
+      },
     },
     article: {
       type: Object,
       default: function () {
         return {};
-      }
-    }
+      },
+    },
   },
   data() {
     return {};
