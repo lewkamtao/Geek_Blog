@@ -31,7 +31,6 @@ export default {
     "@/assets/css/github-markdown.min.css",
     "@/assets/css/github.min.css",
     "@/assets/css/code-block.scss",
-    "@/assets/css/article-footer.scss",
     "@/assets/css/plugins/tag-plugins.scss",
     { src: "@/assets/css/main.scss", lang: "scss" },
   ],
