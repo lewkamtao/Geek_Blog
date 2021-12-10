@@ -40,7 +40,7 @@ export default {
     "@/plugins/route",
     "@/plugins/v-img",
     "@/plugins/element-ui",
-    "@/plugins//vueMarkdown.js",
+    "@/plugins/vueMarkdown.js",
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -78,7 +78,7 @@ export default {
   proxy: {
     "/api/": {
       // 请填写你的后台接口地址
-      target: "https://api.kamtao.com/api",
+      target: "https://blog-api.hasaik.com/api",
       pathRewrite: {
         "^/api/": "",
       },
