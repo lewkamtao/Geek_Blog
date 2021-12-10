@@ -108,8 +108,12 @@
         <i class="icon trash alternate outline"></i>
         删除文章
       </div>
+
+      <!--文章内容-->
       <article-editor :content="article.content" :article_id="article.id">
       </article-editor>
+
+      <!--文章页脚-->
       <article-footer :article="article"></article-footer>
     </main>
   </div>
