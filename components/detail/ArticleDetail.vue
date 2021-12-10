@@ -108,43 +108,13 @@
         <i class="icon trash alternate outline"></i>
         删除文章
       </div>
+
+      <!--文章内容-->
       <article-editor :content="article.content" :article_id="article.id">
       </article-editor>
-      <div class="article-footer">
-        <section id="license">
-          <div class="header"><span>许可协议</span></div>
-          <div class="body">
-            <p>
-              <span>本文采用</span>
-              <a target="_blank" rel="external nofollow noopener noreferrer"
-                 href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a>
-              <span>许可协议，转载请注明出处。</span>
-            </p>
-          </div>
-        </section>
-        <section id="share">
-          <div class="header"><span>分享文章</span></div>
-          <div class="body">
-            <div class="link"><input class="copy-area" readonly="true" id="copy-link" :value="articleUrl"/></div>
-            <div class="social-wrap dis-select">
-              <a class="social share-item wechat" @click="toggle('qrcode-wechat')"><img
-                src="https://cdn.jsdelivr.net/gh/cdn-x/placeholder@1.0.1/social/b32ef3da1162a.svg" alt=""></a>
-              <a class="social share-item weibo" target="_blank" rel="external nofollow noopener noreferrer"
-                 :href="'https://service.weibo.com/share/share.php?url='+ articleUrl +'&amp;title=' + article.title + '&amp;summary=' + article.description"><img
-                class="lazy entered loaded"
-                src="https://cdn.jsdelivr.net/gh/cdn-x/placeholder@1.0.1/social/80c07e4dbb303.svg" alt=""></a>
-              <a class="social share-item email"
-                 :href="'mailto:?subject='+ article.title +'&amp;body='+ articleUrl"><img
-                src="https://cdn.jsdelivr.net/gh/cdn-x/placeholder@1.0.1/social/a1b00e20f425d.svg" alt=""></a>
-              <a class="social share-item link" @click="copy('copy-link')"><img
-                src="https://cdn.jsdelivr.net/gh/cdn-x/placeholder@1.0.1/social/8411ed322ced6.svg"></a>
-            </div>
-            <div class="qrcode" id="qrcode-wechat" style="visibility:hidden;height:0"><img
-              :src="'https://api.qrserver.com/v1/create-qr-code/?size=256x256&amp;data=' + articleUrl"
-              alt=""></div>
-          </div>
-        </section>
-      </div>
+
+      <!--文章页脚-->
+      <article-footer :article="article"></article-footer>
     </main>
   </div>
 </template>
@@ -152,9 +122,10 @@
 <script>
 import util from "@/util/index";
 import ArticleEditor from "../custom/ArticleEditor";
+import ArticleFooter from "../custom/ArticleFooter.vue";
 
 export default {
-  components: {ArticleEditor},
+  components: {ArticleEditor, ArticleFooter},
   props: {
     article: {
       type: Object,
@@ -167,8 +138,7 @@ export default {
     return {
       article_title_list: [],
       token: "",
-      blog: "",
-      articleUrl: ""
+      blog: ""
     };
   },
   watch: {},
@@ -217,32 +187,12 @@ export default {
           }
         });
       }
-    },
-    toggle(id) {
-      const el = document.getElementById(id);
-      if (el) {
-        el.classList.toggle("display");
-      }
-    },
-    copy(id) {
-      const el = document.getElementById(id);
-      if (el) {
-        el.select();
-        document.execCommand("Copy");
-        this.$notify({
-          type: "success",
-          title: "成功",
-          message: "复制成功！"
-        });
-      }
     }
   },
   created() {
     this.token = this.$cookies.get("token");
   },
-
   mounted() {
-    this.articleUrl = window.document.location.host + '/Article?id=' + this.article.id
   },
 };
 </script>
