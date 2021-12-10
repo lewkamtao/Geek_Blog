@@ -122,7 +122,7 @@
 <script>
 import util from "@/util/index";
 import ArticleEditor from "../custom/ArticleEditor";
-import ArticleFooter from "@/components/custom/ArticleFooter.vue";
+import ArticleFooter from "../custom/ArticleFooter.vue";
 
 export default {
   components: {ArticleEditor, ArticleFooter},
