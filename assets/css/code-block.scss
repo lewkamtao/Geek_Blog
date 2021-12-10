@@ -4,8 +4,10 @@
             border: 1px solid #C3CCD0;
             overflow: hidden;
             padding-left: 60px !important;
+            max-width: 800px;
             code {
                 line-height: 30px !important;
+                max-width: 800px;
             }
             code.hljs {
                 padding: 0 !important;
@@ -48,7 +50,7 @@
                 display: block;
             }
         }
-
+        
         // 去除滚动条
         pre::-webkit-scrollbar,
         code::-webkit-scrollbar {
@@ -58,7 +60,7 @@
             overflow: -moz-scrollbars-none;
             display: none;
         }
-
+        
         pre:hover::-webkit-scrollbar {
             width: 5px;
             height: 5px;
@@ -66,7 +68,7 @@
             overflow: auto;
             display: block;
         }
-
+        
         code:hover::-webkit-scrollbar {
             width: 5px;
             height: 5px;
