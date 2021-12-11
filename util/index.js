@@ -1,5 +1,3 @@
-import { addCodeCopyBtn } from "~/util/mavon";
-
 /**
  * 人性化时间处理 传入时间 YY-MM-dd hh-mm-ss
  */
@@ -109,6 +107,5 @@ export default {
   sharpHandle,
   getByClass,
   checkHidContentFn,
-  showContentFn,
-  addCodeCopyBtn
+  showContentFn
 };

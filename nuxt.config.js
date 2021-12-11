@@ -28,9 +28,7 @@ export default {
     "@/assets/css/fancybox.css",
     "@/assets/css/fancybox-theme.css",
     "@/assets/css/reset.css",
-    "@/assets/css/github-markdown.min.css",
-    "@/assets/css/github.min.css",
-    "@/assets/css/code-block.scss",
+    "@/assets/css/code-highlight.scss",
     "@/assets/css/plugins/tag-plugins.scss",
     { src: "@/assets/css/main.scss", lang: "scss" },
   ],
@@ -41,6 +39,7 @@ export default {
     "@/plugins/v-img",
     "@/plugins/element-ui",
     "@/plugins/vueMarkdown.js",
+    "@/plugins/code-highlight.js",
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
