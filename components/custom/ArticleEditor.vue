@@ -1,32 +1,59 @@
 <template>
   <no-ssr>
     <mavon-editor
+      v-code-highlight
       id="article-editor"
       v-html="content"
       :ishljs="true"
+      :externalLink="externalLink"
       style="box-shadow: none;z-index:0"
     >
     </mavon-editor
-  ></no-ssr>
+    >
+  </no-ssr>
 </template>
 
 <script>
 import util from "@/util/index";
-import "highlight.js/styles/googlecode.css";
+import "highlight.js/styles/dark.css";
 
 export default {
   components: {},
   props: {
     article_id: {
       type: Number,
-      default: function() {
+      default: function () {
         return 0;
       }
     },
     content: {
       type: String,
-      default: function() {
+      default: function () {
         return "";
+      }
+    }
+  },
+  data() {
+    return {
+      externalLink: {
+        markdown_css: function () {
+          return 'https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.9.0/github-markdown.min.css';
+        },
+        hljs_js: function () {
+          return 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js';
+        },
+        hljs_css: function () {
+          return '';
+        },
+        hljs_lang: function () {
+          return '';
+        },
+        katex_css: function () {
+          return 'https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.8.3/katex.min.css';
+        },
+        katex_js: function () {
+          return 'https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.8.3/katex.min.js';
+        },
       }
     }
   },
@@ -38,20 +65,17 @@ export default {
           .getElementById("article-editor")
           .getElementsByTagName("img");
         for (var i = 0; i < objs.length; i++) {
-          objs[i].onclick = function() {
+          objs[i].onclick = function () {
             window.open(this.src);
           };
           objs[i].style.cursor = "pointer";
         }
-
-        // 代码块高亮及复制功能
-        util.addCodeCopyBtn()
       }, 100);
     }
   },
   mounted() {
     if (process.browser) {
-      this.$nextTick(function() {
+      this.$nextTick(function () {
         try {
           setTimeout(async () => {
             // 处理文章图片fancybox
@@ -62,8 +86,8 @@ export default {
 
             for (let i = 0; i < imgs.length; i++) {
               // 如果img标签的父级是a标签，不增加fancybox
-              let node= imgs[i].parentNode.localName;
-              if (node === "a"){
+              let node = imgs[i].parentNode.localName;
+              if (node === "a") {
                 continue;
               }
               let elem = document.createElement("a");
@@ -75,15 +99,13 @@ export default {
             }
 
             // 处理文章a标签跳转到新窗口
-            Array.from(document.getElementById("article-editor").getElementsByTagName("a")).forEach(function (aTag){
-              aTag.setAttribute("target","_blank");
-              aTag.setAttribute("rel","external nofollow noopener noreferrer");
+            Array.from(document.getElementById("article-editor").getElementsByTagName("a")).forEach(function (aTag) {
+              aTag.setAttribute("target", "_blank");
+              aTag.setAttribute("rel", "external nofollow noopener noreferrer");
             })
-
-            // 代码块高亮及复制功能
-            util.addCodeCopyBtn()
           }, 100);
-        } catch {}
+        } catch {
+        }
         util.checkHidContentFn(this.article_id, this);
       });
     }
