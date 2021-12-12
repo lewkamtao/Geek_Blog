@@ -1,4 +1,4 @@
-const Timestamp = new Date().getTime(); 
+const Timestamp = new Date().getTime();
 
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
@@ -75,7 +75,7 @@ export default {
   proxy: {
     "/api/": {
       // 请填写你的后台接口地址
-      target: "https://blog-api.hasaik.com/api",
+      target: "https://api.kamtao.com/api",
       pathRewrite: {
         "^/api/": "",
       },
