@@ -15,10 +15,14 @@ export default {
   components: {},
   head() {
     return {
-      title: this.article.title + " - " + this.geek_config.site_config.title
+      title: this.article.title + " - " + this.geek_config.site_config.title,
+      meta: [{
+        'name': 'keywords',
+        'content': this.tags
+      }]
     };
   },
-  async asyncData({ $axios, route }) {
+  async asyncData({$axios, route}) {
     const article = (
       await $axios.get("/api/article", {
         params: {
@@ -36,19 +40,20 @@ export default {
         }
       })
     ).data;
-    return { article, comments };
+    return {article, comments};
   },
   props: {
     geek_config: {
       type: Object,
-      default: function() {
+      default: function () {
         return {};
       }
     }
   },
   data() {
     return {
-      id: ""
+      id: "",
+      tags: []
     };
   },
   beforeRouteUpdate(to, from, next) {
@@ -86,6 +91,15 @@ export default {
   },
   mounted() {
     this.id = parseInt($nuxt.$route.query.id);
+    // 处理Tag
+    let tagList = this.article.expand.tag;
+    this.tags = [];
+    if (tagList === undefined || tagList.length <= 0) {
+      return;
+    }
+    tagList.forEach(tag => {
+      this.tags.push(tag.name)
+    })
   }
 };
 </script>
