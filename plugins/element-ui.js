@@ -6,12 +6,14 @@ import {
     MessageBox,
     Message,
     Backtop,
-    Button
+    Button,
+    Dialog
 } from 'element-ui'
 
 
 Vue.component(Button.name, Button)
 Vue.component(Backtop.name, Backtop)
+Vue.component(Dialog.name, Dialog)
 
 
 Vue.prototype.$notify = Notification

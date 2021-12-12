@@ -138,7 +138,8 @@ export default {
     return {
       article_title_list: [],
       token: "",
-      blog: ""
+      blog: "",
+      dialogVisible: false
     };
   },
   watch: {},

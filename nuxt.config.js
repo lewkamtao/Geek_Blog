@@ -17,9 +17,7 @@ export default {
     script: [
       { src: "//at.alicdn.com/t/font_2717088_fiq9yisuhzq.js" },
       { src: "https://cdn.bootcdn.net/ajax/libs/jquery/3.3.1/jquery.min.js" },
-      {
-        src: "https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js",
-      },
+      { src: "https://cdn.jsdelivr.net/npm/semantic-ui@2.4.1/dist/semantic.min.js"}
     ],
   },
 
@@ -38,9 +36,9 @@ export default {
     "@/plugins/axios",
     "@/plugins/route",
     "@/plugins/v-img",
-    "@/plugins/element-ui",
+    "@/plugins/element-ui.js",
     "@/plugins/vueMarkdown.js",
-    "@/plugins/code-highlight.js",
+    "@/plugins/code-highlight.js"
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
