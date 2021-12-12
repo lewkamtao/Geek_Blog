@@ -16,8 +16,7 @@ export default {
     link: [],
     script: [
       { src: "//at.alicdn.com/t/font_2717088_fiq9yisuhzq.js" },
-      { src: "https://cdn.bootcdn.net/ajax/libs/jquery/3.3.1/jquery.min.js" },
-      { src: "https://cdn.jsdelivr.net/npm/semantic-ui@2.4.1/dist/semantic.min.js"}
+      { src: "https://cdn.bootcdn.net/ajax/libs/jquery/3.3.1/jquery.min.js" }
     ],
   },
 
