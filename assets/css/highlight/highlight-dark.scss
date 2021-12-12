@@ -6,7 +6,23 @@
 
     pre .pre-head {
       background: #ffffff;
-      height: 30px
+      height: 30px;
+    }
+
+    code::-webkit-scrollbar-track-piece {
+      background: rgba(236, 233, 233, 0.5) !important;
+    }
+
+    code::-webkit-scrollbar-thumb {
+      background: #d2d2d2;
+    }
+
+    code:hover::-webkit-scrollbar-thumb:hover {
+      background: #a4a3a3 !important;
+    }
+
+    code:hover::-webkit-scrollbar-thumb {
+      background: #777 !important;
     }
   }
 }

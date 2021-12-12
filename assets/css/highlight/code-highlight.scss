@@ -5,7 +5,19 @@ code::-webkit-scrollbar {
 
 code::-webkit-scrollbar-thumb {
   border-radius: 6px;
-  background-color: #777
+  background: #f6f8fa
+}
+
+code:hover::-webkit-scrollbar-thumb {
+  background: #777
+}
+
+code::-webkit-scrollbar-thumb:hover {
+  background: #979ea1;
+}
+
+code::-webkit-scrollbar-track-piece {
+  background: #f6f8fa
 }
 
 #article-editor pre {
