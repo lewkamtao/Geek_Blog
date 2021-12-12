@@ -1,4 +1,4 @@
-const Timestamp = new Date().getTime();
+const Timestamp = new Date().getTime(); 
 
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head

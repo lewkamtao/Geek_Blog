@@ -12,7 +12,7 @@ Vue.directive('code-highlight', (el) => {
     // 显示行号
     block.innerHTML = "<ul><li>" + block.innerHTML.replace(/\n/g, "\n</li><li>") + "\n</li></ul>";
     /* 添加头 */
-    let language = null
+    let language = 'bash'
     block.classList.forEach((className) => {
       if (className.indexOf("language-") !== -1) language = className.split('-')[1]
     })
