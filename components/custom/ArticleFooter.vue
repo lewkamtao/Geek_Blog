@@ -184,8 +184,7 @@ export default {
       z-index: 1;
       filter: unset;
       transform: translateY(-1px);
-      background: linear-gradient(
-          145deg, #ddd, #fff);
+      background: linear-gradient(145deg, #ddd, #fff);
       box-shadow: 2px 4px 8px #ddd, -2px -4px 8px #fff;
     }
 

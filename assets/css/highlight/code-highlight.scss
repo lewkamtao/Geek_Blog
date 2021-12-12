@@ -5,20 +5,25 @@ code::-webkit-scrollbar {
 
 code::-webkit-scrollbar-thumb {
   border-radius: 6px;
-  background-color: #777
+  background: #f6f8fa
 }
 
-code ::selection {
-  background-color: #cce2ff;
-  color: rgba(0, 0, 0, .87);
-  text-shadow: none;
+code:hover::-webkit-scrollbar-thumb {
+  background: #777
+}
+
+code::-webkit-scrollbar-thumb:hover {
+  background: #979ea1;
+}
+
+code::-webkit-scrollbar-track-piece {
+  background: #f6f8fa
 }
 
 #article-editor pre {
   padding: 0;
   position: relative;
   border-radius: 4px;
-  background: #21252a;
   max-width: 800px;
 }
 
@@ -52,14 +57,14 @@ code ::selection {
 }
 
 #article-editor pre .pre-head {
-  color: white;
-  background: #161616;
+  color: #5a5a5a;
+  background: #ededed;
   height: 30px
 }
 
 #article-editor pre .pre-head:before {
   position: relative;
-  top: 10px;
+  top: 9px;
   left: 10px;
   z-index: 2;
   -webkit-border-radius: 50%;
@@ -101,7 +106,7 @@ code ::selection {
   opacity: 0;
   position: absolute;
   right: 10px;
-  border: 1px solid white;
+  border: 1px solid #5a5a5a;
   padding: 0 10px;
   border-radius: 4px;
   margin-top: -2px;

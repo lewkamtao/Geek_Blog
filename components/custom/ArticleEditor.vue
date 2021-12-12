@@ -15,7 +15,7 @@
 
 <script>
 import util from "@/util/index";
-import "highlight.js/styles/dark.css";
+import "highlight.js/styles/googlecode.css";
 
 export default {
   components: {},

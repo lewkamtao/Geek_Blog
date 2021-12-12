@@ -16,10 +16,7 @@ export default {
     link: [],
     script: [
       { src: "//at.alicdn.com/t/font_2717088_fiq9yisuhzq.js" },
-      { src: "https://cdn.bootcdn.net/ajax/libs/jquery/3.3.1/jquery.min.js" },
-      {
-        src: "https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js",
-      },
+      { src: "https://cdn.bootcdn.net/ajax/libs/jquery/3.3.1/jquery.min.js" }
     ],
   },
 
@@ -28,7 +25,8 @@ export default {
     "@/assets/css/fancybox.css",
     "@/assets/css/fancybox-theme.css",
     "@/assets/css/reset.css",
-    "@/assets/css/code-highlight.scss",
+    "@/assets/css/highlight/code-highlight.scss",
+    "@/assets/css/highlight/highlight-dark.scss",
     "@/assets/css/plugins/tag-plugins.scss",
     { src: "@/assets/css/main.scss", lang: "scss" },
   ],
@@ -37,9 +35,9 @@ export default {
     "@/plugins/axios",
     "@/plugins/route",
     "@/plugins/v-img",
-    "@/plugins/element-ui",
+    "@/plugins/element-ui.js",
     "@/plugins/vueMarkdown.js",
-    "@/plugins/code-highlight.js",
+    "@/plugins/code-highlight.js"
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -77,7 +75,7 @@ export default {
   proxy: {
     "/api/": {
       // 请填写你的后台接口地址
-      target: "https://blog-api.hasaik.com/api",
+      target: "https://api.kamtao.com/api",
       pathRewrite: {
         "^/api/": "",
       },
