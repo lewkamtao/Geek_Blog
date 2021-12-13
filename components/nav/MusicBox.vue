@@ -384,10 +384,11 @@ export default {
       ).data;
       data.index = index;
       this.music.song = data;
+      let songs = this.songs
       if (this.music.song.url == "") {
         this.error_tips = "歌曲地址已失效，请切换下一首。";
         setTimeout(function () {
-          that.getMusicDetail(index + 1, this.songs[index + 1].song_id);
+          that.getMusicDetail(index + 1, songs[index + 1].song_id);
         });
       } else {
         this.error_tips = "";
