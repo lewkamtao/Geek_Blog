@@ -15,10 +15,14 @@ export default {
   components: {},
   head() {
     return {
-      title: this.article.title + " - " + this.geek_config.site_config.title
+      title: this.article.title + " - " + this.geek_config.site_config.title,
+      meta: [{
+        'name': 'keywords',
+        'content': this.tags
+      }]
     };
   },
-  async asyncData({ $axios, route }) {
+  async asyncData({$axios, route}) {
     const article = (
       await $axios.get("/api/article", {
         params: {
@@ -36,12 +40,19 @@ export default {
         }
       })
     ).data;
-    return { article, comments };
+    // 处理Tag
+    let tags = [];
+    if (article.expand.tag !== undefined && article.expand.tag.length > 0) {
+      article.expand.tag.forEach(tag => {
+        tags.push(tag.name)
+      })
+    }
+    return {article, comments, tags};
   },
   props: {
     geek_config: {
       type: Object,
-      default: function() {
+      default: function () {
         return {};
       }
     }
