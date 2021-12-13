@@ -208,9 +208,4 @@ export default {
     }
   }
 }
-
-input::selection, textarea::selection {
-  background: #0079ff;
-  color: #f7f7f7;
-}
 </style>

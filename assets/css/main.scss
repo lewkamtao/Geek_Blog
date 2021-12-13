@@ -76,14 +76,14 @@ html {
     box-shadow: none !important;
   }
 
-  input::selection, textarea::selection {
-    background-color: #0079ff !important;
-    color: #000 !important;;
-  }
+  //input::selection, textarea::selection {
+  //  background-color: #0079ff !important;
+  //  color: #000 !important;;
+  //}
 
   ::selection {
-    background-color: #0079ff;
-    color: #000;
+    background-color: #0079ff !important;
+    color: #000 !important;
   }
 }
 
