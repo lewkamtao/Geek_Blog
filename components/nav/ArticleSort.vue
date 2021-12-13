@@ -1,6 +1,6 @@
 <template>
   <div class="part article-sort">
-    <div class="main-title">归档</div>
+    <div class="main-title">分类</div>
     <div class="article-title-list">
       <ul>
         <nuxt-link
