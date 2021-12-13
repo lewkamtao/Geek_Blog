@@ -25,7 +25,7 @@
             <div
               v-if="comment.users_id == masterId"
               class="ui horizontal label"
-              style="line-height:15px"
+              style="line-height:14px"
             >
               作者
             </div>
