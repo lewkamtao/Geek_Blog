@@ -56,7 +56,8 @@ html {
 
   p, li {
     code {
-      color: coral;
+      color: #ff7043;
+      background: #d3d3d3;
     }
   }
 
@@ -76,8 +77,8 @@ html {
   }
 
   input::selection, textarea::selection {
-    background-color: #0079ff;;
-    color: #000;
+    background-color: #0079ff !important;
+    color: #000 !important;;
   }
 
   ::selection {
