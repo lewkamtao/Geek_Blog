@@ -85,6 +85,21 @@ html {
     background-color: #0079ff !important;
     color: #000 !important;
   }
+
+  .tag-list span::selection {
+    background-color: #0079ff !important;
+    color: #fff !important;
+  }
+
+  .content div::selection {
+    background-color: #0079ff !important;
+    color: #fff !important;
+  }
+
+  .banner-bg h1::selection {
+    background-color: #0079ff !important;
+    color: #fff !important;
+  }
 }
 
 .v-note-wrapper {
