@@ -40,7 +40,14 @@ export default {
         }
       })
     ).data;
-    return {article, comments};
+    // 处理Tag
+    let tags = [];
+    if (article.expand.tag !== undefined && article.expand.tag.length > 0) {
+      article.expand.tag.forEach(tag => {
+        tags.push(tag.name)
+      })
+    }
+    return {article, comments, tags};
   },
   props: {
     geek_config: {
@@ -52,8 +59,7 @@ export default {
   },
   data() {
     return {
-      id: "",
-      tags: []
+      id: ""
     };
   },
   beforeRouteUpdate(to, from, next) {
@@ -91,15 +97,6 @@ export default {
   },
   mounted() {
     this.id = parseInt($nuxt.$route.query.id);
-    // 处理Tag
-    let tagList = this.article.expand.tag;
-    this.tags = [];
-    if (tagList === undefined || tagList.length <= 0) {
-      return;
-    }
-    tagList.forEach(tag => {
-      this.tags.push(tag.name)
-    })
   }
 };
 </script>
