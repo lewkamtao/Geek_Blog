@@ -4,13 +4,13 @@
     <div class="ui horizontal divider">
       <span class="end">END</span>
     </div>
-    <div @click="visible = true" class="appreciation">
-      <p>如果觉得我的文章对你有用，请随意赞赏</p>
-      <div class="appreciation-box">
+    <!--赞赏-->
+    <div class="appreciation">
+      <div @click="visible = true" class="appreciation-box">
         <i class="thumbs up outline icon"></i> 赞赏
       </div>
+      <p>如果觉得我的文章对你有用，请随意赞赏</p>
     </div>
-
     <!--许可协议及分享文章-->
     <div class="license-share">
       <section id="license">
@@ -22,7 +22,7 @@
               target="_blank"
               rel="external nofollow noopener noreferrer"
               href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
-              >署名-非商业性使用-相同方式共享 4.0 国际</a
+            >署名-非商业性使用-相同方式共享 4.0 国际</a
             >
             <span>许可协议，转载请注明出处。</span>
           </p>
@@ -41,9 +41,9 @@
           </div>
           <div class="social-wrap dis-select">
             <a class="social share-item wechat" @click="toggle('qrcode-wechat')"
-              ><img
-                src="https://cdn.jsdelivr.net/gh/cdn-x/placeholder@1.0.1/social/b32ef3da1162a.svg"
-                alt=""
+            ><img
+              src="https://cdn.jsdelivr.net/gh/cdn-x/placeholder@1.0.1/social/b32ef3da1162a.svg"
+              alt=""
             /></a>
             <a
               class="social share-item weibo"
@@ -57,23 +57,23 @@
                 '&amp;summary=' +
                 article.description
               "
-              ><img
-                class="lazy entered loaded"
-                src="https://cdn.jsdelivr.net/gh/cdn-x/placeholder@1.0.1/social/80c07e4dbb303.svg"
-                alt=""
+            ><img
+              class="lazy entered loaded"
+              src="https://cdn.jsdelivr.net/gh/cdn-x/placeholder@1.0.1/social/80c07e4dbb303.svg"
+              alt=""
             /></a>
             <a
               class="social share-item email"
               :href="
                 'mailto:?subject=' + article.title + '&amp;body=' + articleUrl
               "
-              ><img
-                src="https://cdn.jsdelivr.net/gh/cdn-x/placeholder@1.0.1/social/a1b00e20f425d.svg"
-                alt=""
+            ><img
+              src="https://cdn.jsdelivr.net/gh/cdn-x/placeholder@1.0.1/social/a1b00e20f425d.svg"
+              alt=""
             /></a>
             <a class="social share-item link" @click="copy('copy-link')"
-              ><img
-                src="https://cdn.jsdelivr.net/gh/cdn-x/placeholder@1.0.1/social/8411ed322ced6.svg"
+            ><img
+              src="https://cdn.jsdelivr.net/gh/cdn-x/placeholder@1.0.1/social/8411ed322ced6.svg"
             /></a>
           </div>
           <div
@@ -125,8 +125,9 @@
 
 <script>
 import Dialog from "./Dialog.vue";
+
 export default {
-  components: { Dialog },
+  components: {Dialog},
   props: {
     article: {
       type: Object,
@@ -166,7 +167,8 @@ export default {
       }
     },
   },
-  created() {},
+  created() {
+  },
   mounted() {
     this.articleUrl =
       window.document.location.host + "/Article?id=" + this.article.id;
@@ -187,7 +189,6 @@ export default {
   }
 
   .license-share {
-    margin-top: 3rem;
     padding: 1rem;
     background: #f7f6f6;
     border-radius: 6px;
@@ -220,7 +221,7 @@ export default {
         width: 100%;
         display: block;
         font-family: Menlo, Monaco, Consolas, system-ui, "Courier New",
-          monospace, sans-serif;
+        monospace, sans-serif;
         font-weight: 600;
         color: #818181;
       }
@@ -257,13 +258,13 @@ export default {
       overflow: hidden;
       background: 0 0;
       transition: box-shadow 0.2s ease-out, background 0.2s ease-out,
-        transform 0.2s ease-out;
+      transform 0.2s ease-out;
       -moz-transition: box-shadow 0.2s ease-out, background 0.2s ease-out,
-        transform 0.2s ease-out;
+      transform 0.2s ease-out;
       -webkit-transition: box-shadow 0.2s ease-out, background 0.2s ease-out,
-        transform 0.2s ease-out;
+      transform 0.2s ease-out;
       -o-transition: box-shadow 0.2s ease-out, background 0.2s ease-out,
-        transform 0.2s ease-out;
+      transform 0.2s ease-out;
     }
 
     .social-wrap a.social:hover {
@@ -294,38 +295,46 @@ export default {
       visibility: visible !important;
     }
   }
+
   .appreciation {
     text-align: center;
     margin: 30px 0px;
+
     .appreciation-box {
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 100px;
-      height: 40px;
+      width: 85px;
+      height: 35px;
       margin: 0 auto;
       font-size: 14px;
+      font-weight: 600;
       background: rgb(221, 86, 70);
       border-radius: 50px;
       opacity: 0.9;
       color: #fff;
       cursor: pointer;
       transition: all 0.25s;
+
       .icon {
         font-size: 18px;
       }
     }
+
     .appreciation-box:hover {
       background: rgb(209, 73, 58);
     }
+
     .appreciation-box:active {
       background: rgb(190, 58, 43);
     }
+
     p {
       margin: 20px;
       color: #999;
     }
   }
+
   .qrcode-box {
     position: absolute;
     left: 50%;
@@ -345,6 +354,7 @@ export default {
       height: 48px;
       box-sizing: border-box;
       padding: 4px;
+
       div {
         position: relative;
         z-index: 9;
@@ -356,6 +366,7 @@ export default {
         align-items: center;
         cursor: pointer;
       }
+
       .active {
         position: absolute;
         z-index: 1;
@@ -367,13 +378,16 @@ export default {
         background: #eee;
         transition: all 0.25s;
       }
+
       .ali {
         transform: translateX(100%);
       }
+
       .qq {
         transform: translateX(200%);
       }
     }
+
     .qrcode {
       position: relative;
       width: 100%;
@@ -391,6 +405,7 @@ export default {
         height: auto;
       }
     }
+
     .close {
       width: 100%;
 
@@ -400,6 +415,7 @@ export default {
       padding: 4px;
       box-sizing: border-box;
       overflow: hidden;
+
       .btn {
         height: 36px;
         line-height: 40px;

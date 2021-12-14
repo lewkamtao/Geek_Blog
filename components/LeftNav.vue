@@ -17,7 +17,7 @@
       :geek_config="geek_config"
     ></music-box>
 
-    <!-- 归档 -->
+    <!-- 分类 -->
     <article-sort
       class="article-sort"
       :article_sort="article_sort"
