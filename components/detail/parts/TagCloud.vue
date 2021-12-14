@@ -18,28 +18,13 @@ export default {
     },
   },
   data() {
-    return {
-      tagsClass: [],
-    };
+    return {};
   },
   watch: {},
   computed: {},
-  methods: {
-    getTagColor() {
-      if (this.tag && this.tag.length > 0) {
-        this.tag.forEach((tag, index) => {
-          var options = ["", "secondary", "success", "warning", "danger"];
-          var i = Math.floor(Math.random() * options.length);
-          this.tagsClass[index] = options[i];
-        });
-        this.$forceUpdate();
-      }
-    },
-  },
+  methods: {},
   created() {},
-  mounted() {
-    this.getTagColor();
-  },
+  mounted() {},
 };
 </script>
 <style lang="scss" scoped>
