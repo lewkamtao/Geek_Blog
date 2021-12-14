@@ -4,6 +4,7 @@
       <!-- 文章内页 -->
       <article-detail
         v-if="options.type == 'article'"
+        :geek_config="geek_config"
         :article="article"
         class="part"
       ></article-detail>

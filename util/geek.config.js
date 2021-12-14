@@ -16,56 +16,60 @@ export default {
       logo_url: "https://cos.tngeek.com/logo.png", // 站点logo
       blog_site_url: "https://blog.kamtao.com/", // 博客地址
       adm_site_url: "", // 运营地址
+
+      wxPay_qrcode: "", // 微信收款二维码
+      aliPay_qrcode: "", // 支付宝收款二维码
+
       footer_html: `<div style=" line-height: 24px; color:#999">
       Powered by
       <a href="https://inis.cc/" >inis</a> | 本站自豪使用了全世界最好的 Vue 框架
       <br>Copyright (c) 2021-present, Kamtao (To) Lew
-    </div>` // 脚部html
+    </div>`, // 脚部html
     },
 
     images_config: {
       bg_about: "https://img.keai.cool/2021/08/09/317925aefec4b.webp",
       bg_links: "https://img.keai.cool/2021/08/09/9b328ede4b74c.webp",
       bg_msgwall: "https://img.keai.cool/2021/08/09/352c4682bfc83.webp",
-      bg_timeline: "https://img.keai.cool/2021/08/09/456778ab7ef4e.webp"
+      bg_timeline: "https://img.keai.cool/2021/08/09/456778ab7ef4e.webp",
     },
     contact_config: [],
     menu_config: [
       {
         value: "about",
         title: "关于",
-        isShow: true
+        isShow: true,
       },
       {
         value: "photo",
         title: "图库",
-        isShow: true
+        isShow: true,
       },
       {
         value: "time_line",
         title: "时光机",
-        isShow: true
+        isShow: true,
       },
       {
         value: "music",
         title: "音乐",
-        isShow: true
+        isShow: true,
       },
       {
         value: "links",
         title: "朋友",
-        isShow: true
+        isShow: true,
       },
       {
         value: "msg_wall",
         title: "留言墙",
-        isShow: true
+        isShow: true,
       },
       {
         value: "adm",
         title: "后台",
-        isShow: true
-      }
-    ]
-  }
+        isShow: true,
+      },
+    ],
+  },
 };

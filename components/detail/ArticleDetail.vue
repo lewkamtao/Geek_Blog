@@ -1,121 +1,131 @@
 <template>
   <div class="article-wrapper">
-    <header
-      class="border border-primary"
-      :style="`background:url(https://tngeek-mall-1255310647.cos.ap-guangzhou.myqcloud.com/public/images/pexels/${article.id}.jpg!blog_header)`"
-    >
-      <div class="mask"></div>
-      <div class="content">
-        <div class="title">{{ article.title }}</div>
-        <div class="summary">
-          <div>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="18px"
-              height="18px"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="feather feather-user"
-            >
-              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-              <circle cx="12" cy="7" r="4"/>
-            </svg>
-            <polyline points="12 6 12 12 16 14"></polyline>
-            {{ article.expand ? article.expand.author.nickname : "" }}
-          </div>
-          <div>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16px"
-              height="16px"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="feather feather-eye"
-            >
-              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-              <circle cx="12" cy="12" r="3"/>
-            </svg>
-            <polyline points="12 6 12 12 16 14"></polyline>
-            {{ article.views || 1 }}
-          </div>
+    <main class="section">
+      <header
+        class="border border-primary"
+        :style="
+          'background:url(' +
+          (article.img_src
+            ? article.img_src
+            : 'https://tngeek-mall-1255310647.cos.ap-guangzhou.myqcloud.com/public/images/pexels/' +
+              article.id +
+              '.jpg!blog_header)')
+        "
+      >
+        <div class="mask"></div>
+        <div class="content">
+          <div class="title">{{ article.title }}</div>
+          <div class="summary">
+            <div>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="18px"
+                height="18px"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="feather feather-user"
+              >
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                <circle cx="12" cy="7" r="4" />
+              </svg>
+              <polyline points="12 6 12 12 16 14"></polyline>
+              {{ article.expand ? article.expand.author.nickname : "" }}
+            </div>
+            <div>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16px"
+                height="16px"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="feather feather-eye"
+              >
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                <circle cx="12" cy="12" r="3" />
+              </svg>
+              <polyline points="12 6 12 12 16 14"></polyline>
+              {{ article.views || 1 }}
+            </div>
 
-          <div>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="18px"
-              height="18px"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="feather feather-message-square"
-            >
-              <path
-                d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
-              />
-            </svg>
-            {{ article.expand.comments || "暂无评论" }}
-          </div>
-          <div>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="18px"
-              height="18px"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="feather feather-clock"
-            >
-              <circle cx="12" cy="12" r="10"/>
-              <polyline points="12 6 12 12 16 14"/>
-            </svg>
-            {{ article.create_time }} /
-            {{ getBeautifyTime(article.create_time) }}
+            <div>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="18px"
+                height="18px"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="feather feather-message-square"
+              >
+                <path
+                  d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+                />
+              </svg>
+              {{ article.expand.comments || "暂无评论" }}
+            </div>
+            <div>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="18px"
+                height="18px"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="feather feather-clock"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <polyline points="12 6 12 12 16 14" />
+              </svg>
+              {{ article.create_time }} /
+              {{ getBeautifyTime(article.create_time) }}
+            </div>
           </div>
         </div>
+      </header>
+      <div class="article-main">
+        <nuxt-link
+          v-if="token"
+          :to="'/AddArticle?id=' + article.id"
+          style="margin-bottom: 50px; margin-right: 20px"
+          class="ui blue labeled submit icon button"
+        >
+          <i class="icon edit outline"></i>
+          编辑文章
+        </nuxt-link>
+        <div
+          v-if="token"
+          @click="delConfirm"
+          style="margin-bottom: 50px"
+          class="ui red labeled submit icon button"
+        >
+          <i class="icon trash alternate outline"></i>
+          删除文章
+        </div>
+
+        <!--文章内容-->
+        <article-editor :content="article.content" :article_id="article.id">
+        </article-editor>
       </div>
-    </header>
-
-    <main class="section">
-      <nuxt-link
-        v-if="token"
-        :to="'/AddArticle?id=' + article.id"
-        style="margin-bottom: 50px; margin-right: 20px"
-        class="ui blue labeled submit icon button"
-      >
-        <i class="icon edit outline"></i>
-        编辑文章
-      </nuxt-link>
-      <div
-        v-if="token"
-        @click="delConfirm"
-        style="margin-bottom: 50px"
-        class="ui red labeled submit icon button"
-      >
-        <i class="icon trash alternate outline"></i>
-        删除文章
-      </div>
-
-      <!--文章内容-->
-      <article-editor :content="article.content" :article_id="article.id">
-      </article-editor>
-
-      <!--文章页脚-->
-      <article-footer :article="article"></article-footer>
     </main>
+    <!--文章页脚-->
+    <article-footer
+      :geek_config="geek_config"
+      :article="article"
+    ></article-footer>
   </div>
 </template>
 
@@ -125,8 +135,14 @@ import ArticleEditor from "../custom/ArticleEditor";
 import ArticleFooter from "../custom/ArticleFooter.vue";
 
 export default {
-  components: {ArticleEditor, ArticleFooter},
+  components: { ArticleEditor, ArticleFooter },
   props: {
+    geek_config: {
+      type: Object,
+      default: function () {
+        return {};
+      },
+    },
     article: {
       type: Object,
       default: function () {
@@ -139,7 +155,6 @@ export default {
       article_title_list: [],
       token: "",
       blog: "",
-      dialogVisible: false
     };
   },
   watch: {},
@@ -188,13 +203,12 @@ export default {
           }
         });
       }
-    }
+    },
   },
   created() {
     this.token = this.$cookies.get("token");
   },
-  mounted() {
-  },
+  mounted() {},
 };
 </script>
 <style lang="scss" scoped>
@@ -206,7 +220,7 @@ export default {
   header {
     position: relative;
     overflow: hidden;
-    padding: 50px;
+    padding: 30px;
     color: #000;
     text-align: center;
     background-size: cover !important;
@@ -260,13 +274,37 @@ export default {
   main {
     margin-top: 0px;
     margin-bottom: 0px;
-    padding: 30px;
+    padding: 0px;
   }
-
+  .article-main {
+    padding: 20px;
+  }
   .section:after {
     margin-top: 150px;
   }
-
+  .end {
+    background-color: rgba(163, 163, 163, 0.9);
+    color: #fff;
+    padding: 3px 20px;
+    position: relative;
+    border-radius: 14px;
+  }
+  .appreciation-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 40px;
+    margin: 0 auto;
+    font-size: 14px;
+    background: rgb(221, 86, 70);
+    border-radius: 50px;
+    color: #fff;
+    cursor: pointer;
+    .icon {
+      font-size: 18px;
+    }
+  }
 }
 
 @media screen and (max-width: 1440px) {

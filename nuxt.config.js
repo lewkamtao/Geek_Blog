@@ -16,7 +16,10 @@ export default {
     link: [],
     script: [
       { src: "//at.alicdn.com/t/font_2717088_fiq9yisuhzq.js" },
-      { src: "https://cdn.bootcdn.net/ajax/libs/jquery/3.3.1/jquery.min.js" }
+      { src: "https://cdn.bootcdn.net/ajax/libs/jquery/3.3.1/jquery.min.js" },
+      {
+        src: "https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js",
+      },
     ],
   },
 
@@ -37,7 +40,7 @@ export default {
     "@/plugins/v-img",
     "@/plugins/element-ui.js",
     "@/plugins/vueMarkdown.js",
-    "@/plugins/code-highlight.js"
+    "@/plugins/code-highlight.js",
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -52,13 +55,9 @@ export default {
   modules: [
     "semantic-ui-vue/nuxt", // includes styles from semantic-ui-css
     ["semantic-ui-vue/nuxt", { css: false }], // if you have your own semantic-ui styles
-    // https://go.nuxtjs.dev/axios
     "@nuxtjs/axios",
     "cookie-universal-nuxt",
   ],
-
-  // Axios module configuration: https://go.nuxtjs.dev/config-axios
-
   /*
    ** Axios module configuration
    */
