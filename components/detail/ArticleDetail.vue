@@ -97,23 +97,25 @@
         </div>
       </header>
       <div class="article-main">
-        <nuxt-link
-          v-if="token"
-          :to="'/AddArticle?id=' + article.id"
-          style="margin-bottom: 50px; margin-right: 20px"
-          class="ui blue labeled submit icon button"
-        >
-          <i class="icon edit outline"></i>
-          编辑文章
-        </nuxt-link>
-        <div
-          v-if="token"
-          @click="delConfirm"
-          style="margin-bottom: 50px"
-          class="ui red labeled submit icon button"
-        >
-          <i class="icon trash alternate outline"></i>
-          删除文章
+        <div class="edit-box">
+          <nuxt-link
+            v-if="token"
+            :to="'/AddArticle?id=' + article.id"
+            style="margin-bottom: 50px; margin-right: 20px"
+            class="ui blue labeled submit icon button"
+          >
+            <i class="icon edit outline"></i>
+            编辑文章
+          </nuxt-link>
+          <div
+            v-if="token"
+            @click="delConfirm"
+            style="margin-bottom: 50px"
+            class="ui red labeled submit icon button"
+          >
+            <i class="icon trash alternate outline"></i>
+            删除文章
+          </div>
         </div>
 
         <!--文章内容-->
@@ -122,10 +124,7 @@
       </div>
     </main>
     <!--文章页脚-->
-    <article-footer
-      :geek_config="geek_config"
-      :article="article"
-    ></article-footer>
+    <article-footer :article="article"></article-footer>
   </div>
 </template>
 
@@ -137,12 +136,6 @@ import ArticleFooter from "../custom/ArticleFooter.vue";
 export default {
   components: { ArticleEditor, ArticleFooter },
   props: {
-    geek_config: {
-      type: Object,
-      default: function () {
-        return {};
-      },
-    },
     article: {
       type: Object,
       default: function () {
@@ -326,7 +319,9 @@ export default {
 @media screen and (max-width: 1025px) {
   .article-wrapper {
     padding: 0px;
-
+    .edit-box {
+      display: none;
+    }
     header {
       padding: 20px;
 

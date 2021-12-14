@@ -56,23 +56,7 @@
         />
       </div>
 
-      <div class="field">
-        <label>微信收款码</label>
-        <input
-          v-model="form.site_config.wxPay_qrcode"
-          type="text"
-          placeholder="微信收款码图片地址"
-        />
-      </div>
 
-      <div class="field">
-        <label>支付宝收款码</label>
-        <input
-          v-model="form.site_config.aliPay_qrcode"
-          type="text"
-          placeholder="支付宝收款码图片地址"
-        />
-      </div>
 
       <div class="field">
         <label>站点脚部</label>
@@ -124,8 +108,6 @@ export default {
           description: "", // 描述
           permit_no: ``, // 备案号
           favicon_url: "", // 站点ico
-          wxPay_qrcode: "", // 微信收款码
-          aliPay_qrcode: "", // 支付宝收款码
           logo_url: "", // 站点logo
           blog_site_url: "", // 博客地址
           adm_site_url: "", // 运营地址

@@ -95,20 +95,24 @@
     <Dialog :visible="visible">
       <div class="qrcode-box">
         <div class="select">
-          <div @click="isSelect = 'wx'">微信</div>
+          <div @click="isSelect = 'wechat'">微信</div>
           <div @click="isSelect = 'ali'">支付宝</div>
-          <div class="active" :class="{ isAli: isSelect == 'ali' }"></div>
+          <div @click="isSelect = 'qq'">QQ</div>
+          <div class="active" :class="isSelect"></div>
         </div>
         <div class="qrcode">
           <img
-            v-show="isSelect == 'wx' && geek_config.site_config.wxPay_qrcode"
-            :src="geek_config.site_config.wxPay_qrcode"
+            v-show="isSelect == 'wechat'"
+            :src="article.expand.author.pay.wechat_pay || null_qrcode"
           />
           <img
-            v-show="isSelect == 'ali' && geek_config.site_config.aliPay_qrcode"
-            :src="geek_config.site_config.aliPay_qrcode"
+            v-show="isSelect == 'ali'"
+            :src="article.expand.author.pay.alipay || null_qrcode"
           />
-          <div class="tips">作者未配置</div>
+          <img
+            v-show="isSelect == 'qq'"
+            :src="article.expand.author.pay.qq_pay || null_qrcode"
+          />
         </div>
 
         <div @click="visible = false" class="close">
@@ -124,12 +128,6 @@ import Dialog from "./Dialog.vue";
 export default {
   components: { Dialog },
   props: {
-    geek_config: {
-      type: Object,
-      default: function () {
-        return {};
-      },
-    },
     article: {
       type: Object,
       default: function () {
@@ -141,7 +139,9 @@ export default {
     return {
       articleUrl: "",
       visible: false,
-      isSelect: "wx",
+      isSelect: "wechat",
+      null_qrcode:
+        "https://tngeek-mall-1255310647.cos.ap-guangzhou.myqcloud.com/public/qrcode/e5d06979176df4a377b1b6536db6856.jpg",
     };
   },
   watch: {},
@@ -348,7 +348,7 @@ export default {
       div {
         position: relative;
         z-index: 9;
-        width: 50%;
+        width: calc(100% / 3);
         height: 100%;
         color: #000;
         display: flex;
@@ -359,7 +359,7 @@ export default {
       .active {
         position: absolute;
         z-index: 1;
-        width: calc(50% - 4px);
+        width: calc(100% / 3 - 3px);
         height: calc(100% - 8px);
         left: 4px;
         top: 4px;
@@ -367,8 +367,11 @@ export default {
         background: #eee;
         transition: all 0.25s;
       }
-      .isAli {
+      .ali {
         transform: translateX(100%);
+      }
+      .qq {
+        transform: translateX(200%);
       }
     }
     .qrcode {
@@ -380,14 +383,7 @@ export default {
       justify-content: center;
       align-items: center;
       overflow: hidden;
-      .tips {
-        position: absolute;
-        z-index: 1;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        color: #999;
-      }
+
       img {
         position: absolute;
         z-index: 9;

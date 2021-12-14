@@ -17,8 +17,6 @@ export default {
       blog_site_url: "https://blog.kamtao.com/", // 博客地址
       adm_site_url: "", // 运营地址
 
-      wxPay_qrcode: "", // 微信收款二维码
-      aliPay_qrcode: "", // 支付宝收款二维码
 
       footer_html: `<div style=" line-height: 24px; color:#999">
       Powered by
