@@ -1,5 +1,12 @@
 <template>
   <div class="index-wrapper-master">
+    <div class="index-banner part">
+      <div class="banner-bg">
+        <h1 class="slogan">
+          Coding changes the world !
+        </h1>
+      </div>
+    </div>
     <div class="masonry">
       <div
         v-for="(articleData, index) in articleList.data"
