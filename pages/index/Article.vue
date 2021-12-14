@@ -2,10 +2,11 @@
   <Detail
     @reloadComments="getComments"
     :article="article"
+    :geek_config="geek_config"
     :options="{
       type: 'article',
       catalogue: true,
-      comments: comments
+      comments: comments,
     }"
   />
 </template>
@@ -16,19 +17,21 @@ export default {
   head() {
     return {
       title: this.article.title + " - " + this.geek_config.site_config.title,
-      meta: [{
-        'name': 'keywords',
-        'content': this.tags
-      }]
+      meta: [
+        {
+          name: "keywords",
+          content: this.tags,
+        },
+      ],
     };
   },
-  async asyncData({$axios, route}) {
+  async asyncData({ $axios, route }) {
     const article = (
       await $axios.get("/api/article", {
         params: {
           id: parseInt(route.query.id),
-          model: "md"
-        }
+          model: "md",
+        },
       })
     ).data;
     const comments = (
@@ -36,30 +39,30 @@ export default {
         params: {
           article_id: parseInt(route.query.id),
           tree: false,
-          limit: 10000
-        }
+          limit: 10000,
+        },
       })
     ).data;
     // 处理Tag
     let tags = [];
     if (article.expand.tag !== undefined && article.expand.tag.length > 0) {
-      article.expand.tag.forEach(tag => {
-        tags.push(tag.name)
-      })
+      article.expand.tag.forEach((tag) => {
+        tags.push(tag.name);
+      });
     }
-    return {article, comments, tags};
+    return { article, comments, tags };
   },
   props: {
     geek_config: {
       type: Object,
       default: function () {
         return {};
-      }
-    }
+      },
+    },
   },
   data() {
     return {
-      id: ""
+      id: "",
     };
   },
   beforeRouteUpdate(to, from, next) {
@@ -76,8 +79,8 @@ export default {
           params: {
             article_id: this.id,
             tree: false,
-            limit: 10000
-          }
+            limit: 10000,
+          },
         })
       ).data;
       this.comments = comments;
@@ -88,15 +91,15 @@ export default {
         await this.$axios.get("/api/article", {
           params: {
             id: this.id,
-            model: "md"
-          }
+            model: "md",
+          },
         })
       ).data;
       this.article = article;
-    }
+    },
   },
   mounted() {
     this.id = parseInt($nuxt.$route.query.id);
-  }
+  },
 };
 </script>
