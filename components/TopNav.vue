@@ -182,6 +182,9 @@ export default {
     a {
       background-image: none;
     }
+    a:hover {
+      color: unset;
+    }
 
     .left {
       display: flex;
