@@ -170,8 +170,7 @@ export default {
   created() {
   },
   mounted() {
-    this.articleUrl =
-      window.document.location.host + "/Article?id=" + this.article.id;
+    this.articleUrl = window.location.href;
   },
 };
 </script>
