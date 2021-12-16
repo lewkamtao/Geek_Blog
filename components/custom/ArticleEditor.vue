@@ -37,10 +37,10 @@ export default {
     return {
       externalLink: {
         markdown_css: function () {
-          return 'https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.9.0/github-markdown.min.css';
+          return 'https://cdn.jsdelivr.net/npm/mavon-editor@2.9.0/dist/markdown/github-markdown.min.css';
         },
         hljs_js: function () {
-          return 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js';
+          return 'https://cdn.jsdelivr.net/npm/highlight.js@11.3.1/types/index.d.ts';
         },
         hljs_css: function () {
           return '';
@@ -49,10 +49,10 @@ export default {
           return '';
         },
         katex_css: function () {
-          return 'https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.8.3/katex.min.css';
+          return 'https://cdn.jsdelivr.net/npm/mavon-editor@2.9.0/dist/katex/katex.min.css';
         },
         katex_js: function () {
-          return 'https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.8.3/katex.min.js';
+          return 'https://cdn.jsdelivr.net/npm/mavon-editor@2.9.0/dist/katex/katex.min.js';
         },
       }
     }
