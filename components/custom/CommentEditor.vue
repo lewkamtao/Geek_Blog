@@ -1,16 +1,18 @@
 <template>
-  <mavon-editor
-    v-model="content"
-    :ishljs="true"
-    :subfield="false"
-    :defaultOpen="prop.defaultOpen"
-    :toolbarsFlag="prop.toolbarsFlag"
-    :editable="prop.editable"
-    :scrollStyle="prop.scrollStyle"
-    :boxShadow="prop.boxShadow"
-    :previewBackground="prop.previewBackground"
-    :boxShadowStyle="prop.boxShadowStyle"
-  />
+  <no-ssr>
+    <mavon-editor
+      v-model="content"
+      :ishljs="true"
+      :subfield="false"
+      :defaultOpen="prop.defaultOpen"
+      :toolbarsFlag="prop.toolbarsFlag"
+      :editable="prop.editable"
+      :scrollStyle="prop.scrollStyle"
+      :boxShadow="prop.boxShadow"
+      :previewBackground="prop.previewBackground"
+      :boxShadowStyle="prop.boxShadowStyle"
+    />
+  </no-ssr>
 </template>
 
 <script>
