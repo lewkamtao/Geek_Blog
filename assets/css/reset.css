@@ -119,6 +119,19 @@ p {
   word-wrap: break-word;
 }
 
+/*评论样式 start*/
+.comment .v-note-wrapper {
+  min-width: unset !important;
+}
+
+.comment .v-note-wrapper .v-note-panel .v-note-show .v-show-content {
+  padding: 8px 25px 0 0 !important;
+}
+
+.comment .markdown-body p {
+  margin-bottom: 0 !important;
+}
+
 ::selection {
   background: #0079ff;
   color: #f7f7f7;
@@ -128,3 +141,4 @@ input::selection, textarea::selection {
   background: #0079ff;
   color: #f7f7f7;
 }
+
