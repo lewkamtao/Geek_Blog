@@ -97,7 +97,7 @@
                 </div>
               </div>
               <div class="text">
-                <comment-editor :content="comment.content"/>
+                <comment-editor :content="son.content"/>
               </div>
               <div class="actions">
                 <div class="btn-box">

@@ -129,7 +129,16 @@ p {
 }
 
 .comment .markdown-body p {
+  margin-bottom: 0;
+  font-size: 90%;
+}
+
+.comment .markdown-body pre {
   margin-bottom: 0 !important;
+}
+
+.comment .markdown-body img {
+  max-width: 60%;
 }
 
 ::selection {
