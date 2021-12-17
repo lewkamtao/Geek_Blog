@@ -98,12 +98,14 @@ export default {
       this.$nextTick(function () {
         try {
           setTimeout(async () => {
+            if (document.getElementById("comments") == null){
+              return;
+            }
             // 处理评论图片fancybox
             let imgdom = "";
             let imgs = document
               .getElementById("comments")
               .querySelectorAll(".v-note-panel img");
-
             for (let i = 0; i < imgs.length; i++) {
               // 如果img标签的父级是a标签，不增加fancybox
               let node = imgs[i].parentNode.localName;
