@@ -36,7 +36,7 @@
             </div>
           </div>
           <div class="text">
-            <p v-html="comment.content"></p>
+            <comment-editor :content="comment.content"/>
           </div>
           <div class="actions">
             <div class="btn-box">
@@ -96,7 +96,9 @@
                   >
                 </div>
               </div>
-              <div v-html="son.content" class="text"></div>
+              <div class="text">
+                <comment-editor :content="son.content"/>
+              </div>
               <div class="actions">
                 <div class="btn-box">
                   <div
@@ -134,9 +136,10 @@
 import util from "@/util/index";
 import CommentCard from "./CommentCard.vue";
 import CommentForm from "./CommentForm.vue";
+import CommentEditor from "@/components/custom/CommentEditor";
 
 export default {
-  components: { CommentCard, CommentForm },
+  components: { CommentCard, CommentForm, CommentEditor },
   props: {
     type: {
       type: String,
