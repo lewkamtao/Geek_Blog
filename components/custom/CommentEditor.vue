@@ -11,6 +11,7 @@
       :boxShadow="prop.boxShadow"
       :previewBackground="prop.previewBackground"
       :boxShadowStyle="prop.boxShadowStyle"
+      :imageClick="prop.imageClick"
     />
   </no-ssr>
 </template>
@@ -42,6 +43,7 @@ export default {
         boxShadow: true,
         previewBackground: 'unset',
         boxShadowStyle: 'unset',
+        imageClick: function (){}
       }
     }
   },

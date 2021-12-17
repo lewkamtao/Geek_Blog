@@ -139,7 +139,7 @@ import CommentForm from "./CommentForm.vue";
 import CommentEditor from "@/components/custom/CommentEditor";
 
 export default {
-  components: { CommentCard, CommentForm, CommentEditor },
+  components: {CommentCard, CommentForm, CommentEditor},
   props: {
     type: {
       type: String,
@@ -191,13 +191,12 @@ export default {
   watch: {},
   computed: {
     getBeautifyTime() {
-      return function(time) {
+      return function (time) {
         return util.getBeautifyTime(time);
       };
     },
-
     getUA() {
-      return function(agent) {
+      return function (agent) {
         return (
           "来自 " +
           (agent.os.system +
@@ -282,8 +281,10 @@ export default {
       }
     }
   },
-  created() {},
-  mounted() {}
+  created() {
+  },
+  mounted() {
+  }
 };
 </script>
 <style lang="scss" scoped>
@@ -291,9 +292,11 @@ export default {
   position: relative;
   z-index: 9;
   padding: 10px 0px;
+
   .comments {
     margin-top: 0px;
   }
+
   .btn-box {
     padding: 2px 4px;
     cursor: pointer;
@@ -305,21 +308,26 @@ export default {
     align-items: center;
   }
 }
+
 .content {
   .header {
     display: flex;
     align-items: center;
+
     .author {
       margin-right: 8px;
     }
   }
 }
+
 .lately {
   .btn-box {
     display: none;
   }
+
   cursor: pointer;
 }
+
 .ui.horizontal.label {
   height: 18px;
   overflow: hidden;
@@ -328,6 +336,7 @@ export default {
   color: #000;
   padding: 2px 3px;
 }
+
 .ui.comments .comment .comments {
   margin-bottom: 0px !important;
   padding-bottom: 0px !important;

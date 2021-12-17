@@ -4,8 +4,8 @@
       <div class="title">
         {{ type == "msg_wall" ? "留言" : "评论" }}
         <span style="margin-left: 10px" class="ui mini blue label">{{
-          comments.count
-        }}</span>
+            comments.count
+          }}</span>
       </div>
     </div>
     <div style="margin-bottom: 20px" v-if="comments.data.length == 0">
@@ -18,7 +18,7 @@
       style="margin-bottom: 20px"
       @reloadComments="reloadComments"
     ></comment-form>
-    <div v-if="comments.data.length != 0" class="comments">
+    <div v-if="comments.data.length != 0" class="comments" id="comments">
       <comment-card
         v-for="(item, index) in comments.data"
         :key="index"
@@ -41,17 +41,17 @@ import CommentCard from "./CommentCard.vue";
 import CommentForm from "./CommentForm.vue";
 
 export default {
-  components: { CommentCard, CommentForm },
+  components: {CommentCard, CommentForm},
   props: {
     type: {
       type: String,
-      default: function() {
+      default: function () {
         return {};
       }
     },
     comments: {
       type: Object,
-      default: function() {
+      default: function () {
         return {};
       }
     },
@@ -79,9 +79,9 @@ export default {
     },
 
     async getMasterId() {
-      this.masterId = (
+      this.masterId = Number((
         await this.$axios.get("/api/options?key=webmaster")
-      ).data.opt.users_id;
+      ).data.opt.users_id);
     }
   },
   created() {
@@ -93,6 +93,41 @@ export default {
   },
   mounted() {
     this.getMasterId();
+    // 处理评论
+    if (process.browser) {
+      this.$nextTick(function () {
+        try {
+          setTimeout(async () => {
+            // 处理评论图片fancybox
+            let imgdom = "";
+            let imgs = document
+              .getElementById("comments")
+              .querySelectorAll(".v-note-panel img");
+
+            for (let i = 0; i < imgs.length; i++) {
+              // 如果img标签的父级是a标签，不增加fancybox
+              let node = imgs[i].parentNode.localName;
+              if (node === "a") {
+                continue;
+              }
+              let elem = document.createElement("a");
+              elem.setAttribute("data-fancybox", "gallery");
+              imgdom = imgs[i].cloneNode(true);
+              elem["href"] = imgdom.src;
+              elem.appendChild(imgdom);
+              imgs[i].parentNode.replaceChild(elem, imgs[i]);
+            }
+
+            // 处理a标签跳转到新窗口
+            Array.from(document.getElementById("comments").getElementsByTagName("a")).forEach(function (aTag) {
+              aTag.setAttribute("target", "_blank");
+              aTag.setAttribute("rel", "external nofollow noopener noreferrer");
+            })
+          }, 1000);
+        } catch {
+        }
+      });
+    }
   }
 };
 </script>
@@ -101,11 +136,13 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
+
   .title {
     display: flex;
     align-items: center;
   }
 }
+
 .comment-card:last-child {
   margin-bottom: 0px !important;
 }
