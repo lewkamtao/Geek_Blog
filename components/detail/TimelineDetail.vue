@@ -26,7 +26,9 @@
           <div class="nickname">
             {{ item.nickname || "" }}
           </div>
-          <div v-html="item.content" class="content"></div>
+          <div class="content">
+            <comment-editor :content="item.content"/>
+          </div>
           <div class="create_time">
             {{ getBeautifyTime(item.create_time) }}
             <span
@@ -45,9 +47,10 @@
 
 <script>
 import util from "@/util/index";
+import CommentEditor from "@/components/custom/CommentEditor";
 
 export default {
-  components: {},
+  components: {CommentEditor},
   props: {
     geek_config: {
       type: Object,
