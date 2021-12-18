@@ -16,9 +16,10 @@ export default {
       document.querySelector(".catalogue .catalogue-list").style.setProperty("max-height", "500px")
       document.querySelector(".catalogue .catalogue-list").style.setProperty("overflow", "auto")
       let contentElement = document.getElementById("article-editor")
-      let slimscroll = document.querySelector(".catalogue .catalogue-list")
+      let catalogueContent = document.querySelector(".catalogue .catalogue-list")
       let children = contentElement.children
-      slimscroll.innerHTML = ''
+      // 初始化内容
+      catalogueContent.innerHTML = ''
       document.querySelector(".catalogue").style.setProperty("display", "none")
       // 转换数组，防止报错
       children = Array.from(children)
@@ -32,7 +33,8 @@ export default {
           item.setAttribute("id", mark)
           // 设置目录层级样式
           let markCss = "mark-" + tag_name
-          document.querySelector(".catalogue .catalogue-list").innerHTML += '<div class="catalogue-item ' + markCss + '" name="' + mark + '"># ' + text + '</div>'
+          document.querySelector(".catalogue .catalogue-list").innerHTML +=
+            '<div class="catalogue-item ' + markCss + '" name="' + mark + '" style="text-indent:' + (Number(tag_name.substr(1, 1)) - 1) + 'em"># ' + text + '</div>'
           document.querySelector(".catalogue").style.removeProperty("display")
         }
       })
@@ -81,7 +83,6 @@ export default {
     color: #727cf5;
   }
 }
-
 
 @media screen and (max-width: 1025px) {
   .catalogue {
