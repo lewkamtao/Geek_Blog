@@ -264,28 +264,46 @@ html::-webkit-scrollbar-thumb:hover {
   transform: scaleX(1.3) rotate(-3deg);
 }
 
-.article-list > ul {
-  padding-left: 0px !important;
-}
-
-.article-list li {
-  text-indent: 0em;
-  line-height: 24px;
-}
-
-.article-list li:before {
-  content: "" !important;
-}
-
-.article-list {
-  li > span {
-    margin-bottom: 5px;
-    font-size: 14px;
+.catalogue {
+  .catalogue-item {
+    padding: 0.5rem;
+    cursor: pointer;
+    border-radius: 4px;
+    line-height: 1.2;
   }
 
-  li > span:hover {
-    border-radius: 8px;
-    background: rgba($color: #000, $alpha: 0.05);
+  .catalogue-item.active {
+    color: #03c7fa;
+    background: #ededed;
+  }
+
+  .catalogue-item:hover {
+    color: #03c7fa;
+    background: #ededed;
+  }
+
+  .catalogue-list::-webkit-scrollbar {
+    display: none;
+  }
+
+  .catalogue-item.mark-H2 {
+    padding: 0.5rem 0.5rem 0.5rem 1.3rem;
+  }
+
+  .catalogue-item.mark-H3 {
+    padding: 0.5rem 0.5rem 0.5rem 2.6rem;
+  }
+
+  .catalogue-item.mark-H4 {
+    padding: 0.5rem 0.5rem 0.5rem 3.9rem;
+  }
+
+  .catalogue-item.mark-H5 {
+    padding: 0.5rem 0.5rem 0.5rem 5.2rem;
+  }
+
+  .catalogue-item.mark-H6 {
+    padding: 0.5rem 0.5rem 0.5rem 6.5rem;
   }
 }
 
