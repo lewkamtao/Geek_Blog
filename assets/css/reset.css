@@ -140,6 +140,11 @@ p {
   max-width: 50% !important;
 }
 
+.markdown-body a:hover {
+  text-decoration: underline !important;
+  color: #ff5722 !important;
+}
+
 ::selection {
   background: #0079ff;
   color: #f7f7f7;

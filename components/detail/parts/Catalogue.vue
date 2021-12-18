@@ -84,7 +84,6 @@ export default {
   }
 }
 
-
 @media screen and (max-width: 1025px) {
   .catalogue {
     display: none;
