@@ -18,14 +18,12 @@ export default {
     return {
       title: this.article.title + " - " + this.geek_config.site_config.title,
       meta: [
-        {
-          name: "keywords",
-          content: this.tags,
-        },
+        {name: "keywords", content: this.tags},
+        {name: "description", content: this.article.description}
       ],
     };
   },
-  async asyncData({ $axios, route }) {
+  async asyncData({$axios, route}) {
     const article = (
       await $axios.get("/api/article", {
         params: {
@@ -50,7 +48,7 @@ export default {
         tags.push(tag.name);
       });
     }
-    return { article, comments, tags };
+    return {article, comments, tags};
   },
   props: {
     geek_config: {
