@@ -1,4 +1,5 @@
 const Timestamp = new Date().getTime();
+const axios = require('axios')
 
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
@@ -6,7 +7,7 @@ export default {
     title: "Geek",
 
     meta: [
-      { charset: "utf-8" },
+      {charset: "utf-8"},
       {
         name: "viewport",
         content:
@@ -15,8 +16,8 @@ export default {
     ],
     link: [],
     script: [
-      { src: "//at.alicdn.com/t/font_2717088_fiq9yisuhzq.js" },
-      { src: "https://cdn.bootcdn.net/ajax/libs/jquery/3.3.1/jquery.min.js" },
+      {src: "//at.alicdn.com/t/font_2717088_fiq9yisuhzq.js"},
+      {src: "https://cdn.bootcdn.net/ajax/libs/jquery/3.3.1/jquery.min.js"},
       {
         src: "https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js",
       },
@@ -31,7 +32,7 @@ export default {
     "@/assets/css/highlight/code-highlight.scss",
     "@/assets/css/highlight/highlight-dark.scss",
     "@/assets/css/plugins/tag-plugins.scss",
-    { src: "@/assets/css/main.scss", lang: "scss" },
+    {src: "@/assets/css/main.scss", lang: "scss"},
   ],
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
@@ -54,9 +55,10 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     "semantic-ui-vue/nuxt", // includes styles from semantic-ui-css
-    ["semantic-ui-vue/nuxt", { css: false }], // if you have your own semantic-ui styles
+    ["semantic-ui-vue/nuxt", {css: false}], // if you have your own semantic-ui styles
     "@nuxtjs/axios",
     "cookie-universal-nuxt",
+    "@nuxtjs/sitemap"
   ],
   /*
    ** Axios module configuration
@@ -68,7 +70,7 @@ export default {
   },
   router: {
     scrollBehavior(to, from, savedPosition) {
-      return { x: 0, y: 0 };
+      return {x: 0, y: 0};
     },
   },
   proxy: {
@@ -95,8 +97,37 @@ export default {
       config.output.chunkFilename = `js/[name].${Timestamp}.js`;
       // ...
     },
-    extractCSS: { allChunks: true },
+    extractCSS: {allChunks: true},
     vendor: ["element-ui"],
   },
   loading: "~/components/custom/Loading.vue",
+  // seo站点地图
+  sitemap: {
+    path: '/sitemap.xml', // sitemap path
+    hostname: 'https://blog.kamtao.com/', // sitemap网址的前缀（你的前端域名）
+    cacheTime: 60 * 60 * 6, //  更新频率，只在 generate: false有用
+    gzip: true, // 生成 .xml.gz 压缩的 sitemap
+    generate: false, // 允许使用 nuxt generate 生成
+    // 排除不要页面
+    exclude: [
+      '/404', '/About', '/Music', '/AddArticle', '/GetStart', '/ArticleBySort', '/MsgWall', '/Login', '/Links', '/Photo', '/Setting', '/Timeline'
+    ],
+    routes: async () => {
+      // 你的前端域名
+      return await axios.get('https://blog.kamtao.com/api/article?limit=10000').then(res => {
+        let articleList = Array.from(res.data.data.data)
+        let siteArray = [];
+        let siteObject = {};
+        articleList.forEach(article => {
+          siteObject = {
+            url: `/Article?id=${article.id}`,
+            changefred: 'daily',
+            lastmod: article.update_time
+          }
+          siteArray.push(siteObject);
+        });
+        return siteArray;
+      });
+    }
+  }
 };
