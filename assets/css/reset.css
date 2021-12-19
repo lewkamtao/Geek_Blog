@@ -125,7 +125,7 @@ p {
 }
 
 .content .v-note-wrapper .v-note-panel .v-note-show .v-show-content {
-  padding: 8px 25px 0 0 !important;
+  padding: 0 25px 0 0 !important;
 }
 
 .content .markdown-body p {
