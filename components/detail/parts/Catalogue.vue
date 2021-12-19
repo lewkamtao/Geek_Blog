@@ -12,7 +12,6 @@ export default {
   methods: {
     // 文章目录
     catalogue() {
-      document.querySelector(".catalogue .catalogue-list").style.setProperty("min-height", "200px")
       document.querySelector(".catalogue .catalogue-list").style.setProperty("max-height", "500px")
       document.querySelector(".catalogue .catalogue-list").style.setProperty("overflow", "auto")
       let contentElement = document.getElementById("article-editor")
