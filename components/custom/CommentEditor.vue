@@ -54,15 +54,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-.comment .v-note-wrapper {
-  min-width: unset !important;
-}
-
-.comment .v-note-wrapper .v-note-panel .v-note-show .v-show-content {
-  padding: 8px 25px 15px 0 !important;
-}
-</style>
+<style lang="scss" scoped></style>
 
 
 
