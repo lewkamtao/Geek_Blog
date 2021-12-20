@@ -17,7 +17,6 @@ export default {
     link: [],
     script: [
       {src: "//at.alicdn.com/t/font_2717088_fiq9yisuhzq.js"},
-      {src: "https://cdn.bootcdn.net/ajax/libs/jquery/3.3.1/jquery.min.js"},
       {
         src: "https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js",
       },
