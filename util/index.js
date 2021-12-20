@@ -70,17 +70,17 @@ function checkHidContentFn(id, _this) {
   var hideContent = _this.$cookies.get("hideContent");
 
   if (hideContent && hideContent.indexOf(id) >= 0) {
-    hided.forEach(dom => {
+    hided.forEach((dom) => {
       dom.style.display = "none";
     });
-    hidec.forEach(dom => {
+    hidec.forEach((dom) => {
       dom.style.display = "block";
     });
   } else {
-    hided.forEach(dom => {
+    hided.forEach((dom) => {
       dom.style.display = "block";
     });
-    hidec.forEach(dom => {
+    hidec.forEach((dom) => {
       dom.style.display = "none";
     });
   }
@@ -102,28 +102,13 @@ function showContentFn(id, _this) {
 }
 
 /**
- * @name 定位滚动条
- * @param {number} number [Y坐标]
- * @param {number} time [时间]
+ * @description 页面垂直平滑滚动到指定滚动高度
+ * @param {Number} position [位移距离]
  */
-function toScroll(number = 0, time) {
-  if (!time) {
-    document.body.scrollTop = document.documentElement.scrollTop = number;
-    return number;
-  }
-  const spacingTime = 20; // 设置循环的间隔时间  值越小消耗性能越高
-  let spacingIndex = time / spacingTime; // 计算循环的次数
-  let nowTop = document.body.scrollTop + document.documentElement.scrollTop; // 获取当前滚动条位置
-  let everTop = (number - nowTop) / spacingIndex; // 计算每次滑动的距离
-  let scrollTimer = setInterval(() => {
-    if (spacingIndex > 0) {
-      spacingIndex--;
-      this.toScroll(nowTop += everTop);
-    } else {
-      clearInterval(scrollTimer); // 清除计时器
-    }
-  }, spacingTime);
-}
+
+var scrollSmoothTo = function (position) {
+  window.scrollTo(0, position);
+};
 
 /**
  * @name 设置CSS
@@ -133,26 +118,31 @@ function toScroll(number = 0, time) {
  * @return {boolean}
  */
 function setCss(classOrId, css, cover = false) {
-  let result = false
-  if (classOrId === '') console.log('请选择需要设置的DOM元素')
-  else if (css === '') console.log('请设置CSS')
+  let result = false;
+  if (classOrId === "") console.log("请选择需要设置的DOM元素");
+  else if (css === "") console.log("请设置CSS");
   else {
-    let DOM = document.querySelector(classOrId)
+    let DOM = document.querySelector(classOrId);
     // 覆盖
-    if (cover) DOM.style.cssText = css
+    if (cover) DOM.style.cssText = css;
     else {
-      let css_arr = trimArray(css.split(';'))
+      let css_arr = trimArray(css.split(";"));
       for (let item of css_arr) {
-        let arr = item.split(":")
-        if (item.indexOf('!important') !== -1) {
-          let suffix = arr[1].split("!")
-          DOM.style.setProperty(trimString(arr[0], 2), trimString(suffix[0], 2), trimString(suffix[1], 2))
-        } else DOM.style.setProperty(trimString(arr[0], 2), trimString(arr[1], 2))
+        let arr = item.split(":");
+        if (item.indexOf("!important") !== -1) {
+          let suffix = arr[1].split("!");
+          DOM.style.setProperty(
+            trimString(arr[0], 2),
+            trimString(suffix[0], 2),
+            trimString(suffix[1], 2)
+          );
+        } else
+          DOM.style.setProperty(trimString(arr[0], 2), trimString(arr[1], 2));
       }
     }
-    result = true
+    result = true;
   }
-  return result
+  return result;
 }
 
 /**
@@ -173,24 +163,24 @@ function trimArray(arr) {
  * @return {string} value
  */
 function trimString(value, type = 1) {
-  let result = value
+  let result = value;
 
-  if (value !== '') {
+  if (value !== "") {
     switch (type) {
       case 1:
-        result = value.replace(/\s+/g, '')
+        result = value.replace(/\s+/g, "");
         break;
       case 2:
-        result = value.replace(/(^\s*)|(\s*$)/g, '')
+        result = value.replace(/(^\s*)|(\s*$)/g, "");
         break;
       case 3:
-        result = value.replace(/(^\s*)/g, '')
+        result = value.replace(/(^\s*)/g, "");
         break;
       case 4:
-        result = value.replace(/(\s*$)/g, '')
+        result = value.replace(/(\s*$)/g, "");
         break;
       default:
-        result = value
+        result = value;
     }
   }
   return result;
@@ -203,6 +193,6 @@ export default {
   getByClass,
   checkHidContentFn,
   showContentFn,
-  toScroll,
-  setCss
+  scrollSmoothTo,
+  setCss,
 };

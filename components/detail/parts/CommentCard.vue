@@ -25,7 +25,7 @@
             <div
               v-if="comment.users_id == masterId"
               class="ui horizontal label"
-              style="line-height:14px"
+              style="line-height: 14px"
             >
               作者
             </div>
@@ -36,7 +36,7 @@
             </div>
           </div>
           <div class="text">
-            <comment-editor :content="comment.content"/>
+            <comment-editor :content="comment.content" />
           </div>
           <div class="actions">
             <div class="btn-box">
@@ -86,7 +86,7 @@
                 <div
                   v-if="son.users_id == masterId"
                   class="ui horizontal label"
-                  style="line-height:15px"
+                  style="line-height: 15px"
                 >
                   作者
                 </div>
@@ -97,7 +97,7 @@
                 </div>
               </div>
               <div class="text">
-                <comment-editor :content="son.content"/>
+                <comment-editor :content="son.content" />
               </div>
               <div class="actions">
                 <div class="btn-box">
@@ -139,27 +139,27 @@ import CommentForm from "./CommentForm.vue";
 import CommentEditor from "@/components/custom/CommentEditor";
 
 export default {
-  components: {CommentCard, CommentForm, CommentEditor},
+  components: { CommentCard, CommentForm, CommentEditor },
   props: {
     type: {
       type: String,
-      default: ""
+      default: "",
     },
     masterId: {
       type: Number,
-      default: 1
+      default: 1,
     },
     curId: {
       type: Number,
-      default: 0
+      default: 0,
     },
     articleId: {
       type: Number,
-      default: 0
+      default: 0,
     },
     isLogin: {
       type: Boolean,
-      default: false
+      default: false,
     },
     comment: {
       type: Object,
@@ -181,9 +181,9 @@ export default {
         opt: null,
         create_time: "2021-03-22 17:45:09",
         update_time: "2021-03-23 18:36:31",
-        son: []
-      }
-    }
+        son: [],
+      },
+    },
   },
   data() {
     return {};
@@ -206,7 +206,7 @@ export default {
             agent.browser.kernel)
         );
       };
-    }
+    },
   },
   methods: {
     reply(id) {
@@ -219,7 +219,7 @@ export default {
       this.$confirm("此操作将永久删除该评论, 是否继续?", "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
-        type: "warning"
+        type: "warning",
       })
         .then(() => {
           this.del(id);
@@ -227,7 +227,7 @@ export default {
         .catch(() => {
           this.$message({
             type: "info",
-            message: "已取消删除"
+            message: "已取消删除",
           });
         });
     },
@@ -236,10 +236,10 @@ export default {
         var data = {
           "login-token": this.$cookies.get("token"),
           mode: "remove",
-          id: JSON.stringify(id)
+          id: JSON.stringify(id),
         };
 
-        this.$axios.post("/api/comments", data).then(res => {
+        this.$axios.post("/api/comments", data).then((res) => {
           if (res.code == 200) {
             this.$emit("reloadComments");
             this.$notify({
@@ -247,7 +247,7 @@ export default {
               title: "恭喜！",
               message: "成功删除了一条评论",
               duration: 5000,
-              offset: 65
+              offset: 65,
             });
           }
         });
@@ -279,12 +279,10 @@ export default {
           }
         }
       }
-    }
+    },
   },
-  created() {
-  },
-  mounted() {
-  }
+  created() {},
+  mounted() {},
 };
 </script>
 <style lang="scss" scoped>
