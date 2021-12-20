@@ -1,6 +1,11 @@
 html {
-  overflow-x: auto;
-  overflow-y: scroll;
+    overflow-x: auto;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+}
+
+body {
+    scroll-behavior: smooth;
 }
 
 body,
@@ -17,9 +22,9 @@ p,
 blockquote,
 th,
 td {
-  font-weight: 400;
-  margin: 0;
-  padding: 0;
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
 }
 
 h1,
@@ -28,40 +33,40 @@ h3,
 h4,
 h4,
 h5 {
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-  font-size: 15px;
-  text-align: left;
+    font-size: 15px;
+    text-align: left;
 }
 
 select {
-  font-size: 15px;
+    font-size: 15px;
 }
 
 table {
-  border-collapse: collapse;
+    border-collapse: collapse;
 }
 
 fieldset,
 img {
-  border: 0 none;
+    border: 0 none;
 }
 
 fieldset {
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
 }
 
 fieldset p {
-  margin: 0;
-  padding: 0 0 0 8px;
+    margin: 0;
+    padding: 0 0 0 8px;
 }
 
 legend {
-  display: none;
+    display: none;
 }
 
 address,
@@ -70,88 +75,90 @@ em,
 strong,
 th,
 i {
-  font-style: normal;
-  font-weight: 400;
+    font-style: normal;
+    font-weight: 400;
 }
 
 table caption {
-  margin-left: -1px;
+    margin-left: -1px;
 }
 
 hr {
-  border-bottom: 1px solid #ffffff;
-  border-top: 1px solid #e4e4e4;
-  border-width: 1px 0;
-  clear: both;
-  height: 2px;
-  margin: 5px 0;
-  overflow: hidden;
+    border-bottom: 1px solid #ffffff;
+    border-top: 1px solid #e4e4e4;
+    border-width: 1px 0;
+    clear: both;
+    height: 2px;
+    margin: 5px 0;
+    overflow: hidden;
 }
 
 ol,
 ul {
-  list-style-position: outside;
+    list-style-position: outside;
 }
 
 caption,
 th {
-  text-align: left;
+    text-align: left;
 }
 
 q:before,
 q:after,
 blockquote:before,
 blockquote:after {
-  content: "";
+    content: "";
 }
 
 a {
-  color: #000;
-  text-decoration: none;
-  position: relative;
+    color: #000;
+    text-decoration: none;
+    position: relative;
 }
 
 p {
-  white-space: pre-wrap;
-  white-space: -moz-pre-wrap;
-  white-space: -pre-wrap;
-  white-space: -o-pre-wrap;
-  word-wrap: break-word;
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -pre-wrap;
+    white-space: -o-pre-wrap;
+    word-wrap: break-word;
 }
 
+
 /*评论样式 start*/
+
 .content .v-note-wrapper {
-  min-width: unset !important;
+    min-width: unset !important;
 }
 
 .content .v-note-wrapper .v-note-panel .v-note-show .v-show-content {
-  padding: 0 25px 0 0 !important;
+    padding: 0 25px 0 0 !important;
 }
 
 .content .markdown-body p {
-  margin-bottom: 0 !important;
+    margin-bottom: 0 !important;
 }
 
 .content .markdown-body pre {
-  margin-bottom: 0 !important;
+    margin-bottom: 0 !important;
 }
 
 .content .markdown-body img {
-  max-width: 50% !important;
+    max-width: 50% !important;
 }
 
 .markdown-body a:hover {
-  text-decoration: underline !important;
-  color: #ff5722 !important;
+    text-decoration: underline !important;
+    color: #ff5722 !important;
 }
 
 ::selection {
-  background: #0079ff;
-  color: #f7f7f7;
+    background: #0079ff;
+    color: #f7f7f7;
 }
 
-input::selection, textarea::selection {
-  background: #0079ff;
-  color: #f7f7f7;
+input::selection,
+textarea::selection {
+    background: #0079ff;
+    color: #f7f7f7;
 }
-
