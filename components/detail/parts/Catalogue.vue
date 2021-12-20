@@ -92,16 +92,21 @@ export default {
   },
 };
 </script>
-
+<style>
+.catalogue-item:hover {
+  color: #000 !important;
+  font-weight: bolder;
+}
+.catalogue-list .active {
+  color: #000 !important;
+  font-weight: bolder;
+}
+</style>
 <style lang="scss" scoped>
 .catalogue {
   .catalogue-item {
     line-height: 2em;
     cursor: pointer;
-  }
-
-  .catalogue-item:hover {
-    color: #727cf5;
   }
 }
 
