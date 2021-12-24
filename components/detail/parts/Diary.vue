@@ -34,7 +34,7 @@ export default {
       setTimeout(() => {
         this.isLoading = false
         this.one = one
-      }, 1000)
+      }, 1500)
     }
   },
   created() {
