@@ -14,12 +14,6 @@ export default {
   methods: {
     // 文章目录
     catalogue() {
-      // document
-      //   .querySelector(".catalogue .catalogue-list")
-      //   .style.setProperty("max-height", "500px");
-      // document
-      //   .querySelector(".catalogue .catalogue-list")
-      //   .style.setProperty("overflow", "auto");
       let contentElement = document.getElementById("article-editor");
       let catalogueContent = document.querySelector(
         ".catalogue .catalogue-list"
@@ -180,6 +174,7 @@ export default {
     width: 11px;
     height: 11px;
     border: 2px solid #14b596;
+    background: #fff;
     border-radius: 15px;
     content: '';
     transition: .15s;
@@ -192,6 +187,7 @@ export default {
     width: 11px;
     height: 11px;
     border: 2px solid #14b596;
+    background: #fff;
     border-radius: 15px;
     content: '';
     transition: .15s;
@@ -237,6 +233,18 @@ export default {
   .catalogue-item {
     line-height: 2em;
     cursor: pointer;
+  }
+}
+
+.geek-isDark {
+  .catalogue {
+    .catalogue-list::before {
+      background: #dddddd;
+    }
+
+    .catalogue-list::after {
+      background: #dddddd;
+    }
   }
 }
 

@@ -25,7 +25,7 @@ Vue.directive("code-highlight", (el) => {
     pre_head.innerHTML =
       "<p><span class='code-language'>" +
       language.toUpperCase() +
-      "</span><span class='copy'><i class='tag icon'></i>复制</span></p>";
+      "</span><span class='copyBtn'><i class='copy icon'></i></span></p>";
     block.parentNode.insertBefore(pre_head, block);
   });
   // 复制操作
