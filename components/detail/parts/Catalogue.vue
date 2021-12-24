@@ -144,7 +144,7 @@ export default {
     margin: 0 10px 0 10px;
     display: block;
     border-radius: 4px;
-    padding: 0.5em;
+    padding: 0.5em 0.5em 0.35em 0.5em;
   }
 
   .catalogue-item.active a {
