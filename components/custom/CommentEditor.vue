@@ -43,7 +43,8 @@ export default {
         boxShadow: true,
         previewBackground: 'unset',
         boxShadowStyle: 'unset',
-        imageClick: function (){}
+        imageClick: function () {
+        }
       }
     }
   },
@@ -54,7 +55,32 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss">
+.content .v-note-wrapper {
+  min-width: unset !important;
+}
+
+.content .v-note-wrapper .v-note-panel .v-note-show .v-show-content {
+  padding: 0 25px 0 0 !important;
+}
+
+.content .markdown-body p {
+  margin-bottom: 0 !important;
+}
+
+.content .markdown-body pre {
+  margin-bottom: 0 !important;
+}
+
+.content .markdown-body img {
+  max-width: 50% !important;
+}
+
+.markdown-body a:hover {
+  text-decoration: underline !important;
+  color: #ff5722 !important;
+}
+</style>
 
 
 

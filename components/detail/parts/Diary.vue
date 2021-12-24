@@ -1,6 +1,13 @@
 <template>
   <div class="info part">
-    <div class="main-title" style="margin-bottom: 12px">一言</div>
+    <div class="main-title" style="margin-bottom: 12px">一言&nbsp;
+      <span v-if="isLoading === false">
+        <i class="sync alternate icon" style="cursor: pointer" @click="reload()"></i>
+      </span>
+      <span v-if="isLoading === true">
+        <i class="sync alternate loading icon"></i>
+      </span>
+    </div>
     <div v-if="one" class="diary">
       <div class="tag">#{{ one.from }}#</div>
       <p>{{ one.hitokoto }}</p>
@@ -13,12 +20,22 @@ export default {
   data() {
     return {
       one: "",
+      isLoading: false
     };
   },
   methods: {
     async getContent() {
       this.one = await this.$axios.get("https://v1.hitokoto.cn/");
     },
+    async reload() {
+      this.isLoading = true
+      let one = await this.$axios.get("https://v1.hitokoto.cn/");
+      // 防止暴力点击
+      setTimeout(() => {
+        this.isLoading = false
+        this.one = one
+      }, 1500)
+    }
   },
   created() {
     this.getContent();
