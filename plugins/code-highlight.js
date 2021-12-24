@@ -27,6 +27,10 @@ Vue.directive("code-highlight", (el) => {
       language.toUpperCase() +
       "</span><span class='copyBtn'><i class='copy icon'></i></span></p>";
     block.parentNode.insertBefore(pre_head, block);
+    // 创建修复滚动条白点
+    let repair = document.createElement("span")
+    repair.classList.add("repair")
+    block.parentNode.insertBefore(repair, block);
   });
   // 复制操作
   el.querySelectorAll("pre").forEach((item) => {

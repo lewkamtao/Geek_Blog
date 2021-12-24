@@ -29,15 +29,16 @@ code::-webkit-scrollbar-track-piece {
 
 #article-editor pre code {
   display: block;
+  max-height: 500px;
 }
 
 #article-editor pre .repair {
   position: absolute;
   width: 6px;
   height: 6px;
-  background: #21252a;
+  background: #f5f8fa;
   right: 0;
-  bottom: 0
+  bottom: 0;
 }
 
 .hljs ul {
