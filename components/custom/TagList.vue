@@ -6,7 +6,7 @@
       :key="index"
       style="margin-right: 5px"
       :class="tagsClass[index]"
-    >{{ tag.name }}</span
+    ># {{ tag.name }}</span
     >
   </div>
 </template>
