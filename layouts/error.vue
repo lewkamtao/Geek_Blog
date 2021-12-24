@@ -16,8 +16,32 @@
 
 <script>
 export default {
-  props: ['error'],
-  layout: 'error' // you can set a custom layout for the error page
+  layout: 'error',
+  head() {
+    return {
+      title: 404,
+      meta: [
+        {
+          hid: "keywords",
+          name: "keywords",
+          content: 404,
+        },
+        {
+          hid: "description",
+          name: "description",
+          content: "很抱歉，您访问的页面不存在",
+        },
+      ],
+      link: [
+        {
+          rel: "icon",
+          type: "image/x-icon",
+          href: "https://cdn.jsdelivr.net/gh/cdn-x/placeholder@1.0.1/404/1c830bfcd517d.svg",
+        },
+      ],
+    };
+  },
+  props: ['error']
 }
 </script>
 
