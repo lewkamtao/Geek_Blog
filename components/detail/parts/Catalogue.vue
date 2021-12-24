@@ -148,14 +148,12 @@ export default {
   }
 
   .catalogue-item.active a {
-    color: #000 !important;
-    //font-weight: bolder;
+    color: #14b596;
     background: #ededed;
   }
 
-  .catalogue-item a:hover {
-    color: #000 !important;
-    //font-weight: bolder;
+  .catalogue-item:hover a{
+    color: #14b596;
     background: #ededed;
   }
 
