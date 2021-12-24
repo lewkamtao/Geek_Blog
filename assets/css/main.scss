@@ -69,10 +69,6 @@ html {
         background: linear-gradient(145deg, #545454, #000000) !important;
         box-shadow: none !important;
     }
-    //input::selection, textarea::selection {
-    //  background-color: #0079ff !important;
-    //  color: #000 !important;;
-    //}
      ::selection {
         background-color: #0079ff !important;
         color: #000 !important;
@@ -245,29 +241,6 @@ html::-webkit-scrollbar-thumb:hover {
 
 .modal .modal-body>.btn-close {
     transform: scaleX(1.3) rotate(-3deg);
-}
-
-
-/*文章目录*/
-
-.catalogue {
-    .catalogue-item {
-        padding: 0.5rem;
-        cursor: pointer;
-        border-radius: 4px;
-        line-height: 1.2;
-    }
-    .catalogue-item.active {
-        color: #03c7fa;
-        background: #ededed;
-    }
-    .catalogue-item:hover {
-        color: #03c7fa;
-        background: #ededed;
-    }
-    .catalogue-list::-webkit-scrollbar {
-        display: none;
-    }
 }
 
 .about-wrapper {

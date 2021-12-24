@@ -110,15 +110,30 @@ export default {
   },
 };
 </script>
-<style>
-.catalogue-item:hover {
-  color: #000 !important;
-  font-weight: bolder;
-}
+<style lang="scss">
+.catalogue {
+  .catalogue-item {
+    padding: 0.5rem;
+    cursor: pointer;
+    border-radius: 4px;
+    line-height: 1.2;
+  }
 
-.catalogue-list .active {
-  color: #000 !important;
-  font-weight: bolder;
+  .catalogue-item.active {
+    color: #000 !important;
+    font-weight: bolder;
+    background: #ededed;
+  }
+
+  .catalogue-item:hover {
+    color: #000 !important;
+    font-weight: bolder;
+    background: #ededed;
+  }
+
+  .catalogue-list::-webkit-scrollbar {
+    display: none;
+  }
 }
 </style>
 <style lang="scss" scoped>
