@@ -125,12 +125,6 @@ html {
     border-bottom: rgba(0, 0, 0, 0%) 2px solid;
 }
 
-
-/* .article-list .vditor-outline__item--current span span {
-    border-bottom: 2px #0071de solid;
-    box-sizing: border-box;
-} */
-
 .vditor-reset--anchor {
     padding-left: 0px !important;
 }
@@ -200,9 +194,6 @@ html::-webkit-scrollbar-track {
 /* 滚动条滑块 */
 
 ::-webkit-scrollbar {
-    // width: 0px;
-    // height: 0px;
-    // display: none;
     scrollbar-width: none;
     -ms-overflow-style: none;
     overflow: -moz-scrollbars-none;
