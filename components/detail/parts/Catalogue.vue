@@ -229,7 +229,6 @@ export default {
 <style lang="scss" scoped>
 .catalogue {
   .catalogue-item {
-    line-height: 2em;
     cursor: pointer;
   }
 }
