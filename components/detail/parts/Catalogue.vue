@@ -33,6 +33,23 @@ export default {
         if (tag_name.substr(0, 1) === "H" && tag_name.substr(0, 2) !== "HR") {
           // 获取 H标签 内容
           let text = item.textContent;
+          // 文章目录缩进判断
+          let indent = 0;
+          let num = Number(tag_name.substr(1, 1));
+          switch (num) {
+            case 1:
+            case 2:
+              indent = 0;
+              break;
+            case 3:
+            case 4:
+            case 5:
+            case 6:
+              indent = num - 2;
+              break;
+            default:
+              break;
+          }
           // 设置锚点ID
           let mark = "mark-" + tag_name + "-" + index;
           item.setAttribute("id", mark);
@@ -44,7 +61,7 @@ export default {
             '" name="' +
             mark +
             '" style="text-indent:' +
-            (Number(tag_name.substr(1, 1)) - 1) +
+            indent +
             'em"># ' +
             text +
             "</div>";
@@ -79,7 +96,8 @@ export default {
       });
     },
   },
-  created() {},
+  created() {
+  },
   mounted() {
     if (process.browser) {
       this.$nextTick(function () {
@@ -97,6 +115,7 @@ export default {
   color: #000 !important;
   font-weight: bolder;
 }
+
 .catalogue-list .active {
   color: #000 !important;
   font-weight: bolder;
