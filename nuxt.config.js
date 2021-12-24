@@ -75,7 +75,7 @@ export default {
   proxy: {
     "/api/": {
       // 请填写你的后台接口地址
-      target: "https://blog-api.hasaik.com/api",
+      target: "https://api.kamtao.com/api",
       pathRewrite: {
         "^/api/": "",
       },
@@ -103,7 +103,7 @@ export default {
   // seo站点地图
   sitemap: {
     path: '/sitemap.xml', // sitemap path
-    hostname: 'https://blog.hasaik.com/', // sitemap网址的前缀（你的前端域名）
+    hostname: 'https://blog.kamtao.com/', // sitemap网址的前缀（你的前端域名）
     cacheTime: 60 * 60 * 6, //  更新频率，只在 generate: false有用
     gzip: true, // 生成 .xml.gz 压缩的 sitemap
     generate: false, // 允许使用 nuxt generate 生成
@@ -113,7 +113,7 @@ export default {
     ],
     routes: async () => {
       // 你的前端域名
-      return await axios.get('https://blog.hasaik.com/api/article?limit=10000').then(res => {
+      return await axios.get('https://blog.kamtao.com/api/article?limit=10000').then(res => {
         let articleList = Array.from(res.data.data.data)
         let siteArray = [];
         let siteObject = {};
