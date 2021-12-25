@@ -163,6 +163,12 @@
               </div>
             </li>
           </ul>
+          <div class="modal-colorful-footer">
+            <div class="" data-inverted="" data-tooltip="用户自行承担资金安全，我方不承担连带责任！"
+                 data-position="top center">
+              法律声明
+            </div>
+          </div>
         </div>
       </div>
     </Dialog>
@@ -383,7 +389,7 @@ export default {
     top: 50%;
     left: 50%;
     width: 400px;
-    height: 330px;
+    height: 360px;
     -webkit-transform: translateX(-50%) translateY(-50%);
     -moz-transform: translateX(-50%) translateY(-50%);
     -ms-transform: translateX(-50%) translateY(-50%);
@@ -514,6 +520,20 @@ export default {
         transition: all .2s;
         -o-object-fit: cover;
         object-fit: cover;
+      }
+    }
+
+    .modal-colorful-footer {
+      text-align: center;
+      left: 0;
+      right: 0;
+      bottom: 10px;
+      height: 30px;
+      margin-top: 15px;
+
+      div {
+        color: #999;
+        cursor: pointer;
       }
     }
   }
