@@ -78,7 +78,6 @@ export default {
               active.classList.remove("active");
             }
             if (e.target.tagName.toUpperCase() === 'A') {
-              console.log(e.target.parentNode)
               e.target.parentNode.classList.add("active");
             } else {
               e.target.classList.add("active");

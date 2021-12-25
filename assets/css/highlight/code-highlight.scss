@@ -124,3 +124,7 @@ code::-webkit-scrollbar-track-piece {
   vertical-align: -0.04em;
   margin: unset;
 }
+
+#article-editor pre code.hljs {
+  padding: 0;
+}
