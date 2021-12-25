@@ -130,7 +130,7 @@
     <Dialog :visible="visible">
       <div class="modal-content">
         <div class="modal-body">
-          <div class="modal-colorful-header">
+          <div class="modal-header">
             <svg @click="visible = false" t="1640426247102" class="close icon" viewBox="0 0 1024 1024" version="1.1"
                  xmlns="http://www.w3.org/2000/svg"
                  p-id="4600" width="24" height="24">
@@ -138,7 +138,7 @@
                 d="M504.224 470.288l207.84-207.84a16 16 0 0 1 22.608 0l11.328 11.328a16 16 0 0 1 0 22.624l-207.84 207.824 207.84 207.84a16 16 0 0 1 0 22.608l-11.328 11.328a16 16 0 0 1-22.624 0l-207.824-207.84-207.84 207.84a16 16 0 0 1-22.608 0l-11.328-11.328a16 16 0 0 1 0-22.624l207.84-207.824-207.84-207.84a16 16 0 0 1 0-22.608l11.328-11.328a16 16 0 0 1 22.624 0l207.824 207.84z"
                 p-id="4601" fill="#ffffff"></path>
             </svg>
-            <div class="colorful-make"></div>
+            <div class="make"></div>
             <div class="text-center">
               <svg t="1640422110790" class="icon" viewBox="0 0 1024 1024" version="1.1"
                    xmlns="http://www.w3.org/2000/svg" p-id="3508" width="32" height="32">
@@ -163,7 +163,7 @@
               </div>
             </li>
           </ul>
-          <div class="modal-colorful-footer">
+          <div class="modal-footer">
             <div class="" data-inverted="" data-tooltip="用户自行承担资金安全，我方不承担连带责任！"
                  data-position="top center">
               法律声明
@@ -399,7 +399,7 @@ export default {
     background: #fff;
     border: none;
 
-    .modal-colorful-header {
+    .modal-header {
       position: absolute;
       overflow: hidden;
       left: 0;
@@ -425,7 +425,7 @@ export default {
         transform: rotate(270deg);
       }
 
-      .colorful-make {
+      .make {
         left: 0;
         bottom: 0;
         height: 290px;
@@ -438,7 +438,7 @@ export default {
         content: ' ';
       }
 
-      .colorful-make::before {
+      .make::before {
         right: -240px;
         bottom: 0;
         height: 300px;
@@ -453,7 +453,7 @@ export default {
         content: ' ';
       }
 
-      .colorful-make::after {
+      .make::after {
         left: -113px;
         bottom: 0;
         height: 180px;
@@ -498,7 +498,7 @@ export default {
         margin: 0 0 10px;
       }
 
-      .modal-colorful-header + * {
+      .modal-header + * {
         margin-top: 120px;
       }
 
@@ -523,7 +523,7 @@ export default {
       }
     }
 
-    .modal-colorful-footer {
+    .modal-footer {
       text-align: center;
       left: 0;
       right: 0;
