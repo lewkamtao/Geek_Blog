@@ -35,10 +35,10 @@ Vue.directive("code-highlight", (el) => {
   // 复制操作
   el.querySelectorAll("pre").forEach((item) => {
     JQ(item)
-      .find(".copy")
+      .find(".copyBtn")
       .click((e) => {
         const codeText = JQ(item).find("code").text();
-        copyContent("copy", codeText);
+        copyContent("copyBtn", codeText);
       });
   });
 });
