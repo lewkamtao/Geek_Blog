@@ -2,8 +2,7 @@
   <div>
     <transition name="fade">
       <div v-if="visible" class="dialog">
-
-        <slot class="dialog-box"> </slot>
+        <slot class="dialog-box"></slot>
       </div>
     </transition>
   </div>
@@ -27,8 +26,10 @@ export default {
       this.$emit("close");
     },
   },
-  created() {},
-  mounted() {},
+  created() {
+  },
+  mounted() {
+  },
 };
 </script>
 <style lang="scss" scoped>
@@ -42,6 +43,7 @@ export default {
   backdrop-filter: blur(10px);
   z-index: 999;
 }
+
 .close-btn {
   position: fixed;
   right: 50px;
@@ -50,11 +52,14 @@ export default {
   color: #000;
   cursor: pointer;
 }
+
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.35s;
 }
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */
+{
   opacity: 0;
 }
 </style>
