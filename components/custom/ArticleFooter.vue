@@ -38,8 +38,10 @@
             stroke-miterlimit="10"
             stroke-linecap="round"
             stroke-linejoin="round"
-          ></path></svg
-        >赞 赏
+          ></path>
+        </svg
+        >
+        赞 赏
       </div>
       <p>如果觉得我的文章对你有用，请随意赞赏</p>
     </div>
@@ -54,7 +56,7 @@
               target="_blank"
               rel="external nofollow noopener noreferrer"
               href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
-              >署名-非商业性使用-相同方式共享 4.0 国际</a
+            >署名-非商业性使用-相同方式共享 4.0 国际</a
             >
             <span>许可协议，转载请注明出处。</span>
           </p>
@@ -73,9 +75,9 @@
           </div>
           <div class="social-wrap dis-select">
             <a class="social share-item wechat" @click="toggle('qrcode-wechat')"
-              ><img
-                src="https://cdn.jsdelivr.net/gh/cdn-x/placeholder@1.0.1/social/b32ef3da1162a.svg"
-                alt=""
+            ><img
+              src="https://cdn.jsdelivr.net/gh/cdn-x/placeholder@1.0.1/social/b32ef3da1162a.svg"
+              alt=""
             /></a>
             <a
               class="social share-item weibo"
@@ -89,23 +91,23 @@
                 '&amp;summary=' +
                 article.description
               "
-              ><img
-                class="lazy entered loaded"
-                src="https://cdn.jsdelivr.net/gh/cdn-x/placeholder@1.0.1/social/80c07e4dbb303.svg"
-                alt=""
+            ><img
+              class="lazy entered loaded"
+              src="https://cdn.jsdelivr.net/gh/cdn-x/placeholder@1.0.1/social/80c07e4dbb303.svg"
+              alt=""
             /></a>
             <a
               class="social share-item email"
               :href="
                 'mailto:?subject=' + article.title + '&amp;body=' + articleUrl
               "
-              ><img
-                src="https://cdn.jsdelivr.net/gh/cdn-x/placeholder@1.0.1/social/a1b00e20f425d.svg"
-                alt=""
+            ><img
+              src="https://cdn.jsdelivr.net/gh/cdn-x/placeholder@1.0.1/social/a1b00e20f425d.svg"
+              alt=""
             /></a>
             <a class="social share-item link" @click="copy('copy-link')"
-              ><img
-                src="https://cdn.jsdelivr.net/gh/cdn-x/placeholder@1.0.1/social/8411ed322ced6.svg"
+            ><img
+              src="https://cdn.jsdelivr.net/gh/cdn-x/placeholder@1.0.1/social/8411ed322ced6.svg"
             /></a>
           </div>
           <div
@@ -124,31 +126,43 @@
         </div>
       </section>
     </div>
+    <!--打赏弹窗-->
     <Dialog :visible="visible">
-      <div class="qrcode-box">
-        <div class="select">
-          <div @click="isSelect = 'wechat'">微信</div>
-          <div @click="isSelect = 'ali'">支付宝</div>
-          <div @click="isSelect = 'qq'">QQ</div>
-          <div class="active" :class="isSelect"></div>
-        </div>
-        <div class="qrcode">
-          <img
-            v-show="isSelect == 'wechat'"
-            :src="article.expand.author.pay.wechat_pay || null_qrcode"
-          />
-          <img
-            v-show="isSelect == 'ali'"
-            :src="article.expand.author.pay.alipay || null_qrcode"
-          />
-          <img
-            v-show="isSelect == 'qq'"
-            :src="article.expand.author.pay.qq_pay || null_qrcode"
-          />
-        </div>
-
-        <div @click="visible = false" class="close">
-          <div class="btn">关闭</div>
+      <div class="modal-content">
+        <div class="modal-body">
+          <div class="modal-colorful-header">
+            <svg @click="visible = false" t="1640426247102" class="close icon" viewBox="0 0 1024 1024" version="1.1"
+                 xmlns="http://www.w3.org/2000/svg"
+                 p-id="4600" width="24" height="24">
+              <path
+                d="M504.224 470.288l207.84-207.84a16 16 0 0 1 22.608 0l11.328 11.328a16 16 0 0 1 0 22.624l-207.84 207.824 207.84 207.84a16 16 0 0 1 0 22.608l-11.328 11.328a16 16 0 0 1-22.624 0l-207.824-207.84-207.84 207.84a16 16 0 0 1-22.608 0l-11.328-11.328a16 16 0 0 1 0-22.624l207.84-207.824-207.84-207.84a16 16 0 0 1 0-22.608l11.328-11.328a16 16 0 0 1 22.624 0l207.824 207.84z"
+                p-id="4601" fill="#ffffff"></path>
+            </svg>
+            <div class="colorful-make"></div>
+            <div class="text-center">
+              <svg t="1640422110790" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                   xmlns="http://www.w3.org/2000/svg" p-id="3508" width="32" height="32">
+                <path
+                  d="M875.934 339.767c-24.267-23.267-43.667-41.9-67.934-60.5 29.101-23.267 48.5-60.534 48.5-97.733 0-74.5-72.767-135-164.967-135-19.399 0-38.8 4.667-58.233 9.3-4.866 0-4.866 0-4.866 4.667C623.6 51.2 613.9 46.534 604.2 37.233 575.066 13.934 545.967 4.634 512 0c-33.967 4.634-63.1 13.934-87.333 37.233C410.1 46.534 405.233 51.2 395.533 60.5H390.7c-19.434-9.3-38.834-13.966-58.233-13.966-92.2 0-165 60.5-165 135 0 37.2 19.434 69.8 48.533 97.733-24.267 18.6-43.667 32.567-67.934 60.5-87.333 83.8-131 176.867-131 269.966C17.066 861.067 211.167 1024 512 1024c295.967 0 494.934-162.933 494.934-414.267 0-93.099-43.667-186.166-131-269.966z m-359.067 637.7H512c-213.5 0-441.566-97.767-441.566-367.733 0-83.767 38.833-162.899 116.467-237.366 29.1-27.934 48.533-41.9 72.767-60.533-4.834-4.634 9.733-13.967 9.733-13.967 9.699-4.634 14.533-13.934 14.533-18.6S279.1 260.634 269.4 256c-33.967-13.966-53.4-41.899-53.4-74.466 0-46.567 53.4-88.467 116.467-88.467 14.533 0 29.1 0 38.8 9.333 4.867 0 9.733 4.633 14.566 4.633 14.567 4.667 29.134 0 38.834-9.3 4.833-4.667 9.699-13.967 24.233-23.267 24.267-18.633 43.7-27.932 63.1-27.932 24.267 0 43.667 9.3 63.066 27.933 14.567 9.3 19.434 18.6 24.267 23.267 9.7 9.3 24.267 13.966 43.667 9.3 4.867 0 4.867-4.633 14.566-4.633 4.867-4.667 19.4-9.333 33.967-9.333 63.067 0 116.467 41.9 116.467 88.467 0 32.567-19.434 55.833-53.399 74.466-9.7 4.634-14.534 9.3-14.534 18.601 0 9.333 4.834 18.633 9.7 18.633 4.834 0 4.834 4.634 9.7 9.3 33.967 23.267 58.233 46.567 82.5 69.833 77.634 74.467 116.434 153.6 116.434 237.366C958.4 879.7 730.367 977.467 516.867 977.467z m95.3-363c10.767 0.1 19.366-6.9 19.233-15.667-0.134-8.733-8.934-15.9-19.7-16l-91.752-1.057a14.599 14.599 0 0 0-6.481-1.409c-2.049 0.023-4.006 0.48-5.811 1.268l-95.522-1.102c-10.733-0.1-19.367 6.9-19.233 15.634 0.133 8.767 8.966 15.933 19.699 16.033l84.692 0.976-0.795 70.729-84.362-0.972c-10.733-0.1-19.367 6.9-19.233 15.633 0.133 8.767 8.966 15.933 19.699 16.033l83.541 0.963-0.973 86.504c-0.101 9.433 6.899 16.966 15.633 16.833 8.767-0.1 15.934-7.833 16.033-17.233l0.965-85.739 84.369 0.973c10.767 0.1 19.366-6.9 19.233-15.667-0.134-8.733-8.934-15.9-19.7-16l-83.546-0.963 0.796-70.729 83.215 0.959z m26.6-200.533L512 540.7 385.233 413.934c-6.267-6.267-16.434-6.267-22.7 0s-6.267 16.434 0 22.733l136.132 136.132a16.165 16.165 0 0 0 1.802 2.168A15.996 15.996 0 0 0 512 579.658a15.998 15.998 0 0 0 11.533-4.691 16.165 16.165 0 0 0 1.802-2.168l136.132-136.132c6.267-6.3 6.267-16.467 0-22.733s-16.434-6.267-22.7 0z"
+                  fill="#ffffff" p-id="3509"></path>
+              </svg>
+              <div class="text">不喜欢喝咖啡，来杯奶茶吧</div>
+            </div>
+          </div>
+          <ul class="flex text-center rewards-box">
+            <li>
+              <p class="text-color">微信扫一扫</p>
+              <div class="rewards-img">
+                <img class="fit-cover" :src="article.expand.author.pay.wechat_pay || null_qrcode">
+              </div>
+            </li>
+            <li>
+              <p class="text-color">支付宝扫一扫</p>
+              <div class="rewards-img">
+                <img class="fit-cover" :src="article.expand.author.pay.alipay || null_qrcode">
+              </div>
+            </li>
+          </ul>
         </div>
       </div>
     </Dialog>
@@ -159,7 +173,7 @@
 import Dialog from "./Dialog.vue";
 
 export default {
-  components: { Dialog },
+  components: {Dialog},
   props: {
     article: {
       type: Object,
@@ -172,7 +186,6 @@ export default {
     return {
       articleUrl: "",
       visible: false,
-      isSelect: "wechat",
       null_qrcode:
         "https://tngeek-mall-1255310647.cos.ap-guangzhou.myqcloud.com/public/qrcode/e5d06979176df4a377b1b6536db6856.jpg",
     };
@@ -199,7 +212,8 @@ export default {
       }
     },
   },
-  created() {},
+  created() {
+  },
   mounted() {
     this.articleUrl = window.location.href;
   },
@@ -251,7 +265,7 @@ export default {
         width: 100%;
         display: block;
         font-family: Menlo, Monaco, Consolas, system-ui, "Courier New",
-          monospace, sans-serif;
+        monospace, sans-serif;
         font-weight: 600;
         color: #818181;
       }
@@ -288,13 +302,13 @@ export default {
       overflow: hidden;
       background: 0 0;
       transition: box-shadow 0.2s ease-out, background 0.2s ease-out,
-        transform 0.2s ease-out;
+      transform 0.2s ease-out;
       -moz-transition: box-shadow 0.2s ease-out, background 0.2s ease-out,
-        transform 0.2s ease-out;
+      transform 0.2s ease-out;
       -webkit-transition: box-shadow 0.2s ease-out, background 0.2s ease-out,
-        transform 0.2s ease-out;
+      transform 0.2s ease-out;
       -o-transition: box-shadow 0.2s ease-out, background 0.2s ease-out,
-        transform 0.2s ease-out;
+      transform 0.2s ease-out;
     }
 
     .social-wrap a.social:hover {
@@ -365,96 +379,141 @@ export default {
     }
   }
 
-  .qrcode-box {
-    position: absolute;
-    left: 50%;
+  .modal-content {
     top: 50%;
-    transform: translate(-50%, -50%);
-    width: 300px;
+    left: 50%;
+    width: 400px;
+    height: 330px;
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -ms-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    position: relative;
     border-radius: 8px;
-    overflow: hidden;
     background: #fff;
+    border: none;
 
-    .select {
-      position: relative;
+    .modal-colorful-header {
+      position: absolute;
+      overflow: hidden;
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 120px;
       display: flex;
-      justify-content: center;
       align-items: center;
-      width: 100%;
-      height: 48px;
-      box-sizing: border-box;
-      padding: 4px;
+      justify-content: center;
+      border-radius: 8px 8px 0 0;
+      background: linear-gradient(135deg, #59c3fb 10%, #268df7 100%);
 
-      div {
-        position: relative;
-        z-index: 9;
-        width: calc(100% / 3);
-        height: 100%;
-        color: #000;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        cursor: pointer;
-      }
-
-      .active {
-        position: absolute;
+      .close {
         z-index: 1;
-        width: calc(100% / 3 - 3px);
-        height: calc(100% - 8px);
-        left: 4px;
-        top: 4px;
-        border-radius: 7px;
-        background: #eee;
-        transition: all 0.25s;
-      }
-
-      .ali {
-        transform: translateX(100%);
-      }
-
-      .qq {
-        transform: translateX(200%);
-      }
-    }
-
-    .qrcode {
-      position: relative;
-      width: 100%;
-      height: calc(100% - 48px);
-      height: 300px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
-
-      img {
-        position: absolute;
-        z-index: 9;
-        width: 100%;
-        height: auto;
-      }
-    }
-
-    .close {
-      width: 100%;
-
-      text-align: center;
-
-      background: #fff;
-      padding: 4px;
-      box-sizing: border-box;
-      overflow: hidden;
-
-      .btn {
-        height: 36px;
-        line-height: 40px;
-        border-radius: 4px;
         cursor: pointer;
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        transition: .2s;
       }
 
-      .btn:hover {
-        background: #eee;
+      .close:hover {
+        transform: rotate(270deg);
+      }
+
+      .colorful-make {
+        left: 0;
+        bottom: 0;
+        height: 290px;
+        width: 323px;
+        top: 60%;
+        position: absolute;
+        color: #fff;
+        background: linear-gradient(135deg, #59c3fb 10%, #268df7 100%);
+        border-radius: 500px;
+        content: ' ';
+      }
+
+      .colorful-make::before {
+        right: -240px;
+        bottom: 0;
+        height: 300px;
+        width: 320px;
+        top: -278px;
+        transform: rotate(255deg);
+        opacity: .6;
+        position: absolute;
+        color: #fff;
+        background: linear-gradient(135deg, #59c3fb 10%, #268df7 100%);
+        border-radius: 500px;
+        content: ' ';
+      }
+
+      .colorful-make::after {
+        left: -113px;
+        bottom: 0;
+        height: 180px;
+        width: 250px;
+        top: -79px;
+        transform: rotate(205deg);
+        opacity: .7;
+        border-radius: 100%;
+        position: absolute;
+        color: #fff;
+        background: linear-gradient(135deg, #59c3fb 10%, #268df7 100%);
+        content: ' ';
+      }
+    }
+
+    .modal-body {
+      color: #fff;
+      padding: 20px;
+
+      .text-center {
+        z-index: 1;
+        text-align: center;
+      }
+
+      .text {
+        padding-left: 10px;
+        padding-right: 10px;
+        font-size: 1.2em;
+        margin-top: 10px;
+      }
+
+      .flex {
+        justify-content: space-evenly;
+        display: flex;
+      }
+
+      ul {
+        list-style: none;
+      }
+
+      .rewards-box p {
+        margin: 0 0 10px;
+      }
+
+      .modal-colorful-header + * {
+        margin-top: 120px;
+      }
+
+      .text-color {
+        color: #999;
+      }
+
+      .rewards-img {
+        height: 140px;
+        width: 140px;
+        border-radius: 8px;
+        overflow: hidden;
+        margin: auto;
+      }
+
+      .fit-cover {
+        width: 100%;
+        height: 100%;
+        transition: all .2s;
+        -o-object-fit: cover;
+        object-fit: cover;
       }
     }
   }
