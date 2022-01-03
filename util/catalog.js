@@ -38,17 +38,21 @@ export default function (opts) {
   function scrollHandler() {
     let number = document.documentElement.scrollTop || document.body.scrollTop || window.pageYOffset;
     let maskHeight = 0;
+    let editBoxHeight = 0;
     if (document.querySelector(".article-wrapper .mask") !== null) {
       maskHeight = document.querySelector(".article-wrapper .mask").offsetHeight;
     }
+    if (document.querySelector(".article-wrapper .edit-box") !== null) {
+      editBoxHeight = document.querySelector(".article-wrapper .edit-box").offsetHeight;
+    }
     let scrollToEl = null
     for (let i = 0; i < allCatalogs.length; i++) {
-      if (allCatalogs[i].offsetTop + maskHeight >= number) {
+      if (allCatalogs[i].offsetTop + maskHeight + editBoxHeight >= number) {
         scrollToEl = allCatalogs[i]
         break
       }
     }
-    if (allCatalogs[allCatalogs.length - 1].offsetTop + maskHeight <= number) {
+    if (allCatalogs[allCatalogs.length - 1].offsetTop + maskHeight + editBoxHeight <= number) {
       scrollToEl = allCatalogs[allCatalogs.length - 1]
     }
     if (scrollToEl) setActiveItem(scrollToEl.id)
@@ -70,7 +74,8 @@ export default function (opts) {
     let offsetTop = document.getElementById(datasetId).offsetTop;
     let topHeight = document.querySelector(".top-nav").offsetHeight - 70;
     let maskHeight = document.querySelector(".article-wrapper .mask").offsetHeight;
-    util.scrollSmoothTo(offsetTop + topHeight + maskHeight);
+    let editBoxHeight = document.querySelector(".article-wrapper .edit-box").offsetHeight;
+    util.scrollSmoothTo(offsetTop + topHeight + maskHeight + editBoxHeight);
   }
 
   /**
