@@ -21,6 +21,12 @@ export default function (opts) {
   let allCatalogs = $content.querySelectorAll(Opt.selector.join())
   let tree = getCatalogsTree(allCatalogs)
 
+  // 隐藏目录
+  if (tree.length === 0) {
+    document.querySelector(".catalogue").style.setProperty("display", "none");
+    return;
+  }
+
   try {
     $catalog.innerHTML = `<div class='cl-wrapper'>${generateHtmlTree(tree, {id: -1})}</div>`
   } catch (e) {
@@ -70,7 +76,7 @@ export default function (opts) {
         break
       }
     }
-    if (allCatalogs[allCatalogs.length - 1].offsetTop + maskHeight + editBoxHeight <= number) {
+    if (allCatalogs.length > 0 && allCatalogs[allCatalogs.length - 1].offsetTop + maskHeight + editBoxHeight <= number) {
       scrollToEl = allCatalogs[allCatalogs.length - 1]
     }
     if (scrollToEl) setActiveItem(scrollToEl.id)
@@ -185,17 +191,14 @@ export default function (opts) {
    *  设置选中的项
    */
   function setActiveItem(id) {
-    let catas = [...$catalog.querySelectorAll(`[${Opt.datasetName}]`)]
+    let catalogs = [...$catalog.querySelectorAll(`[${Opt.datasetName}]`)]
 
-    catas.forEach(T => {
-      if (T.getAttribute(Opt.datasetName) === id) {
-        typeof Opt.activeHook === 'function' &&
-        !T.classList.contains(Opt.linkActiveClass) &&
-        // 执行active钩子
-        Opt.activeHook.call(this, T)
-        T.classList.add(Opt.linkActiveClass)
+    catalogs.forEach(catalog => {
+      if (catalog.getAttribute(Opt.datasetName) === id) {
+        typeof Opt.activeHook === 'function' && !catalog.classList.contains(Opt.linkActiveClass) && Opt.activeHook.call(this, catalog)
+        catalog.classList.add(Opt.linkActiveClass)
       } else {
-        T.classList.remove(Opt.linkActiveClass)
+        catalog.classList.remove(Opt.linkActiveClass)
       }
     })
   }
