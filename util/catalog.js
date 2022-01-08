@@ -1,4 +1,5 @@
 import util from "@/util/index";
+import {Debounce, Throttle} from "@/util/common.js";
 
 export default function (opts) {
   let defaultOpts = {
@@ -6,7 +7,8 @@ export default function (opts) {
     linkActiveClass: 'cl-link-active',                // active的目录项
     datasetName: 'data-catalog-target',               // 目录项DOM的attribute存放对应目录的id
     selector: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'],   // 按优先级排序
-    activeHook: null                                  // 激活时候回调
+    activeHook: null,                                 // 激活时候回调
+    delay: 200,                                       // 防抖的延迟时间
   }
 
   const Opt = Object.assign({}, defaultOpts, opts)
@@ -27,10 +29,26 @@ export default function (opts) {
 
   // 事件注册
   $catalog.addEventListener('click', clickHandler)
-  window.addEventListener('scroll', scrollHandler)
+  window.addEventListener('scroll', Debounce(scrollHandler, Opt.delay))
 
   // 初始化选中目录
   scrollHandler()
+
+  /**
+   * 防抖：触发高频事件 n 秒后只会执行一次，如果 n 秒内事件再次触发，则会重新计时。
+   * @param fn
+   * @param delay
+   * @returns {(function(*=): void)|*}
+   */
+  function debounce(fn, delay = 200) {
+    return function (args) {
+      const _this = this
+      clearTimeout(fn.id)
+      fn.id = setTimeout(function () {
+        fn.apply(_this, args)
+      }, delay)
+    }
+  }
 
   /**
    * 滚动事件
@@ -65,11 +83,11 @@ export default function (opts) {
   function clickHandler({target}) {
     const datasetId = target.getAttribute(Opt.datasetName)
 
-    // let active = document.querySelector(".cl-link.cl-link-active");
-    // if (active !== null) {
-    //   active.classList.remove("cl-link-active");
-    // }
-    // target.classList.add("cl-link-active")
+    let active = document.querySelector(".cl-link.cl-link-active");
+    if (active !== null) {
+      active.classList.remove("cl-link-active");
+    }
+    target.classList.add("cl-link-active")
 
     let offsetTop = document.getElementById(datasetId).offsetTop;
     let topHeight = document.querySelector(".top-nav").offsetHeight - 70;
