@@ -87,13 +87,22 @@ export default function (opts) {
    * 点击事件
    */
   function clickHandler({target}) {
-    const datasetId = target.getAttribute(Opt.datasetName)
-
-    let active = document.querySelector(".cl-link.cl-link-active");
-    if (active !== null) {
-      active.classList.remove("cl-link-active");
+    let datasetId;
+    datasetId = target.getAttribute(Opt.datasetName)
+    if (datasetId == null) {
+      datasetId = target.children[0].getAttribute(Opt.datasetName)
+      let active = document.querySelector(".cl-link.cl-link-active");
+      if (active !== null) {
+        active.classList.remove("cl-link-active");
+      }
+      target.children[0].classList.add("cl-link-active")
+    } else {
+      let active = document.querySelector(".cl-link.cl-link-active");
+      if (active !== null) {
+        active.classList.remove("cl-link-active");
+      }
+      target.classList.add("cl-link-active")
     }
-    target.classList.add("cl-link-active")
 
     let offsetTop = document.getElementById(datasetId).offsetTop;
     let topHeight = document.querySelector(".top-nav").offsetHeight - 70;
