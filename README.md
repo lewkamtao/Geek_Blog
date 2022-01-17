@@ -4,9 +4,9 @@
 
 ## 链接
 
-- 👥 演示站：[https://blog.kamtao.com](https://blog.kamtao.com)
+- 👥 演示站：<a href="https://blog.kamtao.com" target="_blank">https://blog.kamtao.com</a>
 
-- 📘 inis 接口文档： [https://inis.cc](https://inis.cc)
+- 📘 inis 接口文档： <a href="https://inis.cc" target="_blank">https://inis.cc</a>
 
 ## 特征
 
