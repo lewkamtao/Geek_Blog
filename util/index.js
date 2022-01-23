@@ -97,7 +97,6 @@ function showContentFn(id, _this) {
     hideContent.push(id);
     _this.$cookies.set("hideContent", hideContent);
   }
-  console.log(hideContent);
   checkHidContentFn(id, _this);
 }
 

@@ -6,7 +6,7 @@
       :key="index"
       style="margin-right: 5px"
       :class="tagsClass[index]"
-    ># {{ tag.name }}</span
+      >{{ tag.name }}</span
     >
   </div>
 </template>
@@ -28,7 +28,18 @@ export default {
     getTagColor() {
       if (this.tags && this.tags.length > 0) {
         this.tags.forEach((tag, index) => {
-          var options = ["", "red", "orange", "yellow", "olive", "green", "teal", "blue", "violet", "brown"];
+          var options = [
+            "",
+            "red",
+            "orange",
+            "yellow",
+            "olive",
+            "green",
+            "teal",
+            "blue",
+            "violet",
+            "brown",
+          ];
           var i = Math.floor(Math.random() * options.length);
           this.tagsClass[index] = options[i];
         });
@@ -36,13 +47,11 @@ export default {
       }
     },
   },
-  created() {
-  },
+  created() {},
   mounted() {
     // this.getTagColor();
   },
 };
 </script>
 
-<style>
-</style>
+<style></style>

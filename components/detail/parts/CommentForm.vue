@@ -16,13 +16,13 @@
       </div>
       <div class="field">
         <textarea
-          style="height:40px"
+          style="height: 40px"
           v-model="form.content"
           placeholder="这一刻的想法..."
         ></textarea>
       </div>
     </div>
-    <div @click="submit" class="ui blue labeled submit icon button ">
+    <div @click="submit" class="ui blue labeled submit icon button">
       <i class="icon edit"></i> 发表评论
     </div>
   </form>
@@ -36,22 +36,22 @@ export default {
   props: {
     type: {
       type: String,
-      default: function() {
+      default: function () {
         return {};
-      }
+      },
     },
     pid: {
       type: Number,
-      default: 0
+      default: 0,
     },
     articleId: {
       type: Number,
-      default: 0
+      default: 0,
     },
     isLogin: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   data() {
     return {
@@ -59,8 +59,8 @@ export default {
         email: "",
         nickname: "",
         url: "",
-        content: ""
-      }
+        content: "",
+      },
     };
   },
   mounted() {
@@ -72,8 +72,19 @@ export default {
         email: "",
         nickname: "",
         url: "",
-        content: ""
+        content: "",
       };
+
+      var visitor = this.$cookies.get("visitor");
+      if (visitor) {
+        this.form = {
+          email: visitor.email,
+          nickname: visitor.nickname,
+          url: visitor.url,
+          content: "",
+        };
+      }
+
       switch (this.type) {
         case "article":
           this.form.article_id = this.articleId;
@@ -102,7 +113,7 @@ export default {
             title: "请补充完整信息",
             message: "昵称未填写",
             duration: 5000,
-            offset: 65
+            offset: 65,
           });
           return;
         }
@@ -113,7 +124,7 @@ export default {
             title: "请补充完整信息",
             message: "邮箱未填写",
             duration: 5000,
-            offset: 65
+            offset: 65,
           });
           return;
         }
@@ -124,7 +135,7 @@ export default {
             title: "格式错误",
             message: "邮箱格式错误",
             duration: 5000,
-            offset: 65
+            offset: 65,
           });
           return;
         }
@@ -135,7 +146,7 @@ export default {
             title: "格式错误",
             message: "URL格式错误",
             duration: 5000,
-            offset: 65
+            offset: 65,
           });
           return;
         }
@@ -147,13 +158,21 @@ export default {
           title: "请补充完整信息",
           message: "内容未填写",
           duration: 5000,
-          offset: 65
+          offset: 65,
         });
         return;
       }
 
-      this.$axios.post("/api/comments", _form).then(res => {
+      this.$axios.post("/api/comments", _form).then((res) => {
         if (res.code == 200) {
+          // 存储用户信息
+          var visitor = {
+            email: _form.email,
+            nickname: _form.nickname,
+            url: _form.url,
+          };
+          this.$cookies.set("visitor", visitor);
+
           this.$emit("reloadComments");
           util.showContentFn(this.articleId, this);
           this.setForm();
@@ -163,12 +182,12 @@ export default {
             title: "发送错误",
             message: "错误代码：" + res.code,
             duration: 5000,
-            offset: 65
+            offset: 65,
           });
         }
       });
-    }
-  }
+    },
+  },
 };
 </script>
 

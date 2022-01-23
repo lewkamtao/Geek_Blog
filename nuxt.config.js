@@ -7,7 +7,7 @@ export default {
     title: "Geek",
 
     meta: [
-      {charset: "utf-8"},
+      { charset: "utf-8" },
       {
         name: "viewport",
         content:
@@ -16,9 +16,12 @@ export default {
     ],
     link: [],
     script: [
-      {src: "//at.alicdn.com/t/font_2717088_fiq9yisuhzq.js"},
+      { src: "//at.alicdn.com/t/font_2717088_fiq9yisuhzq.js" },
       {
         src: "https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js",
+      },
+      {
+        src: "/js/fancybox.js",
       },
     ],
   },
@@ -31,12 +34,11 @@ export default {
     "@/assets/css/highlight/code-highlight.scss",
     "@/assets/css/highlight/highlight-dark.scss",
     "@/assets/css/plugins/tag-plugins.scss",
-    {src: "@/assets/css/main.scss", lang: "scss"},
+    { src: "@/assets/css/main.scss", lang: "scss" },
   ],
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     "@/plugins/axios",
-    "@/plugins/route",
     "@/plugins/v-img",
     "@/plugins/element-ui.js",
     "@/plugins/vueMarkdown.js",
@@ -54,7 +56,7 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     "semantic-ui-vue/nuxt", // includes styles from semantic-ui-css
-    ["semantic-ui-vue/nuxt", {css: false}], // if you have your own semantic-ui styles
+    ["semantic-ui-vue/nuxt", { css: false }], // if you have your own semantic-ui styles
     "@nuxtjs/axios",
     "cookie-universal-nuxt",
     "@nuxtjs/sitemap"
@@ -69,7 +71,7 @@ export default {
   },
   router: {
     scrollBehavior(to, from, savedPosition) {
-      return {x: 0, y: 0};
+      return { x: 0, y: 0 };
     },
   },
   proxy: {
@@ -96,7 +98,7 @@ export default {
       config.output.chunkFilename = `js/[name].${Timestamp}.js`;
       // ...
     },
-    extractCSS: {allChunks: true},
+    extractCSS: { allChunks: true },
     vendor: ["element-ui"],
   },
   loading: "~/components/custom/Loading.vue",

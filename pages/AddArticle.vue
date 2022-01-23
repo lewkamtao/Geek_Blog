@@ -31,15 +31,20 @@
         </div>
         <div class="field">
           <label>分类</label>
-          <select v-model="form.sort_id" class="ui search dropdown">
-            <option
+          <el-select
+            style="width: 100%"
+            v-model="form.sort_id"
+            multiple
+            placeholder="请选择"
+          >
+            <el-option
               v-for="(item, index) in article_sort.data"
+              :label="item.name"
               :value="item.id"
               :key="'sort' + index"
             >
-              {{ item.name }}
-            </option>
-          </select>
+            </el-option>
+          </el-select>
         </div>
         <div class="field">
           <label>封面URL</label>
@@ -78,11 +83,13 @@ export default {
   async asyncData({ $axios, route }) {
     var articleForm = false;
     if (route.query.id) {
-      articleForm = (await $axios.get("/api/article?mode=md&id=" + route.query.id))
-        .data;
+      articleForm = (
+        await $axios.get("/api/article?mode=md&id=" + route.query.id)
+      ).data;
     }
 
-    const article_sort = (await $axios.get("/api/article-sort?limit=1000")).data;
+    const article_sort = (await $axios.get("/api/article-sort?limit=1000"))
+      .data;
     return { article_sort, articleForm };
   },
   props: {},
@@ -145,7 +152,7 @@ export default {
     add() {
       var data = JSON.parse(JSON.stringify(this.form));
       data["login-token"] = this.token;
-      data.sort_id = String(data.sort_id);
+      data.sort_id = data.sort_id;
       this.loading = true;
       this.$axios.post("/api/article", data).then((res) => {
         this.loading = false;
@@ -194,7 +201,7 @@ export default {
         content: this.articleForm.content,
         description: this.articleForm.description,
         sort_id: this.articleForm.sort_id
-          ? this.articleForm.sort_id.replace(/[^0-9]/gi, "")
+          ? this.articleForm.expand.sort.map(e=>e.id)
           : "",
         img_src: this.articleForm.img_src,
       };
