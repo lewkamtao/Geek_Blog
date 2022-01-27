@@ -20,6 +20,7 @@
           style="margin-top: 5px; margin-bottom: 10px"
           v-if="articleData.expand.tag"
           :tags="articleData.expand.tag"
+          :showJump=false
         ></tag-list>
         <div class="article-box-footer">
           <div>
