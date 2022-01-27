@@ -29,6 +29,12 @@
         :articleListBySort="options.articleListBySort"
       ></article-by-sort-detail>
 
+      <!-- 文章TAG -->
+      <article-by-tag-detail
+        v-if="options.type == 'articleByTag'"
+        :articleListByTag="options.articleListByTag"
+      ></article-by-tag-detail>
+
       <!-- 留言板 -->
       <msg-wall-detail
         v-if="options.type == 'msg_wall'"
@@ -79,7 +85,7 @@
       <catalogue v-if="options.catalogue"></catalogue>
 
       <!-- 统计信息 -->
-      <record v-if="options.type == 'about' || options.type == 'articleBySort'">
+      <record v-if="options.type == 'about' || options.type == 'articleBySort' || options.type == 'articleByTag'">
       </record>
 
       <!-- 社交媒体 -->
@@ -124,7 +130,7 @@
 
       <!-- 日记 -->
       <diary
-        v-if="['index', 'articleBySort', 'moving'].indexOf(options.type) >= 0"
+        v-if="['index', 'articleBySort', 'articleByTag', 'moving'].indexOf(options.type) >= 0"
       ></diary>
 
       <!-- 博客信息 -->
@@ -148,6 +154,7 @@ import AboutDetail from "@/components/detail/AboutDetail";
 import SettingDetail from "@/components/detail/SettingDetail";
 import MusicDetail from "@/components/detail/MusicDetail";
 import ArticleBySortDetail from "@/components/detail/ArticleBySortDetail";
+import ArticleByTagDetail from "@/components/detail/ArticleByTagDetail";
 
 import Catalogue from "@/components/detail/parts/Catalogue";
 import Comment from "@/components/detail/parts/Comment";
@@ -173,6 +180,7 @@ export default {
     SettingDetail,
     MusicDetail,
     ArticleBySortDetail,
+    ArticleByTagDetail,
 
     Diary,
     Catalogue,

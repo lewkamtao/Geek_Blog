@@ -1,7 +1,7 @@
 <template>
   <div class="tagCloud part">
     <div class="main-title">标签云</div>
-    <tag-list :tags="tags" v-if="tags.length > 0"> </tag-list>
+    <tag-list :showJump=true :tags="tags" v-if="tags.length > 0"> </tag-list>
     <div v-if="tags.length == 0">暂无标签</div>
   </div>
 </template>
