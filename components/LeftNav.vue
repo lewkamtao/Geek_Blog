@@ -11,11 +11,11 @@
     ></menu-list>
 
     <!-- 音乐盒 -->
-    <music-box
+    <!-- <music-box
       v-if="musicBoxSwitch"
       ref="music_box"
       :geek_config="geek_config"
-    ></music-box>
+    ></music-box> -->
 
     <!-- 分类 -->
     <article-sort

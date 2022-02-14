@@ -47,93 +47,94 @@ export default {
   props: {
     menu_config: {
       type: Array,
-      default: function() {
+      default: function () {
         return [];
-      }
-    }
+      },
+    },
   },
   data() {
     return {
       tips: {
-        type: ""
+        type: "",
       },
       news: [
         {
-          info: "您现在可以在博客页面上使用封面图片"
+          info: "您现在可以在博客页面上使用封面图片",
         },
         { info: "你也可以自定义站点信息、个人信息。" },
-        { info: "还可以添加你的社交媒体的信息" }
+        { info: "还可以添加你的社交媒体的信息" },
       ],
       form: {
         menu_config: [
           {
             value: "about",
             title: "关于",
-            isShow: false
+            isShow: false,
           },
           {
             value: "photo",
             title: "图库",
-            isShow: false
+            isShow: false,
           },
           {
             value: "time_line",
             title: "时光机",
-            isShow: false
+            isShow: false,
           },
-          {
-            value: "music",
-            title: "音乐",
-            isShow: false
-          },
+          // {
+          //   value: "music",
+          //   title: "音乐",
+          //   isShow: false
+          // },
           {
             value: "links",
             title: "朋友",
-            isShow: false
+            isShow: false,
           },
           {
             value: "msg_wall",
             title: "留言墙",
-            isShow: false
+            isShow: false,
           },
           {
             value: "adm",
             title: "后台",
-            isShow: false
-          }
-        ]
-      }
+            isShow: false,
+          },
+        ],
+      },
     };
   },
   watch: {},
   computed: {},
   methods: {
     change(index) {
-      this.form.menu_config[index].isShow = !this.form.menu_config[index]
-        .isShow;
+      this.form.menu_config[index].isShow =
+        !this.form.menu_config[index].isShow;
       var data = {
         "login-token": this.$cookies.get("token"),
         keys: "geek_config",
-        opt: this.form
+        opt: this.form,
       };
 
-      this.$axios.post("/api/options", data).then(res => {
+      this.$axios.post("/api/options", data).then((res) => {
         if (res.code == 200) {
           this.$notify({
             type: "success",
             title: "恭喜！",
             message: "配置成功，刷新页面之后立即生效。",
             duration: 5000,
-            offset: 65
+            offset: 65,
           });
         }
       });
-    }
+    },
   },
   created() {
-    this.form.menu_config = this.menu_config;
+    var config = this.menu_config.filter((e) => e.value != "music");
+    this.form.menu_config = config;
   },
-  mounted() {}
+  mounted() {},
 };
 </script>
 <style lang="scss" scoped>

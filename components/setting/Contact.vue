@@ -47,8 +47,10 @@
               @click="del(index)"
               :style="`
               margin-left: 15px;
+              width:45px;
               padding: 5px;
               display: flex;
+              justify-content: center;
               align-items: center;
             `"
               class="ui red button"
@@ -76,10 +78,12 @@
               :style="`
               margin-left: 15px;
               padding: 5px;
+              width:45px;
               display: flex;
+justify-content: center;
               align-items: center;
             `"
-              class="ui red button"
+              class="ui red button mini"
             >
               <i
                 style="margin-right: 0px; margin-left: 0px"
@@ -520,7 +524,6 @@ export default {
   padding: 50px;
 }
 .contact-box {
-  border-bottom: 1px #eee solid;
   padding: 15px 0px 0px 0px;
 }
 .contact-box:first-child {
