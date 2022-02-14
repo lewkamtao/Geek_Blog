@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="mode-setting part">
-      <div @click="mode.isBgMusic = !mode.isBgMusic" class="mode-setting-box">
+      <!-- <div @click="mode.isBgMusic = !mode.isBgMusic" class="mode-setting-box">
         <span>背景音乐</span>
         <div class="inline field">
           <div class="ui toggle checkbox">
@@ -15,7 +15,7 @@
             <label></label>
           </div>
         </div>
-      </div>
+      </div> -->
       <div @click="mode.isDark = !mode.isDark" class="mode-setting-box">
         <span> {{ mode.isDark ? "暗黑模式" : "白天模式" }}</span>
         <div class="inline field">

@@ -83,7 +83,6 @@ export default {
       },
     },
     "/geek/": {
-      // 请填写你的后台接口地址
       target: "https://pic.sogou.com",
       pathRewrite: {
         "^/geek/": "",
