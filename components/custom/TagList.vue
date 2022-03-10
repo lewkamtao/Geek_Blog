@@ -7,7 +7,8 @@
       :key="index"
       style="margin-right: 5px"
       :class="tagsClass[index]"
-    ># {{ tag.name }}</span>
+      >{{ tag.name }}</span
+    >
     <nuxt-link
       v-if="showJump"
       :to="'ArticleByTag?tag_id=' + tag.id"
@@ -18,7 +19,8 @@
         class="ui mini label"
         style="margin-right: 5px"
         :class="tagsClass[index]"
-      >{{ tag.name }}</span>
+        >{{ tag.name }}</span
+      >
     </nuxt-link>
   </div>
 </template>
@@ -28,7 +30,7 @@ export default {
   props: {
     showJump: {
       type: Boolean,
-      default: false
+      default: false,
     },
     tags: {
       type: Array,
@@ -63,12 +65,15 @@ export default {
       }
     },
   },
-  created() {
-  },
+  created() {},
   mounted() {
     // this.getTagColor();
   },
 };
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+.tag-list {
+  margin: 5px 0px;
+}
+</style>

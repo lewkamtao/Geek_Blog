@@ -151,7 +151,7 @@ textarea::-webkit-scrollbar {
 
 body {
     font-size: 14px;
-    background-color: #f0f2f7;
+    background-color: #e9ecef;
 }
 
 .modal {
@@ -214,7 +214,7 @@ html::-webkit-scrollbar-thumb:hover {
     width: 100%;
     height: auto;
     padding: 15px;
-    border-radius: 8px;
+    border-radius: 6px;
     transition: all 0.25s;
     box-sizing: border-box;
     background-color: #ffffff;
@@ -266,6 +266,12 @@ html::-webkit-scrollbar-thumb:hover {
     p {
         font-size: 14px;
     }
+}
+
+.ui.label {
+    padding: 4px 8px !important;
+    font-weight: normal;
+    border-radius: 3px;
 }
 
 // 移动端适配

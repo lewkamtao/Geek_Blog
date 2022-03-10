@@ -24,8 +24,7 @@
             </a>
             <div
               v-if="comment.users_id == masterId"
-              class="ui horizontal label"
-              style="line-height: 14px"
+              class="ui horizontal mini label"
             >
               作者
             </div>
@@ -85,8 +84,7 @@
 
                 <div
                   v-if="son.users_id == masterId"
-                  class="ui horizontal label"
-                  style="line-height: 15px"
+                  class="ui horizontal mini label"
                 >
                   作者
                 </div>
@@ -324,15 +322,6 @@ export default {
   }
 
   cursor: pointer;
-}
-
-.ui.horizontal.label {
-  height: 18px;
-  overflow: hidden;
-  margin: 0px;
-  font-weight: normal;
-  color: #000;
-  padding: 2px 3px;
 }
 
 .ui.comments .comment .comments {

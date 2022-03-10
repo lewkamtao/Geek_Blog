@@ -1,6 +1,6 @@
 <template>
   <div class="info part">
-    <div class="main-title" style="margin-bottom: 12px">动态</div>
+    <div class="main-title" style="margin-bottom: 12px">最新评论</div>
 
     <comment-card
       v-for="(item, index) in newComments.data"
@@ -18,31 +18,31 @@ import CommentCard from "./CommentCard.vue";
 
 export default {
   components: {
-    CommentCard
+    CommentCard,
   },
   props: {
     newComments: {
       type: Object,
-      default: function() {
+      default: function () {
         return {};
-      }
-    }
+      },
+    },
   },
   data() {
     return {
-      masterId: 1
+      masterId: 1,
     };
   },
   methods: {
     async getMasterId() {
-      this.masterId = Number((
-        await this.$axios.get("/api/options?key=webmaster")
-      ).data.opt.users_id);
-    }
+      this.masterId = Number(
+        (await this.$axios.get("/api/options?key=webmaster")).data.opt.users_id
+      );
+    },
   },
   mounted() {
     this.getMasterId();
-  }
+  },
 };
 </script>
 

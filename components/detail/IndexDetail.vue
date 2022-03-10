@@ -1,12 +1,5 @@
 <template>
   <div class="index-wrapper-master">
-    <div class="index-banner part">
-      <div class="banner-bg">
-        <h1 class="slogan">
-          Coding changes the world !
-        </h1>
-      </div>
-    </div>
     <div class="masonry">
       <div
         v-for="(articleData, index) in articleList.data"
@@ -20,7 +13,7 @@
     <div @click="getArticleList()" class="more-btn">
       <button
         v-if="articleList.data.length != articleList.count"
-        class="ui primary button "
+        class="ui primary button"
         :class="{ loading: loading }"
       >
         点击加载更多
@@ -39,25 +32,25 @@ export default {
   props: {
     articleList: {
       type: Object,
-      default: function() {
+      default: function () {
         return {};
-      }
-    }
+      },
+    },
   },
   data() {
     return {
       page: 1,
       limit: 10,
-      loading: false
+      loading: false,
     };
   },
   watch: {},
   computed: {
     getBeautifyTime() {
-      return function(time) {
+      return function (time) {
         return util.getBeautifyTime(time);
       };
-    }
+    },
   },
   methods: {
     getTagColor() {
@@ -73,7 +66,7 @@ export default {
           title: "注意",
           message: "没有更多文章了",
           duration: 5000,
-          offset: 65
+          offset: 65,
         });
         return;
       }
@@ -89,12 +82,12 @@ export default {
         params = {
           id: this.isSelect_article_id,
           limit: this.limit,
-          page: this.page
+          page: this.page,
         };
         this.articleList.data = this.articleList.concat(
           (
             await this.$axios.get("/api/article-sort", {
-              params
+              params,
             })
           ).data.expand.data
         );
@@ -103,16 +96,16 @@ export default {
         this.articleList.data = this.articleList.data.concat(
           (
             await this.$axios.get("/api/article", {
-              params
+              params,
             })
           ).data.data
         );
       }
       this.loading = false;
-    }
+    },
   },
   created() {},
-  mounted() {}
+  mounted() {},
 };
 </script>
 <style lang="scss" scoped>
@@ -120,41 +113,13 @@ export default {
   width: 100%;
 }
 
-.index-banner {
-  width: 100%;
-  height: 200px;
-  padding: 0px;
-  margin-bottom: 7px;
-  background: #333;
-  .banner-bg {
-    width: 100%;
-    height: 200px;
-    background: url("https://tngeek-mall-1255310647.cos.ap-guangzhou.myqcloud.com/public/bg.svg");
-    background-size: 60%;
-    background-position: center right;
-    background-repeat: no-repeat;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    h1 {
-      font-size: 40px;
-      color: #fff;
-    }
-  }
-}
-
 .more-btn {
-  margin-top: 15px;
-  padding: 0px;
   width: 100%;
-  height: 45px;
-  line-height: 45px;
-  font-size: 16px;
-  text-align: center;
-  color: #000;
-  opacity: 1;
-  transition: all 0.25s;
-  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 30px 0px;
+  box-sizing: border-box;
 }
 
 .masonry {

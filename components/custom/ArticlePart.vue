@@ -1,26 +1,21 @@
 <template>
   <div class="part article-box">
     <nuxt-link :to="'/Article?id=' + articleData.id">
-      <div class="cover cover-bg"></div>
-      <div
-        class="cover"
-        :style="
-          'background:url(' +
-          (articleData.img_src
-            ? articleData.img_src
-            : 'https://tngeek-mall-1255310647.cos.ap-guangzhou.myqcloud.com/public/images/pexels/' +
-              articleData.id +
-              '.jpg!blog_mainPic)')
-        "
-      ></div>
       <div class="article-box-body">
-        <div class="article-box-title">{{ articleData.title }}</div>
+        <div class="article-box-title">
+          <span
+            style="margin-right: 10px"
+            v-show="articleData.is_top && articleData.is_show"
+            class="ui horizontal label red mini"
+            >置顶</span
+          >
+          {{ articleData.title }}
+        </div>
         <div class="article-box-subtitle">{{ articleData.description }}</div>
         <tag-list
-          style="margin-top: 5px; margin-bottom: 10px"
           v-if="articleData.expand.tag"
           :tags="articleData.expand.tag"
-          :showJump=false
+          :showJump="false"
         ></tag-list>
         <div class="article-box-footer">
           <div>
@@ -100,11 +95,9 @@
           </div>
         </div>
       </div>
-      <span
-        v-show="articleData.is_top && articleData.is_show"
-        class="ui horizontal label red mini isTop"
-        >置顶</span
-      >
+      <div v-if="articleData.img_src" class="article-cover">
+        <img :src="articleData.img_src" alt="" srcset="" />
+      </div>
     </nuxt-link>
   </div>
 </template>
@@ -140,7 +133,7 @@ export default {
   width: 100%;
   overflow: hidden;
   cursor: pointer;
-  padding: 7px;
+  padding: 17px;
   box-sizing: border-box;
   opacity: 0.9;
   transition: all 0.1s;
@@ -149,43 +142,31 @@ export default {
     background-image: none;
     display: flex;
   }
-  .isTop {
-    position: absolute;
-    right: 10px;
-    top: 10px;
-  }
 }
 .article-box:hover {
   opacity: 1;
 }
-.cover {
-  position: relative;
-  z-index: 99;
-  width: 280px;
-  height: 180px;
-  box-sizing: border-box;
-  background-size: cover !important;
-  border-radius: 7px;
-  background-position: center center !important;
+.article-cover {
+  width: 120px;
+  height: 120px;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 }
-.cover-bg {
-  position: absolute;
-  left: 0px;
-  top: 0px;
-  width: 280px;
-  height: 180px;
-  background: #eee;
-}
-
 .article-box-body {
   position: relative;
-  width: calc(100% - 320px);
-  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: calc(100% - 120px);
 }
 .article-box-title {
+  display: flex;
+  align-items: center;
   margin-top: -2px;
   line-height: 24px;
-  display: -webkit-box;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -197,7 +178,8 @@ export default {
 }
 .article-box-subtitle {
   font-size: 13px;
-  color: #999;
+  color: #000;
+  opacity: 0.4;
   line-height: 22px;
   margin-top: 10px;
   text-overflow: -o-ellipsis-lastline;
@@ -210,11 +192,6 @@ export default {
   -webkit-box-orient: vertical;
 }
 .article-box-footer {
-  position: absolute;
-  bottom: 10px;
-  left: 15px;
-  background: none;
-  border: none;
   padding: 0px;
   font-size: 12px;
   line-height: 24px;
@@ -222,7 +199,7 @@ export default {
   margin-bottom: 0px;
   display: flex;
   white-space: nowrap;
-  opacity: 0.6;
+  opacity: 0.4;
   flex-wrap: wrap;
   div {
     margin-right: 12px;
@@ -246,8 +223,6 @@ export default {
       width: 240px;
     }
     .article-box-body {
-      width: calc(100% - 260px);
-      padding-bottom: 50px;
       .article-box-title {
         font-size: 18px;
       }

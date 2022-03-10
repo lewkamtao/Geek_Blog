@@ -1,18 +1,8 @@
 <template>
   <div class="article-wrapper">
     <main class="section">
-      <header
-        class="border border-primary"
-        :style="
-          'background:url(' +
-          (article.img_src
-            ? article.img_src
-            : 'https://tngeek-mall-1255310647.cos.ap-guangzhou.myqcloud.com/public/images/pexels/' +
-              article.id +
-              '.jpg!blog_header)')
-        "
-      >
-        <div class="mask"></div>
+      <header class="border border-primary">
+        <div class="bg"></div>
         <div class="content">
           <div class="title">{{ article.title }}</div>
           <div class="summary">
@@ -216,23 +206,26 @@ export default {
     padding: 30px;
     color: #000;
     text-align: center;
-    background-size: cover !important;
-    background-position: center !important;
-    border-radius: 8px 8px 0px 0px;
+    overflow: hidden;
+    border-radius: 6px 6px 0px 0px;
 
-    .mask {
+    .bg {
       position: absolute;
-      top: -5%;
-      left: -5%;
-      width: 110%;
-      height: 110%;
-      background: rgba($color: #000000, $alpha: 0.4);
+      left: 0px;
+      top: 0px;
+      width: 100%;
+      height: 100%;
+      opacity: 0.08;
+      background: url(https://tngeek-mall-1255310647.cos.ap-guangzhou.myqcloud.com/public/images/fish/userHomeBg.svg);
+      background-size: cover;
+      background-position: center;
+      filter: invert(70%);
     }
 
     .content {
       position: relative;
       z-index: 9;
-      color: #fff;
+      color: #000;
     }
 
     .title {
