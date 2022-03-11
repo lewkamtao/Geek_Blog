@@ -13,11 +13,33 @@
         </div>
         <div class="article-box-subtitle">{{ articleData.description }}</div>
         <tag-list
-          v-if="articleData.expand.tag"
+          v-if="articleData.expand.tag.length > 0"
           :tags="articleData.expand.tag"
           :showJump="false"
         ></tag-list>
         <div class="article-box-footer">
+          <div
+            v-if="articleData.expand.sort && articleData.expand.sort.length > 0"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              width="16"
+              height="16"
+              stroke="currentColor"
+              stroke-width="2"
+              fill="none"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="feather css-i6dzq1"
+            >
+              <line x1="4" y1="9" x2="20" y2="9"></line>
+              <line x1="4" y1="15" x2="20" y2="15"></line>
+              <line x1="10" y1="3" x2="8" y2="21"></line>
+              <line x1="16" y1="3" x2="14" y2="21"></line>
+            </svg>
+
+            {{ articleData.expand.sort[0].name }}
+          </div>
           <div>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -96,7 +118,7 @@
         </div>
       </div>
       <div v-if="articleData.img_src" class="article-cover">
-        <img :src="articleData.img_src" alt="" srcset="" />
+        <img :src="`${articleData.img_src}!blog_mainPic`" alt="" srcset="" />
       </div>
     </nuxt-link>
   </div>
@@ -141,17 +163,19 @@ export default {
   a {
     background-image: none;
     display: flex;
+    align-items: flex-start;
   }
 }
 .article-box:hover {
   opacity: 1;
 }
 .article-cover {
-  width: 120px;
-  height: 120px;
+  width: 100px;
+  height: 100px;
   img {
     width: 100%;
     height: 100%;
+    border-radius: 6px;
     object-fit: cover;
   }
 }
@@ -159,8 +183,10 @@ export default {
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  width: calc(100% - 120px);
+  width: calc(100% - 110px);
+  margin-right: 10px;
+  padding-bottom: 30px;
+  min-height: 100px;
 }
 .article-box-title {
   display: flex;
@@ -181,7 +207,7 @@ export default {
   color: #000;
   opacity: 0.4;
   line-height: 22px;
-  margin-top: 10px;
+  margin-top: 5px;
   text-overflow: -o-ellipsis-lastline;
   overflow: hidden;
   font-weight: normal;
@@ -192,6 +218,9 @@ export default {
   -webkit-box-orient: vertical;
 }
 .article-box-footer {
+  position: absolute;
+  left: 0px;
+  bottom: 0px;
   padding: 0px;
   font-size: 12px;
   line-height: 24px;
@@ -216,12 +245,10 @@ export default {
   .index-wrapper-master {
     padding: 15px 25px 25px 25px;
   }
+
   .masonry .article-box {
     height: auto;
 
-    .cover {
-      width: 240px;
-    }
     .article-box-body {
       .article-box-title {
         font-size: 18px;
@@ -250,16 +277,15 @@ export default {
   .index-wrapper-master {
     padding: 0px 15px 15px 15px;
   }
+  .article-cover {
+    width: 100%;
+    margin-top: 10px;
+  }
   .masonry {
     .article-box {
-      padding: 10px;
-
       a {
         flex-direction: column;
-        .cover {
-          width: 100%;
-          margin-bottom: 20px;
-        }
+
         .article-box-body {
           width: 100%;
         }
