@@ -64,7 +64,7 @@ ul {
     border-radius: 7px;
     line-height: 28px;
     min-height: 36px;
-    padding: 4px 15px;
+    padding: 5px 15px;
     color: #999;
     display: inline-block;
     box-sizing: border-box;

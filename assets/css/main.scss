@@ -219,10 +219,18 @@ html::-webkit-scrollbar-thumb:hover {
     width: 100%;
     height: auto;
     padding: 15px;
-    border-radius: 6px;
+    border-radius: 8px;
     transition: all 0.25s;
     box-sizing: border-box;
     background-color: #ffffff;
+}
+
+.avatar {
+    overflow: hidden;
+    img {
+        border-radius: 50% !important;
+        border: 1px #d6d4d4 solid !important;
+    }
 }
 
 .main-title {

@@ -133,7 +133,7 @@ export default {
 </script>
 <style scoped lang="scss">
 .wrapper {
-  max-width: 1300px;
+  max-width: 1200px;
   min-width: 1000px;
   display: flex;
   justify-content: space-between;
@@ -157,7 +157,7 @@ export default {
   }
   .left-nav {
     position: fixed;
-    width: 240px;
+    width: 210px;
     height: 100%;
     overflow-y: scroll;
     z-index: 99;
@@ -167,10 +167,10 @@ export default {
   }
 
   .index-main {
-    width: calc(100% - 240px);
-    margin-left: 240px;
-    margin-top: 55px;
-    padding: 4px;
+    width: calc(100% - 211px);
+    margin-left: 211px;
+    margin-top: 57px;
+    padding: 5px;
     height: auto;
   }
 
@@ -206,7 +206,7 @@ export default {
   }
 }
 
-@media screen and (max-width: 1380px) {
+@media screen and (max-width: 1200px) {
   .wrapper {
     padding: 0px 14px;
     box-sizing: border-box;

@@ -59,7 +59,7 @@ ul {
     border-radius: 5px;
     line-height: 25px;
     min-height: 32px;
-    padding: 4px 8px 4px 18px;
+    padding: 5px 8px 5px 18px;
     color: #999;
     display: flex;
     justify-content: space-between;

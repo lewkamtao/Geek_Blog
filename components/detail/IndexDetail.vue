@@ -118,7 +118,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 30px 0px;
+  margin: 20px 0px 10px 0px;
   box-sizing: border-box;
 }
 
@@ -126,7 +126,7 @@ export default {
   width: 100%;
   .index-part {
     width: 100%;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
   }
 }
 @media screen and (max-width: 1024px) {

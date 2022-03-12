@@ -297,14 +297,14 @@ export default {
     articleMainWidth =
       that.$refs.articleMain.getBoundingClientRect().left +
       that.$refs.articleMain.clientWidth +
-      4;
+      6;
     that.setAsideLeft = "left:" + articleMainWidth + "px;";
     window.onresize = function () {
       that.$nextTick(function () {
         articleMainWidth =
           that.$refs.articleMain.offsetLeft +
           that.$refs.articleMain.clientWidth +
-          4;
+          6;
         that.setAsideLeft = "left:" + articleMainWidth + "px;";
       });
     };
@@ -319,7 +319,7 @@ export default {
   display: flex;
   width: 100%;
   .main {
-    width: calc(100% - 350px);
+    width: calc(100% - 352px);
     min-width: 500px;
     transition: opacity 0.25s;
     overflow: hidden;
@@ -328,7 +328,7 @@ export default {
 .aside {
   position: fixed;
   top: 0px;
-  padding: 59px 4px 110px 4px;
+  padding: 62px 4px 110px 4px;
   box-sizing: border-box;
   max-height: 100%;
   height: 100%;
@@ -341,7 +341,7 @@ export default {
   -ms-scrollbar-track-color: transparent;
 }
 .aside > div {
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 .aside::-webkit-scrollbar {
   width: 0px;

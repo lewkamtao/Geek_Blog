@@ -100,10 +100,10 @@ export default {
   }
 }
 .left-nav > div {
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 .left-nav > div:first-child {
-  margin-top: 8px;
+  margin-top: 10px;
 }
 .left-nav > div:last-child {
   margin-bottom: 50px;

@@ -304,7 +304,15 @@ export default {
     align-items: center;
   }
 }
-
+.actions {
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+.content:hover {
+  .actions {
+    opacity: 1;
+  }
+}
 .content {
   .header {
     display: flex;
@@ -313,6 +321,9 @@ export default {
     .author {
       margin-right: 8px;
     }
+  }
+  .text {
+    font-size: 14px;
   }
 }
 
@@ -327,5 +338,11 @@ export default {
 .ui.comments .comment .comments {
   margin-bottom: 0px !important;
   padding-bottom: 0px !important;
+}
+
+@media screen and (max-width: 1024px) {
+  .actions {
+    opacity: 1;
+  }
 }
 </style>

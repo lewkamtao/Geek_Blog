@@ -2,15 +2,16 @@
   <div class="part">
     <nuxt-link to="/about">
       <div class="user-info">
-        <div class="avatar">
-          <v-img
-            style="border-radius: 4px"
-            class="ui image"
-            width="50px"
-            height="50px"
-            :url="user.head_img"
-          >
-          </v-img>
+        <div class="avatar-wrapper">
+          <div class="avatar">
+            <v-img
+              class="ui image"
+              width="100px"
+              height="100px"
+              :url="user.head_img"
+            >
+            </v-img>
+          </div>
         </div>
         <div class="info">
           <div class="nickname">{{ user.nickname }}</div>
@@ -57,10 +58,10 @@ export default {
 .user-info {
   position: relative;
   display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
+  align-items: center;
+  flex-direction: column;
   box-sizing: border-box;
-  padding: 6px;
+  padding:20px 6px;
   .mode-setting {
     position: absolute;
     right: 10px;
@@ -71,31 +72,28 @@ export default {
       margin-top: 1px;
     }
   }
-  .avatar {
-    width: 50px;
-    height: 50px;
-    overflow: hidden;
-    img {
-      width: 100%;
-      height: 100%;
-      border-radius: 8px;
+  .avatar-wrapper {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .avatar {
+      width: 100px;
     }
   }
   .info {
-    width: calc(100% - 60px);
-    margin-left: 10px;
+    text-align: left;
     .nickname {
-      margin-top: 2px;
-      margin-bottom: 5px;
+      margin-top: 15px;
       color: #000;
-      font-size: 18px;
+      font-size: 16px;
       font-weight: bold;
     }
     .description {
       font-size: 14px;
       line-height: 22px;
-      color: #000;
-      width: 140px;
+      color: #999;
       overflow: hidden; /*超出部分隐藏*/
       white-space: nowrap; /*不换行*/
       text-overflow: ellipsis; /*超出部分文字以...显示*/

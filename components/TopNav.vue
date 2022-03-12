@@ -171,7 +171,7 @@ export default {
   height: 100%;
 
   .top-nav {
-    max-width: calc(1300px - 14px);
+    max-width: calc(1200px - 14px);
     margin: 0 auto;
     width: 100%;
     height: 50px;
@@ -340,7 +340,7 @@ export default {
   margin: 0px;
 }
 
-@media screen and (max-width: 1300px) {
+@media screen and (max-width: 1200px) {
   .top-nav-wrapper {
     width: calc(100% - 8px);
   }
