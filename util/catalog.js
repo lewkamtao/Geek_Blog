@@ -1,5 +1,5 @@
 import util from "@/util/index";
-import {Debounce, Throttle} from "@/util/common.js";
+import { Debounce, Throttle } from "@/util/common.js";
 
 export default function (opts) {
   let defaultOpts = {
@@ -28,7 +28,7 @@ export default function (opts) {
   }
 
   try {
-    $catalog.innerHTML = `<div class='cl-wrapper'>${generateHtmlTree(tree, {id: -1})}</div>`
+    $catalog.innerHTML = `<div class='cl-wrapper'>${generateHtmlTree(tree, { id: -1 })}</div>`
   } catch (e) {
     console.error('error in progress-catalog', e)
   }
@@ -63,8 +63,8 @@ export default function (opts) {
     let number = document.documentElement.scrollTop || document.body.scrollTop || window.pageYOffset;
     let maskHeight = 0;
     let editBoxHeight = 0;
-    if (document.querySelector(".article-wrapper .mask") !== null) {
-      maskHeight = document.querySelector(".article-wrapper .mask").offsetHeight;
+    if (document.querySelector(".article-wrapper .bg") !== null) {
+      maskHeight = document.querySelector(".article-wrapper .bg").offsetHeight;
     }
     if (document.querySelector(".article-wrapper .edit-box") !== null) {
       editBoxHeight = document.querySelector(".article-wrapper .edit-box").offsetHeight;
@@ -86,7 +86,7 @@ export default function (opts) {
   /**
    * 点击事件
    */
-  function clickHandler({target}) {
+  function clickHandler({ target }) {
     let datasetId;
     datasetId = target.getAttribute(Opt.datasetName)
     if (datasetId == null) {
@@ -106,7 +106,7 @@ export default function (opts) {
 
     let offsetTop = document.getElementById(datasetId).offsetTop;
     let topHeight = document.querySelector(".top-nav").offsetHeight - 70;
-    let maskHeight = document.querySelector(".article-wrapper .mask").offsetHeight;
+    let maskHeight = document.querySelector(".article-wrapper .bg").offsetHeight
     let editBoxHeight = document.querySelector(".article-wrapper .edit-box").offsetHeight;
     util.scrollSmoothTo(offsetTop + topHeight + maskHeight + editBoxHeight);
   }
@@ -116,7 +116,7 @@ export default function (opts) {
    * @param catalogs
    */
   function getCatalogsTree(catalogs) {
-    let title, tagName, tree = [], treeItem = {}, parentItem = {id: -1}, lastTreeItem = null, id
+    let title, tagName, tree = [], treeItem = {}, parentItem = { id: -1 }, lastTreeItem = null, id
 
     for (let i = 0; i < catalogs.length; i++) {
       title = catalogs[i].innerText || catalogs[i].textContent
@@ -154,7 +154,7 @@ export default function (opts) {
     while (lastTreeParent && (getLevel(currTreeItem.tagName) <= getLevel(lastTreeParent.tagName))) {
       lastTreeParent = lastTreeParent.parent
     }
-    return lastTreeParent || {id: -1}
+    return lastTreeParent || { id: -1 }
   }
 
   /**

@@ -51,25 +51,6 @@
               stroke-width="2"
               stroke-linecap="round"
               stroke-linejoin="round"
-              class="feather feather-user"
-            >
-              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-              <circle cx="12" cy="7" r="4" />
-            </svg>
-            <polyline points="12 6 12 12 16 14"></polyline>
-            {{ articleData.expand.author.nickname }}
-          </div>
-          <div>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16px"
-              height="16px"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
               class="feather feather-message-square"
             >
               <path
@@ -229,7 +210,6 @@ export default {
   display: flex;
   white-space: nowrap;
   opacity: 0.4;
-  flex-wrap: wrap;
   div {
     margin-right: 12px;
     display: flex;
@@ -273,21 +253,24 @@ export default {
   }
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 765px) {
   .index-wrapper-master {
     padding: 0px 15px 15px 15px;
   }
   .article-cover {
-    width: 100%;
-    margin-top: 10px;
+    width: 60px;
+    height: auto;
+    img {
+      width: 60px;
+      height: 60px;
+    }
   }
   .masonry {
     .article-box {
       a {
-        flex-direction: column;
-
         .article-box-body {
-          width: 100%;
+          min-height: auto;
+          width: calc(100% - 60px);
         }
       }
     }
