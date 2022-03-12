@@ -107,7 +107,6 @@ export default {
       .label {
         font-size: 12px;
         height: 18px;
-        line-height: 18px;
         padding: 0px 8px;
         font-weight: bold;
       }
