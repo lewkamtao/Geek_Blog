@@ -1,5 +1,4 @@
 import Vue from "vue";
-import JQ from "jquery";
 // 代码高亮
 import hljs from "highlight.js";
 // 复制
@@ -9,46 +8,21 @@ Vue.directive("code-highlight", (el) => {
   const highlight = el.querySelectorAll("pre code");
   highlight.forEach((block) => {
     hljs.highlightBlock(block);
-    // 显示行号
-    block.innerHTML =
-      "<ul><li>" +
-      block.innerHTML.replace(/\n/g, "\n</li><li>") +
-      "\n</li></ul>";
-    /* 添加头 */
-    let language = "bash";
-    block.classList.forEach((className) => {
-      if (className.indexOf("language-") !== -1)
-        language = className.split("-")[1];
-    });
-    let pre_head = document.createElement("div");
-    pre_head.classList.add("pre-head");
-    pre_head.innerHTML =
-      "<p><span class='code-language'>" +
-      language.toUpperCase() +
-      "</span><span class='copyBtn'><i class='copy icon'></i></span></p>";
-    block.parentNode.insertBefore(pre_head, block);
-    // 创建修复滚动条白点
-    let repair = document.createElement("span")
-    repair.classList.add("repair")
-    block.parentNode.insertBefore(repair, block);
-  });
-  // 复制操作
-  el.querySelectorAll("pre").forEach((item) => {
-    JQ(item)
-      .find(".copyBtn")
-      .click((e) => {
-        const codeText = JQ(item).find("code").text();
-        copyContent("copyBtn", codeText);
-      });
+    var copyDom = document.createElement("div");
+    copyDom.className = "copy-btn";
+    copyDom.innerHTML = "Copy";
+    copyDom.setAttribute("data-clipboard-text", block.innerHTML);
+    copyDom.onclick = function () {
+      copyContent();
+      copyDom.innerHTML = "Copy success!";
+    };
+    block.parentNode.appendChild(copyDom);
   });
 });
 
-function copyContent(className, content) {
-  let clipboard = new Clipboard("." + className, {
-    text: function () {
-      return content;
-    },
-  });
+function copyContent() {
+  var clipboard = new Clipboard(".copy-btn");
+
   clipboard.on("success", (e) => {
     // 复制成功消息通知
     Vue.prototype.$notify({

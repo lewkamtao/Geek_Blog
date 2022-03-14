@@ -1,34 +1,47 @@
 code::-webkit-scrollbar {
-    width: 6px;
-    height: 6px
+    width: 4px;
+    height: 4px
 }
 
 code::-webkit-scrollbar-thumb {
-    border-radius: 6px;
-    background: #f6f8fa
-}
-
-code:hover::-webkit-scrollbar-thumb {
-    background: #777
-}
-
-code::-webkit-scrollbar-thumb:hover {
-    background: #979ea1;
+    border-radius: 2px;
+    background: #999
 }
 
 code::-webkit-scrollbar-track-piece {
-    background: #f6f8fa
+    background: #eee
 }
 
 #article-editor pre {
-    padding: 0 !important;
     position: relative;
     border-radius: 4px;
+    background-color: #f0f0f4;
     max-width: 800px;
+    padding: 20px 15px;
+    .copy-btn {
+        position: absolute;
+        right: 0px;
+        top: 0px;
+        min-width: 50px;
+        height: 20px;
+        background-color: #eee;
+        font-size: 16px;
+        text-align: center;
+        opacity: 0;
+        transition: all 0.25s;
+        cursor: pointer;
+    }
+}
+
+#article-editor pre:hover {
+    .copy-btn {
+        opacity: 1;
+    }
 }
 
 #article-editor pre code {
     display: block;
+    line-height: 24px;
 }
 
 #article-editor pre .repair {
@@ -40,88 +53,23 @@ code::-webkit-scrollbar-track-piece {
     bottom: 0;
 }
 
-.hljs ul {
-    padding: 10px 0 10px 0;
-    padding-left: 3.5em !important;
-    margin: 0 !important;
-    list-style: decimal
-}
-
-.hljs ul li {
-    padding: 5px !important;
-    line-height: 14px
-}
-
-.hljs ul li::marker {
-    color: #999
-}
-
 #article-editor pre .pre-head {
     color: #5a5a5a;
-    background: #ededed;
-    height: 30px
-}
-
-#article-editor pre .pre-head:before {
-    position: relative;
-    top: 8px;
-    left: 10px;
-    z-index: 2;
-    -webkit-border-radius: 50%;
-    border-radius: 50%;
-    background: #fc625d;
-    -webkit-box-shadow: 20px 0 #fdbc40, 40px 0 #35cd4b;
-    box-shadow: 20px 0 #fdbc40, 40px 0 #35cd4b;
-    content: " ";
-    display: block;
-    width: 1em;
-    height: 1em;
-}
-
-#article-editor pre:hover .pre-head .code-language {
-    opacity: 1;
-    transition: all .3s ease
-}
-
-#article-editor pre .pre-head>p {
     display: flex;
-    justify-content: center;
-    margin-top: -7px;
+    align-items: center;
+    p {
+        display: flex;
+        margin-bottom: 0px !important;
+    }
 }
 
 #article-editor pre .pre-head .code-language {
-    opacity: 0;
+    opacity: 1;
     margin-top: -0.1em;
     font-weight: bold;
     font-size: .9em;
     font-family: Ubuntu, sans-serif;
     transition: all .3s ease
-}
-
-#article-editor pre .pre-head .copyBtn {
-    opacity: 0;
-    border-radius: 4px;
-    padding: 0.1em 0.6em;
-    background: rgba(213, 216, 219, .8);
-    position: absolute;
-    right: 10px;
-    margin-top: -3px;
-    cursor: pointer;
-    transition: all .3s ease
-}
-
-#article-editor pre:hover .pre-head .copyBtn {
-    opacity: 1;
-    transition: all .6s ease;
-}
-
-#article-editor .pre-head .copyBtn:hover {
-    color: #157ff9;
-}
-
-#article-editor pre .pre-head .copyBtn .icon {
-    vertical-align: -0.04em;
-    margin: unset;
 }
 
 #article-editor pre code.hljs {

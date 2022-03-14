@@ -275,7 +275,10 @@ html::-webkit-scrollbar-thumb:hover {
     min-height: 100%;
 }
 
-.comment {
+.markdown-body {
+    li {
+        font-size: 14px;
+    }
     p {
         font-size: 14px;
     }
