@@ -15,7 +15,7 @@
         <div class="count">
           {{ record.links.count }}
         </div>
-        <div class="tag">朋友</div>
+        <div class="tag">友链</div>
       </div>
     </div>
   </div>
@@ -94,4 +94,6 @@ export default {
     }
   }
 }
+
+
 </style>
