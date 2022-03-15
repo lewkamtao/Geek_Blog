@@ -15,7 +15,7 @@ code::-webkit-scrollbar-track-piece {
 #article-editor pre {
     position: relative;
     border-radius: 4px;
-    background-color: #f0f0f4;
+    background-color: #eee;
     max-width: 800px;
     padding: 20px 15px;
     .copy-btn {
@@ -24,7 +24,6 @@ code::-webkit-scrollbar-track-piece {
         top: 0px;
         min-width: 50px;
         height: 20px;
-        background-color: #eee;
         font-size: 16px;
         text-align: center;
         opacity: 0;

@@ -8,7 +8,7 @@
         class="part"
       ></article-detail>
 
-      <!-- 朋友 -->
+      <!-- 友链 -->
       <links-detail
         :geek_config="geek_config"
         v-if="options.links && options.type == 'links'"

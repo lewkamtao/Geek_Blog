@@ -11,7 +11,7 @@ Vue.directive("code-highlight", (el) => {
     var copyDom = document.createElement("div");
     copyDom.className = "copy-btn";
     copyDom.innerHTML = "Copy";
-    copyDom.setAttribute("data-clipboard-text", block.innerHTML);
+    copyDom.setAttribute("data-clipboard-text", block.innerText );
     copyDom.onclick = function () {
       copyContent();
       copyDom.innerHTML = "Copy success!";

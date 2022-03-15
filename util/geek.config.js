@@ -55,7 +55,7 @@ export default {
       },
       {
         value: "links",
-        title: "朋友",
+        title: "友链",
         isShow: true,
       },
       {

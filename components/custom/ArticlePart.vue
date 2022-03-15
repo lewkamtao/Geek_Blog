@@ -181,7 +181,7 @@ export default {
   -webkit-line-clamp: 2;
   font-size: 18px;
   color: #000;
-  font-weight: bold;
+  font-weight: 600;
 }
 .article-box-subtitle {
   font-size: 13px;
