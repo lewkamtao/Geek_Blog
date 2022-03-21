@@ -8,6 +8,11 @@ html {
     overflow: inherit;
 }
 
+html {
+    filter: gray;
+    -webkit-filter: grayscale(100%);
+}
+
 .geek-isDark {
     filter: invert(1) hue-rotate(180deg) !important;
     img,
