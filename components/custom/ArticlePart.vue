@@ -99,7 +99,7 @@
         </div>
       </div>
       <div v-if="articleData.img_src" class="article-cover">
-        <img :src="`${articleData.img_src}!blog_mainPic`" alt="" srcset="" />
+        <img :src="`${articleData.img_src}`" alt="" srcset="" />
       </div>
     </nuxt-link>
   </div>
