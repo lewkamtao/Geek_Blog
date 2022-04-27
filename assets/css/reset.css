@@ -7,6 +7,7 @@ html {
 
 body {
     scroll-behavior: smooth;
+    font-family: "Noto Sans SC", "微软雅黑" !important;
 }
 
 body,
@@ -15,6 +16,11 @@ dt,
 dd,
 ul,
 ol,
+h1,
+h2,
+h3,
+h4,
+h5,
 li,
 pre,
 form,
@@ -23,7 +29,6 @@ p,
 blockquote,
 th,
 div,
-span,
 a,
 td {
     font-weight: 400;
