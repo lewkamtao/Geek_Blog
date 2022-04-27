@@ -5,7 +5,7 @@
       id="setting_menu"
       class="header"
     ></div>
-    <menu-set :menu_config="geek_config.menu_config"></menu-set>
+    <!-- <menu-set :menu_config="geek_config.menu_config"></menu-set> -->
     <h2 id="setting_siteinfo" class="header"></h2>
     <site-info :site_config="geek_config.site_config"></site-info>
 
@@ -59,7 +59,7 @@ export default {
 </style>
 <style lang="scss" scoped>
 .header {
-  padding-top: 60px;
+  padding-top: 52px;
   margin-top: -52px;
 }
 </style>

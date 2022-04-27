@@ -1,6 +1,23 @@
 <template>
-  <div class="part">
+  <div class="part" style="marin-top:0px">
     <form class="ui form">
+      <h1 style="margin-bottom: 30px" id="setting_menu">设置</h1>
+      <div class="ui message">
+        <div class="header">
+          <font style="vertical-align: inherit"
+            ><font style="vertical-align: inherit"> 新网站功能 </font></font
+          >
+        </div>
+        <ul class="list">
+          <li v-for="(item, index) in news" :key="index">
+            <font style="vertical-align: inherit"
+              ><font style="vertical-align: inherit">{{
+                item.info
+              }}</font></font
+            >
+          </li>
+        </ul>
+      </div>
       <h4 class="ui dividing header">站点配置</h4>
 
       <div class="field">
@@ -56,8 +73,6 @@
         />
       </div>
 
-
-
       <div class="field">
         <label>站点脚部</label>
         <textarea
@@ -100,7 +115,13 @@ export default {
   data() {
     return {
       loading: false,
-
+      news: [
+        {
+          info: "您现在可以在博客页面上使用封面图片",
+        },
+        { info: "你也可以自定义站点信息、个人信息。" },
+        { info: "还可以添加你的社交媒体的信息" },
+      ],
       form: {
         site_config: {
           title: "", // 站点标题

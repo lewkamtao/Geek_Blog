@@ -1,3 +1,4 @@
+@import "https://30sec.oss-cn-guangzhou.aliyuncs.com/public/SanCFont.css";
 html {
     overflow-x: auto;
     overflow-y: scroll;
@@ -21,10 +22,14 @@ fieldset,
 p,
 blockquote,
 th,
+div,
+span,
+a,
 td {
     font-weight: 400;
     margin: 0;
     padding: 0;
+    font-family: "Noto Sans SC", "微软雅黑" !important;
 }
 
 h1,

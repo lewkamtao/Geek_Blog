@@ -81,11 +81,11 @@ export default {
             title: "时光机",
             isShow: false,
           },
-          // {
-          //   value: "music",
-          //   title: "音乐",
-          //   isShow: false
-          // },
+          {
+            value: "music",
+            title: "音乐",
+            isShow: false
+          },
           {
             value: "links",
             title: "友链",

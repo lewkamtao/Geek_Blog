@@ -320,6 +320,7 @@ export default {
 
     .author {
       margin-right: 8px;
+      color: #999;
     }
   }
   .text {

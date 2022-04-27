@@ -133,8 +133,8 @@ export default {
 </script>
 <style scoped lang="scss">
 .wrapper {
-  max-width: 1200px;
-  min-width: 1000px;
+  max-width: 1300px;
+  min-width: 1100px;
   display: flex;
   justify-content: space-between;
   margin: 0px auto;
@@ -157,7 +157,7 @@ export default {
   }
   .left-nav {
     position: fixed;
-    width: 210px;
+    width: 250px;
     height: 100%;
     overflow-y: scroll;
     z-index: 99;
@@ -167,8 +167,8 @@ export default {
   }
 
   .index-main {
-    width: calc(100% - 211px);
-    margin-left: 211px;
+    width: calc(100% - 251px);
+    margin-left: 251px;
     margin-top: 57px;
     padding: 5px;
     height: auto;

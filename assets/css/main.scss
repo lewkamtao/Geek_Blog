@@ -156,7 +156,7 @@ textarea::-webkit-scrollbar {
 
 body {
     font-size: 14px;
-    background-color: #eee;
+    background-color: rgb(241, 240, 240);
 }
 
 .modal {
@@ -219,7 +219,7 @@ html::-webkit-scrollbar-thumb:hover {
     width: 100%;
     height: auto;
     padding: 15px;
-    border-radius: 8px;
+    border-radius: 10px;
     transition: all 0.25s;
     box-sizing: border-box;
     background-color: #ffffff;
@@ -285,9 +285,10 @@ html::-webkit-scrollbar-thumb:hover {
 }
 
 .ui.label {
-    padding: 4px 8px !important;
+    padding: 3px 4px !important;
     font-weight: normal;
     border-radius: 3px;
+    font-size: 13px !important;
 }
 
 // 移动端适配
@@ -314,5 +315,9 @@ html::-webkit-scrollbar-thumb:hover {
         .to-top {
             display: none;
         }
+    }
+    .ui.label {
+        padding: 2px 4px !important;
+        font-size: 12px !important;
     }
 }
