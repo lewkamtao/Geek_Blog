@@ -138,7 +138,7 @@ export default {
   cursor: pointer;
   padding: 17px;
   box-sizing: border-box;
-  opacity: 0.9;
+  opacity: 1;
   transition: all 0.1s;
 
   a {
@@ -148,7 +148,7 @@ export default {
   }
 }
 .article-box:hover {
-  opacity: 1;
+  opacity: 0.9;
 }
 .article-cover {
   width: 100px;
