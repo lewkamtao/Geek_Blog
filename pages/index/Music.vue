@@ -1,17 +1,11 @@
 <template>
-  <Detail
-    @reloadComments="getComments"
-    @getSongs="getSongs"
-    @playSong="playSong"
-    :music="{
-      music_list: music_list,
-      songs: songs,
-    }"
-    :options="{
+  <Detail @reloadComments="getComments" @getSongs="getSongs" @playSong="playSong" :music="{
+    music_list: music_list,
+    songs: songs,
+  }" :options="{
       type: 'music',
       comments: comments,
-    }"
-  />
+    }" />
 </template>
 
 <script>
@@ -28,7 +22,7 @@ export default {
     const music_list = (
       await $axios.get("/api/music", {
         params: {
-          limit: 10000,
+          limit: 2000
         },
       })
     ).data;
@@ -40,12 +34,12 @@ export default {
     ).data;
 
     const comments = (
-      await $axios.get("/api/comments", {
+      await $axios.get("/api/comments/all", {
         params: {
           mode: "type",
           type: "music",
-          tree: false,
-          limit: 10000,
+
+
         },
       })
     ).data;
@@ -68,12 +62,12 @@ export default {
     // 获取评论
     async getComments() {
       const comments = (
-        await this.$axios.get("/api/comments", {
+        await this.$axios.get("/api/comments/all", {
           params: {
             mode: "type",
             type: "music",
-            tree: false,
-            limit: 10000,
+
+
           },
         })
       ).data;

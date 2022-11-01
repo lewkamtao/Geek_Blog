@@ -83,7 +83,7 @@ export default {
           keys: "geek_config",
           opt: first_geek_config.geek_config,
         };
-        this.$axios.post("/api/options", data);
+        this.$axios.post("/api/options/save", data);
         this.geek_config = first_geek_config.geek_config;
       }
     },

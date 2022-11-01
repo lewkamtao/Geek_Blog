@@ -117,7 +117,7 @@ export default {
         opt: this.form,
       };
 
-      this.$axios.post("/api/options", data).then((res) => {
+      this.$axios.post("/api/options/save", data).then((res) => {
         if (res.code == 200) {
           this.$notify({
             type: "success",

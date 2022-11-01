@@ -22,12 +22,12 @@ export default {
   async asyncData({$axios, route}) {
     const links = (await $axios.get("/api/links?limit=100000")).data;
     const comments = (
-      await $axios.get("/api/comments", {
+      await $axios.get("/api/comments/all", {
         params: {
           mode: "type",
           type: "links",
-          tree: false,
-          limit: 10000,
+
+
         },
       })
     ).data;
@@ -61,12 +61,12 @@ export default {
     // 获取评论
     async getComments() {
       const comments = (
-        await this.$axios.get("/api/comments", {
+        await this.$axios.get("/api/comments/all", {
           params: {
             mode: "type",
             type: "links",
-            tree: false,
-            limit: 10000,
+
+
           },
         })
       ).data;

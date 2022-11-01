@@ -28,7 +28,7 @@ export default {
   },
   methods: {
     async getNewComments() {
-      const newComments = (await this.$axios.get("/api/comments?limit=5")).data;
+      const newComments = (await this.$axios.get("/api/comments/all?limit=5")).data;
       this.newComments = newComments;
     }
   },
