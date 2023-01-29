@@ -1,4 +1,4 @@
-# Geek Blog
+# Geek Blog（暂停维护）
 
 > 新一代 Vue2 + Nuxt.js + Semantic UI 搭建的个人博客，支持服务端渲染。
 
